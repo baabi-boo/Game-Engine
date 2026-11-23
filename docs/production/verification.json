@@ -1,0 +1,264 @@
+{
+  "record_schema_version": 1,
+  "record_date": "2026-11-23",
+  "project": {
+    "name": "GameEngine",
+    "version": "0.1.0",
+    "scope": "headless foundation / pre-alpha"
+  },
+  "implementation_commit": "1694f3c87f5227842d157d5becc718b2bba03d85",
+  "implementation_commit_url": "https://github.com/baabi-boo/Game-Engine/commit/1694f3c87f5227842d157d5becc718b2bba03d85",
+  "coordination": {
+    "distinct_delegated_agents": 60,
+    "thematic_waves": 10,
+    "assignments_per_wave": 6,
+    "maximum_concurrent_workers": 3
+  },
+  "environment": {
+    "operating_system": "Linux",
+    "system_processor": "x86_64",
+    "compiler": "GNU C++ 14.2.0",
+    "cmake": "4.4.5",
+    "ninja": "1.13.2.git.kitware.jobserver-pipe-1",
+    "python": "3.12.14"
+  },
+  "local_prepublication": {
+    "base_commit": "d4175381616a57588fdebb93b7f9ba0ea8cc3c9a",
+    "source_dirty": true,
+    "implementation_inputs_match_published_source": true,
+    "configurations": [
+      {
+        "preset": "dev",
+        "configuration": "Debug",
+        "ctest_suites": 12,
+        "failed": 0,
+        "skipped_suites": 0
+      },
+      {
+        "preset": "release",
+        "configuration": "Release",
+        "ctest_suites": 12,
+        "failed": 0,
+        "skipped_suites": 0
+      },
+      {
+        "preset": "asan",
+        "configuration": "Debug with ASan and UBSan",
+        "ctest_suites": 12,
+        "failed": 0,
+        "skipped_suites": 0
+      }
+    ],
+    "native_cases": 32,
+    "native_check_evaluations": 2285,
+    "native_suites": [
+      {
+        "name": "Core",
+        "cases": 9,
+        "check_evaluations": 350
+      },
+      {
+        "name": "Content",
+        "cases": 3,
+        "check_evaluations": 299
+      },
+      {
+        "name": "Streaming",
+        "cases": 10,
+        "check_evaluations": 622
+      },
+      {
+        "name": "State",
+        "cases": 6,
+        "check_evaluations": 807
+      },
+      {
+        "name": "Linux state I/O faults",
+        "cases": 4,
+        "check_evaluations": 207
+      }
+    ],
+    "python_test_methods": 96,
+    "python_methods_by_suite": {
+      "cooker": 25,
+      "headless": 12,
+      "native_package": 27,
+      "repository_policy": 14,
+      "build_manifest": 13,
+      "tool_boundaries": 5
+    },
+    "local_leak_sanitizer_enabled": false,
+    "local_leak_sanitizer_reason": "traced environment prevents LeakSanitizer execution",
+    "evidence_directory": "out/evidence/foundation-x2cat5qm"
+  },
+  "clean_source_export": {
+    "same_host": true,
+    "exported_source_files": 88,
+    "git_metadata_present": false,
+    "configuration": "Release",
+    "ctest_suites": 12,
+    "failed": 0,
+    "relocated_sdk": "passed",
+    "manifest_source_status": "unknown",
+    "existing_file_differences_after_export": [
+      "README.md",
+      "docs/README.md",
+      "docs/development/diagnostics.md"
+    ],
+    "implementation_input_differences": [],
+    "evidence_directory": "out/w09-a54"
+  },
+  "clean_published_release": {
+    "source_commit": "1694f3c87f5227842d157d5becc718b2bba03d85",
+    "source_dirty": false,
+    "command": "python3 tools/ge.py package --preset release --jobs 2",
+    "status": "passed",
+    "ctest_suites": 12,
+    "failed": 0,
+    "skipped_suites": 0,
+    "manifest_runtime_and_fixture_hashes": "matched",
+    "unicode_relocation": "passed",
+    "sdk_public_headers": 5,
+    "sdk_targets": [
+      "ge::core",
+      "ge::content",
+      "ge::world"
+    ],
+    "archive_payload_files": 19,
+    "archive_sidecars": "matched",
+    "evidence_directory": "out/evidence/clean-release-o_d53gvd",
+    "completed_utc": "2026-11-23T12:24:56.780336+00:00",
+    "archives": [
+      {
+        "filename": "GameEngine-0.1.0-Linux-x86_64.tar.gz",
+        "size_bytes": 139289,
+        "sha256": "216cac7cf6e3390e512cb97d0a9d3128a6dce1bd932ca9f13c5f26841bf26192"
+      },
+      {
+        "filename": "GameEngine-0.1.0-Linux-x86_64.zip",
+        "size_bytes": 149757,
+        "sha256": "f545e5f983c4e7b76f9dee30fde0dca2ad032f7070cbe516abfc96624e7fc6be"
+      }
+    ],
+    "build_manifest": {
+      "artifacts": {
+        "fixture": {
+          "filename": "district.gepack",
+          "sha256": "c40f4dd023f8ca5f4d57034abdfff73bdb22145a39694a56df3c4155ce8efb5d",
+          "size_bytes": 252
+        },
+        "headless": {
+          "filename": "ge_headless",
+          "sha256": "a38f80bfb47437fc9da4dcd28adcdf1a7667ca870065ba30fc42efc1d8a865d4",
+          "size_bytes": 137200
+        }
+      },
+      "build": {
+        "compiler": {
+          "id": "GNU",
+          "version": "14.2.0"
+        },
+        "configuration": "Release",
+        "platform": "Linux",
+        "sanitizers": false,
+        "strict_warnings": true,
+        "system_processor": "x86_64"
+      },
+      "format_versions": {
+        "package": 1,
+        "state": 1
+      },
+      "project": {
+        "name": "GameEngine",
+        "version": "0.1.0"
+      },
+      "schema_version": 1,
+      "source": {
+        "dirty": false,
+        "git_commit": "1694f3c87f5227842d157d5becc718b2bba03d85",
+        "status": "git"
+      }
+    },
+    "native_build_kind": "incremental: native targets already up to date; build manifest regenerated; external SDK consumer compiled freshly"
+  },
+  "hosted_observations": [
+    {
+      "revision": "d4175381616a57588fdebb93b7f9ba0ea8cc3c9a",
+      "run_id": 45165611612,
+      "url": "https://github.com/baabi-boo/Game-Engine/actions/runs/45165611612",
+      "status": "completed",
+      "conclusion": "failure",
+      "jobs": {
+        "repository_policy": "success",
+        "gcc_release": "success",
+        "gcc_asan_ubsan": "success",
+        "msvc_release": "success",
+        "appleclang_release": "cancelled"
+      },
+      "macos_executed_steps": 0,
+      "cancellation_reason": null
+    },
+    {
+      "revision": "1694f3c87f5227842d157d5becc718b2bba03d85",
+      "run_id": 45173950724,
+      "url": "https://github.com/baabi-boo/Game-Engine/actions/runs/45173950724",
+      "status": "queued",
+      "conclusion": null,
+      "observed_utc": "2026-11-23T12:30:53Z",
+      "logs_reviewed_utc": "2026-11-23T12:32:44Z",
+      "jobs": {
+        "repository_policy": {
+          "job_id": 137690251161,
+          "conclusion": "success"
+        },
+        "gcc_release": {
+          "job_id": 137690251293,
+          "conclusion": "success",
+          "compiler": "GNU 13.3.0",
+          "ctest_suites": 12,
+          "failed": 0,
+          "relocated_sdk": "passed",
+          "archives": "passed"
+        },
+        "gcc_asan_ubsan": {
+          "job_id": 137690250668,
+          "conclusion": "success",
+          "compiler": "GNU 13.3.0",
+          "ctest_suites": 12,
+          "failed": 0,
+          "local_leak_disabling_override_used": false
+        },
+        "msvc_release": {
+          "job_id": 137690251142,
+          "conclusion": "success",
+          "compiler": "MSVC 19.44.35230.0",
+          "ctest_suites": 11,
+          "failed": 0,
+          "linux_fault_injection_suite_registered": false,
+          "unicode_relocation": "passed",
+          "relocated_sdk": "passed",
+          "archives": "passed",
+          "manifest_commit": "1694f3c87f5227842d157d5becc718b2bba03d85",
+          "manifest_dirty": false
+        },
+        "appleclang_release": {
+          "job_id": 137690251015,
+          "status": "queued",
+          "conclusion": null,
+          "executed_steps": 0
+        }
+      }
+    }
+  ],
+  "evidence_retention": {
+    "committed": "This JSON, verification.md and implementation-register.md retain results, source identity, hashes and limitations.",
+    "local": "Referenced out/ directories contain logs and artifacts in the verification workspace; they are ignored by Git and are not remote downloads.",
+    "hosted": "CI artifacts use 14-day retention; preserve accepted deliveries before expiry."
+  },
+  "limits": [
+    "Hosted Linux and Windows jobs passed for the accepted implementation; macOS and an overall successful workflow are not qualified.",
+    "Same-host clean-source export is not second-machine reproduction.",
+    "Hashes do not authenticate artifacts or prove executable/archive reproducibility.",
+    "No renderer, physical collision, asynchronous I/O, actual asset eviction, frame-rate result, production crash durability, or stable binary ABI is qualified."
+  ]
+}
