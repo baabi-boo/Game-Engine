@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "baseline_id": 1,
+  "regions": [
+    {
+      "id": 1,
+      "budget_bytes": 64,
+      "required": ["visual", "collision", "logic"],
+      "entities": [
+        {"id": 1001, "initial_value": 0, "position_mm": [0, 0, 0]},
+        {"id": 1002, "initial_value": 7, "position_mm": [1000, 0, -1000]}
+      ]
+    },
+    {
+      "id": 2,
+      "budget_bytes": 64,
+      "required": ["visual", "collision", "navigation", "logic"],
+      "entities": [
+        {"id": 2001, "initial_value": 0, "position_mm": [100000, 0, 0]}
+      ]
+    },
+    {
+      "id": 3,
+      "budget_bytes": 64,
+      "required": ["visual", "logic"],
+      "entities": [
+        {"id": 3001, "initial_value": 3, "position_mm": [200000, 0, 0]}
+      ]
+    }
+  ]
+}

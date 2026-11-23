@@ -1,0 +1,16 @@
+@PACKAGE_INIT@
+
+set(GameEngine_VERSION "@PROJECT_VERSION@")
+
+include("${CMAKE_CURRENT_LIST_DIR}/GameEngineTargets.cmake")
+
+set(GameEngine_core_FOUND TRUE)
+set(GameEngine_content_FOUND TRUE)
+set(GameEngine_world_FOUND TRUE)
+foreach(component IN LISTS GameEngine_FIND_COMPONENTS)
+    if(NOT component MATCHES "^(core|content|world)$")
+        set(GameEngine_${component}_FOUND FALSE)
+        set(GameEngine_NOT_FOUND_MESSAGE "Unknown GameEngine component: ${component}")
+    endif()
+endforeach()
+check_required_components(GameEngine)

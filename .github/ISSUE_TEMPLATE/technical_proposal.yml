@@ -1,0 +1,58 @@
+name: Technical proposal
+description: Propose a scoped architecture, subsystem, tooling, or platform change.
+title: "[Proposal]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Read the architecture overview and roadmap. Tie expansion to a concrete workload
+        and evidence. Candidate dependencies and performance targets are not current capabilities.
+  - type: textarea
+    id: workload
+    attributes:
+      label: Workload and problem
+      description: Describe the scenario, current limitation, desired behavior, and what is outside this proposal.
+    validations:
+      required: true
+  - type: textarea
+    id: contracts
+    attributes:
+      label: Proposed design and invariants
+      description: Identify affected modules, ownership/lifetimes, dependency direction, authority, and publication or failure rules.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives and tradeoffs
+      description: Compare practical alternatives, including keeping the current design, and explain the choice.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Measurable acceptance evidence
+      description: Define the scenario, checks or measurements, supported host/configuration, and success/failure criteria.
+    validations:
+      required: true
+  - type: textarea
+    id: budgets
+    attributes:
+      label: Resource budgets and failure behavior
+      description: State affected memory/work/input/storage limits, overload behavior, and what is modeled versus measured. Explain if unaffected.
+    validations:
+      required: true
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility and migration
+      description: Cover public APIs, persistent IDs/baselines, saved or cooked data, and migration/rejection rules. Explain if unaffected.
+    validations:
+      required: true
+  - type: textarea
+    id: provenance
+    attributes:
+      label: Dependencies, provenance, and follow-up decisions
+      description: List new sources/assets/dependencies, exact revisions and licenses when known, open adoption questions, and any needed ADR. State if none.
+    validations:
+      required: true

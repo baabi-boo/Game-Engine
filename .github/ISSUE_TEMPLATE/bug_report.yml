@@ -1,0 +1,55 @@
+name: Bug report
+description: Report a reproducible defect in the foundation or its tools.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For suspected vulnerabilities, follow SECURITY.md. Do not post exploit details,
+        malicious reproducer inputs, credentials, or private data in this public form.
+        Check the documented foundation scope before reporting a planned feature as a defect.
+  - type: input
+    id: revision
+    attributes:
+      label: Exact revision
+      description: Commit SHA and whether there are local changes.
+      placeholder: Output of git rev-parse HEAD, plus relevant local changes
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Platform and toolchain
+      description: OS/architecture, compiler and version, CMake/Ninja/Python versions, and build preset.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Minimal reproduction
+      description: Exact commands, required non-sensitive fixture or input, and reproduction frequency.
+      placeholder: |
+        1. Configure or invoke the tool with ...
+        2. Use this small original fixture ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and observed behavior
+      description: State the expected contract and what actually happened, including impact.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Validation evidence
+      description: Relevant command output, exit codes, failing checks, or a minimal safe attachment. Remove secrets and private paths.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Additional scope or compatibility information
+      description: If known, identify regressions, affected IDs/formats/budgets, a working revision, or a workaround.

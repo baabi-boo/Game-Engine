@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "adopted": [],
+  "candidates": [
+    {
+      "id": "sdl3",
+      "name": "SDL3",
+      "kind": "runtime_library",
+      "status": "evaluate",
+      "upstream_url": "https://github.com/libsdl-org/SDL",
+      "purpose": "Provide window, input, and platform-event services for a future interactive host through a narrow platform adapter.",
+      "owner": "@baabi-boo",
+      "decision_gates": [
+        "An interactive workload requires windows or player input and defines the supported desktop targets.",
+        "The adapter demonstrates event, focus, input-device, and shutdown behavior without exposing vendor types in core contracts.",
+        "The proposed integration passes the common revision, provenance, license, offline-build, and packaging gates in docs/production/dependency-policy.md."
+      ]
+    },
+    {
+      "id": "jolt",
+      "name": "Jolt",
+      "kind": "runtime_library",
+      "status": "evaluate",
+      "upstream_url": "https://github.com/jrouwe/JoltPhysics",
+      "purpose": "Evaluate collision and rigid-body simulation behind an engine-owned physics adapter.",
+      "owner": "@baabi-boo",
+      "decision_gates": [
+        "A concrete collision or movement scenario defines units, collision layers, fixed-step behavior, and acceptance limits.",
+        "A bounded fixture demonstrates cooking, object ownership, region retirement, and stale-result rejection; determinism claims are limited to measured evidence.",
+        "The proposed integration passes the common revision, provenance, license, offline-build, and packaging gates in docs/production/dependency-policy.md."
+      ]
+    },
+    {
+      "id": "recast-detour",
+      "name": "Recast/Detour",
+      "kind": "runtime_library",
+      "status": "evaluate",
+      "upstream_url": "https://github.com/recastnavigation/recastnavigation",
+      "purpose": "Evaluate navigation-mesh cooking and bounded path queries while retaining world routing and behavior policy in the engine.",
+      "owner": "@baabi-boo",
+      "decision_gates": [
+        "A navigation workload defines traversability, query limits, tile ownership, and behavior when a route or tile is unavailable.",
+        "A fixture demonstrates repeatable cooking, query budgets, streamed-tile retirement, and rejection of results for obsolete world state.",
+        "The proposed integration passes the common revision, provenance, license, offline-build, and packaging gates in docs/production/dependency-policy.md."
+      ]
+    },
+    {
+      "id": "ozz-animation",
+      "name": "ozz-animation",
+      "kind": "runtime_library",
+      "status": "evaluate",
+      "upstream_url": "https://github.com/guillaumeblanc/ozz-animation",
+      "purpose": "Evaluate skeletal animation preparation and runtime sampling without delegating gameplay animation policy or asset ownership.",
+      "owner": "@baabi-boo",
+      "decision_gates": [
+        "An animation workload supplies original or cleared skeleton and clip assets with explicit coordinate and time conventions.",
+        "A fixture measures sampling and memory cost, checks skeleton/clip compatibility, and demonstrates safe content replacement and retirement.",
+        "The proposed integration passes the common revision, provenance, license, offline-build, and packaging gates in docs/production/dependency-policy.md."
+      ]
+    },
+    {
+      "id": "meshoptimizer",
+      "name": "meshoptimizer",
+      "kind": "content_tool",
+      "status": "evaluate",
+      "upstream_url": "https://github.com/zeux/meshoptimizer",
+      "purpose": "Evaluate offline mesh optimization and level-of-detail preparation for a future geometry cooking pipeline.",
+      "owner": "@baabi-boo",
+      "decision_gates": [
+        "A geometry workload defines source provenance, supported attributes, output format, and acceptable geometric or visual error.",
+        "A repeatable cook demonstrates quality and size benefits, validates malformed input bounds, and identifies whether any runtime decoding code is required.",
+        "The proposed integration passes the common revision, provenance, license, offline-build, and packaging gates in docs/production/dependency-policy.md."
+      ]
+    },
+    {
+      "id": "dear-imgui",
+      "name": "Dear ImGui",
+      "kind": "developer_tool",
+      "status": "evaluate",
+      "upstream_url": "https://github.com/ocornut/imgui",
+      "purpose": "Evaluate a developer diagnostics or authoring interface once an interactive host and graphics backend exist.",
+      "owner": "@baabi-boo",
+      "decision_gates": [
+        "A specific developer workflow defines the data model, event routing, and ownership of edits.",
+        "An adapter demonstrates frame/resource lifetime and input isolation, and the headless build remains usable without the GUI integration.",
+        "The proposed integration passes the common revision, provenance, license, offline-build, and packaging gates in docs/production/dependency-policy.md."
+      ]
+    },
+    {
+      "id": "tracy",
+      "name": "Tracy",
+      "kind": "developer_tool",
+      "status": "evaluate",
+      "upstream_url": "https://github.com/wolfpld/tracy",
+      "purpose": "Evaluate optional development profiling for a named runtime performance investigation.",
+      "owner": "@baabi-boo",
+      "decision_gates": [
+        "A repeatable workload defines the profiling question, annotations, host configuration, and capture procedure.",
+        "The experiment measures instrumentation overhead and memory use, documents capture transport, and verifies disabled and enabled builds separately.",
+        "The proposed integration passes the common revision, provenance, license, offline-build, and packaging gates in docs/production/dependency-policy.md."
+      ]
+    },
+    {
+      "id": "renderdoc",
+      "name": "RenderDoc",
+      "kind": "developer_tool",
+      "status": "evaluate",
+      "upstream_url": "https://github.com/baldurk/renderdoc",
+      "purpose": "Evaluate an external graphics capture and inspection workflow for the selected future native renderer.",
+      "owner": "@baabi-boo",
+      "decision_gates": [
+        "A renderer exists and a specific graphics defect or acceptance route requires capture on a defined host and API.",
+        "A capture/replay experiment records compatibility and limitations, and distinguishes external tool use from any in-process API integration or redistribution.",
+        "The selected use passes the common revision, provenance, license, and distribution review in docs/production/dependency-policy.md and is not required by the headless build."
+      ]
+    },
+    {
+      "id": "gamenetworkingsockets",
+      "name": "GameNetworkingSockets",
+      "kind": "runtime_library",
+      "status": "evaluate",
+      "upstream_url": "https://github.com/ValveSoftware/GameNetworkingSockets",
+      "purpose": "Evaluate optional transport only if the owner separately chooses a networked product; authority, replication, and services remain engine responsibilities.",
+      "owner": "@baabi-boo",
+      "decision_gates": [
+        "A product decision and ADR explicitly accept networked scope and define authority, identity, trust boundaries, and supported connection modes.",
+        "A bounded multi-client fixture measures loss, latency, disconnect, reconnect, and invalid-message behavior, with optional dependencies and service requirements identified.",
+        "The proposed integration passes the common revision, provenance, license, offline-build, and packaging gates in docs/production/dependency-policy.md."
+      ]
+    }
+  ]
+}

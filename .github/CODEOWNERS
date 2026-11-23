@@ -1,0 +1,3 @@
+# Fallback review routing; this file does not enforce approval or branch protection.
+# Add subsystem owners only after their accounts and responsibilities are verified.
+* @baabi-boo

@@ -1,0 +1,19 @@
+# Build, test, generated content, install, and package outputs.
+/out/
+/build/
+/CMakeCache.txt
+/CMakeFiles/
+/cmake_install.cmake
+/install_manifest.txt
+/Testing/
+/compile_commands.json
+
+# Local tooling and Python caches.
+/CMakeUserPresets.json
+__pycache__/
+*.py[cod]
+.venv/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

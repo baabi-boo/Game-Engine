@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:game-engine:schema:world-v1",
+  "title": "Game Engine authored world, version 1",
+  "description": "The field, value, and per-array constraints of the bounded GEPACK01 authoring format. tools/cook.py is the authoritative validator.",
+  "$comment": "The cooker additionally rejects duplicate JSON keys, non-integer numeric lexemes, sources over 8388608 bytes, repeated region IDs, entity IDs repeated anywhere in the world, more than 65536 entities in total, and products over 4194304 bytes. These checks are not all expressible by this schema. Do not add a $schema property to authored worlds: their keys are exact.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "baseline_id", "regions"],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "baseline_id": {
+      "$ref": "#/$defs/nonzeroUint64",
+      "description": "Explicit persistence compatibility baseline; independent of the product digest and entity IDs."
+    },
+    "regions": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4096,
+      "items": {"$ref": "#/$defs/region"}
+    }
+  },
+  "$defs": {
+    "nonzeroUint32": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 4294967295
+    },
+    "nonzeroUint64": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 18446744073709551615
+    },
+    "int32": {
+      "type": "integer",
+      "minimum": -2147483648,
+      "maximum": 2147483647
+    },
+    "region": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "budget_bytes", "required", "entities"],
+      "properties": {
+        "id": {"$ref": "#/$defs/nonzeroUint32"},
+        "budget_bytes": {
+          "$ref": "#/$defs/nonzeroUint64",
+          "description": "Modeled reservation cost; not a measurement of allocated memory."
+        },
+        "required": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": ["visual", "collision", "navigation", "logic"]
+          }
+        },
+        "entities": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 65536,
+          "items": {"$ref": "#/$defs/entity"},
+          "description": "The cooker also caps the sum across all regions at 65536 and requires globally unique entity IDs."
+        }
+      }
+    },
+    "entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "initial_value", "position_mm"],
+      "properties": {
+        "id": {"$ref": "#/$defs/nonzeroUint64"},
+        "initial_value": {"$ref": "#/$defs/int32"},
+        "position_mm": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {"$ref": "#/$defs/int32"},
+          "description": "Signed integer millimetres in [x, y, z] order."
+        }
+      }
+    }
+  }
+}
