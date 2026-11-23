@@ -13,6 +13,7 @@ Execution evidence belongs in the [verification record](../production/verificati
 | [0004](0004-time-space-and-authority.md) | Separate clocks, declare coordinates, and give authoritative state one writer | Accepted |
 | [0005](0005-content-and-state-formats.md) | Use deterministic, versioned fixture packages and immutable logical snapshots | Accepted |
 | [0006](0006-one-native-graphics-backend.md) | Prove one native graphics backend before expanding platform scope | Accepted; backend selection pending |
+| [0007](0007-agent-coordination.md) | Coordinate agents with explicit task state, generated handoffs, and source-bound evidence | Accepted |
 
 Each record contains context, the choice, alternatives, consequences, and a
 specific revisit trigger. When a decision changes, add a replacement record and

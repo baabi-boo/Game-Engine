@@ -41,6 +41,12 @@ add_test(NAME ge.native_package
 add_test(NAME ge.repository
     COMMAND "${Python3_EXECUTABLE}" "${PROJECT_SOURCE_DIR}/tools/check_repo.py"
 )
+add_test(NAME ge.agent_state
+    COMMAND "${Python3_EXECUTABLE}" "${PROJECT_SOURCE_DIR}/tools/agent_state.py" check
+)
+add_test(NAME ge.agent_state_tests
+    COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/test_agent_state.py"
+)
 add_test(NAME ge.repository_policy_tests
     COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/test_repo_policy.py"
 )
@@ -72,6 +78,14 @@ set_tests_properties(ge.native_package PROPERTIES
 set_tests_properties(ge.repository ge.repository_policy_tests PROPERTIES
     LABELS "python;repository"
     TIMEOUT 60
+)
+set_tests_properties(ge.agent_state PROPERTIES
+    LABELS "python;repository;workflow"
+    TIMEOUT 60
+)
+set_tests_properties(ge.agent_state_tests PROPERTIES
+    LABELS "python;repository;workflow"
+    TIMEOUT 120
 )
 set_tests_properties(ge.build_manifest PROPERTIES
     LABELS "python;build;provenance"

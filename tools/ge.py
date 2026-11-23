@@ -236,6 +236,8 @@ def _test_command(arguments: argparse.Namespace) -> None:
 def _check(arguments: argparse.Namespace) -> None:
     checker = _file(ROOT / "tools" / "check_repo.py", "required repository checker")
     _run([sys.executable, str(checker)])
+    workflow = _file(ROOT / "tools" / "agent_state.py", "required agent workflow checker")
+    _run([sys.executable, str(workflow), "check"])
     _configure(arguments.preset, arguments.define)
     _build(arguments.preset, arguments.jobs)
     _test(arguments.preset, arguments.jobs)

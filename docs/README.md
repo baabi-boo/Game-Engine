@@ -8,6 +8,11 @@ targets remain roadmap work.
 | Document | Use it for |
 | --- | --- |
 | [Developer setup](development/setup.md) | Tools, CLI commands, presets, raw CMake, output paths, and troubleshooting. |
+| [Agent continuation prompt](agents/CONTINUE.md) | Copy-ready instructions for the next coordinating agent, including review and authorized publication. |
+| [Agent workflow](agents/WORKFLOW.md) | Canonical task state, automatic view updates, evidence checks, concurrency and recovery. |
+| [Agent worker prompt](agents/WORKER.md) | Precise delegated assignment, ownership, acceptance and handoff contract. |
+| [Live project status](agents/STATUS.md) and [handoff](agents/HANDOFF.md) | Generated task status, blockers, next actions and retained evidence. |
+| [Task ledger](../project/agent-state.json) | Authoritative machine-readable milestone and task coordination state. |
 | [Architecture and scope](architecture/overview.md) | Module boundaries, ownership, identity, loading, and current capability limits. |
 | [Architecture decisions](adr/README.md) | Accepted choices and the conditions for revisiting them. |
 | [Roadmap](roadmap.md) | Milestones, dependencies, and the evidence required before expanding scope. |

@@ -31,6 +31,27 @@ On Windows, replace `python3` with `py -3` when needed. Outputs belong under `ou
 See [developer setup](docs/development/setup.md) for compiler details, raw CMake
 commands, diagnostics and platform verification limits.
 
+## Continue with agents
+
+Give a coordinating agent the [continuation prompt](docs/agents/CONTINUE.md), then
+have it inspect the [live status](docs/agents/STATUS.md) and
+[handoff](docs/agents/HANDOFF.md). The [workflow guide](docs/agents/WORKFLOW.md)
+defines task claims, checkpoints, review, source freshness and recovery. Use the
+[worker prompt](docs/agents/WORKER.md) for bounded delegated assignments.
+
+```sh
+python3 tools/agent_state.py status
+python3 tools/agent_state.py next
+python3 tools/agent_state.py check
+```
+
+The [task ledger](project/agent-state.json) is authoritative. Explicit workflow
+commands update it and regenerate status and handoff documents; build and CI checks
+reject stale source snapshots or generated views. Completion requires fresh recorded
+checks and an explicit review. This is cooperative coordination within the checkout;
+it does not launch agents or run unattended work. Future engine features remain
+planned until their acceptance criteria have been demonstrated.
+
 ## What is in the repository
 
 | Area | Purpose |
@@ -42,6 +63,7 @@ commands, diagnostics and platform verification limits.
 | [`tools`](tools) | Authoring validation, deterministic cooking, checks and packaging |
 | [`assets`](assets) | Small, original authored fixtures with documented provenance |
 | [`tests`](tests) | Contract, malformed-input, lifecycle and relocation coverage |
+| [`project`](project) | Agent task ledger, dependencies, claims, evidence and history |
 | [`docs`](docs) | Architecture, decisions, development, evidence gates and research |
 
 The build has separate module targets and explicit dependency direction. Runtime

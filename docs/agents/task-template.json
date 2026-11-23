@@ -1,0 +1,22 @@
+{
+  "id": "M1-900",
+  "title": "Replace with one bounded, verifiable outcome",
+  "milestone": "M1",
+  "priority": 100,
+  "description": "Replace with the problem, intended behavior, relevant contracts, and explicit scope limits. This template does not declare any work completed.",
+  "depends_on": [
+    "M0-FOUNDATION"
+  ],
+  "write_paths": [
+    "docs/production/replace-me.md"
+  ],
+  "acceptance": [
+    "Replace with an observable result and the evidence needed to accept it.",
+    "Replace with a meaningful failure, compatibility, or boundary criterion."
+  ],
+  "required_checks": [
+    "repository",
+    "workflow"
+  ],
+  "next_action": "Replace with the first concrete action after claiming the task."
+}

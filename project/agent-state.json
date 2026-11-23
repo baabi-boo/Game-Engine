@@ -1,0 +1,1419 @@
+{
+  "schema_version": 1,
+  "revision": 10,
+  "updated_at": "2026-11-23T13:17:46.254135Z",
+  "project": {
+    "name": "Game Engine",
+    "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
+    "current_milestone": "M1",
+    "coordinator": "coordinator",
+    "truth_documents": [
+      "README.md",
+      "AGENTS.md",
+      "docs/architecture/overview.md",
+      "docs/roadmap.md",
+      "docs/production/first-playable.md",
+      "docs/quality-gates.md",
+      "docs/production/verification.md",
+      "docs/production/dependency-policy.md",
+      "docs/project-policy.md"
+    ],
+    "known_limits": [
+      "The implemented engine is a headless synchronous foundation; readiness and byte reservations are modeled.",
+      "Rendering, real collision, asynchronous resource eviction, editor capability and frame-rate targets require later evidence.",
+      "Historical platform results qualify their recorded revision; macOS must not be inferred from Linux or Windows.",
+      "The project license, branch-enforcement settings and confidential security-reporting route remain explicit owner decisions.",
+      "This ledger coordinates cooperating agents in one checkout; it does not spawn agents, authenticate identities or provide a distributed lock."
+    ]
+  },
+  "source_snapshot": {
+    "sha256": "1ade509f95561c6c6d39738ec08f2484aa5f1a82064ba5e836fe6df4b0924a4b",
+    "file_count": 97
+  },
+  "milestones": [
+    {
+      "id": "OPS",
+      "title": "Repository operations",
+      "objective": "Keep agents, project state, evidence and delivery procedures consistent.",
+      "exit_criteria": [
+        "Each operational task has its own explicit acceptance; no product milestone is inferred from maintenance."
+      ]
+    },
+    {
+      "id": "M0",
+      "title": "Native headless foundation",
+      "objective": "Preserve the accepted bounded native identity/content/lifecycle/state foundation.",
+      "exit_criteria": [
+        "Use the published verification and its exact platform/scope limits."
+      ]
+    },
+    {
+      "id": "M1",
+      "title": "First playable feasibility route",
+      "objective": "One backend, real window/input, original mesh, real collision and one controllable actor with measured behavior.",
+      "exit_criteria": [
+        "A relocated packaged route demonstrates control, collision, interaction and restart.",
+        "Reference hardware, CPU/GPU/resource measurements and limitations are recorded."
+      ]
+    },
+    {
+      "id": "M2",
+      "title": "Actually streamed and independently authored route",
+      "objective": "Bound real asynchronous resource work, forced eviction/reload, useful authoring and versioned persistent changes.",
+      "exit_criteria": [
+        "Constrained-capacity traversal and failures preserve required resources and logical state.",
+        "An independent contributor edits, diagnoses, cooks and packages the route."
+      ]
+    },
+    {
+      "id": "M3",
+      "title": "Living district integration",
+      "objective": "Bounded population, navigation/traffic, one mission and coherent presentation under measured budgets.",
+      "exit_criteria": [
+        "Gameplay, persistence, population and presentation pass together at declared scale and quality."
+      ]
+    },
+    {
+      "id": "M4",
+      "title": "Production qualification",
+      "objective": "Supported delivery, diagnostics, recovery, migration and target-specific product acceptance.",
+      "exit_criteria": [
+        "Every claimed target and supported migration has retained execution evidence.",
+        "Ownership, provenance, licensing and release support decisions match the delivered product."
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "M0-FOUNDATION",
+      "title": "Published headless foundation",
+      "milestone": "M0",
+      "priority": 0,
+      "description": "Historical bounded foundation implemented and published before this agent workflow was installed. This baseline does not qualify rendering, real collision, asynchronous resource eviction or macOS.",
+      "depends_on": [],
+      "write_paths": [],
+      "acceptance": [
+        "Use the immutable published verification record for source, platform, tests and limitations."
+      ],
+      "required_checks": [],
+      "status": "done",
+      "owner": "setup-coordinator",
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Accepted implementation 1694f3c87f5227842d157d5becc718b2bba03d85; published verification 6b20e83363e13ff2ede2406054d367041b40b5eb. Recorded Linux and Windows jobs passed; macOS remained unqualified.",
+        "next_action": "Preserve historical evidence and continue through the first playable gates.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": {
+        "kind": "baseline",
+        "reference": "https://github.com/baabi-boo/Game-Engine/blob/6b20e83363e13ff2ede2406054d367041b40b5eb/docs/production/verification.json",
+        "notes": "Imported during workflow bootstrap from the published foundation record; this is not a newly executed workflow check.",
+        "at": "2026-11-23T13:01:02.152612Z"
+      }
+    },
+    {
+      "id": "OPS-AGENT-SYSTEM",
+      "title": "Install agent coordination and automatic project-state updates",
+      "milestone": "OPS",
+      "priority": 0,
+      "description": "Implement the user-requested precise prompts, authoritative ledger, automatic derived views, concurrency guards, evidence lifecycle and CI freshness enforcement.",
+      "depends_on": [],
+      "write_paths": [
+        "AGENTS.md",
+        "project/agent-state.json",
+        "tools/agent_state.py",
+        "tools/ge.py",
+        "tests/test_agent_state.py",
+        "tests/CMakeLists.txt",
+        ".github/workflows/ci.yml",
+        "docs/agents/",
+        "docs/adr/",
+        "README.md",
+        "docs/README.md"
+      ],
+      "acceptance": [
+        "Source, dependency, claim and generated-document drift fail validation.",
+        "Task completion requires current executed checks and an explicit recorded review.",
+        "State mutations preserve earlier failures and regenerate status and handoff views.",
+        "Prompts give exact startup, scope, checkpoint, recovery and authorized publication procedures.",
+        "Independent regression tests and the integrated engine/distribution gates pass; limitations are explicit."
+      ],
+      "required_checks": [
+        "repository",
+        "workflow-tests",
+        "dev",
+        "package"
+      ],
+      "status": "done",
+      "owner": "coordinator",
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Accepted after coordinator integration review and real delegated implementation, independent regression tests and documentation review. All five task criteria are supported: stale source/views and invalid claims fail; current required checks and explicit review gate completion; mutations retain evidence/history and regenerate views; prompts cover startup, scope, checkpoints, recovery and authorized publication; 33 workflow cases plus all 14 Debug/Release CTest suites and the relocated SDK/package gate passed in RUN-000001 through RUN-000004. This is explicitly coordinator self-review, not authenticated peer approval. Local Linux execution qualifies this source; new hosted platform results remain unobserved. Ready for the already authorized commit and push.",
+        "next_action": "For the next authorized session, inspect the published branch and hosted CI, follow docs/agents/CONTINUE.md, and select M1-010 only when first-playable work is within the current user objective.",
+        "files": [
+          "AGENTS.md",
+          "tools/agent_state.py",
+          "tools/ge.py",
+          "tests/test_agent_state.py",
+          "tests/CMakeLists.txt",
+          ".github/workflows/ci.yml",
+          "docs/agents/WORKFLOW.md",
+          "docs/agents/CONTINUE.md",
+          "docs/agents/WORKER.md",
+          "docs/agents/task-template.json",
+          "docs/adr/0007-agent-coordination.md",
+          "docs/adr/README.md",
+          "README.md",
+          "docs/README.md",
+          "project/agent-state.json"
+        ]
+      },
+      "blocker": null,
+      "evidence": [
+        "RUN-000001",
+        "RUN-000002",
+        "RUN-000003",
+        "RUN-000004"
+      ],
+      "completion": {
+        "kind": "reviewed",
+        "reviewer": "coordinator",
+        "review_kind": "self",
+        "notes": "Accepted after coordinator integration review and real delegated implementation, independent regression tests and documentation review. All five task criteria are supported: stale source/views and invalid claims fail; current required checks and explicit review gate completion; mutations retain evidence/history and regenerate views; prompts cover startup, scope, checkpoints, recovery and authorized publication; 33 workflow cases plus all 14 Debug/Release CTest suites and the relocated SDK/package gate passed in RUN-000001 through RUN-000004. This is explicitly coordinator self-review, not authenticated peer approval. Local Linux execution qualifies this source; new hosted platform results remain unobserved. Ready for the already authorized commit and push.",
+        "source_sha256": "1ade509f95561c6c6d39738ec08f2484aa5f1a82064ba5e836fe6df4b0924a4b",
+        "evidence": [
+          "RUN-000001",
+          "RUN-000002",
+          "RUN-000003",
+          "RUN-000004"
+        ],
+        "at": "2026-11-23T13:17:46.254043Z"
+      }
+    },
+    {
+      "id": "OPS-MACOS",
+      "title": "Establish observed macOS foundation qualification",
+      "milestone": "OPS",
+      "priority": 10,
+      "description": "Inspect current hosted or native macOS results and address only demonstrated platform failures. Preserve Linux and Windows gates.",
+      "depends_on": [
+        "M0-FOUNDATION"
+      ],
+      "write_paths": [
+        ".github/workflows/ci.yml",
+        "docs/production/",
+        "cmake/",
+        "tools/package_smoke.py"
+      ],
+      "acceptance": [
+        "An actual macOS run identifies source revision, compiler and commands.",
+        "Applicable tests and relocated runtime/SDK checks execute successfully, or a concrete unresolved failure is recorded.",
+        "No Linux/Windows result or configured job is relabeled as macOS execution."
+      ],
+      "required_checks": [
+        "repository",
+        "workflow"
+      ],
+      "status": "blocked",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Inspect the latest macOS job and its logs; identify whether execution is available before changing platform code.",
+        "files": []
+      },
+      "blocker": "The accepted historical verification does not contain a completed macOS execution. A real target run is required; queued or cancelled jobs do not qualify it.",
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M1-010",
+      "title": "Declare the reference platform and playable workload",
+      "milestone": "M1",
+      "priority": 100,
+      "description": "Turn research assumptions into an explicit bounded M1 workload and measurement plan without inventing available hardware or measured performance.",
+      "depends_on": [
+        "M0-FOUNDATION"
+      ],
+      "write_paths": [
+        "docs/production/reference-platform.md",
+        "docs/production/first-playable.md"
+      ],
+      "acceptance": [
+        "Record actual available OS, CPU/GPU, memory, drivers and display/quality settings, or name the exact missing access.",
+        "Define the playable course, actor, interactions, contact tolerances and capture procedure.",
+        "Label unmeasured targets as targets; define how CPU/GPU/resource observations will be collected."
+      ],
+      "required_checks": [
+        "repository",
+        "workflow"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Read the first-playable plan and inspect available target evidence; draft the reference-platform record.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M1-020",
+      "title": "Select one native backend and dependency strategy",
+      "milestone": "M1",
+      "priority": 110,
+      "description": "Evaluate one window/input layer and one graphics backend against the declared target; adopt libraries only with pinned provenance and a working adapter experiment.",
+      "depends_on": [
+        "M1-010"
+      ],
+      "write_paths": [
+        "docs/adr/",
+        "third_party/",
+        "docs/production/dependency-policy.md",
+        "docs/production/reference-platform.md"
+      ],
+      "acceptance": [
+        "Record alternatives and why the chosen backend fits the declared platform.",
+        "For each adopted dependency, record exact revision, source, license/notices, transitive content and owner.",
+        "An isolated adapter experiment builds and shuts down correctly; default builds gain no undeclared network fetch."
+      ],
+      "required_checks": [
+        "repository",
+        "workflow"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Review ADR0006 and the candidate register; produce an evidence-backed backend decision and dependency records.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M1-030",
+      "title": "Implement native window and input lifecycle",
+      "milestone": "M1",
+      "priority": 120,
+      "description": "Add a narrow platform adapter and a real application event loop with explicit ownership and shutdown.",
+      "depends_on": [
+        "M1-020"
+      ],
+      "write_paths": [
+        "engine/platform/",
+        "apps/playable/",
+        "CMakeLists.txt",
+        "tests/CMakeLists.txt",
+        "tests/platform_tests.cpp",
+        "docs/architecture/"
+      ],
+      "acceptance": [
+        "A real target window opens, closes and handles focus/resize without leaking resources.",
+        "Input snapshots have documented timing and ownership; focus loss clears transient input.",
+        "The module is built by the normal CMake targets and has focused lifecycle checks."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Define the minimal platform interface, then wire and test window/input lifecycle on the chosen target.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M1-040",
+      "title": "Cook a small original mesh scene",
+      "milestone": "M1",
+      "priority": 130,
+      "description": "Extend original authoring content into a bounded versioned mesh product usable by rendering and collision.",
+      "depends_on": [
+        "M1-020"
+      ],
+      "write_paths": [
+        "engine/content/",
+        "tools/cook.py",
+        "schemas/",
+        "assets/",
+        "tests/content_tests.cpp",
+        "tests/test_cooker.py",
+        "tests/test_native_package.py",
+        "docs/development/content-pipeline.md"
+      ],
+      "acceptance": [
+        "Original source geometry has declared units, winding, coordinates and provenance.",
+        "Invalid indices, non-finite values, missing dependencies and size limits are rejected before publication.",
+        "The product has explicit compatibility/version rules, deterministic outputs and native golden/malformed-input coverage."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Specify the smallest supported mesh-source subset and compatibility change before editing the cooker.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M1-050",
+      "title": "Render the cooked scene through one backend",
+      "milestone": "M1",
+      "priority": 140,
+      "description": "Implement the chosen graphics adapter, camera and basic depth-tested scene using real owned resources.",
+      "depends_on": [
+        "M1-030",
+        "M1-040"
+      ],
+      "write_paths": [
+        "engine/render/",
+        "apps/playable/",
+        "CMakeLists.txt",
+        "tests/CMakeLists.txt",
+        "tests/render_tests.cpp",
+        "docs/architecture/"
+      ],
+      "acceptance": [
+        "The chosen target displays the cooked original geometry with correct transforms and depth.",
+        "Resize, focus recovery and shutdown preserve resource ownership and reject stale handles.",
+        "GPU resources have explicit creation, usage and completion-aware retirement; screenshots and target logs identify the revision."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Build the smallest render path and instrument resource lifetime before adding visual effects.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M1-060",
+      "title": "Integrate static collision with one transform authority",
+      "milestone": "M1",
+      "priority": 150,
+      "description": "Connect the chosen collision strategy to the same authored geometry and fixed-step coordinate contract.",
+      "depends_on": [
+        "M1-020",
+        "M1-040"
+      ],
+      "write_paths": [
+        "engine/physics/",
+        "engine/world/",
+        "CMakeLists.txt",
+        "tests/CMakeLists.txt",
+        "tests/physics_tests.cpp",
+        "docs/architecture/"
+      ],
+      "acceptance": [
+        "Render and collision geometry agree in scale and coordinates.",
+        "One writer owns resolved transforms at each phase; contacts and support have explicit lifetime.",
+        "Wall/slope/contact tests exercise declared tolerances and failure cases on the actual target."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Specify the control/physics transform handoff, then integrate static collision with measured contact checks.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M1-070",
+      "title": "Implement one controllable actor and camera",
+      "milestone": "M1",
+      "priority": 160,
+      "description": "Build one bounded controllable actor using the real input, render and collision path.",
+      "depends_on": [
+        "M1-050",
+        "M1-060"
+      ],
+      "write_paths": [
+        "apps/playable/",
+        "engine/control/",
+        "tests/CMakeLists.txt",
+        "tests/control_tests.cpp",
+        "docs/production/first-playable.md"
+      ],
+      "acceptance": [
+        "Movement, collision and camera updates follow the fixed-step/presentation split.",
+        "Pause/resume, focus loss and camera reset do not leave stale input or history.",
+        "The prescribed route runs repeatedly with one authoritative resolved pose and retained evidence."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Implement the declared actor route and test movement/contact/camera transitions.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M1-080",
+      "title": "Bind readiness and retirement to actual resources",
+      "milestone": "M1",
+      "priority": 170,
+      "description": "Replace symbolic publication signals for the M1 route with actual prepared render/collision resources and consumer completion.",
+      "depends_on": [
+        "M1-050",
+        "M1-060"
+      ],
+      "write_paths": [
+        "engine/world/",
+        "engine/render/",
+        "engine/physics/",
+        "apps/playable/",
+        "tests/streaming_tests.cpp",
+        "docs/architecture/"
+      ],
+      "acceptance": [
+        "Readiness is published only after the actual required resources are usable.",
+        "Retiring resources remain charged and supported until their consumers finish.",
+        "Stale revision/generation/epoch completion cannot publish into a newer request."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Map each readiness bit and retirement acknowledgement to the real adapter boundary; exercise delayed completion.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M1-090",
+      "title": "Connect playable interaction and restart persistence",
+      "milestone": "M1",
+      "priority": 180,
+      "description": "Carry one visible persistent interaction across the playable route and a fresh process.",
+      "depends_on": [
+        "M1-070",
+        "M1-080"
+      ],
+      "write_paths": [
+        "apps/playable/",
+        "engine/world/",
+        "tests/state_tests.cpp",
+        "tests/CMakeLists.txt",
+        "tests/playable_persistence_tests.py",
+        "docs/development/"
+      ],
+      "acceptance": [
+        "The visible interaction uses stable authored identity and survives retirement/reload.",
+        "A new process restores the committed state against the correct baseline and exact compatibility contract.",
+        "Invalid or failed saves preserve valid state; no stronger crash guarantee is inferred."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Connect a visible interaction to persistent state and automate a fresh-process restart scenario.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M1-100",
+      "title": "Measure the actual playable resource and timing budget",
+      "milestone": "M1",
+      "priority": 190,
+      "description": "Instrument CPU critical path, GPU frame intervals and allocation peaks for the declared workload.",
+      "depends_on": [
+        "M1-010",
+        "M1-070",
+        "M1-080"
+      ],
+      "write_paths": [
+        "engine/diagnostics/",
+        "apps/playable/",
+        "benchmarks/",
+        "docs/production/",
+        "CMakeLists.txt"
+      ],
+      "acceptance": [
+        "Measurements identify hardware, settings, source, warm-up and capture method.",
+        "CPU/GPU/process/resource measurements are separated from modeled reservations.",
+        "Per-run observations and missed-frame behavior are retained; unsupported targets remain explicitly unqualified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Add minimal timing/resource instrumentation and run the declared measurement route.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M1-110",
+      "title": "Package and independently execute the playable route",
+      "milestone": "M1",
+      "priority": 200,
+      "description": "Deliver the complete M1 route as a relocated package on each claimed target.",
+      "depends_on": [
+        "M1-090",
+        "M1-100"
+      ],
+      "write_paths": [
+        "cmake/",
+        "tools/package_smoke.py",
+        "apps/playable/",
+        "docs/development/packaging.md",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance": [
+        "A moved installation finds only installed assets and runs from an unrelated working directory.",
+        "The playable route, input, collision, interaction and restart checks execute on every claimed target.",
+        "Manifest, notices, hashes and retained diagnostics identify the delivered artifacts."
+      ],
+      "required_checks": [
+        "dev",
+        "package"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Extend the real installation gate to the playable application and verify the packaged route.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M1-120",
+      "title": "Review the first playable exit evidence",
+      "milestone": "M1",
+      "priority": 210,
+      "description": "Make an explicit bounded M1 acceptance decision after all implemented pieces are exercised together.",
+      "depends_on": [
+        "M1-110"
+      ],
+      "write_paths": [
+        "docs/production/",
+        "docs/roadmap.md"
+      ],
+      "acceptance": [
+        "Map each M1 exit criterion to actual source/platform/artifact evidence.",
+        "Record unresolved deviations, measured limits and any scope reduction.",
+        "Only accepted M1 evidence unlocks M2 implementation; passing headless tests alone cannot close this task."
+      ],
+      "required_checks": [
+        "repository",
+        "workflow"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Review the integrated route and evidence against the first-playable plan; record an explicit decision.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M2-010",
+      "title": "Implement bounded asynchronous resource requests",
+      "milestone": "M2",
+      "priority": 300,
+      "description": "Add actual file reads, decode work and dependency preparation with bounded queues and full request identity.",
+      "depends_on": [
+        "M1-120"
+      ],
+      "write_paths": [
+        "engine/content/",
+        "engine/world/",
+        "engine/jobs/",
+        "tests/",
+        "CMakeLists.txt",
+        "docs/architecture/"
+      ],
+      "acceptance": [
+        "Queue capacity and activation work have declared bounds and observable backpressure.",
+        "Cancellation and revision/epoch changes reject stale completion.",
+        "Thread and allocator ownership are explicit, with focused race/failure tests for the actual implementation."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Specify the asynchronous request/publication boundary and retained ownership before introducing concurrency.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M2-020",
+      "title": "Prove actual eviction under constrained capacity",
+      "milestone": "M2",
+      "priority": 310,
+      "description": "Use distinct resources whose working set exceeds enforced capacity and prove actual release/reload.",
+      "depends_on": [
+        "M2-010"
+      ],
+      "write_paths": [
+        "engine/world/",
+        "engine/render/",
+        "engine/physics/",
+        "assets/",
+        "benchmarks/",
+        "tests/"
+      ],
+      "acceptance": [
+        "Measured allocations include staging, decode copies, resident and retiring consumers.",
+        "The route exceeds capacity, evicts unique resources, and reloads their content correctly.",
+        "Impossible overlap takes a declared safe path instead of deadlocking; supporting collision stays valid."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Build a measured constrained-capacity scenario with reversal, cancellation and delayed retirement.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M2-030",
+      "title": "Deliver independent authoring and inspection tools",
+      "milestone": "M2",
+      "priority": 320,
+      "description": "Allow another contributor to edit, diagnose, cook, inspect and package route content without runtime code edits.",
+      "depends_on": [
+        "M2-010"
+      ],
+      "write_paths": [
+        "tools/",
+        "schemas/",
+        "assets/",
+        "docs/development/",
+        "tests/"
+      ],
+      "acceptance": [
+        "The workflow reports actionable locations for invalid inputs and preserves the last valid product.",
+        "Dependencies and recooking behavior are explicit and reproducible.",
+        "A contributor other than the implementer performs and records a deliberate edit/rejection/correction cycle."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Choose the smallest useful authoring/inspection surface and repeat the independent contributor exercise.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M2-040",
+      "title": "Version persistent state and interrupted publication",
+      "milestone": "M2",
+      "priority": 330,
+      "description": "Extend persistent object policy, migrations and interruption recovery with an explicit durability contract.",
+      "depends_on": [
+        "M2-010",
+        "M1-090"
+      ],
+      "write_paths": [
+        "engine/world/",
+        "schemas/",
+        "tests/",
+        "docs/development/content-pipeline.md",
+        "docs/adr/"
+      ],
+      "acceptance": [
+        "Supported migrations have versioned fixtures and exact compatibility rules.",
+        "Process interruption at declared publication points recovers a valid committed generation or reports a clear failure.",
+        "Asynchronous publication preserves ordering and ownership; power-loss guarantees require separate evidence."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Write the migration/interruption contract, then implement retained recovery fixtures.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M2-050",
+      "title": "Run streamed traversal and failure routes",
+      "milestone": "M2",
+      "priority": 340,
+      "description": "Exercise the actual streamed route under declared timings, failures and memory limits.",
+      "depends_on": [
+        "M2-020",
+        "M2-030",
+        "M2-040"
+      ],
+      "write_paths": [
+        "benchmarks/",
+        "tests/",
+        "apps/playable/",
+        "docs/production/"
+      ],
+      "acceptance": [
+        "Traversal includes reversals, teleports, stale completion, malformed content and delayed work.",
+        "Persistent changes survive leave/reload/save/restart on the real route.",
+        "Run duration, growth limits and thresholds are declared before execution; finite soaks are not indefinite-stability claims."
+      ],
+      "required_checks": [
+        "dev",
+        "package"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Execute the bounded traversal/fault plan and retain raw observations.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M2-060",
+      "title": "Review streamed and authored route acceptance",
+      "milestone": "M2",
+      "priority": 350,
+      "description": "Accept or reject M2 against real-resource, authoring and persistence evidence.",
+      "depends_on": [
+        "M2-050"
+      ],
+      "write_paths": [
+        "docs/production/",
+        "docs/roadmap.md"
+      ],
+      "acceptance": [
+        "Every M2 criterion has observed evidence and scope limits.",
+        "Remaining failures block expansion or trigger a documented scope/contract change."
+      ],
+      "required_checks": [
+        "repository",
+        "workflow"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Reconcile all M2 evidence and record the gate decision.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M3-010",
+      "title": "Add bounded population and navigation tiers",
+      "milestone": "M3",
+      "priority": 400,
+      "description": "Introduce persistent population identities and bounded simulation promotion/demotion with navigation.",
+      "depends_on": [
+        "M2-060"
+      ],
+      "write_paths": [
+        "engine/ai/",
+        "engine/navigation/",
+        "engine/world/",
+        "assets/",
+        "tests/",
+        "CMakeLists.txt"
+      ],
+      "acceptance": [
+        "Decorative and simulated populations have distinct budgets and persistence rules.",
+        "Tier changes preserve required logical state without duplicate authority.",
+        "Navigation workload and failures are measured on a bounded route."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Define a small population workload and tier handoff before scaling density.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M3-020",
+      "title": "Integrate authored traffic and one mission",
+      "milestone": "M3",
+      "priority": 410,
+      "description": "Compose authored roads, limited traffic and one interruption-safe mission.",
+      "depends_on": [
+        "M3-010"
+      ],
+      "write_paths": [
+        "engine/gameplay/",
+        "engine/traffic/",
+        "apps/playable/",
+        "assets/",
+        "tests/",
+        "CMakeLists.txt"
+      ],
+      "acceptance": [
+        "Possession/transfers preserve identity, pose, velocity and one authoritative writer.",
+        "Mission reservations have owners/release paths and retries cannot duplicate rewards.",
+        "Mission interruption and return to persistent changes are exercised."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Implement the smallest road/traffic/mission route with explicit state ownership.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M3-030",
+      "title": "Unify world clock, presentation and spatial sound",
+      "milestone": "M3",
+      "priority": 420,
+      "description": "Add coherent bounded day/night/weather, lighting, required animation and spatial audio.",
+      "depends_on": [
+        "M3-010"
+      ],
+      "write_paths": [
+        "engine/render/",
+        "engine/audio/",
+        "engine/animation/",
+        "engine/world/",
+        "assets/",
+        "tests/",
+        "CMakeLists.txt"
+      ],
+      "acceptance": [
+        "Presentation state has defined clocks and invalidation/reset events.",
+        "Materials, lighting, motion and spatial audio are evaluated on the same route.",
+        "Quality features fit measured budgets; unsupported temporal techniques remain disabled."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Select the route-essential presentation features and verify their shared timing/ownership.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M3-040",
+      "title": "Review the integrated living district workload",
+      "milestone": "M3",
+      "priority": 430,
+      "description": "Evaluate population, mission and presentation together before expanding research-scale targets.",
+      "depends_on": [
+        "M3-020",
+        "M3-030"
+      ],
+      "write_paths": [
+        "benchmarks/",
+        "docs/production/",
+        "docs/roadmap.md"
+      ],
+      "acceptance": [
+        "Integrated captures include traversal, interior transition, mission interruption and restart.",
+        "Selected density, quality and timing contracts pass together on declared targets.",
+        "Research map/population/FPS values remain targets until these measurements justify them."
+      ],
+      "required_checks": [
+        "dev",
+        "package"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Run and review the integrated workload; explicitly accept or reduce M3 scope.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M4-010",
+      "title": "Harden diagnostics, recovery and migration support",
+      "milestone": "M4",
+      "priority": 500,
+      "description": "Define supported release behavior for crash diagnostics, retained symbols and recovery/migration.",
+      "depends_on": [
+        "M3-040"
+      ],
+      "write_paths": [
+        "engine/diagnostics/",
+        "engine/world/",
+        "tools/",
+        "tests/",
+        "cmake/",
+        "docs/production/"
+      ],
+      "acceptance": [
+        "Crashes and failed content produce usable source/version/artifact-linked diagnostics.",
+        "Every supported migration/recovery path has reproducible fixtures.",
+        "Symbol and evidence retention policies are executable and tested."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Choose the supported recovery/diagnostic contract and validate it with retained failure cases.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M4-020",
+      "title": "Qualify product settings and accessibility",
+      "milestone": "M4",
+      "priority": 510,
+      "description": "Make settings and accessibility part of the packaged product and verification route.",
+      "depends_on": [
+        "M3-040"
+      ],
+      "write_paths": [
+        "apps/playable/",
+        "engine/platform/",
+        "assets/",
+        "tests/",
+        "docs/production/"
+      ],
+      "acceptance": [
+        "Settings persistence and reset behavior are defined and tested.",
+        "Chosen accessibility requirements are demonstrated on the actual product.",
+        "The packaged route exercises these settings without breaking resource or input contracts."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Declare product requirements, then implement and test the selected settings/accessibility behaviors.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M4-030",
+      "title": "Qualify each supported distribution target",
+      "milestone": "M4",
+      "priority": 520,
+      "description": "Require actual clean build, installation, gameplay, resource, recovery and performance evidence per target.",
+      "depends_on": [
+        "M4-010",
+        "M4-020"
+      ],
+      "write_paths": [
+        ".github/",
+        "cmake/",
+        "tools/",
+        "benchmarks/",
+        "docs/production/"
+      ],
+      "acceptance": [
+        "Every claimed target executes the full accepted matrix with exact revisions and artifacts.",
+        "Independent authoring and release reproduction are demonstrated under declared inputs.",
+        "New backends, browser delivery or consoles are separate justified projects with required access and constraints."
+      ],
+      "required_checks": [
+        "dev",
+        "package"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Assemble the target matrix and close gaps with actual execution, not configuration alone.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "M4-040",
+      "title": "Record production qualification and release decision",
+      "milestone": "M4",
+      "priority": 530,
+      "description": "Make the final product/release decision against the complete target-specific evidence set.",
+      "depends_on": [
+        "M4-030"
+      ],
+      "write_paths": [
+        "docs/production/",
+        "docs/roadmap.md",
+        "NOTICE.md"
+      ],
+      "acceptance": [
+        "All claimed capabilities and targets map to current accepted evidence.",
+        "Applicable license, provenance, notices, ownership and release support decisions are explicit.",
+        "Unqualified capabilities remain outside the release claim."
+      ],
+      "required_checks": [
+        "repository",
+        "workflow"
+      ],
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
+      "checkpoint": {
+        "summary": "Planned work; no implementation or passing evidence is inferred.",
+        "next_action": "Review the final evidence set, document limitations and record the supported release scope.",
+        "files": []
+      },
+      "blocker": null,
+      "evidence": [],
+      "completion": null
+    }
+  ],
+  "evidence": [
+    {
+      "id": "RUN-000001",
+      "task": "OPS-AGENT-SYSTEM",
+      "check": "repository",
+      "actor": "coordinator",
+      "argv": [
+        "python",
+        "tools/check_repo.py"
+      ],
+      "started_at": "2026-11-23T13:15:29.597031Z",
+      "finished_at": "2026-11-23T13:15:29.829605Z",
+      "result": "passed",
+      "exit_code": 0,
+      "source_before": {
+        "sha256": "1ade509f95561c6c6d39738ec08f2484aa5f1a82064ba5e836fe6df4b0924a4b",
+        "file_count": 97
+      },
+      "source_after": {
+        "sha256": "1ade509f95561c6c6d39738ec08f2484aa5f1a82064ba5e836fe6df4b0924a4b",
+        "file_count": 97
+      },
+      "git": {
+        "status": "git",
+        "commit": "6b20e83363e13ff2ede2406054d367041b40b5eb",
+        "dirty": true
+      },
+      "platform": "Linux x86_64 / Python 3.12.14",
+      "log": {
+        "path": "out/agent-runs/RUN-000001-8a23da08c7e640bcbbf924ba9a146dd6.log",
+        "sha256": "4bea4cd2bb71d80607646ce4510e77e41d2058d2cfdfb8347b9049cffbe4b567",
+        "bytes": 95
+      },
+      "note": "Process exited successfully."
+    },
+    {
+      "id": "RUN-000002",
+      "task": "OPS-AGENT-SYSTEM",
+      "check": "workflow-tests",
+      "actor": "coordinator",
+      "argv": [
+        "python",
+        "tests/test_agent_state.py"
+      ],
+      "started_at": "2026-11-23T13:15:34.969258Z",
+      "finished_at": "2026-11-23T13:15:43.783975Z",
+      "result": "passed",
+      "exit_code": 0,
+      "source_before": {
+        "sha256": "1ade509f95561c6c6d39738ec08f2484aa5f1a82064ba5e836fe6df4b0924a4b",
+        "file_count": 97
+      },
+      "source_after": {
+        "sha256": "1ade509f95561c6c6d39738ec08f2484aa5f1a82064ba5e836fe6df4b0924a4b",
+        "file_count": 97
+      },
+      "git": {
+        "status": "git",
+        "commit": "6b20e83363e13ff2ede2406054d367041b40b5eb",
+        "dirty": true
+      },
+      "platform": "Linux x86_64 / Python 3.12.14",
+      "log": {
+        "path": "out/agent-runs/RUN-000002-df00a907a17e43898a4c4565337c35c2.log",
+        "sha256": "2112d61ebbaf771acb8447787a29b6530c72e617e7a98360c83521f375d25e9b",
+        "bytes": 132
+      },
+      "note": "Process exited successfully."
+    },
+    {
+      "id": "RUN-000003",
+      "task": "OPS-AGENT-SYSTEM",
+      "check": "dev",
+      "actor": "coordinator",
+      "argv": [
+        "python",
+        "tools/ge.py",
+        "check",
+        "--preset",
+        "dev",
+        "--jobs",
+        "2"
+      ],
+      "started_at": "2026-11-23T13:15:52.715680Z",
+      "finished_at": "2026-11-23T13:16:05.911866Z",
+      "result": "passed",
+      "exit_code": 0,
+      "source_before": {
+        "sha256": "1ade509f95561c6c6d39738ec08f2484aa5f1a82064ba5e836fe6df4b0924a4b",
+        "file_count": 97
+      },
+      "source_after": {
+        "sha256": "1ade509f95561c6c6d39738ec08f2484aa5f1a82064ba5e836fe6df4b0924a4b",
+        "file_count": 97
+      },
+      "git": {
+        "status": "git",
+        "commit": "6b20e83363e13ff2ede2406054d367041b40b5eb",
+        "dirty": true
+      },
+      "platform": "Linux x86_64 / Python 3.12.14",
+      "log": {
+        "path": "out/agent-runs/RUN-000003-96c70d3d2e1140d5b6610c71cc4c37d9.log",
+        "sha256": "56250ae7993d8c504ee73c40a0e20dea7aa1d6a07a764589194e35e8c0dfc767",
+        "bytes": 3433
+      },
+      "note": "Process exited successfully."
+    },
+    {
+      "id": "RUN-000004",
+      "task": "OPS-AGENT-SYSTEM",
+      "check": "package",
+      "actor": "coordinator",
+      "argv": [
+        "python",
+        "tools/ge.py",
+        "package",
+        "--preset",
+        "release",
+        "--jobs",
+        "2"
+      ],
+      "started_at": "2026-11-23T13:16:20.309545Z",
+      "finished_at": "2026-11-23T13:16:34.781251Z",
+      "result": "passed",
+      "exit_code": 0,
+      "source_before": {
+        "sha256": "1ade509f95561c6c6d39738ec08f2484aa5f1a82064ba5e836fe6df4b0924a4b",
+        "file_count": 97
+      },
+      "source_after": {
+        "sha256": "1ade509f95561c6c6d39738ec08f2484aa5f1a82064ba5e836fe6df4b0924a4b",
+        "file_count": 97
+      },
+      "git": {
+        "status": "git",
+        "commit": "6b20e83363e13ff2ede2406054d367041b40b5eb",
+        "dirty": true
+      },
+      "platform": "Linux x86_64 / Python 3.12.14",
+      "log": {
+        "path": "out/agent-runs/RUN-000004-9bc1ca3890454c4da1f8e41ebe515335.log",
+        "sha256": "f417acfbd5cb10a26d0ce0f4ea0773e2228e1a9e845b97b3856085a973d6b106",
+        "bytes": 9654
+      },
+      "note": "Process exited successfully."
+    }
+  ],
+  "history": [
+    {
+      "revision": 1,
+      "at": "2026-11-23T13:01:02.152612Z",
+      "actor": "coordinator",
+      "action": "bootstrap",
+      "task": "OPS-AGENT-SYSTEM",
+      "summary": "Initialize the user-requested agent workflow and concrete milestone backlog. Import prior M0 evidence explicitly; ongoing bootstrap work has not yet been accepted."
+    },
+    {
+      "revision": 2,
+      "at": "2026-11-23T13:15:12.719042Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Reconcile the completed agent coordination implementation, precise prompts, 29-task roadmap, independent 33-case regression suite, and build/CTest/CI integration before recorded acceptance gates."
+    },
+    {
+      "revision": 3,
+      "at": "2026-11-23T13:15:24.191969Z",
+      "actor": "coordinator",
+      "action": "checkpoint",
+      "task": "OPS-AGENT-SYSTEM",
+      "summary": "Implemented the CLI, live ledger, generated views, precise coordinator/worker prompts, roadmap and ge/CTest/CI integration. Separate implementation, regression-test and documentation/review agents contributed. Exploratory verification passed 33 workflow tests with no skips and all 18 help pages; review fixes cover pending repeats, blocked receipt retention, brief attachment contention, invalid IDs, temporary exclusions and managed paths. Required recorded integration gates are still pending."
+    },
+    {
+      "revision": 4,
+      "at": "2026-11-23T13:15:29.834304Z",
+      "actor": "coordinator",
+      "action": "run-check",
+      "task": "OPS-AGENT-SYSTEM",
+      "summary": "repository: passed; receipt RUN-000001; Process exited successfully."
+    },
+    {
+      "revision": 5,
+      "at": "2026-11-23T13:15:43.789548Z",
+      "actor": "coordinator",
+      "action": "run-check",
+      "task": "OPS-AGENT-SYSTEM",
+      "summary": "workflow-tests: passed; receipt RUN-000002; Process exited successfully."
+    },
+    {
+      "revision": 6,
+      "at": "2026-11-23T13:16:05.918049Z",
+      "actor": "coordinator",
+      "action": "run-check",
+      "task": "OPS-AGENT-SYSTEM",
+      "summary": "dev: passed; receipt RUN-000003; Process exited successfully."
+    },
+    {
+      "revision": 7,
+      "at": "2026-11-23T13:16:34.786221Z",
+      "actor": "coordinator",
+      "action": "run-check",
+      "task": "OPS-AGENT-SYSTEM",
+      "summary": "package: passed; receipt RUN-000004; Process exited successfully."
+    },
+    {
+      "revision": 8,
+      "at": "2026-11-23T13:17:27.231068Z",
+      "actor": "coordinator",
+      "action": "checkpoint",
+      "task": "OPS-AGENT-SYSTEM",
+      "summary": "All four required receipts passed against the same inspected source: RUN-000001 repository policy, RUN-000002 33 workflow regression cases with no skips, RUN-000003 Debug with 14 CTest suites, and RUN-000004 Release with 14 CTest suites, installed/relocated runtime and independent SDK consumer, ZIP/TGZ archives and checksums. Three focused agents supplied implementation, independent tests and documentation/review. The original 60-agent register and historical foundation verification remain unchanged. New hosted CI results have not been observed."
+    },
+    {
+      "revision": 9,
+      "at": "2026-11-23T13:17:33.556288Z",
+      "actor": "coordinator",
+      "action": "submit",
+      "task": "OPS-AGENT-SYSTEM",
+      "summary": "Ready for review: strict canonical state, deterministic derived views, guarded ownership/transitions, current executed receipts, source/CI freshness enforcement, precise continuation and worker prompts, and the dependency-ordered project backlog are implemented. Required receipts RUN-000001 through RUN-000004 pass at the current source fingerprint. Independent reviews exercised concurrency, publication recovery, invalid inputs, archive behavior and command/document alignment."
+    },
+    {
+      "revision": 10,
+      "at": "2026-11-23T13:17:46.254135Z",
+      "actor": "coordinator",
+      "action": "accept",
+      "task": "OPS-AGENT-SYSTEM",
+      "summary": "Accepted after coordinator integration review and real delegated implementation, independent regression tests and documentation review. All five task criteria are supported: stale source/views and invalid claims fail; current required checks and explicit review gate completion; mutations retain evidence/history and regenerate views; prompts cover startup, scope, checkpoints, recovery and authorized publication; 33 workflow cases plus all 14 Debug/Release CTest suites and the relocated SDK/package gate passed in RUN-000001 through RUN-000004. This is explicitly coordinator self-review, not authenticated peer approval. Local Linux execution qualifies this source; new hosted platform results remain unobserved. Ready for the already authorized commit and push."
+    }
+  ]
+}
