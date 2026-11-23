@@ -6,6 +6,7 @@
 #include <span>
 #include <stdexcept>
 #include <string>
+#include <system_error>
 
 namespace ge {
 namespace {
@@ -75,6 +76,24 @@ private:
 }
 
 [[nodiscard]] std::vector<std::uint8_t> read_bytes(const std::filesystem::path& path) {
+    if (path.empty() ||
+        path.native().find(std::filesystem::path::value_type{}) !=
+            std::filesystem::path::string_type::npos) {
+        invalid("invalid file path");
+    }
+    // Reject pipes/devices before opening: opening a FIFO can otherwise wait
+    // indefinitely for a writer. Follow symlinks to legitimate regular inputs.
+    // The caller excludes hostile namespace changes; this precheck is not an
+    // adversarial race-safe open.
+    std::error_code error;
+    const bool regular = std::filesystem::is_regular_file(path, error);
+    if (error) {
+        invalid("cannot inspect file");
+    }
+    if (!regular) {
+        invalid("package must be a regular file");
+    }
+
     std::ifstream file(path, std::ios::binary | std::ios::ate);
     if (!file) {
         invalid("cannot open file");

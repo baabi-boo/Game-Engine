@@ -8,6 +8,7 @@ one private TemporaryDirectory; no caller-owned install tree is removed.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -29,6 +30,9 @@ find_package(GameEngine CONFIG REQUIRED COMPONENTS core content world
     PATHS "${GE_PACKAGE_PREFIX}" NO_DEFAULT_PATH)
 add_executable(ge_package_consumer main.cpp)
 target_link_libraries(ge_package_consumer PRIVATE ge::core ge::content ge::world)
+if(MINGW)
+    target_link_options(ge_package_consumer PRIVATE -municode)
+endif()
 set_target_properties(ge_package_consumer PROPERTIES
     CXX_EXTENSIONS OFF
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/$<CONFIG>")
@@ -43,6 +47,7 @@ CONSUMER_CPP = r"""#include <ge/core/clock.hpp>
 #include <chrono>
 #include <cstdint>
 #include <exception>
+#include <filesystem>
 #include <iostream>
 #include <limits>
 #include <stdexcept>
@@ -56,10 +61,14 @@ void require(bool condition, const char* message) {
 }
 }
 
+#ifdef _WIN32
+int wmain(int argc, wchar_t* argv[]) {
+#else
 int main(int argc, char* argv[]) {
+#endif
     try {
         require(argc == 2, "expected the installed fixture path");
-        const auto package = ge::read_package(argv[1]);
+        const auto package = ge::read_package(std::filesystem::path{argv[1]});
         require(!package.regions.empty() && !package.entities.empty(), "empty fixture");
 
         ge::FixedClock clock{std::chrono::milliseconds{10}, 2};
@@ -212,6 +221,7 @@ def _cache(build: Path, config: str) -> tuple[dict[str, str], str]:
             cache[key.rsplit(":", 1)[0]] = value
     _require(cache.get("CMAKE_PROJECT_NAME") == "GameEngine",
              f"{path} is not a GameEngine build cache")
+    _require(bool(cache.get("CMAKE_PROJECT_VERSION")), f"{path} has no project version")
     _require(bool(cache.get("CMAKE_HOME_DIRECTORY")), f"{path} has no source directory")
     _require(Path(cache.get("CMAKE_CACHEFILE_DIR", "")).resolve() == build,
              "the build directory has moved since configuration; reconfigure and build it first")
@@ -260,7 +270,7 @@ def _consumer_configuration(cache: dict[str, str], config: str) -> list[str]:
     # Preserve the chosen compiler and ABI-relevant settings. Do not load the
     # engine's project, presets, build targets, or a source-tree toolchain file.
     keys = (
-        "CMAKE_GENERATOR_INSTANCE", "CMAKE_MAKE_PROGRAM", "CMAKE_CXX_COMPILER",
+        "CMAKE_GENERATOR_INSTANCE", "CMAKE_CONFIGURATION_TYPES", "CMAKE_MAKE_PROGRAM", "CMAKE_CXX_COMPILER",
         "CMAKE_CXX_COMPILER_ARG1", "CMAKE_CXX_COMPILER_TARGET",
         "CMAKE_CXX_COMPILER_EXTERNAL_TOOLCHAIN", "CMAKE_SYSROOT",
         "CMAKE_OSX_ARCHITECTURES", "CMAKE_OSX_DEPLOYMENT_TARGET", "CMAKE_OSX_SYSROOT",
@@ -300,6 +310,66 @@ def _check_install(prefix: Path, stage: Path, build: Path, cache: dict[str, str]
             _require(destination.is_relative_to(prefix) and destination.exists(),
                      f"installed documentation has a broken local link: {path}: {link}")
     _message("original install stage is absent; moved CMake exports and documentation are self-contained")
+
+
+def _check_manifest(path: Path, host: Path, fixture: Path,
+                    cache: dict[str, str], config: str) -> None:
+    try:
+        manifest = json.loads(_file(path, "installed build manifest").read_text(encoding="utf-8"))
+    except json.JSONDecodeError as error:
+        raise SmokeError(f"installed build manifest is invalid JSON: {path}") from error
+    _require(isinstance(manifest, dict) and type(manifest.get("schema_version")) is int and
+             manifest["schema_version"] == 1, "installed build manifest must use schema version 1")
+    project = manifest.get("project")
+    _require(isinstance(project, dict) and project.get("name") == cache["CMAKE_PROJECT_NAME"] and
+             project.get("version") == cache["CMAKE_PROJECT_VERSION"],
+             "installed manifest project name/version does not match the configured build")
+    settings = manifest.get("build")
+    _require(isinstance(settings, dict) and settings.get("configuration") == config,
+             f"installed manifest does not describe requested configuration {config}")
+
+    artifacts = manifest.get("artifacts")
+    _require(isinstance(artifacts, dict), "installed manifest has no artifact records")
+    for name, artifact in (("headless", host), ("fixture", fixture)):
+        record = artifacts.get(name)
+        _require(isinstance(record, dict) and record.get("filename") == artifact.name,
+                 f"installed manifest has an invalid {name} filename")
+        _require(type(record.get("size_bytes")) is int and record["size_bytes"] >= 0 and
+                 isinstance(record.get("sha256"), str) and
+                 re.fullmatch(r"[0-9a-f]{64}", record["sha256"]) is not None,
+                 f"installed manifest has invalid {name} size/SHA-256 metadata")
+        digest = hashlib.sha256()
+        size = 0
+        with artifact.open("rb") as stream:
+            for block in iter(lambda: stream.read(1024 * 1024), b""):
+                digest.update(block)
+                size += len(block)
+        _require(record["size_bytes"] == size,
+                 f"installed manifest size mismatch for {name}; run a normal build before installing")
+        _require(record["sha256"] == digest.hexdigest(),
+                 f"installed manifest SHA-256 mismatch for {name}; run a normal build before installing")
+
+    # This is the producer's build-time observation, not a claim about the current
+    # checkout or authentication of the source or either hashed artifact.
+    source = manifest.get("source")
+    _require(isinstance(source, dict), "installed manifest has no source status")
+    if source.get("status") == "git":
+        commit = source.get("git_commit")
+        _require(isinstance(commit, str) and
+                 re.fullmatch(r"[0-9a-f]{40}|[0-9a-f]{64}", commit) is not None and
+                 type(source.get("dirty")) is bool,
+                 "installed manifest has invalid recorded Git source status")
+        source_status = f"git commit={commit}, dirty={str(source['dirty']).lower()}"
+    else:
+        _require(source.get("status") == "unknown" and
+                 "git_commit" in source and source["git_commit"] is None and
+                 "dirty" in source and source["dirty"] is None and
+                 source.get("reason") in ("git_metadata_absent", "git_unavailable"),
+                 "installed manifest has invalid unknown source status")
+        source_status = f"unknown ({source['reason']})"
+    _message(f"installed manifest matches {project['name']} {project['version']} / {config}; "
+             "moved executable and fixture SHA-256/byte sizes verified")
+    _message(f"manifest source record: {source_status}; build-time metadata, not authenticated provenance")
 
 
 def _check_host(inspect: dict[str, Any], lifecycle: dict[str, Any]) -> None:
@@ -343,8 +413,12 @@ def _smoke(build: Path, config: str, jobs: int) -> None:
     cache, cmake = _cache(build, config)
     with tempfile.TemporaryDirectory(prefix="ge-package-smoke-") as temporary:
         work = Path(temporary).resolve()
+        _require(not work.is_relative_to(build) and
+                 not work.is_relative_to(Path(cache["CMAKE_HOME_DIRECTORY"]).resolve()),
+                 "the temporary directory must be outside the engine checkout/build; "
+                 "choose an external TMPDIR or TEMP directory")
         stage = work / "original install stage"
-        prefix = work / "relocated prefix with spaces"
+        prefix = work / "relocated district \u03b4 \u8857\u533a with spaces"
         cwd = work / "unrelated working directory"
         source = work / "independent consumer source"
         consumer_build = work / "independent consumer build"
@@ -358,6 +432,7 @@ def _smoke(build: Path, config: str, jobs: int) -> None:
         suffix = ".exe" if os.name == "nt" else ""
         host = _file(prefix / "bin" / f"ge_headless{suffix}", "installed headless executable")
         fixture = _file(prefix / "share/game-engine/assets/district.gepack", "installed cooked fixture")
+        _check_manifest(prefix / "share/game-engine/build-manifest.json", host, fixture, cache, config)
         command = [str(host), "--package", str(fixture)]
         inspect = _json_run([*command, "--inspect"], cwd)
         lifecycle = _json_run(command, cwd)
@@ -388,6 +463,11 @@ def _smoke(build: Path, config: str, jobs: int) -> None:
 
 
 def main(argv: list[str] | None = None) -> int:
+    # Redirected Windows logs can use a legacy encoding. Escape only diagnostic
+    # display when needed; subprocess arguments retain their native Unicode paths.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(errors="backslashreplace")
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--build-dir", type=Path, required=True, metavar="DIR",
                         help="existing, configured and built GameEngine directory")

@@ -1,5 +1,7 @@
 # Game Engine
 
+[![CI](https://github.com/baabi-boo/Game-Engine/actions/workflows/ci.yml/badge.svg)](https://github.com/baabi-boo/Game-Engine/actions/workflows/ci.yml)
+
 **Independent open-world engine · foundation / pre-alpha**
 
 A C++20 engine foundation built around explicit ownership, stable identity, bounded
@@ -51,8 +53,13 @@ purpose, pinned revision, provenance and license review.
 - [Architecture and scope](docs/architecture/overview.md)
 - [Architecture decisions](docs/adr/README.md)
 - [Content pipeline and file format](docs/development/content-pipeline.md)
+- [Lifecycle diagnostics](docs/development/diagnostics.md)
 - [Roadmap and milestone gates](docs/roadmap.md)
+- [First playable milestone](docs/production/first-playable.md) and [integration risks](docs/production/risk-register.md)
 - [Quality and acceptance evidence](docs/quality-gates.md)
+- [Observed verification results](docs/production/verification.md)
+- [60-agent implementation and review register](docs/production/implementation-register.md)
+- [Dependency and provenance policy](docs/production/dependency-policy.md)
 - [Contributing](CONTRIBUTING.md) and [agent guidance](AGENTS.md)
 - [Original public research blueprint](docs/research/open-world-blueprint.md)
 

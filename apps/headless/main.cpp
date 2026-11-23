@@ -29,6 +29,20 @@ using ge::world::RequestToken;
 using ge::world::StateEntry;
 using ge::world::StreamingPolicy;
 
+using CommandCharacter = std::filesystem::path::value_type;
+using CommandArgument = std::basic_string_view<CommandCharacter>;
+
+[[nodiscard]] std::string argument_text(CommandArgument argument) {
+#ifdef _WIN32
+    // wmain supplies native UTF-16. Only option text needs UTF-8 conversion;
+    // path values stay native so they never pass through a Windows code page.
+    const auto utf8 = std::filesystem::path{argument}.u8string();
+    return std::string{utf8.begin(), utf8.end()};
+#else
+    return std::string{argument};
+#endif
+}
+
 struct Options {
     std::optional<std::filesystem::path> package;
     std::optional<std::filesystem::path> save_state;
@@ -40,14 +54,15 @@ struct Options {
     bool version{false};
 };
 
-[[nodiscard]] Options parse_options(int argc, char* argv[]) {
+[[nodiscard]] Options parse_options(int argc, CommandCharacter* argv[]) {
     Options options;
     const auto argument_value = [&](int& index, std::string_view option) {
         if (index + 1 >= argc) {
             throw std::invalid_argument(std::string(option) + " requires a value");
         }
-        const std::string_view value{argv[++index]};
-        if (value.empty() || value.starts_with("--")) {
+        const CommandArgument value{argv[++index]};
+        constexpr CommandCharacter option_prefix[]{'-', '-', '\0'};
+        if (value.empty() || value.starts_with(option_prefix)) {
             throw std::invalid_argument(std::string(option) + " requires a nonempty value");
         }
         return value;
@@ -60,7 +75,7 @@ struct Options {
     };
 
     for (int index = 1; index < argc; ++index) {
-        const std::string_view option{argv[index]};
+        const auto option = argument_text(argv[index]);
         if (option == "--package" || option == "--save-state" || option == "--restore-state") {
             auto& destination = option == "--package" ? options.package
                 : option == "--save-state" ? options.save_state : options.restore_state;
@@ -70,7 +85,7 @@ struct Options {
             destination = std::filesystem::path{argument_value(index, option)};
         } else if (option == "--budget-bytes") {
             flag(options.budget_supplied, option);
-            const auto value = argument_value(index, option);
+            const auto value = argument_text(argument_value(index, option));
             std::uint64_t parsed{};
             const auto result = std::from_chars(value.data(), value.data() + value.size(), parsed);
             if (result.ec != std::errc{} || result.ptr != value.data() + value.size() || parsed == 0U) {
@@ -596,18 +611,23 @@ void print_help() {
 
 } // namespace
 
+#ifdef _WIN32
+int wmain(int argc, wchar_t* argv[]) {
+#else
 int main(int argc, char* argv[]) {
+#endif
     try {
         const auto options = parse_options(argc, argv);
         if (options.help) {
             print_help();
         } else if (options.version) {
-            std::cout << "Game Engine 0.1.0\n";
+            std::cout << "Game Engine " << GE_PROJECT_VERSION << '\n';
         } else {
             const auto package = ge::read_package(*options.package);
             const auto result = options.inspect ? inspect_package(package) : run_scenario(package, options);
             std::cout << result << '\n';
         }
+        std::cout.flush();
         if (!std::cout) {
             throw std::runtime_error("failed to write command output");
         }

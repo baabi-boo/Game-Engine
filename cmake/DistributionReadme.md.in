@@ -1,6 +1,6 @@
 # Game Engine binary distribution
 
-**Version 0.1.0 · headless foundation / pre-alpha**
+**Version @PROJECT_VERSION@ · headless foundation / pre-alpha**
 
 This archive contains an independent C++20 headless contract prototype, its small
 original district fixture, and a static-library SDK. Its lifecycle demonstrates
@@ -12,7 +12,7 @@ Counters are modeled reservations, not measured resource memory or performance.
 Source and development instructions:
 [github.com/baabi-boo/Game-Engine](https://github.com/baabi-boo/Game-Engine).
 The archive is built for its producer's operating system, architecture, compiler,
-standard library and configuration. Version 0.1.0 does not establish a supported
+standard library and configuration. Version @PROJECT_VERSION@ does not establish a supported
 production release or a stable binary ABI.
 
 ## Run the installed fixture
@@ -88,6 +88,16 @@ consumer at runtime; there is no source-checkout asset path in the SDK interface
 The default layout is `bin/` for the host, `include/ge/` for public headers,
 `lib/` for static libraries and `lib/cmake/GameEngine/` for CMake exports.
 `share/game-engine/assets/` contains `district.gepack` and its authored JSON source.
+`share/game-engine/build-manifest.json` records the project version, observed local
+Git commit and dirty state, CMake system processor, toolchain/configuration, strict
+warning and sanitizer settings, package/state format versions, and SHA-256 plus
+byte size of the built host and cooked fixture. A build from a source archive
+without Git metadata, or on a host without Git, records source provenance as
+`unknown`, with null commit and dirty fields. A dirty
+flag includes tracked edits and untracked files that Git does not ignore.
+The manifest contains no generation time or absolute build paths. Its hashes
+identify the recorded files; they provide no authenticity guarantee or promise of
+reproducible executable bytes. Rebuild after source changes before installing.
 Some toolchains use `lib64/` or a platform-specific library directory.
 
 This README lives in `share/doc/GameEngine/` together with `NOTICE.md`,

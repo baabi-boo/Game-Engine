@@ -42,6 +42,7 @@ add_subdirectory(engine/core)
 add_subdirectory(engine/content)
 add_subdirectory(engine/world)
 add_subdirectory(apps/headless)
+include(cmake/BuildManifest.cmake)
 
 if(BUILD_TESTING)
     # A requested test suite must exist: do not silently skip a missing directory.
@@ -52,9 +53,11 @@ install(FILES "${GE_COOKED_FIXTURE}" "${GE_AUTHORED_FIXTURE}"
     DESTINATION "${GE_INSTALL_ASSETDIR}"
     COMPONENT Runtime
 )
-install(FILES "${PROJECT_SOURCE_DIR}/cmake/DistributionReadme.md"
+configure_file("${PROJECT_SOURCE_DIR}/cmake/DistributionReadme.md.in"
+    "${PROJECT_BINARY_DIR}/cmake/distribution/README.md" @ONLY
+)
+install(FILES "${PROJECT_BINARY_DIR}/cmake/distribution/README.md"
     DESTINATION "${CMAKE_INSTALL_DOCDIR}"
-    RENAME README.md
     COMPONENT Documentation
 )
 install(FILES "${PROJECT_SOURCE_DIR}/NOTICE.md"

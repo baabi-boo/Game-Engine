@@ -139,8 +139,6 @@ void initial_values_and_identity() {
     const std::array<StateEntry, 1> zero{{{{0U}, 1}}};
     CHECK_THROWS_AS(PersistentState(7U, duplicate), std::invalid_argument);
     CHECK_THROWS_AS(PersistentState(7U, zero), std::invalid_argument);
-    const std::vector<StateEntry> oversized(ge::world::max_state_entries + 1U);
-    CHECK_THROWS_AS(PersistentState(7U, oversized), std::invalid_argument);
 }
 
 void owned_snapshot_and_golden_format() {
@@ -215,7 +213,7 @@ void malformed_restore_preserves_live_state() {
     changed_u32(32U, 0U);                // Count/framing mismatches.
     changed_u32(32U, 2U);
     changed_u32(32U, 4U);
-    changed_u32(32U, 65537U);             // Count limit.
+    changed_u32(32U, 65537U);             // Oversized count; framing also mismatches.
     changed_u32(32U, 0xFFFFFFFFU);        // Overflow-shaped count.
     changed_u64(40U, 0U);                // Zero ID.
     changed_u64(52U, 1U);                // Duplicate ID.
@@ -297,6 +295,27 @@ void bounds_and_empty_state() {
     restarted.restore(bytes);
     CHECK(restarted.size() == ge::world::max_state_entries);
     CHECK(restarted.get(values.back().id) == values.back().value);
+
+    // Keep all IDs valid and unique: the count cap must be the only reason
+    // construction fails, rather than zero/duplicate-ID validation.
+    const auto extra_id = static_cast<std::uint64_t>(ge::world::max_state_entries);
+    values.insert(values.end() - 1, StateEntry{PersistentId{extra_id}, 0});
+    CHECK_THROWS_AS(PersistentState(7U, values), std::invalid_argument);
+
+    // Insert the same ID before UINT64_MAX in the accepted maximum-size wire
+    // snapshot. Repair both framing and CRC so they cannot mask a missing cap.
+    auto too_many = bytes;
+    const auto last_record_offset = too_many.size() - ge::world::state_checksum_bytes -
+                                    ge::world::state_entry_bytes;
+    too_many.insert(too_many.begin() + static_cast<std::ptrdiff_t>(last_record_offset),
+                    ge::world::state_entry_bytes, 0U);
+    put_u64(too_many, last_record_offset, extra_id);
+    put_u32(too_many, 32U, static_cast<std::uint32_t>(values.size()));
+    repair_checksum(too_many);
+    CHECK(too_many.size() < ge::world::max_state_file_bytes);
+    // Check decoding directly: restoring to a smaller known-ID set would also
+    // reject this input even if the decoder stopped enforcing its count cap.
+    CHECK_THROWS_AS(decode_state(too_many), std::runtime_error);
 }
 
 void file_restart_replacement_and_failure_preservation() {

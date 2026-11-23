@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:game-engine:schema:headless-report-v1",
+  "title": "Game Engine headless lifecycle report for package format v1",
+  "description": "Documentation of the current successful lifecycle JSON shape. apps/headless/main.cpp and its contract tests remain authoritative. Inspection and error output are outside this schema.",
+  "$comment": "This is optional consumer/editor documentation, not an authoritative validation engine. No validator dependency is required or downloaded by the build. schema_version identifies the package format, not a separately versioned report protocol. Additional object fields and new boolean check names are permitted. Memory equations, event ordering, token matching, complete check coverage and persistence semantics require executable checks beyond this schema. Preserve uint64 values exactly.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "mode", "status", "schema_version", "baseline_id", "region_count", "entity_count",
+    "source_sha256", "byte_accounting", "readiness", "budget_bytes", "peak_reserved_bytes",
+    "final_reserved_bytes", "budget_denials", "budget_pressure_observed", "persistent_id",
+    "initial_value", "value_before_mutation", "restored_value", "final_value",
+    "restored_sequence", "snapshot_sequence", "state_sequence", "save_state_written",
+    "visited_regions", "activation_order", "checks", "events"
+  ],
+  "properties": {
+    "mode": {"type": "string", "const": "headless-policy-fixture"},
+    "status": {"type": "string", "const": "ok"},
+    "schema_version": {
+      "type": "integer",
+      "const": 1,
+      "description": "The loaded package format version; not a report protocol version."
+    },
+    "baseline_id": {"$ref": "#/$defs/nonzeroUint64"},
+    "region_count": {"type": "integer", "minimum": 1, "maximum": 4096},
+    "entity_count": {"type": "integer", "minimum": 1, "maximum": 65536},
+    "source_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "Canonical-source digest carried by the package; not a recomputed raw-source digest, package hash, or save compatibility key."
+    },
+    "byte_accounting": {"type": "string"},
+    "readiness": {"type": "string"},
+    "budget_bytes": {"$ref": "#/$defs/nonzeroUint64"},
+    "peak_reserved_bytes": {"$ref": "#/$defs/uint64"},
+    "final_reserved_bytes": {"$ref": "#/$defs/uint64"},
+    "budget_denials": {"$ref": "#/$defs/uint64"},
+    "budget_pressure_observed": {"type": "boolean"},
+    "persistent_id": {"$ref": "#/$defs/nonzeroUint64"},
+    "initial_value": {"$ref": "#/$defs/int32"},
+    "value_before_mutation": {"$ref": "#/$defs/int32"},
+    "restored_value": {"anyOf": [{"$ref": "#/$defs/int32"}, {"type": "null"}]},
+    "final_value": {"$ref": "#/$defs/int32"},
+    "restored_sequence": {"$ref": "#/$defs/uint64"},
+    "snapshot_sequence": {"$ref": "#/$defs/nonzeroUint64"},
+    "state_sequence": {"$ref": "#/$defs/nonzeroUint64"},
+    "save_state_written": {"type": "boolean"},
+    "visited_regions": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4096,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/nonzeroUint32"}
+    },
+    "activation_order": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/nonzeroUint32"}
+    },
+    "checks": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": "boolean"},
+      "description": "Named checks vary with package and options. Successful current reports contain only true values; this shape schema does not establish their completeness or execution."
+    },
+    "events": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/event"}
+    }
+  },
+  "$defs": {
+    "uint64": {"type": "integer", "minimum": 0, "maximum": 18446744073709551615},
+    "nonzeroUint64": {"type": "integer", "minimum": 1, "maximum": 18446744073709551615},
+    "nonzeroUint32": {"type": "integer", "minimum": 1, "maximum": 4294967295},
+    "int32": {"type": "integer", "minimum": -2147483648, "maximum": 2147483647},
+    "readinessMask": {"type": "integer", "minimum": 0, "maximum": 15},
+    "token": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["region_id", "generation", "content_revision", "coordinate_epoch"],
+      "properties": {
+        "region_id": {"$ref": "#/$defs/nonzeroUint32"},
+        "generation": {"$ref": "#/$defs/nonzeroUint64"},
+        "content_revision": {"$ref": "#/$defs/uint64"},
+        "coordinate_epoch": {"$ref": "#/$defs/uint64"}
+      }
+    },
+    "memory": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["capacity_bytes", "pending_bytes", "resident_bytes", "retiring_bytes", "reserved_bytes", "available_bytes"],
+      "properties": {
+        "capacity_bytes": {"$ref": "#/$defs/uint64"},
+        "pending_bytes": {"$ref": "#/$defs/uint64"},
+        "resident_bytes": {"$ref": "#/$defs/uint64"},
+        "retiring_bytes": {"$ref": "#/$defs/uint64"},
+        "reserved_bytes": {"$ref": "#/$defs/uint64"},
+        "available_bytes": {"$ref": "#/$defs/uint64"}
+      }
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["action", "region_id", "accepted", "token", "state", "required_mask", "ready_mask", "memory"],
+      "properties": {
+        "action": {"type": "string", "minLength": 1},
+        "region_id": {"$ref": "#/$defs/nonzeroUint32"},
+        "accepted": {"type": "boolean"},
+        "token": {
+          "anyOf": [{"$ref": "#/$defs/token"}, {"type": "null"}],
+          "description": "Attempted token, which may be stale or already acknowledged; null when a begin operation issued no token."
+        },
+        "state": {"type": "string", "enum": ["Unloaded", "Loading", "Ready", "Active", "Retiring"]},
+        "required_mask": {"$ref": "#/$defs/readinessMask"},
+        "ready_mask": {"$ref": "#/$defs/readinessMask"},
+        "memory": {"$ref": "#/$defs/memory"}
+      }
+    }
+  }
+}

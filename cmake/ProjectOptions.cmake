@@ -15,11 +15,16 @@ if(GE_ENABLE_SANITIZERS)
 
     include(CheckCXXSourceCompiles)
     include(CMakePushCheckState)
-    cmake_push_check_state(RESET)
-    set(CMAKE_REQUIRED_FLAGS "-fsanitize=address,undefined -fno-omit-frame-pointer")
-    set(CMAKE_REQUIRED_LINK_OPTIONS "-fsanitize=address,undefined")
-    check_cxx_source_compiles("int main() { return 0; }" GE_HAS_ASAN_UBSAN)
-    cmake_pop_check_state()
+    # This check must link the sanitizer runtimes even when a toolchain defaults
+    # try_compile to static libraries. Restore that default after the probe.
+    block(SCOPE_FOR VARIABLES)
+        cmake_push_check_state(RESET)
+        set(CMAKE_TRY_COMPILE_TARGET_TYPE EXECUTABLE)
+        set(CMAKE_REQUIRED_FLAGS "-fsanitize=address,undefined -fno-omit-frame-pointer")
+        set(CMAKE_REQUIRED_LINK_OPTIONS "-fsanitize=address,undefined")
+        check_cxx_source_compiles("int main() { return 0; }" GE_HAS_ASAN_UBSAN)
+        cmake_pop_check_state()
+    endblock()
     if(NOT GE_HAS_ASAN_UBSAN)
         message(FATAL_ERROR
             "The selected C++ toolchain cannot compile and link with ASan and UBSan. "

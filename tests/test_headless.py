@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 import json
+import os
 import struct
 import subprocess
 import sys
@@ -81,10 +82,10 @@ class HeadlessTests(unittest.TestCase):
         command = [str(BINARY), "--package", str(package if package is not None else FIXTURE)]
         command.extend(str(argument) for argument in arguments)
         return subprocess.run(command, cwd=self.root, capture_output=True, text=True,
-                              timeout=30, check=False)
+                              encoding="utf-8", timeout=30, check=False)
 
-    def success(self, *arguments: str | Path) -> dict:
-        result = self.invoke(*arguments)
+    def success(self, *arguments: str | Path, package: Path | None = None) -> dict:
+        result = self.invoke(*arguments, package=package)
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(result.stderr, "")
         try:
@@ -185,6 +186,26 @@ class HeadlessTests(unittest.TestCase):
         self.assertEqual(payload["regions"], expected)
         self.assertEqual(list(self.root.iterdir()), [])
 
+    @unittest.skipUnless(os.name == "posix" and Path("/dev/full").is_char_device(),
+                         "requires POSIX /dev/full")
+    def test_output_write_errors_return_failure(self) -> None:
+        commands = (
+            ("inspect", ("--package", str(FIXTURE), "--inspect")),
+            ("lifecycle", ("--package", str(FIXTURE))),
+            ("help", ("--help",)),
+            ("version", ("--version",)),
+        )
+        # Small responses can remain buffered until process shutdown. Check
+        # both those and the larger lifecycle report against a failing sink.
+        with Path("/dev/full").open("wb") as output:
+            for mode, arguments in commands:
+                with self.subTest(mode=mode):
+                    result = subprocess.run([str(BINARY), *arguments], cwd=self.root,
+                                            stdout=output, stderr=subprocess.PIPE,
+                                            text=True, encoding="utf-8", timeout=30, check=False)
+                    self.assertEqual(result.returncode, 1, result.stderr)
+                    self.assertIn("ge_headless: failed to write command output", result.stderr)
+
     def test_default_lifecycle_mutates_retires_and_restores(self) -> None:
         payload = self.success()
         self.assert_policy_result(payload, budget=96)
@@ -225,6 +246,53 @@ class HeadlessTests(unittest.TestCase):
         self.assertEqual(second["state_sequence"], second_sequence)
         self.assertGreater(second_sequence, first_sequence)
         self.assertEqual(first_path.read_bytes(), first_bytes)
+
+    def test_unicode_package_and_save_paths_restore_in_a_new_process(self) -> None:
+        # Include multiple scripts, a non-BMP character and spaces: these cannot
+        # round-trip through a typical Windows ANSI code page. The working
+        # directory also stands in for a Unicode caller path or user directory.
+        self.root = self.root / "\u73a9\u5bb6 caf\u00e9 \U0001f30d"
+        self.root.mkdir()
+        package = self.root / "\u4e16\u754c \U0001f3ae.gepack"
+        package.write_bytes(self.package_bytes)
+        save = self.root / "\u72b6\u614b \U0001f4be.gestate"
+
+        inspected = self.success("--inspect", package=package)
+        self.assertEqual(inspected["mode"], "inspect")
+        self.assert_package_metadata(inspected)
+
+        first = self.success("--save-state", save, package=package)
+        self.assert_policy_result(first, budget=96)
+        self.assertIs(first["save_state_written"], True)
+        self.assertIs(first["checks"]["save_round_trip"], True)
+        _, first_sequence = self.read_saved_values(save, changed_value=first["final_value"])
+        self.assertEqual(first["state_sequence"], first_sequence)
+
+        # A fresh process restores and replaces the same file using relative
+        # paths, exercising both Unicode argument handling and native publication.
+        second = self.success("--restore-state", save.name, "--save-state", save.name,
+                              package=Path(package.name))
+        self.assert_policy_result(second, budget=96, restored=first["final_value"])
+        self.assertIs(second["save_state_written"], True)
+        self.assertIs(second["checks"]["save_round_trip"], True)
+        _, second_sequence = self.read_saved_values(save, changed_value=second["final_value"])
+        self.assertEqual(second["restored_sequence"], first_sequence)
+        self.assertEqual(second["state_sequence"], second_sequence)
+        self.assertGreater(second_sequence, first_sequence)
+        self.assertEqual(package.read_bytes(), self.package_bytes)
+        self.assertEqual(set(self.root.iterdir()), {package, save})
+
+    def test_unicode_arguments_preserve_strict_cli_errors(self) -> None:
+        unknown = "--\u672a\u77e5-\U0001f30d"
+        result = self.invoke(unknown)
+        self.assert_failure(result)
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("unknown argument: " + unknown, result.stderr)
+        # Decimal parsing remains ASCII-only, even when native arguments are wide.
+        result = self.invoke("--budget-bytes", "\uff19\uff16")
+        self.assert_failure(result)
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("positive uint64 decimal integer", result.stderr)
 
     def test_corrupt_packages_are_rejected_before_creating_save(self) -> None:
         bad_crc = bytearray(self.package_bytes)

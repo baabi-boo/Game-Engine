@@ -1,4 +1,6 @@
-# Authored world schema
+# Data schemas
+
+## Authored world
 
 [`world-v1.schema.json`](world-v1.schema.json) is a JSON Schema 2020-12 description
 of the version 1 authoring objects consumed by [`tools/cook.py`](../tools/cook.py).
@@ -48,3 +50,12 @@ coordinates in `position_mm` retain their `[x, y, z]` meaning and order.
 There is no schema migration in version 1. Unsupported versions and unknown keys
 are errors. The binary `GEPACK01` and `GESTATE1` layouts are documented separately
 in the content pipeline; this JSON Schema does not describe either binary file.
+
+## Headless lifecycle report
+
+[`headless-report-v1.schema.json`](headless-report-v1.schema.json) documents successful
+`headless-policy-fixture` reports. It is optional tooling support and permits extra
+report fields; it does not describe inspection output or stderr diagnostics. The
+report's `schema_version` identifies the input package format. See
+[diagnostics](../docs/development/diagnostics.md) for field meanings and the limits
+of modeled residency and process timing.

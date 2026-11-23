@@ -274,7 +274,8 @@ def _package(arguments: argparse.Namespace) -> None:
     build = _build_dir(arguments.preset)
     configuration = _configuration(arguments.preset)
     cpack_config = _file(build / "CPackConfig.cmake", "CPack configuration")
-    _run([sys.executable, str(smoke), "--build-dir", str(build), "--config", configuration])
+    _run([sys.executable, str(smoke), "--build-dir", str(build), "--config", configuration,
+          "--jobs", str(arguments.jobs)])
     _run([_program("cpack"), "--config", str(cpack_config), "-C", configuration])
     archives = sorted(path for path in (build / "packages").iterdir()
                       if path.is_file() and (path.name.endswith(".zip") or path.name.endswith(".tar.gz")))
@@ -335,6 +336,11 @@ def _parser() -> argparse.ArgumentParser:
 
 
 def main(argv: list[str] | None = None) -> int:
+    # Redirected logs may use a legacy encoding. Escape diagnostic display only;
+    # subprocess argument lists keep their original native Unicode paths.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(errors="backslashreplace")
     if sys.version_info < MIN_PYTHON:
         _message(f"Python 3.11+ is required; running {sys.version.split()[0]}. "
                  "Install Python 3.11+ and use that interpreter (Windows: py -3.11).")

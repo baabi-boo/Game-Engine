@@ -13,9 +13,14 @@ targets remain roadmap work.
 | [Roadmap](roadmap.md) | Milestones, dependencies, and the evidence required before expanding scope. |
 | [Quality gates](quality-gates.md) | Acceptance contracts and focused checks. |
 | [Content pipeline](development/content-pipeline.md) | Edit/cook/inspect/save workflow, strict authored JSON, package/state formats, and compatibility. |
+| [Diagnostics](development/diagnostics.md) | Interpreting lifecycle reports, state, budgets, errors, and their limits. |
 | [Packaging](development/packaging.md) | Installed runtime, relocatable SDK, archive creation, and delivery checks. |
+| [Process measurements](../benchmarks/README.md) | Repeatable headless process timing with input and executable hashes. |
+| [First playable milestone](production/first-playable.md) | Bounded rendering, input, collision, content, and persistence acceptance for M1. |
+| [Risk register](production/risk-register.md) | Eight integration risks, experiments, owners, and acceptance conditions. |
 | [Research](research/README.md) | Attributed public design input and the archived open-world blueprint. |
 | [Production verification](production/verification.md) | Dated executed results, environments, retained evidence, and unverified platform coverage. |
+| [Implementation and review register](production/implementation-register.md) | The 60 actual assignments across ten waves, outcomes, and evidence boundaries. |
 | [Project policy](project-policy.md) | Provenance, dependency adoption, and the pending project license decision. |
 
 Quality gates say what must be demonstrated; the verification record says what
