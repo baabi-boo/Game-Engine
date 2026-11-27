@@ -66,6 +66,7 @@ set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/render/src/graph.cpp"
     "${PROJECT_SOURCE_DIR}/engine/effects/src/particles.cpp"
     "${PROJECT_SOURCE_DIR}/engine/physics/src/constraints.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/scene/src/serialization.cpp"
 )
 set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/math/include/ge/math/math.hpp"
@@ -99,4 +100,5 @@ set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/render/include/ge/render/graph.hpp"
     "${PROJECT_SOURCE_DIR}/engine/effects/include/ge/effects/particles.hpp"
     "${PROJECT_SOURCE_DIR}/engine/physics/include/ge/physics/constraints.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/scene/include/ge/scene/serialization.hpp"
 )

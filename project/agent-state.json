@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 205,
-  "updated_at": "2026-11-27T21:49:41.406012Z",
+  "revision": 207,
+  "updated_at": "2026-11-27T21:54:21.700855Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "5c92a0e27567e259c347108cf8320d86389efb19a29d2b882f6e3eed99d57f4c",
-    "file_count": 172
+    "sha256": "55a9822569fef80fe8b91a954ff019ec9a18d96072178132211f661f2b3c5cd0",
+    "file_count": 174
   },
   "milestones": [
     {
@@ -2363,9 +2363,12 @@
       "claim_revision": 145,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker034 delivered Versioned scene serialization and transactions; 1315 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/scene/include/ge/scene/serialization.hpp",
+          "engine/scene/src/serialization.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -4575,6 +4578,22 @@
     {
       "revision": 205,
       "at": "2026-11-27T21:49:41.406012Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 206,
+      "at": "2026-11-27T21:54:20.664152Z",
+      "actor": "worker034",
+      "action": "checkpoint",
+      "task": "CODE-034",
+      "summary": "Actual /root/worker034 delivered Versioned scene serialization and transactions; 1315 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 207,
+      "at": "2026-11-27T21:54:21.700855Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,

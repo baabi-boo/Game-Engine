@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 205
-- **Recorded update:** 2026\-11\-27T21:49:41.406012Z
+- **Ledger revision:** 207
+- **Recorded update:** 2026\-11\-27T21:54:21.700855Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 5c92a0e27567e259c347108cf8320d86389efb19a29d2b882f6e3eed99d57f4c
-- **Source files:** 172
+- **Source fingerprint:** 55a9822569fef80fe8b91a954ff019ec9a18d96072178132211f661f2b3c5cd0
+- **Source files:** 174
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -766,9 +766,9 @@ Implement Versioned scene serialization and transactions. User\-authorized sourc
 - Write scope: engine/scene/include/ge/scene/serialization.hpp, engine/scene/src/serialization.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker034 delivered Versioned scene serialization and transactions; 1315 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/scene/include/ge/scene/serialization.hpp, engine/scene/src/serialization.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
