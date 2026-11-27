@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 121,
-  "updated_at": "2026-11-27T20:57:36.558757Z",
+  "revision": 142,
+  "updated_at": "2026-11-27T21:04:45.880004Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "3a4c8ef23a2222b63021237aafa4f73827eb7d1262a7a374799bb55d1ffa2fe7",
-    "file_count": 148
+    "sha256": "8a7ff397e2105d239401596a78fea92afe7aab707c52b6fad6d34df0fb591be0",
+    "file_count": 152
   },
   "milestones": [
     {
@@ -1967,9 +1967,12 @@
       "claim_revision": 99,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker022 delivered Character movement and grounding; 1306 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/physics/include/ge/physics/character.hpp",
+          "engine/physics/src/character.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -1997,9 +2000,12 @@
       "claim_revision": 102,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker023 delivered Vehicle suspension and tire forces; 1330 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/physics/include/ge/physics/vehicle.hpp",
+          "engine/physics/src/vehicle.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -2115,6 +2121,186 @@
       "status": "in_progress",
       "owner": "worker027",
       "claim_revision": 117,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-028",
+      "title": "Terrain tiles, sampling and erosion",
+      "milestone": "M1",
+      "priority": 28,
+      "description": "Implement Terrain tiles, sampling and erosion. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/terrain/include/ge/terrain/heightfield.hpp",
+        "engine/terrain/src/heightfield.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_heightfield(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker028",
+      "claim_revision": 124,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-029",
+      "title": "Vegetation distribution and instancing",
+      "milestone": "M1",
+      "priority": 29,
+      "description": "Implement Vegetation distribution and instancing. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/terrain/include/ge/terrain/vegetation.hpp",
+        "engine/terrain/src/vegetation.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_vegetation(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker029",
+      "claim_revision": 127,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-030",
+      "title": "Light collection, shadows and illumination",
+      "milestone": "M1",
+      "priority": 30,
+      "description": "Implement Light collection, shadows and illumination. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/render/include/ge/render/lighting.hpp",
+        "engine/render/src/lighting.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_lighting(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker030",
+      "claim_revision": 130,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-031",
+      "title": "Render pass graph and transient resources",
+      "milestone": "M1",
+      "priority": 31,
+      "description": "Implement Render pass graph and transient resources. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/render/include/ge/render/graph.hpp",
+        "engine/render/src/graph.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_graph(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker031",
+      "claim_revision": 134,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-032",
+      "title": "Particle emission, simulation and trails",
+      "milestone": "M1",
+      "priority": 32,
+      "description": "Implement Particle emission, simulation and trails. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/effects/include/ge/effects/particles.hpp",
+        "engine/effects/src/particles.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_particles(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker032",
+      "claim_revision": 137,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-033",
+      "title": "Rigid body constraints and joints",
+      "milestone": "M1",
+      "priority": 33,
+      "description": "Implement Rigid body constraints and joints. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/physics/include/ge/physics/constraints.hpp",
+        "engine/physics/src/constraints.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_constraints(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker033",
+      "claim_revision": 140,
       "blocker": null,
       "checkpoint": {
         "summary": "Not started.",
@@ -3237,6 +3423,174 @@
     {
       "revision": 121,
       "at": "2026-11-27T20:57:36.558757Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 122,
+      "at": "2026-11-27T20:57:55.978873Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-028",
+      "summary": "Added planned task CODE-028: Terrain tiles, sampling and erosion."
+    },
+    {
+      "revision": 123,
+      "at": "2026-11-27T20:57:56.385088Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 124,
+      "at": "2026-11-27T20:57:56.791752Z",
+      "actor": "worker028",
+      "action": "claim",
+      "task": "CODE-028",
+      "summary": "Claimed CODE-028 with its recorded write scope."
+    },
+    {
+      "revision": 125,
+      "at": "2026-11-27T20:57:57.153641Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-029",
+      "summary": "Added planned task CODE-029: Vegetation distribution and instancing."
+    },
+    {
+      "revision": 126,
+      "at": "2026-11-27T20:57:57.512129Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 127,
+      "at": "2026-11-27T20:57:57.869539Z",
+      "actor": "worker029",
+      "action": "claim",
+      "task": "CODE-029",
+      "summary": "Claimed CODE-029 with its recorded write scope."
+    },
+    {
+      "revision": 128,
+      "at": "2026-11-27T20:57:58.207890Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-030",
+      "summary": "Added planned task CODE-030: Light collection, shadows and illumination."
+    },
+    {
+      "revision": 129,
+      "at": "2026-11-27T20:57:58.568483Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 130,
+      "at": "2026-11-27T20:57:58.954134Z",
+      "actor": "worker030",
+      "action": "claim",
+      "task": "CODE-030",
+      "summary": "Claimed CODE-030 with its recorded write scope."
+    },
+    {
+      "revision": 131,
+      "at": "2026-11-27T20:59:46.795943Z",
+      "actor": "worker022",
+      "action": "checkpoint",
+      "task": "CODE-022",
+      "summary": "Actual /root/worker022 delivered Character movement and grounding; 1306 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 132,
+      "at": "2026-11-27T21:01:21.151971Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-031",
+      "summary": "Added planned task CODE-031: Render pass graph and transient resources."
+    },
+    {
+      "revision": 133,
+      "at": "2026-11-27T21:01:21.557312Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 134,
+      "at": "2026-11-27T21:01:21.968784Z",
+      "actor": "worker031",
+      "action": "claim",
+      "task": "CODE-031",
+      "summary": "Claimed CODE-031 with its recorded write scope."
+    },
+    {
+      "revision": 135,
+      "at": "2026-11-27T21:01:22.327873Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-032",
+      "summary": "Added planned task CODE-032: Particle emission, simulation and trails."
+    },
+    {
+      "revision": 136,
+      "at": "2026-11-27T21:01:22.716754Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 137,
+      "at": "2026-11-27T21:01:23.138007Z",
+      "actor": "worker032",
+      "action": "claim",
+      "task": "CODE-032",
+      "summary": "Claimed CODE-032 with its recorded write scope."
+    },
+    {
+      "revision": 138,
+      "at": "2026-11-27T21:01:23.527588Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-033",
+      "summary": "Added planned task CODE-033: Rigid body constraints and joints."
+    },
+    {
+      "revision": 139,
+      "at": "2026-11-27T21:01:23.939301Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 140,
+      "at": "2026-11-27T21:01:24.345605Z",
+      "actor": "worker033",
+      "action": "claim",
+      "task": "CODE-033",
+      "summary": "Claimed CODE-033 with its recorded write scope."
+    },
+    {
+      "revision": 141,
+      "at": "2026-11-27T21:04:45.067056Z",
+      "actor": "worker023",
+      "action": "checkpoint",
+      "task": "CODE-023",
+      "summary": "Actual /root/worker023 delivered Vehicle suspension and tire forces; 1330 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 142,
+      "at": "2026-11-27T21:04:45.880004Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,

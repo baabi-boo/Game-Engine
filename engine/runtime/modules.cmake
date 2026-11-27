@@ -50,6 +50,8 @@ set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/render/src/camera.cpp"
     "${PROJECT_SOURCE_DIR}/engine/assets/src/streaming.cpp"
     "${PROJECT_SOURCE_DIR}/engine/render/src/rasterizer.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/physics/src/character.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/physics/src/vehicle.cpp"
 )
 set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/math/include/ge/math/math.hpp"
@@ -71,4 +73,6 @@ set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/render/include/ge/render/camera.hpp"
     "${PROJECT_SOURCE_DIR}/engine/assets/include/ge/assets/streaming.hpp"
     "${PROJECT_SOURCE_DIR}/engine/render/include/ge/render/rasterizer.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/physics/include/ge/physics/character.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/physics/include/ge/physics/vehicle.hpp"
 )

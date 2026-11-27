@@ -3,11 +3,11 @@
 # Agent project status
 
 - **Project:** Game Engine
-- **Ledger revision:** 121
-- **Recorded update:** 2026\-11\-27T20:57:36.558757Z
+- **Ledger revision:** 142
+- **Recorded update:** 2026\-11\-27T21:04:45.880004Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 3a4c8ef23a2222b63021237aafa4f73827eb7d1262a7a374799bb55d1ffa2fe7
-- **Source files:** 148
+- **Source fingerprint:** 8a7ff397e2105d239401596a78fea92afe7aab707c52b6fad6d34df0fb591be0
+- **Source files:** 152
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -64,12 +64,18 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 | CODE\-019: Camera rigs, projections and viewport mapping | 19 | M1 | in\_progress | worker019 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-020: Asynchronous resource loading and residency | 20 | M1 | in\_progress | worker020 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-021: Software triangle rasterization | 21 | M1 | in\_progress | worker021 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-022: Character movement and grounding | 22 | M1 | in\_progress | worker022 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-023: Vehicle suspension and tire forces | 23 | M1 | in\_progress | worker023 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-022: Character movement and grounding | 22 | M1 | in\_progress | worker022 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
+| CODE\-023: Vehicle suspension and tire forces | 23 | M1 | in\_progress | worker023 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-024: Animation blending and state machines | 24 | M1 | in\_progress | worker024 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-025: Spatial audio and acoustic attenuation | 25 | M1 | in\_progress | worker025 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-026: Polygon navigation mesh queries and funnels | 26 | M1 | in\_progress | worker026 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-027: World partition activation and origin shifts | 27 | M1 | in\_progress | worker027 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-028: Terrain tiles, sampling and erosion | 28 | M1 | in\_progress | worker028 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-029: Vegetation distribution and instancing | 29 | M1 | in\_progress | worker029 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-030: Light collection, shadows and illumination | 30 | M1 | in\_progress | worker030 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-031: Render pass graph and transient resources | 31 | M1 | in\_progress | worker031 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-032: Particle emission, simulation and trails | 32 | M1 | in\_progress | worker032 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-033: Rigid body constraints and joints | 33 | M1 | in\_progress | worker033 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | M1\-010: Declare the reference platform and playable workload | 100 | M1 | planned \(ready\) | unowned | M0\-FOUNDATION | Read the first\-playable plan and inspect available target evidence; draft the reference\-platform record. |
 | M1\-020: Select one native backend and dependency strategy | 110 | M1 | planned | unowned | M1\-010 | Review ADR0006 and the candidate register; produce an evidence\-backed backend decision and dependency records. |
 | M1\-030: Implement native window and input lifecycle | 120 | M1 | planned | unowned | M1\-020 | Define the minimal platform interface, then wire and test window/input lifecycle on the chosen target. |
@@ -346,8 +352,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 99
 - Write scope: engine/physics/include/ge/physics/character.hpp, engine/physics/src/character.cpp
 - Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Preserved work: Actual /root/worker022 delivered Character movement and grounding; 1306 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 
 ### CODE\-023
 
@@ -356,8 +362,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 102
 - Write scope: engine/physics/include/ge/physics/vehicle.hpp, engine/physics/src/vehicle.cpp
 - Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Preserved work: Actual /root/worker023 delivered Vehicle suspension and tire forces; 1330 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 
 ### CODE\-024
 
@@ -399,6 +405,66 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Preserved work: Not started.
 - Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
 
+### CODE\-028
+
+- Status: in\_progress
+- Owner: worker028
+- Claim revision: 124
+- Write scope: engine/terrain/include/ge/terrain/heightfield.hpp, engine/terrain/src/heightfield.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-029
+
+- Status: in\_progress
+- Owner: worker029
+- Claim revision: 127
+- Write scope: engine/terrain/include/ge/terrain/vegetation.hpp, engine/terrain/src/vegetation.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-030
+
+- Status: in\_progress
+- Owner: worker030
+- Claim revision: 130
+- Write scope: engine/render/include/ge/render/lighting.hpp, engine/render/src/lighting.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-031
+
+- Status: in\_progress
+- Owner: worker031
+- Claim revision: 134
+- Write scope: engine/render/include/ge/render/graph.hpp, engine/render/src/graph.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-032
+
+- Status: in\_progress
+- Owner: worker032
+- Claim revision: 137
+- Write scope: engine/effects/include/ge/effects/particles.hpp, engine/effects/src/particles.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-033
+
+- Status: in\_progress
+- Owner: worker033
+- Claim revision: 140
+- Write scope: engine/physics/include/ge/physics/constraints.hpp, engine/physics/src/constraints.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
 
 ## Evidence observations
 
@@ -418,25 +484,25 @@ These are historical observations. A pass neither completes a task nor remains c
 
 ## Recent operations
 
-- Revision 102 — 2026\-11\-27T20:32:21.366065Z — worker023: claim CODE\-023. Claimed CODE\-023 with its recorded write scope.
-- Revision 103 — 2026\-11\-27T20:32:21.606701Z — coordinator: add CODE\-024. Added planned task CODE\-024: Animation blending and state machines.
-- Revision 104 — 2026\-11\-27T20:32:21.867012Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 105 — 2026\-11\-27T20:32:22.129335Z — worker024: claim CODE\-024. Claimed CODE\-024 with its recorded write scope.
-- Revision 106 — 2026\-11\-27T20:35:01.251752Z — worker017: checkpoint CODE\-017. Actual /root/worker017 delivered Graph and grid pathfinding; 1544 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Revision 107 — 2026\-11\-27T20:37:32.053318Z — worker018: checkpoint CODE\-018. Actual /root/worker018 delivered Materials and CPU shading; 1150 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Revision 108 — 2026\-11\-27T20:37:32.443108Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
-- Revision 109 — 2026\-11\-27T20:41:58.205840Z — coordinator: add CODE\-025. Added planned task CODE\-025: Spatial audio and acoustic attenuation.
-- Revision 110 — 2026\-11\-27T20:41:58.688995Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 111 — 2026\-11\-27T20:41:59.039730Z — worker025: claim CODE\-025. Claimed CODE\-025 with its recorded write scope.
-- Revision 112 — 2026\-11\-27T20:41:59.343547Z — coordinator: add CODE\-026. Added planned task CODE\-026: Polygon navigation mesh queries and funnels.
-- Revision 113 — 2026\-11\-27T20:41:59.644063Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 114 — 2026\-11\-27T20:41:59.959238Z — worker026: claim CODE\-026. Claimed CODE\-026 with its recorded write scope.
-- Revision 115 — 2026\-11\-27T20:42:00.282158Z — coordinator: add CODE\-027. Added planned task CODE\-027: World partition activation and origin shifts.
-- Revision 116 — 2026\-11\-27T20:42:00.698945Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 117 — 2026\-11\-27T20:42:01.025965Z — worker027: claim CODE\-027. Claimed CODE\-027 with its recorded write scope.
-- Revision 118 — 2026\-11\-27T20:49:51.080186Z — worker019: checkpoint CODE\-019. Actual /root/worker019 delivered Camera rigs, projections and viewport mapping; 1231 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Revision 119 — 2026\-11\-27T20:49:51.414981Z — worker021: checkpoint CODE\-021. Actual /root/worker021 delivered Software triangle rasterization; 1375 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Revision 120 — 2026\-11\-27T20:57:35.817918Z — worker020: checkpoint CODE\-020. Actual /root/worker020 delivered Asynchronous resource loading and residency; 1358 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Revision 121 — 2026\-11\-27T20:57:36.558757Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
+- Revision 123 — 2026\-11\-27T20:57:56.385088Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 124 — 2026\-11\-27T20:57:56.791752Z — worker028: claim CODE\-028. Claimed CODE\-028 with its recorded write scope.
+- Revision 125 — 2026\-11\-27T20:57:57.153641Z — coordinator: add CODE\-029. Added planned task CODE\-029: Vegetation distribution and instancing.
+- Revision 126 — 2026\-11\-27T20:57:57.512129Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 127 — 2026\-11\-27T20:57:57.869539Z — worker029: claim CODE\-029. Claimed CODE\-029 with its recorded write scope.
+- Revision 128 — 2026\-11\-27T20:57:58.207890Z — coordinator: add CODE\-030. Added planned task CODE\-030: Light collection, shadows and illumination.
+- Revision 129 — 2026\-11\-27T20:57:58.568483Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 130 — 2026\-11\-27T20:57:58.954134Z — worker030: claim CODE\-030. Claimed CODE\-030 with its recorded write scope.
+- Revision 131 — 2026\-11\-27T20:59:46.795943Z — worker022: checkpoint CODE\-022. Actual /root/worker022 delivered Character movement and grounding; 1306 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Revision 132 — 2026\-11\-27T21:01:21.151971Z — coordinator: add CODE\-031. Added planned task CODE\-031: Render pass graph and transient resources.
+- Revision 133 — 2026\-11\-27T21:01:21.557312Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 134 — 2026\-11\-27T21:01:21.968784Z — worker031: claim CODE\-031. Claimed CODE\-031 with its recorded write scope.
+- Revision 135 — 2026\-11\-27T21:01:22.327873Z — coordinator: add CODE\-032. Added planned task CODE\-032: Particle emission, simulation and trails.
+- Revision 136 — 2026\-11\-27T21:01:22.716754Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 137 — 2026\-11\-27T21:01:23.138007Z — worker032: claim CODE\-032. Claimed CODE\-032 with its recorded write scope.
+- Revision 138 — 2026\-11\-27T21:01:23.527588Z — coordinator: add CODE\-033. Added planned task CODE\-033: Rigid body constraints and joints.
+- Revision 139 — 2026\-11\-27T21:01:23.939301Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 140 — 2026\-11\-27T21:01:24.345605Z — worker033: claim CODE\-033. Claimed CODE\-033 with its recorded write scope.
+- Revision 141 — 2026\-11\-27T21:04:45.067056Z — worker023: checkpoint CODE\-023. Actual /root/worker023 delivered Vehicle suspension and tire forces; 1330 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Revision 142 — 2026\-11\-27T21:04:45.880004Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 
 The canonical ledger retains the complete operation history.

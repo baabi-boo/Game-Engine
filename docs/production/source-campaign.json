@@ -280,14 +280,26 @@
       "agent_id": "/root/worker022",
       "task_id": "CODE-022",
       "wave": 8,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Character movement and grounding",
+      "files": [
+        "engine/physics/include/ge/physics/character.hpp",
+        "engine/physics/src/character.cpp"
+      ],
+      "code_lines": 1306
     },
     {
       "number": 23,
       "agent_id": "/root/worker023",
       "task_id": "CODE-023",
       "wave": 8,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Vehicle suspension and tire forces",
+      "files": [
+        "engine/physics/include/ge/physics/vehicle.hpp",
+        "engine/physics/src/vehicle.cpp"
+      ],
+      "code_lines": 1330
     },
     {
       "number": 24,
@@ -295,9 +307,23 @@
       "task_id": "CODE-024",
       "wave": 8,
       "status": "implementing"
+    },
+    {
+      "number": 25,
+      "agent_id": "/root/worker025",
+      "task_id": "CODE-025",
+      "wave": 9,
+      "status": "implementing"
+    },
+    {
+      "number": 26,
+      "agent_id": "/root/worker026",
+      "task_id": "CODE-026",
+      "wave": 9,
+      "status": "implementing"
     }
   ],
-  "delivered_worker_count": 21,
-  "counted_delivered_worker_code_lines": 31016,
+  "delivered_worker_count": 23,
+  "counted_delivered_worker_code_lines": 33652,
   "baseline_engine_application_code_lines": 1727
 }

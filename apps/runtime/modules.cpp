@@ -18,6 +18,8 @@
 #include <ge/render/camera.hpp>
 #include <ge/assets/streaming.hpp>
 #include <ge/render/rasterizer.hpp>
+#include <ge/physics/character.hpp>
+#include <ge/physics/vehicle.hpp>
 
 namespace ge::application {
 void install_modules(core::Kernel& kernel) {
@@ -39,6 +41,8 @@ void install_modules(core::Kernel& kernel) {
     ge::render::register_camera(kernel);
     ge::assets::register_streaming(kernel);
     ge::render::register_rasterizer(kernel);
+    ge::physics::register_character(kernel);
+    ge::physics::register_vehicle(kernel);
     (void)kernel.order_after("spatial.sync", "geometry.mesh.bounds");
     (void)kernel.order_after("geometry.mesh.bounds", "camera.update");
 }
