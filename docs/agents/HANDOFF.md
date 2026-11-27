@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 327
-- **Recorded update:** 2026\-11\-27T23:32:19.330834Z
+- **Ledger revision:** 338
+- **Recorded update:** 2026\-11\-27T23:35:20.305015Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 1b10f0c223382a37983762ede90ad54929f839ec4201ef384407e466f4f71fd3
-- **Source files:** 214
+- **Source fingerprint:** e0db76e8c9ee3e72a8f4e1f780fb21c44de2488a0c42e44462d59b9bbbef42a6
+- **Source files:** 216
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -1206,9 +1206,9 @@ Implement Image postprocessing and tone mapping. User\-authorized source\-only c
 - Write scope: engine/render/include/ge/render/postprocess.hpp, engine/render/src/postprocess.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker056 delivered Image postprocessing and tone mapping; 1226 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/render/include/ge/render/postprocess.hpp, engine/render/src/postprocess.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -1595,6 +1595,66 @@ Acceptance:
 
 - Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
 - Expose a working register\_water\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-076: Drivetrain, differential and wheel controls
+
+Implement Drivetrain, differential and wheel controls. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker076
+- Write scope: engine/physics/include/ge/physics/drivetrain.hpp, engine/physics/src/drivetrain.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_drivetrain\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-077: Procedural district blocks and construction
+
+Implement Procedural district blocks and construction. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker077
+- Write scope: engine/procedural/include/ge/procedural/district.hpp, engine/procedural/src/district.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_district\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-078: Undoable editing transactions
+
+Implement Undoable editing transactions. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker078
+- Write scope: engine/editor/include/ge/editor/commands.hpp, engine/editor/src/commands.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_commands\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
 
 - dev: no receipt.
 

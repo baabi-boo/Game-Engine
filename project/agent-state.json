@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 327,
-  "updated_at": "2026-11-27T23:32:19.330834Z",
+  "revision": 338,
+  "updated_at": "2026-11-27T23:35:20.305015Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "1b10f0c223382a37983762ede90ad54929f839ec4201ef384407e466f4f71fd3",
-    "file_count": 214
+    "sha256": "e0db76e8c9ee3e72a8f4e1f780fb21c44de2488a0c42e44462d59b9bbbef42a6",
+    "file_count": 216
   },
   "milestones": [
     {
@@ -3086,9 +3086,12 @@
       "claim_revision": 246,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker056 delivered Image postprocessing and tone mapping; 1226 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/render/include/ge/render/postprocess.hpp",
+          "engine/render/src/postprocess.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -3654,6 +3657,96 @@
       "status": "in_progress",
       "owner": "worker075",
       "claim_revision": 323,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-076",
+      "title": "Drivetrain, differential and wheel controls",
+      "milestone": "M1",
+      "priority": 76,
+      "description": "Implement Drivetrain, differential and wheel controls. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/physics/include/ge/physics/drivetrain.hpp",
+        "engine/physics/src/drivetrain.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_drivetrain(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker076",
+      "claim_revision": 330,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-077",
+      "title": "Procedural district blocks and construction",
+      "milestone": "M1",
+      "priority": 77,
+      "description": "Implement Procedural district blocks and construction. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/procedural/include/ge/procedural/district.hpp",
+        "engine/procedural/src/district.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_district(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker077",
+      "claim_revision": 333,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-078",
+      "title": "Undoable editing transactions",
+      "milestone": "M1",
+      "priority": 78,
+      "description": "Implement Undoable editing transactions. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/editor/include/ge/editor/commands.hpp",
+        "engine/editor/src/commands.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_commands(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker078",
+      "claim_revision": 336,
       "blocker": null,
       "checkpoint": {
         "summary": "Not started.",
@@ -6424,6 +6517,94 @@
     {
       "revision": 327,
       "at": "2026-11-27T23:32:19.330834Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 328,
+      "at": "2026-11-27T23:32:43.298424Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-076",
+      "summary": "Added planned task CODE-076: Drivetrain, differential and wheel controls."
+    },
+    {
+      "revision": 329,
+      "at": "2026-11-27T23:32:44.870305Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 330,
+      "at": "2026-11-27T23:32:46.305039Z",
+      "actor": "worker076",
+      "action": "claim",
+      "task": "CODE-076",
+      "summary": "Claimed CODE-076 with its recorded write scope."
+    },
+    {
+      "revision": 331,
+      "at": "2026-11-27T23:32:47.745042Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-077",
+      "summary": "Added planned task CODE-077: Procedural district blocks and construction."
+    },
+    {
+      "revision": 332,
+      "at": "2026-11-27T23:32:49.253428Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 333,
+      "at": "2026-11-27T23:32:50.741369Z",
+      "actor": "worker077",
+      "action": "claim",
+      "task": "CODE-077",
+      "summary": "Claimed CODE-077 with its recorded write scope."
+    },
+    {
+      "revision": 334,
+      "at": "2026-11-27T23:32:52.154040Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-078",
+      "summary": "Added planned task CODE-078: Undoable editing transactions."
+    },
+    {
+      "revision": 335,
+      "at": "2026-11-27T23:32:53.552582Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 336,
+      "at": "2026-11-27T23:32:55.073171Z",
+      "actor": "worker078",
+      "action": "claim",
+      "task": "CODE-078",
+      "summary": "Claimed CODE-078 with its recorded write scope."
+    },
+    {
+      "revision": 337,
+      "at": "2026-11-27T23:34:55.845753Z",
+      "actor": "worker056",
+      "action": "checkpoint",
+      "task": "CODE-056",
+      "summary": "Actual /root/worker056 delivered Image postprocessing and tone mapping; 1226 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 338,
+      "at": "2026-11-27T23:35:20.305015Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,
