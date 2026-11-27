@@ -397,7 +397,13 @@
       "agent_id": "/root/worker031",
       "task_id": "CODE-031",
       "wave": 11,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Render pass graph and transient resources",
+      "files": [
+        "engine/render/include/ge/render/graph.hpp",
+        "engine/render/src/graph.cpp"
+      ],
+      "code_lines": 1583
     },
     {
       "number": 32,
@@ -414,7 +420,7 @@
       "status": "implementing"
     }
   ],
-  "delivered_worker_count": 30,
-  "counted_delivered_worker_code_lines": 42734,
+  "delivered_worker_count": 31,
+  "counted_delivered_worker_code_lines": 44317,
   "baseline_engine_application_code_lines": 1727
 }

@@ -3,11 +3,11 @@
 # Agent project status
 
 - **Project:** Game Engine
-- **Ledger revision:** 190
-- **Recorded update:** 2026\-11\-27T21:39:33.765191Z
+- **Ledger revision:** 192
+- **Recorded update:** 2026\-11\-27T21:40:49.679696Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 20421a86b28c27437ffc8c2f649c32bafb4da24e5c74d1ef4e7f5a8864c16a25
-- **Source files:** 166
+- **Source fingerprint:** 4c4356155c4ad6e1c6bc95bab50e38922b6c9f85a5b7335410940a7251f6d465
+- **Source files:** 168
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -73,7 +73,7 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 | CODE\-028: Terrain tiles, sampling and erosion | 28 | M1 | in\_progress | worker028 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-029: Vegetation distribution and instancing | 29 | M1 | in\_progress | worker029 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-030: Light collection, shadows and illumination | 30 | M1 | in\_progress | worker030 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-031: Render pass graph and transient resources | 31 | M1 | in\_progress | worker031 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-031: Render pass graph and transient resources | 31 | M1 | in\_progress | worker031 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-032: Particle emission, simulation and trails | 32 | M1 | in\_progress | worker032 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-033: Rigid body constraints and joints | 33 | M1 | in\_progress | worker033 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-034: Versioned scene serialization and transactions | 34 | M1 | in\_progress | worker034 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
@@ -454,8 +454,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 134
 - Write scope: engine/render/include/ge/render/graph.hpp, engine/render/src/graph.cpp
 - Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Preserved work: Actual /root/worker031 delivered Render pass graph and transient resources; 1583 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 
 ### CODE\-032
 
@@ -616,8 +616,6 @@ These are historical observations. A pass neither completes a task nor remains c
 
 ## Recent operations
 
-- Revision 171 — 2026\-11\-27T21:18:01.739365Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 172 — 2026\-11\-27T21:18:02.336441Z — worker042: claim CODE\-042. Claimed CODE\-042 with its recorded write scope.
 - Revision 173 — 2026\-11\-27T21:18:57.467193Z — worker026: checkpoint CODE\-026. Actual /root/worker026 delivered Polygon navigation mesh queries and funnels; 1340 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 174 — 2026\-11\-27T21:19:14.811039Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 - Revision 175 — 2026\-11\-27T21:23:10.487991Z — worker028: checkpoint CODE\-028. Actual /root/worker028 delivered Terrain tiles, sampling and erosion; 1353 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
@@ -636,5 +634,7 @@ These are historical observations. A pass neither completes a task nor remains c
 - Revision 188 — 2026\-11\-27T21:28:56.478604Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 - Revision 189 — 2026\-11\-27T21:35:42.252709Z — worker030: checkpoint CODE\-030. Actual /root/worker030 delivered Light collection, shadows and illumination; 1302 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 190 — 2026\-11\-27T21:39:33.765191Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
+- Revision 191 — 2026\-11\-27T21:40:48.521588Z — worker031: checkpoint CODE\-031. Actual /root/worker031 delivered Render pass graph and transient resources; 1583 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Revision 192 — 2026\-11\-27T21:40:49.679696Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 
 The canonical ledger retains the complete operation history.

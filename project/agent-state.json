@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 190,
-  "updated_at": "2026-11-27T21:39:33.765191Z",
+  "revision": 192,
+  "updated_at": "2026-11-27T21:40:49.679696Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "20421a86b28c27437ffc8c2f649c32bafb4da24e5c74d1ef4e7f5a8864c16a25",
-    "file_count": 166
+    "sha256": "4c4356155c4ad6e1c6bc95bab50e38922b6c9f85a5b7335410940a7251f6d465",
+    "file_count": 168
   },
   "milestones": [
     {
@@ -2264,9 +2264,12 @@
       "claim_revision": 134,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker031 delivered Render pass graph and transient resources; 1583 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/render/include/ge/render/graph.hpp",
+          "engine/render/src/graph.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -4356,6 +4359,22 @@
     {
       "revision": 190,
       "at": "2026-11-27T21:39:33.765191Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 191,
+      "at": "2026-11-27T21:40:48.521588Z",
+      "actor": "worker031",
+      "action": "checkpoint",
+      "task": "CODE-031",
+      "summary": "Actual /root/worker031 delivered Render pass graph and transient resources; 1583 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 192,
+      "at": "2026-11-27T21:40:49.679696Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,
