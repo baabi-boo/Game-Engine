@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 209,
-  "updated_at": "2026-11-27T21:59:01.712904Z",
+  "revision": 220,
+  "updated_at": "2026-11-27T22:05:35.769027Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "c3738f46d55ae936fcd05176a3c72e5bc566a674a92b35bfc6e4c2ece384d7b0",
-    "file_count": 176
+    "sha256": "3554ef30e76bbbf4e3d505db1306ea99d36ffa1205c4034bdc092fdb593e0c56",
+    "file_count": 178
   },
   "milestones": [
     {
@@ -2429,9 +2429,12 @@
       "claim_revision": 151,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker036 delivered Interaction targeting, triggers and actions; 1407 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/gameplay/include/ge/gameplay/interaction.hpp",
+          "engine/gameplay/src/interaction.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -2787,6 +2790,96 @@
       "status": "in_progress",
       "owner": "worker048",
       "claim_revision": 201,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-049",
+      "title": "Traffic agents, intersections and signals",
+      "milestone": "M1",
+      "priority": 49,
+      "description": "Implement Traffic agents, intersections and signals. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/traffic/include/ge/traffic/simulation.hpp",
+        "engine/traffic/src/simulation.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_simulation(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker049",
+      "claim_revision": 212,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-050",
+      "title": "Mission objectives and idempotent rewards",
+      "milestone": "M1",
+      "priority": 50,
+      "description": "Implement Mission objectives and idempotent rewards. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/gameplay/include/ge/gameplay/mission.hpp",
+        "engine/gameplay/src/mission.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_mission(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker050",
+      "claim_revision": 215,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-051",
+      "title": "Inventory stacks, containers and transactions",
+      "milestone": "M1",
+      "priority": 51,
+      "description": "Implement Inventory stacks, containers and transactions. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/gameplay/include/ge/gameplay/inventory.hpp",
+        "engine/gameplay/src/inventory.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_inventory(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker051",
+      "claim_revision": 218,
       "blocker": null,
       "checkpoint": {
         "summary": "Not started.",
@@ -4613,6 +4706,94 @@
     {
       "revision": 209,
       "at": "2026-11-27T21:59:01.712904Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 210,
+      "at": "2026-11-27T22:02:49.208611Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-049",
+      "summary": "Added planned task CODE-049: Traffic agents, intersections and signals."
+    },
+    {
+      "revision": 211,
+      "at": "2026-11-27T22:02:50.054533Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 212,
+      "at": "2026-11-27T22:02:50.716031Z",
+      "actor": "worker049",
+      "action": "claim",
+      "task": "CODE-049",
+      "summary": "Claimed CODE-049 with its recorded write scope."
+    },
+    {
+      "revision": 213,
+      "at": "2026-11-27T22:02:51.356909Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-050",
+      "summary": "Added planned task CODE-050: Mission objectives and idempotent rewards."
+    },
+    {
+      "revision": 214,
+      "at": "2026-11-27T22:02:52.231487Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 215,
+      "at": "2026-11-27T22:02:52.907340Z",
+      "actor": "worker050",
+      "action": "claim",
+      "task": "CODE-050",
+      "summary": "Claimed CODE-050 with its recorded write scope."
+    },
+    {
+      "revision": 216,
+      "at": "2026-11-27T22:02:53.606785Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-051",
+      "summary": "Added planned task CODE-051: Inventory stacks, containers and transactions."
+    },
+    {
+      "revision": 217,
+      "at": "2026-11-27T22:02:54.475579Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 218,
+      "at": "2026-11-27T22:02:55.200776Z",
+      "actor": "worker051",
+      "action": "claim",
+      "task": "CODE-051",
+      "summary": "Claimed CODE-051 with its recorded write scope."
+    },
+    {
+      "revision": 219,
+      "at": "2026-11-27T22:05:34.648852Z",
+      "actor": "worker036",
+      "action": "checkpoint",
+      "task": "CODE-036",
+      "summary": "Actual /root/worker036 delivered Interaction targeting, triggers and actions; 1407 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 220,
+      "at": "2026-11-27T22:05:35.769027Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,

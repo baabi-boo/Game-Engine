@@ -462,7 +462,13 @@
       "agent_id": "/root/worker036",
       "task_id": "CODE-036",
       "wave": 12,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Interaction targeting, triggers and actions",
+      "files": [
+        "engine/gameplay/include/ge/gameplay/interaction.hpp",
+        "engine/gameplay/src/interaction.cpp"
+      ],
+      "code_lines": 1407
     },
     {
       "number": 37,
@@ -477,9 +483,16 @@
       "task_id": "CODE-038",
       "wave": 13,
       "status": "implementing"
+    },
+    {
+      "number": 39,
+      "agent_id": "/root/worker039",
+      "task_id": "CODE-039",
+      "wave": 13,
+      "status": "implementing"
     }
   ],
-  "delivered_worker_count": 35,
-  "counted_delivered_worker_code_lines": 50162,
+  "delivered_worker_count": 36,
+  "counted_delivered_worker_code_lines": 51569,
   "baseline_engine_application_code_lines": 1727
 }
