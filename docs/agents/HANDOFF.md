@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 222
-- **Recorded update:** 2026\-11\-27T22:09:46.158047Z
+- **Ledger revision:** 233
+- **Recorded update:** 2026\-11\-27T22:16:08.971497Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 59ef5ef4dea4f8b8aae7e097819eb7a4485a87a63273c75e77e23f140e28e88c
-- **Source files:** 180
+- **Source fingerprint:** 9e43f18797ef63dbcf7609a8a7f8e68f6ae958108518102a57757115a6305d12
+- **Source files:** 182
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -846,9 +846,9 @@ Implement Curves, tracks and time mapping. User\-authorized source\-only campaig
 - Write scope: engine/animation/include/ge/animation/curves.hpp, engine/animation/src/curves.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker038 delivered Curves, tracks and time mapping; 1377 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/animation/include/ge/animation/curves.hpp, engine/animation/src/curves.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -1115,6 +1115,66 @@ Acceptance:
 
 - Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
 - Expose a working register\_inventory\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-052: Equipment slots, crafting and resource costs
+
+Implement Equipment slots, crafting and resource costs. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker052
+- Write scope: engine/gameplay/include/ge/gameplay/equipment.hpp, engine/gameplay/src/equipment.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_equipment\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-053: Damage, hit resolution and status effects
+
+Implement Damage, hit resolution and status effects. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker053
+- Write scope: engine/gameplay/include/ge/gameplay/combat.hpp, engine/gameplay/src/combat.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_combat\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-054: Dialogue graph execution and conditions
+
+Implement Dialogue graph execution and conditions. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker054
+- Write scope: engine/gameplay/include/ge/gameplay/dialogue.hpp, engine/gameplay/src/dialogue.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_dialogue\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
 
 - dev: no receipt.
 

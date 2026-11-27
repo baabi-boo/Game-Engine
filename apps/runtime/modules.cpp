@@ -34,6 +34,7 @@
 #include <ge/script/vm.hpp>
 #include <ge/gameplay/interaction.hpp>
 #include <ge/core/signals.hpp>
+#include <ge/animation/curves.hpp>
 
 namespace ge::application {
 void install_modules(core::Kernel& kernel) {
@@ -71,6 +72,7 @@ void install_modules(core::Kernel& kernel) {
     ge::script::register_vm(kernel);
     ge::gameplay::register_interaction(kernel);
     ge::core::register_signals(kernel);
+    ge::animation::register_curves(kernel);
     (void)kernel.order_after("spatial.sync", "geometry.mesh.bounds");
     (void)kernel.order_after("geometry.mesh.bounds", "camera.update");
     (void)kernel.order_after("geometry.mesh.bounds", "terrain.vegetation");

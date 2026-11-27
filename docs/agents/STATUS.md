@@ -3,11 +3,11 @@
 # Agent project status
 
 - **Project:** Game Engine
-- **Ledger revision:** 222
-- **Recorded update:** 2026\-11\-27T22:09:46.158047Z
+- **Ledger revision:** 233
+- **Recorded update:** 2026\-11\-27T22:16:08.971497Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 59ef5ef4dea4f8b8aae7e097819eb7a4485a87a63273c75e77e23f140e28e88c
-- **Source files:** 180
+- **Source fingerprint:** 9e43f18797ef63dbcf7609a8a7f8e68f6ae958108518102a57757115a6305d12
+- **Source files:** 182
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -80,7 +80,7 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 | CODE\-035: Bounded bytecode virtual machine | 35 | M1 | in\_progress | worker035 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-036: Interaction targeting, triggers and actions | 36 | M1 | in\_progress | worker036 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-037: Typed signal subscriptions and transactional event dispatch | 37 | M1 | in\_progress | worker037 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-038: Curves, tracks and time mapping | 38 | M1 | in\_progress | worker038 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-038: Curves, tracks and time mapping | 38 | M1 | in\_progress | worker038 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-039: Layered configuration parsing and persistence | 39 | M1 | in\_progress | worker039 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-040: Localization catalogs, Unicode and formatting | 40 | M1 | in\_progress | worker040 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-041: Packet encoding and reliable channel protocol | 41 | M1 | in\_progress | worker041 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
@@ -94,6 +94,9 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 | CODE\-049: Traffic agents, intersections and signals | 49 | M1 | in\_progress | worker049 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-050: Mission objectives and idempotent rewards | 50 | M1 | in\_progress | worker050 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-051: Inventory stacks, containers and transactions | 51 | M1 | in\_progress | worker051 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-052: Equipment slots, crafting and resource costs | 52 | M1 | in\_progress | worker052 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-053: Damage, hit resolution and status effects | 53 | M1 | in\_progress | worker053 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-054: Dialogue graph execution and conditions | 54 | M1 | in\_progress | worker054 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | M1\-010: Declare the reference platform and playable workload | 100 | M1 | planned \(ready\) | unowned | M0\-FOUNDATION | Read the first\-playable plan and inspect available target evidence; draft the reference\-platform record. |
 | M1\-020: Select one native backend and dependency strategy | 110 | M1 | planned | unowned | M1\-010 | Review ADR0006 and the candidate register; produce an evidence\-backed backend decision and dependency records. |
 | M1\-030: Implement native window and input lifecycle | 120 | M1 | planned | unowned | M1\-020 | Define the minimal platform interface, then wire and test window/input lifecycle on the chosen target. |
@@ -530,8 +533,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 160
 - Write scope: engine/animation/include/ge/animation/curves.hpp, engine/animation/src/curves.cpp
 - Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Preserved work: Actual /root/worker038 delivered Curves, tracks and time mapping; 1377 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 
 ### CODE\-039
 
@@ -663,6 +666,36 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Preserved work: Not started.
 - Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
 
+### CODE\-052
+
+- Status: in\_progress
+- Owner: worker052
+- Claim revision: 225
+- Write scope: engine/gameplay/include/ge/gameplay/equipment.hpp, engine/gameplay/src/equipment.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-053
+
+- Status: in\_progress
+- Owner: worker053
+- Claim revision: 228
+- Write scope: engine/gameplay/include/ge/gameplay/combat.hpp, engine/gameplay/src/combat.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-054
+
+- Status: in\_progress
+- Owner: worker054
+- Claim revision: 231
+- Write scope: engine/gameplay/include/ge/gameplay/dialogue.hpp, engine/gameplay/src/dialogue.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
 
 ## Evidence observations
 
@@ -682,17 +715,6 @@ These are historical observations. A pass neither completes a task nor remains c
 
 ## Recent operations
 
-- Revision 203 — 2026\-11\-27T21:44:41.548310Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
-- Revision 204 — 2026\-11\-27T21:49:40.430774Z — worker033: checkpoint CODE\-033. Actual /root/worker033 delivered Rigid body constraints and joints; 1537 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Revision 205 — 2026\-11\-27T21:49:41.406012Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
-- Revision 206 — 2026\-11\-27T21:54:20.664152Z — worker034: checkpoint CODE\-034. Actual /root/worker034 delivered Versioned scene serialization and transactions; 1315 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Revision 207 — 2026\-11\-27T21:54:21.700855Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
-- Revision 208 — 2026\-11\-27T21:59:00.698175Z — worker035: checkpoint CODE\-035. Actual /root/worker035 delivered Bounded bytecode virtual machine; 1557 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Revision 209 — 2026\-11\-27T21:59:01.712904Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
-- Revision 210 — 2026\-11\-27T22:02:49.208611Z — coordinator: add CODE\-049. Added planned task CODE\-049: Traffic agents, intersections and signals.
-- Revision 211 — 2026\-11\-27T22:02:50.054533Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 212 — 2026\-11\-27T22:02:50.716031Z — worker049: claim CODE\-049. Claimed CODE\-049 with its recorded write scope.
-- Revision 213 — 2026\-11\-27T22:02:51.356909Z — coordinator: add CODE\-050. Added planned task CODE\-050: Mission objectives and idempotent rewards.
 - Revision 214 — 2026\-11\-27T22:02:52.231487Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
 - Revision 215 — 2026\-11\-27T22:02:52.907340Z — worker050: claim CODE\-050. Claimed CODE\-050 with its recorded write scope.
 - Revision 216 — 2026\-11\-27T22:02:53.606785Z — coordinator: add CODE\-051. Added planned task CODE\-051: Inventory stacks, containers and transactions.
@@ -702,5 +724,16 @@ These are historical observations. A pass neither completes a task nor remains c
 - Revision 220 — 2026\-11\-27T22:05:35.769027Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 - Revision 221 — 2026\-11\-27T22:09:44.819311Z — worker037: checkpoint CODE\-037. Actual /root/worker037 delivered Typed signal subscriptions and transactional event dispatch; 1328 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 222 — 2026\-11\-27T22:09:46.158047Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
+- Revision 223 — 2026\-11\-27T22:13:21.633607Z — coordinator: add CODE\-052. Added planned task CODE\-052: Equipment slots, crafting and resource costs.
+- Revision 224 — 2026\-11\-27T22:13:22.496925Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 225 — 2026\-11\-27T22:13:23.293509Z — worker052: claim CODE\-052. Claimed CODE\-052 with its recorded write scope.
+- Revision 226 — 2026\-11\-27T22:13:23.982582Z — coordinator: add CODE\-053. Added planned task CODE\-053: Damage, hit resolution and status effects.
+- Revision 227 — 2026\-11\-27T22:13:24.743597Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 228 — 2026\-11\-27T22:13:25.475430Z — worker053: claim CODE\-053. Claimed CODE\-053 with its recorded write scope.
+- Revision 229 — 2026\-11\-27T22:13:26.192172Z — coordinator: add CODE\-054. Added planned task CODE\-054: Dialogue graph execution and conditions.
+- Revision 230 — 2026\-11\-27T22:13:26.947597Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 231 — 2026\-11\-27T22:13:27.734420Z — worker054: claim CODE\-054. Claimed CODE\-054 with its recorded write scope.
+- Revision 232 — 2026\-11\-27T22:16:07.554696Z — worker038: checkpoint CODE\-038. Actual /root/worker038 delivered Curves, tracks and time mapping; 1377 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Revision 233 — 2026\-11\-27T22:16:08.971497Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 
 The canonical ledger retains the complete operation history.

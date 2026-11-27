@@ -73,6 +73,7 @@ set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/scene/src/serialization.cpp"
     "${PROJECT_SOURCE_DIR}/engine/script/src/vm.cpp"
     "${PROJECT_SOURCE_DIR}/engine/gameplay/src/interaction.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/animation/src/curves.cpp"
 )
 set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/math/include/ge/math/math.hpp"
@@ -109,4 +110,5 @@ set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/scene/include/ge/scene/serialization.hpp"
     "${PROJECT_SOURCE_DIR}/engine/script/include/ge/script/vm.hpp"
     "${PROJECT_SOURCE_DIR}/engine/gameplay/include/ge/gameplay/interaction.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/animation/include/ge/animation/curves.hpp"
 )

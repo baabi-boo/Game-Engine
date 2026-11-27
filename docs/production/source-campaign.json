@@ -488,7 +488,13 @@
       "agent_id": "/root/worker038",
       "task_id": "CODE-038",
       "wave": 13,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Curves, tracks and time mapping",
+      "files": [
+        "engine/animation/include/ge/animation/curves.hpp",
+        "engine/animation/src/curves.cpp"
+      ],
+      "code_lines": 1377
     },
     {
       "number": 39,
@@ -503,9 +509,16 @@
       "task_id": "CODE-040",
       "wave": 14,
       "status": "implementing"
+    },
+    {
+      "number": 41,
+      "agent_id": "/root/worker041",
+      "task_id": "CODE-041",
+      "wave": 14,
+      "status": "implementing"
     }
   ],
-  "delivered_worker_count": 37,
-  "counted_delivered_worker_code_lines": 52897,
+  "delivered_worker_count": 38,
+  "counted_delivered_worker_code_lines": 54274,
   "baseline_engine_application_code_lines": 1727
 }

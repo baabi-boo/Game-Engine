@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 222,
-  "updated_at": "2026-11-27T22:09:46.158047Z",
+  "revision": 233,
+  "updated_at": "2026-11-27T22:16:08.971497Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "59ef5ef4dea4f8b8aae7e097819eb7a4485a87a63273c75e77e23f140e28e88c",
-    "file_count": 180
+    "sha256": "9e43f18797ef63dbcf7609a8a7f8e68f6ae958108518102a57757115a6305d12",
+    "file_count": 182
   },
   "milestones": [
     {
@@ -2495,9 +2495,12 @@
       "claim_revision": 160,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker038 delivered Curves, tracks and time mapping; 1377 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/animation/include/ge/animation/curves.hpp",
+          "engine/animation/src/curves.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -2883,6 +2886,96 @@
       "status": "in_progress",
       "owner": "worker051",
       "claim_revision": 218,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-052",
+      "title": "Equipment slots, crafting and resource costs",
+      "milestone": "M1",
+      "priority": 52,
+      "description": "Implement Equipment slots, crafting and resource costs. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/gameplay/include/ge/gameplay/equipment.hpp",
+        "engine/gameplay/src/equipment.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_equipment(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker052",
+      "claim_revision": 225,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-053",
+      "title": "Damage, hit resolution and status effects",
+      "milestone": "M1",
+      "priority": 53,
+      "description": "Implement Damage, hit resolution and status effects. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/gameplay/include/ge/gameplay/combat.hpp",
+        "engine/gameplay/src/combat.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_combat(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker053",
+      "claim_revision": 228,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-054",
+      "title": "Dialogue graph execution and conditions",
+      "milestone": "M1",
+      "priority": 54,
+      "description": "Implement Dialogue graph execution and conditions. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/gameplay/include/ge/gameplay/dialogue.hpp",
+        "engine/gameplay/src/dialogue.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_dialogue(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker054",
+      "claim_revision": 231,
       "blocker": null,
       "checkpoint": {
         "summary": "Not started.",
@@ -4813,6 +4906,94 @@
     {
       "revision": 222,
       "at": "2026-11-27T22:09:46.158047Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 223,
+      "at": "2026-11-27T22:13:21.633607Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-052",
+      "summary": "Added planned task CODE-052: Equipment slots, crafting and resource costs."
+    },
+    {
+      "revision": 224,
+      "at": "2026-11-27T22:13:22.496925Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 225,
+      "at": "2026-11-27T22:13:23.293509Z",
+      "actor": "worker052",
+      "action": "claim",
+      "task": "CODE-052",
+      "summary": "Claimed CODE-052 with its recorded write scope."
+    },
+    {
+      "revision": 226,
+      "at": "2026-11-27T22:13:23.982582Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-053",
+      "summary": "Added planned task CODE-053: Damage, hit resolution and status effects."
+    },
+    {
+      "revision": 227,
+      "at": "2026-11-27T22:13:24.743597Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 228,
+      "at": "2026-11-27T22:13:25.475430Z",
+      "actor": "worker053",
+      "action": "claim",
+      "task": "CODE-053",
+      "summary": "Claimed CODE-053 with its recorded write scope."
+    },
+    {
+      "revision": 229,
+      "at": "2026-11-27T22:13:26.192172Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-054",
+      "summary": "Added planned task CODE-054: Dialogue graph execution and conditions."
+    },
+    {
+      "revision": 230,
+      "at": "2026-11-27T22:13:26.947597Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 231,
+      "at": "2026-11-27T22:13:27.734420Z",
+      "actor": "worker054",
+      "action": "claim",
+      "task": "CODE-054",
+      "summary": "Claimed CODE-054 with its recorded write scope."
+    },
+    {
+      "revision": 232,
+      "at": "2026-11-27T22:16:07.554696Z",
+      "actor": "worker038",
+      "action": "checkpoint",
+      "task": "CODE-038",
+      "summary": "Actual /root/worker038 delivered Curves, tracks and time mapping; 1377 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 233,
+      "at": "2026-11-27T22:16:08.971497Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,
