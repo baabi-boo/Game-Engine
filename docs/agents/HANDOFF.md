@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 314
-- **Recorded update:** 2026\-11\-27T23:25:01.121660Z
+- **Ledger revision:** 325
+- **Recorded update:** 2026\-11\-27T23:27:11.010706Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 4fbc779558c8a160499bc4daec8e82b3b948f672e172a0701c9e05e2b7d6e8f0
-- **Source files:** 212
+- **Source fingerprint:** 4f7dc38d9ec0b9a9fce5ed96a9e58a227113953e3da1880ad3580edc9a2b5db9
+- **Source files:** 214
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -1166,9 +1166,9 @@ Implement Dialogue graph execution and conditions. User\-authorized source\-only
 - Write scope: engine/gameplay/include/ge/gameplay/dialogue.hpp, engine/gameplay/src/dialogue.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker054 delivered Dialogue graph execution and conditions; 1464 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/gameplay/include/ge/gameplay/dialogue.hpp, engine/gameplay/src/dialogue.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -1535,6 +1535,66 @@ Acceptance:
 
 - Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
 - Expose a working register\_tactical\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-073: World clock, weather and sun state
+
+Implement World clock, weather and sun state. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker073
+- Write scope: engine/environment/include/ge/environment/weather.hpp, engine/environment/src/weather.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_weather\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-074: Environment volumes and spatial blending
+
+Implement Environment volumes and spatial blending. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker074
+- Write scope: engine/environment/include/ge/environment/volumes.hpp, engine/environment/src/volumes.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_volumes\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-075: Water surfaces, buoyancy and drag
+
+Implement Water surfaces, buoyancy and drag. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker075
+- Write scope: engine/physics/include/ge/physics/water.hpp, engine/physics/src/water.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_water\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
 
 - dev: no receipt.
 

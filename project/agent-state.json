@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 314,
-  "updated_at": "2026-11-27T23:25:01.121660Z",
+  "revision": 325,
+  "updated_at": "2026-11-27T23:27:11.010706Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "4fbc779558c8a160499bc4daec8e82b3b948f672e172a0701c9e05e2b7d6e8f0",
-    "file_count": 212
+    "sha256": "4f7dc38d9ec0b9a9fce5ed96a9e58a227113953e3da1880ad3580edc9a2b5db9",
+    "file_count": 214
   },
   "milestones": [
     {
@@ -3023,9 +3023,12 @@
       "claim_revision": 231,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker054 delivered Dialogue graph execution and conditions; 1464 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/gameplay/include/ge/gameplay/dialogue.hpp",
+          "engine/gameplay/src/dialogue.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -3561,6 +3564,96 @@
       "status": "in_progress",
       "owner": "worker072",
       "claim_revision": 305,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-073",
+      "title": "World clock, weather and sun state",
+      "milestone": "M1",
+      "priority": 73,
+      "description": "Implement World clock, weather and sun state. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/environment/include/ge/environment/weather.hpp",
+        "engine/environment/src/weather.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_weather(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker073",
+      "claim_revision": 317,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-074",
+      "title": "Environment volumes and spatial blending",
+      "milestone": "M1",
+      "priority": 74,
+      "description": "Implement Environment volumes and spatial blending. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/environment/include/ge/environment/volumes.hpp",
+        "engine/environment/src/volumes.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_volumes(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker074",
+      "claim_revision": 320,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-075",
+      "title": "Water surfaces, buoyancy and drag",
+      "milestone": "M1",
+      "priority": 75,
+      "description": "Implement Water surfaces, buoyancy and drag. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/physics/include/ge/physics/water.hpp",
+        "engine/physics/src/water.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_water(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker075",
+      "claim_revision": 323,
       "blocker": null,
       "checkpoint": {
         "summary": "Not started.",
@@ -6227,6 +6320,94 @@
     {
       "revision": 314,
       "at": "2026-11-27T23:25:01.121660Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 315,
+      "at": "2026-11-27T23:26:29.365564Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-073",
+      "summary": "Added planned task CODE-073: World clock, weather and sun state."
+    },
+    {
+      "revision": 316,
+      "at": "2026-11-27T23:26:30.660376Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 317,
+      "at": "2026-11-27T23:26:31.931271Z",
+      "actor": "worker073",
+      "action": "claim",
+      "task": "CODE-073",
+      "summary": "Claimed CODE-073 with its recorded write scope."
+    },
+    {
+      "revision": 318,
+      "at": "2026-11-27T23:26:33.228186Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-074",
+      "summary": "Added planned task CODE-074: Environment volumes and spatial blending."
+    },
+    {
+      "revision": 319,
+      "at": "2026-11-27T23:26:34.584927Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 320,
+      "at": "2026-11-27T23:26:35.946053Z",
+      "actor": "worker074",
+      "action": "claim",
+      "task": "CODE-074",
+      "summary": "Claimed CODE-074 with its recorded write scope."
+    },
+    {
+      "revision": 321,
+      "at": "2026-11-27T23:26:37.261807Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-075",
+      "summary": "Added planned task CODE-075: Water surfaces, buoyancy and drag."
+    },
+    {
+      "revision": 322,
+      "at": "2026-11-27T23:26:38.566549Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 323,
+      "at": "2026-11-27T23:26:39.893014Z",
+      "actor": "worker075",
+      "action": "claim",
+      "task": "CODE-075",
+      "summary": "Claimed CODE-075 with its recorded write scope."
+    },
+    {
+      "revision": 324,
+      "at": "2026-11-27T23:26:53.019875Z",
+      "actor": "worker054",
+      "action": "checkpoint",
+      "task": "CODE-054",
+      "summary": "Actual /root/worker054 delivered Dialogue graph execution and conditions; 1464 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 325,
+      "at": "2026-11-27T23:27:11.010706Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,
