@@ -46,6 +46,8 @@
 #include <ge/ai/perception.hpp>
 #include <ge/traffic/roads.hpp>
 #include <ge/traffic/simulation.hpp>
+#include <ge/gameplay/mission.hpp>
+#include <ge/gameplay/inventory.hpp>
 
 namespace ge::application {
 void install_modules(core::Kernel& kernel) {
@@ -95,6 +97,8 @@ void install_modules(core::Kernel& kernel) {
     ge::ai::register_perception(kernel);
     ge::traffic::register_roads(kernel);
     ge::traffic::register_simulation(kernel);
+    ge::gameplay::register_mission(kernel);
+    ge::gameplay::register_inventory(kernel);
     (void)kernel.order_after("spatial.sync", "geometry.mesh.bounds");
     (void)kernel.order_after("geometry.mesh.bounds", "camera.update");
     (void)kernel.order_after("geometry.mesh.bounds", "terrain.vegetation");

@@ -644,14 +644,26 @@
       "agent_id": "/root/worker050",
       "task_id": "CODE-050",
       "wave": 17,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Mission objectives and idempotent rewards",
+      "files": [
+        "engine/gameplay/include/ge/gameplay/mission.hpp",
+        "engine/gameplay/src/mission.cpp"
+      ],
+      "code_lines": 1265
     },
     {
       "number": 51,
       "agent_id": "/root/worker051",
       "task_id": "CODE-051",
       "wave": 17,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Inventory stacks, containers and transactions",
+      "files": [
+        "engine/gameplay/include/ge/gameplay/inventory.hpp",
+        "engine/gameplay/src/inventory.cpp"
+      ],
+      "code_lines": 1541
     },
     {
       "number": 52,
@@ -666,9 +678,16 @@
       "task_id": "CODE-053",
       "wave": 18,
       "status": "implementing"
+    },
+    {
+      "number": 54,
+      "agent_id": "/root/worker054",
+      "task_id": "CODE-054",
+      "wave": 18,
+      "status": "implementing"
     }
   ],
-  "delivered_worker_count": 49,
-  "counted_delivered_worker_code_lines": 69822,
+  "delivered_worker_count": 51,
+  "counted_delivered_worker_code_lines": 72628,
   "baseline_engine_application_code_lines": 1727
 }

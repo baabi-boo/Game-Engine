@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 307
-- **Recorded update:** 2026\-11\-27T23:06:42.798934Z
+- **Ledger revision:** 310
+- **Recorded update:** 2026\-11\-27T23:09:52.330677Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 57548f6f3ee4fb43930ecab2a08c753d2bb48dc6174aae185f6b3eb0d96005af
-- **Source files:** 204
+- **Source fingerprint:** 68b3f6f6f31b5f14622f21a40d08d1d7e28bf5d6dee56494b7d21c0121fa31b2
+- **Source files:** 208
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -1086,9 +1086,9 @@ Implement Mission objectives and idempotent rewards. User\-authorized source\-on
 - Write scope: engine/gameplay/include/ge/gameplay/mission.hpp, engine/gameplay/src/mission.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker050 delivered Mission objectives and idempotent rewards; 1265 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/gameplay/include/ge/gameplay/mission.hpp, engine/gameplay/src/mission.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -1106,9 +1106,9 @@ Implement Inventory stacks, containers and transactions. User\-authorized source
 - Write scope: engine/gameplay/include/ge/gameplay/inventory.hpp, engine/gameplay/src/inventory.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker051 delivered Inventory stacks, containers and transactions; 1541 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/gameplay/include/ge/gameplay/inventory.hpp, engine/gameplay/src/inventory.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
