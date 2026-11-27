@@ -33,6 +33,7 @@
 #include <ge/scene/serialization.hpp>
 #include <ge/script/vm.hpp>
 #include <ge/gameplay/interaction.hpp>
+#include <ge/core/signals.hpp>
 
 namespace ge::application {
 void install_modules(core::Kernel& kernel) {
@@ -69,6 +70,7 @@ void install_modules(core::Kernel& kernel) {
     ge::scene::register_serialization(kernel);
     ge::script::register_vm(kernel);
     ge::gameplay::register_interaction(kernel);
+    ge::core::register_signals(kernel);
     (void)kernel.order_after("spatial.sync", "geometry.mesh.bounds");
     (void)kernel.order_after("geometry.mesh.bounds", "camera.update");
     (void)kernel.order_after("geometry.mesh.bounds", "terrain.vegetation");

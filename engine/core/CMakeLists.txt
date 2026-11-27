@@ -1,5 +1,5 @@
 find_package(Threads REQUIRED)
-add_library(ge_core STATIC src/binary.cpp src/runtime.cpp)
+add_library(ge_core STATIC src/binary.cpp src/runtime.cpp src/signals.cpp)
 add_library(ge::core ALIAS ge_core)
 set_target_properties(ge_core PROPERTIES EXPORT_NAME core)
 
@@ -18,6 +18,7 @@ target_sources(ge_core PUBLIC
         include/ge/core/binary.hpp
         include/ge/core/memory.hpp
         include/ge/core/runtime.hpp
+        include/ge/core/signals.hpp
 )
 set_target_properties(ge_core PROPERTIES POSITION_INDEPENDENT_CODE ON)
 ge_target_defaults(ge_core)

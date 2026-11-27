@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 220,
-  "updated_at": "2026-11-27T22:05:35.769027Z",
+  "revision": 222,
+  "updated_at": "2026-11-27T22:09:46.158047Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "3554ef30e76bbbf4e3d505db1306ea99d36ffa1205c4034bdc092fdb593e0c56",
-    "file_count": 178
+    "sha256": "59ef5ef4dea4f8b8aae7e097819eb7a4485a87a63273c75e77e23f140e28e88c",
+    "file_count": 180
   },
   "milestones": [
     {
@@ -2462,9 +2462,12 @@
       "claim_revision": 157,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker037 delivered Typed signal subscriptions and transactional event dispatch; 1328 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/core/include/ge/core/signals.hpp",
+          "engine/core/src/signals.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -4794,6 +4797,22 @@
     {
       "revision": 220,
       "at": "2026-11-27T22:05:35.769027Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 221,
+      "at": "2026-11-27T22:09:44.819311Z",
+      "actor": "worker037",
+      "action": "checkpoint",
+      "task": "CODE-037",
+      "summary": "Actual /root/worker037 delivered Typed signal subscriptions and transactional event dispatch; 1328 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 222,
+      "at": "2026-11-27T22:09:46.158047Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,

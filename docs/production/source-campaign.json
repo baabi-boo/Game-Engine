@@ -475,7 +475,13 @@
       "agent_id": "/root/worker037",
       "task_id": "CODE-037",
       "wave": 13,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Typed signal subscriptions and transactional event dispatch",
+      "files": [
+        "engine/core/include/ge/core/signals.hpp",
+        "engine/core/src/signals.cpp"
+      ],
+      "code_lines": 1328
     },
     {
       "number": 38,
@@ -490,9 +496,16 @@
       "task_id": "CODE-039",
       "wave": 13,
       "status": "implementing"
+    },
+    {
+      "number": 40,
+      "agent_id": "/root/worker040",
+      "task_id": "CODE-040",
+      "wave": 14,
+      "status": "implementing"
     }
   ],
-  "delivered_worker_count": 36,
-  "counted_delivered_worker_code_lines": 51569,
+  "delivered_worker_count": 37,
+  "counted_delivered_worker_code_lines": 52897,
   "baseline_engine_application_code_lines": 1727
 }

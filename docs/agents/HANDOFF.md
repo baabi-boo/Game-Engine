@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 220
-- **Recorded update:** 2026\-11\-27T22:05:35.769027Z
+- **Ledger revision:** 222
+- **Recorded update:** 2026\-11\-27T22:09:46.158047Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 3554ef30e76bbbf4e3d505db1306ea99d36ffa1205c4034bdc092fdb593e0c56
-- **Source files:** 178
+- **Source fingerprint:** 59ef5ef4dea4f8b8aae7e097819eb7a4485a87a63273c75e77e23f140e28e88c
+- **Source files:** 180
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -826,9 +826,9 @@ Implement Typed signal subscriptions and transactional event dispatch. User\-aut
 - Write scope: engine/core/include/ge/core/signals.hpp, engine/core/src/signals.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker037 delivered Typed signal subscriptions and transactional event dispatch; 1328 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/core/include/ge/core/signals.hpp, engine/core/src/signals.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
