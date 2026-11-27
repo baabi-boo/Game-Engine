@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 240
-- **Recorded update:** 2026\-11\-27T22:27:44.740844Z
+- **Ledger revision:** 253
+- **Recorded update:** 2026\-11\-27T22:39:51.905802Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 0fccb0ae6a4fc04dc4c31ed618d38f56369a61f3866b94dd98350489e877aa40
-- **Source files:** 190
+- **Source fingerprint:** 8050287f60caafec0d443941a7108e8f0299d1f638e19279692fcb0f4e2deea4
+- **Source files:** 194
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -946,9 +946,9 @@ Implement Entity snapshots and delta replication. User\-authorized source\-only 
 - Write scope: engine/network/include/ge/network/replication.hpp, engine/network/src/replication.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker043 delivered Entity snapshots and delta replication; 1578 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/network/include/ge/network/replication.hpp, engine/network/src/replication.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -986,9 +986,9 @@ Implement Transactional save journal and recovery. User\-authorized source\-only
 - Write scope: engine/persistence/include/ge/persistence/journal.hpp, engine/persistence/src/journal.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker045 delivered Transactional save journal and recovery; 1570 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/persistence/include/ge/persistence/journal.hpp, engine/persistence/src/journal.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -1175,6 +1175,66 @@ Acceptance:
 
 - Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
 - Expose a working register\_dialogue\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-055: Quest dependencies, progression and journal
+
+Implement Quest dependencies, progression and journal. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker055
+- Write scope: engine/gameplay/include/ge/gameplay/quests.hpp, engine/gameplay/src/quests.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_quests\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-056: Image postprocessing and tone mapping
+
+Implement Image postprocessing and tone mapping. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker056
+- Write scope: engine/render/include/ge/render/postprocess.hpp, engine/render/src/postprocess.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_postprocess\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-057: Scene culling and level of detail
+
+Implement Scene culling and level of detail. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker057
+- Write scope: engine/render/include/ge/render/visibility.hpp, engine/render/src/visibility.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_visibility\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
 
 - dev: no receipt.
 

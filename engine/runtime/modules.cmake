@@ -20,6 +20,7 @@ set(GE_ENGINE_MODULES
     "config"
     "text"
     "network"
+    "persistence"
 )
 set(GE_ENGINE_INCLUDE_ROOTS
     "${PROJECT_SOURCE_DIR}/engine/math/include"
@@ -43,6 +44,7 @@ set(GE_ENGINE_INCLUDE_ROOTS
     "${PROJECT_SOURCE_DIR}/engine/config/include"
     "${PROJECT_SOURCE_DIR}/engine/text/include"
     "${PROJECT_SOURCE_DIR}/engine/network/include"
+    "${PROJECT_SOURCE_DIR}/engine/persistence/include"
 )
 set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/math/src/math.cpp"
@@ -84,6 +86,8 @@ set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/text/src/localization.cpp"
     "${PROJECT_SOURCE_DIR}/engine/network/src/protocol.cpp"
     "${PROJECT_SOURCE_DIR}/engine/network/src/transport.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/network/src/replication.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/persistence/src/journal.cpp"
 )
 set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/math/include/ge/math/math.hpp"
@@ -125,4 +129,6 @@ set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/text/include/ge/text/localization.hpp"
     "${PROJECT_SOURCE_DIR}/engine/network/include/ge/network/protocol.hpp"
     "${PROJECT_SOURCE_DIR}/engine/network/include/ge/network/transport.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/network/include/ge/network/replication.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/persistence/include/ge/persistence/journal.hpp"
 )

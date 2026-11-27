@@ -39,6 +39,8 @@
 #include <ge/text/localization.hpp>
 #include <ge/network/protocol.hpp>
 #include <ge/network/transport.hpp>
+#include <ge/network/replication.hpp>
+#include <ge/persistence/journal.hpp>
 
 namespace ge::application {
 void install_modules(core::Kernel& kernel) {
@@ -81,6 +83,8 @@ void install_modules(core::Kernel& kernel) {
     ge::text::register_localization(kernel);
     ge::network::register_protocol(kernel);
     ge::network::register_transport(kernel);
+    ge::network::register_replication(kernel);
+    ge::persistence::register_journal(kernel);
     (void)kernel.order_after("spatial.sync", "geometry.mesh.bounds");
     (void)kernel.order_after("geometry.mesh.bounds", "camera.update");
     (void)kernel.order_after("geometry.mesh.bounds", "terrain.vegetation");

@@ -553,7 +553,13 @@
       "agent_id": "/root/worker043",
       "task_id": "CODE-043",
       "wave": 15,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Entity snapshots and delta replication",
+      "files": [
+        "engine/network/include/ge/network/replication.hpp",
+        "engine/network/src/replication.cpp"
+      ],
+      "code_lines": 1578
     },
     {
       "number": 44,
@@ -567,10 +573,30 @@
       "agent_id": "/root/worker045",
       "task_id": "CODE-045",
       "wave": 15,
+      "status": "source_delivered",
+      "title": "Transactional save journal and recovery",
+      "files": [
+        "engine/persistence/include/ge/persistence/journal.hpp",
+        "engine/persistence/src/journal.cpp"
+      ],
+      "code_lines": 1570
+    },
+    {
+      "number": 46,
+      "agent_id": "/root/worker046",
+      "task_id": "CODE-046",
+      "wave": 16,
+      "status": "implementing"
+    },
+    {
+      "number": 47,
+      "agent_id": "/root/worker047",
+      "task_id": "CODE-047",
+      "wave": 16,
       "status": "implementing"
     }
   ],
-  "delivered_worker_count": 42,
-  "counted_delivered_worker_code_lines": 59868,
+  "delivered_worker_count": 44,
+  "counted_delivered_worker_code_lines": 63016,
   "baseline_engine_application_code_lines": 1727
 }

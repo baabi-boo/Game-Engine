@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 240,
-  "updated_at": "2026-11-27T22:27:44.740844Z",
+  "revision": 253,
+  "updated_at": "2026-11-27T22:39:51.905802Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "0fccb0ae6a4fc04dc4c31ed618d38f56369a61f3866b94dd98350489e877aa40",
-    "file_count": 190
+    "sha256": "8050287f60caafec0d443941a7108e8f0299d1f638e19279692fcb0f4e2deea4",
+    "file_count": 194
   },
   "milestones": [
     {
@@ -2660,9 +2660,12 @@
       "claim_revision": 180,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker043 delivered Entity snapshots and delta replication; 1578 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/network/include/ge/network/replication.hpp",
+          "engine/network/src/replication.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -2720,9 +2723,12 @@
       "claim_revision": 186,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker045 delivered Transactional save journal and recovery; 1570 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/persistence/include/ge/persistence/journal.hpp",
+          "engine/persistence/src/journal.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -2988,6 +2994,96 @@
       "status": "in_progress",
       "owner": "worker054",
       "claim_revision": 231,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-055",
+      "title": "Quest dependencies, progression and journal",
+      "milestone": "M1",
+      "priority": 55,
+      "description": "Implement Quest dependencies, progression and journal. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/gameplay/include/ge/gameplay/quests.hpp",
+        "engine/gameplay/src/quests.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_quests(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker055",
+      "claim_revision": 243,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-056",
+      "title": "Image postprocessing and tone mapping",
+      "milestone": "M1",
+      "priority": 56,
+      "description": "Implement Image postprocessing and tone mapping. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/render/include/ge/render/postprocess.hpp",
+        "engine/render/src/postprocess.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_postprocess(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker056",
+      "claim_revision": 246,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-057",
+      "title": "Scene culling and level of detail",
+      "milestone": "M1",
+      "priority": 57,
+      "description": "Implement Scene culling and level of detail. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/render/include/ge/render/visibility.hpp",
+        "engine/render/src/visibility.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_visibility(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker057",
+      "claim_revision": 250,
       "blocker": null,
       "checkpoint": {
         "summary": "Not started.",
@@ -5062,6 +5158,110 @@
     {
       "revision": 240,
       "at": "2026-11-27T22:27:44.740844Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 241,
+      "at": "2026-11-27T22:32:19.696948Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-055",
+      "summary": "Added planned task CODE-055: Quest dependencies, progression and journal."
+    },
+    {
+      "revision": 242,
+      "at": "2026-11-27T22:32:20.985934Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 243,
+      "at": "2026-11-27T22:32:21.973047Z",
+      "actor": "worker055",
+      "action": "claim",
+      "task": "CODE-055",
+      "summary": "Claimed CODE-055 with its recorded write scope."
+    },
+    {
+      "revision": 244,
+      "at": "2026-11-27T22:32:22.831841Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-056",
+      "summary": "Added planned task CODE-056: Image postprocessing and tone mapping."
+    },
+    {
+      "revision": 245,
+      "at": "2026-11-27T22:32:23.780985Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 246,
+      "at": "2026-11-27T22:32:24.757781Z",
+      "actor": "worker056",
+      "action": "claim",
+      "task": "CODE-056",
+      "summary": "Claimed CODE-056 with its recorded write scope."
+    },
+    {
+      "revision": 247,
+      "at": "2026-11-27T22:32:25.586442Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-057",
+      "summary": "Added planned task CODE-057: Scene culling and level of detail."
+    },
+    {
+      "revision": 248,
+      "at": "2026-11-27T22:32:26.476228Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 249,
+      "at": "2026-11-27T22:32:41.684424Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known concurrent source edits by active workers043 replication,044 prediction and045 journal; no executed checks or correctness claim."
+    },
+    {
+      "revision": 250,
+      "at": "2026-11-27T22:32:42.960542Z",
+      "actor": "worker057",
+      "action": "claim",
+      "task": "CODE-057",
+      "summary": "Claimed CODE-057 with its recorded write scope."
+    },
+    {
+      "revision": 251,
+      "at": "2026-11-27T22:39:42.446266Z",
+      "actor": "worker043",
+      "action": "checkpoint",
+      "task": "CODE-043",
+      "summary": "Actual /root/worker043 delivered Entity snapshots and delta replication; 1578 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 252,
+      "at": "2026-11-27T22:39:43.425640Z",
+      "actor": "worker045",
+      "action": "checkpoint",
+      "task": "CODE-045",
+      "summary": "Actual /root/worker045 delivered Transactional save journal and recovery; 1570 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 253,
+      "at": "2026-11-27T22:39:51.905802Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,
