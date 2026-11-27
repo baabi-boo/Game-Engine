@@ -87,6 +87,7 @@ set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/network/src/protocol.cpp"
     "${PROJECT_SOURCE_DIR}/engine/network/src/transport.cpp"
     "${PROJECT_SOURCE_DIR}/engine/network/src/replication.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/network/src/prediction.cpp"
     "${PROJECT_SOURCE_DIR}/engine/persistence/src/journal.cpp"
 )
 set(GE_ENGINE_HEADERS
@@ -130,5 +131,6 @@ set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/network/include/ge/network/protocol.hpp"
     "${PROJECT_SOURCE_DIR}/engine/network/include/ge/network/transport.hpp"
     "${PROJECT_SOURCE_DIR}/engine/network/include/ge/network/replication.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/network/include/ge/network/prediction.hpp"
     "${PROJECT_SOURCE_DIR}/engine/persistence/include/ge/persistence/journal.hpp"
 )

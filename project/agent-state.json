@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 253,
-  "updated_at": "2026-11-27T22:39:51.905802Z",
+  "revision": 273,
+  "updated_at": "2026-11-27T22:41:53.116574Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "8050287f60caafec0d443941a7108e8f0299d1f638e19279692fcb0f4e2deea4",
-    "file_count": 194
+    "sha256": "608c341004b7612cf99b8d5b6ce03f9b44fb64a892b6f33ccc2d4cef29fcc781",
+    "file_count": 196
   },
   "milestones": [
     {
@@ -2693,9 +2693,12 @@
       "claim_revision": 183,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker044 delivered Input prediction and rollback state; 1365 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/network/include/ge/network/prediction.hpp",
+          "engine/network/src/prediction.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -3084,6 +3087,186 @@
       "status": "in_progress",
       "owner": "worker057",
       "claim_revision": 250,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-058",
+      "title": "Draw batching and instance submission",
+      "milestone": "M1",
+      "priority": 58,
+      "description": "Implement Draw batching and instance submission. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/render/include/ge/render/batching.hpp",
+        "engine/render/src/batching.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_batching(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker058",
+      "claim_revision": 256,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-059",
+      "title": "Decal projection and surface blending",
+      "milestone": "M1",
+      "priority": 59,
+      "description": "Implement Decal projection and surface blending. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/render/include/ge/render/decals.hpp",
+        "engine/render/src/decals.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_decals(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker059",
+      "claim_revision": 259,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-060",
+      "title": "Scene picking and selection models",
+      "milestone": "M1",
+      "priority": 60,
+      "description": "Implement Scene picking and selection models. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/editor/include/ge/editor/selection.hpp",
+        "engine/editor/src/selection.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_selection(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker060",
+      "claim_revision": 262,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-061",
+      "title": "Inverse kinematics and pose constraints",
+      "milestone": "M1",
+      "priority": 61,
+      "description": "Implement Inverse kinematics and pose constraints. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/animation/include/ge/animation/ik.hpp",
+        "engine/animation/src/ik.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_ik(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker061",
+      "claim_revision": 265,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-062",
+      "title": "Skeleton retargeting and root motion",
+      "milestone": "M1",
+      "priority": 62,
+      "description": "Implement Skeleton retargeting and root motion. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/animation/include/ge/animation/retarget.hpp",
+        "engine/animation/src/retarget.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_retarget(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker062",
+      "claim_revision": 268,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-063",
+      "title": "DSP filters, reverberation and effects",
+      "milestone": "M1",
+      "priority": 63,
+      "description": "Implement DSP filters, reverberation and effects. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/audio/include/ge/audio/dsp.hpp",
+        "engine/audio/src/dsp.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_dsp(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker063",
+      "claim_revision": 271,
       "blocker": null,
       "checkpoint": {
         "summary": "Not started.",
@@ -5262,6 +5445,166 @@
     {
       "revision": 253,
       "at": "2026-11-27T22:39:51.905802Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 254,
+      "at": "2026-11-27T22:40:01.718448Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-058",
+      "summary": "Added planned task CODE-058: Draw batching and instance submission."
+    },
+    {
+      "revision": 255,
+      "at": "2026-11-27T22:40:02.668651Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 256,
+      "at": "2026-11-27T22:40:03.528728Z",
+      "actor": "worker058",
+      "action": "claim",
+      "task": "CODE-058",
+      "summary": "Claimed CODE-058 with its recorded write scope."
+    },
+    {
+      "revision": 257,
+      "at": "2026-11-27T22:40:04.426589Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-059",
+      "summary": "Added planned task CODE-059: Decal projection and surface blending."
+    },
+    {
+      "revision": 258,
+      "at": "2026-11-27T22:40:05.347886Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 259,
+      "at": "2026-11-27T22:40:06.263445Z",
+      "actor": "worker059",
+      "action": "claim",
+      "task": "CODE-059",
+      "summary": "Claimed CODE-059 with its recorded write scope."
+    },
+    {
+      "revision": 260,
+      "at": "2026-11-27T22:40:07.164508Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-060",
+      "summary": "Added planned task CODE-060: Scene picking and selection models."
+    },
+    {
+      "revision": 261,
+      "at": "2026-11-27T22:40:08.076800Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 262,
+      "at": "2026-11-27T22:40:09.061946Z",
+      "actor": "worker060",
+      "action": "claim",
+      "task": "CODE-060",
+      "summary": "Claimed CODE-060 with its recorded write scope."
+    },
+    {
+      "revision": 263,
+      "at": "2026-11-27T22:40:35.003951Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-061",
+      "summary": "Added planned task CODE-061: Inverse kinematics and pose constraints."
+    },
+    {
+      "revision": 264,
+      "at": "2026-11-27T22:40:37.123997Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 265,
+      "at": "2026-11-27T22:40:39.105057Z",
+      "actor": "worker061",
+      "action": "claim",
+      "task": "CODE-061",
+      "summary": "Claimed CODE-061 with its recorded write scope."
+    },
+    {
+      "revision": 266,
+      "at": "2026-11-27T22:40:41.075897Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-062",
+      "summary": "Added planned task CODE-062: Skeleton retargeting and root motion."
+    },
+    {
+      "revision": 267,
+      "at": "2026-11-27T22:40:43.150601Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 268,
+      "at": "2026-11-27T22:40:45.228368Z",
+      "actor": "worker062",
+      "action": "claim",
+      "task": "CODE-062",
+      "summary": "Claimed CODE-062 with its recorded write scope."
+    },
+    {
+      "revision": 269,
+      "at": "2026-11-27T22:40:47.266175Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-063",
+      "summary": "Added planned task CODE-063: DSP filters, reverberation and effects."
+    },
+    {
+      "revision": 270,
+      "at": "2026-11-27T22:40:49.934184Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 271,
+      "at": "2026-11-27T22:40:51.901781Z",
+      "actor": "worker063",
+      "action": "claim",
+      "task": "CODE-063",
+      "summary": "Claimed CODE-063 with its recorded write scope."
+    },
+    {
+      "revision": 272,
+      "at": "2026-11-27T22:41:47.449237Z",
+      "actor": "worker044",
+      "action": "checkpoint",
+      "task": "CODE-044",
+      "summary": "Actual /root/worker044 delivered Input prediction and rollback state; 1365 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 273,
+      "at": "2026-11-27T22:41:53.116574Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,
