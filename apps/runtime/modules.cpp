@@ -56,6 +56,7 @@
 #include <ge/render/visibility.hpp>
 #include <ge/render/batching.hpp>
 #include <ge/render/decals.hpp>
+#include <ge/editor/selection.hpp>
 
 namespace ge::application {
 void install_modules(core::Kernel& kernel) {
@@ -115,6 +116,7 @@ void install_modules(core::Kernel& kernel) {
     ge::render::register_visibility(kernel);
     ge::render::register_batching(kernel);
     ge::render::register_decals(kernel);
+    ge::editor::register_selection(kernel);
     (void)kernel.order_after("spatial.sync", "geometry.mesh.bounds");
     (void)kernel.order_after("geometry.mesh.bounds", "camera.update");
     (void)kernel.order_after("geometry.mesh.bounds", "terrain.vegetation");

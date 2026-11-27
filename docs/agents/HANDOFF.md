@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 354
-- **Recorded update:** 2026\-11\-27T23:48:25.540399Z
+- **Ledger revision:** 374
+- **Recorded update:** 2026\-11\-27T23:50:27.027138Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 8d3d227b3700798fc03e9959625dedc645ce2be9dff8177a719eb7c97f097961
-- **Source files:** 224
+- **Source fingerprint:** 57770e8e9c1a5674b50f345aa098c735cb3fd7f69159670a2092b55e6907ff1a
+- **Source files:** 226
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -1286,9 +1286,9 @@ Implement Scene picking and selection models. User\-authorized source\-only camp
 - Write scope: engine/editor/include/ge/editor/selection.hpp, engine/editor/src/selection.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker060 delivered Scene picking and selection models; 1224 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/editor/include/ge/editor/selection.hpp, engine/editor/src/selection.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -1715,6 +1715,126 @@ Acceptance:
 
 - Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
 - Expose a working register\_asset\_browser\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-082: Prefab instantiation and property overrides
+
+Implement Prefab instantiation and property overrides. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker082
+- Write scope: engine/scene/include/ge/scene/prefab.hpp, engine/scene/src/prefab.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_prefab\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-083: Cinematic tracks and scene binding
+
+Implement Cinematic tracks and scene binding. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker083
+- Write scope: engine/cinematic/include/ge/cinematic/sequencer.hpp, engine/cinematic/src/sequencer.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_sequencer\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-084: Debug geometry and scene diagnostics
+
+Implement Debug geometry and scene diagnostics. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker084
+- Write scope: engine/diagnostics/include/ge/diagnostics/debug\_draw.hpp, engine/diagnostics/src/debug\_draw.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_debug\_draw\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-085: Bounded tracing and performance telemetry
+
+Implement Bounded tracing and performance telemetry. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker085
+- Write scope: engine/diagnostics/include/ge/diagnostics/telemetry.hpp, engine/diagnostics/src/telemetry.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_telemetry\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-086: Runtime console command scripts and variables
+
+Implement Runtime console command scripts and variables. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker086
+- Write scope: engine/script/include/ge/script/console.hpp, engine/script/src/console.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_console\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-087: Platform events, clocks and application lifecycle
+
+Implement Platform events, clocks and application lifecycle. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker087
+- Write scope: engine/platform/include/ge/platform/events.hpp, engine/platform/src/events.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_events\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
 
 - dev: no receipt.
 
