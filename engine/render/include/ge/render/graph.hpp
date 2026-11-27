@@ -21,6 +21,7 @@ inline constexpr std::string_view graph_main_color = "main.color";
 inline constexpr std::string_view graph_main_depth = "main.depth";
 inline constexpr std::string_view graph_scene_pass = "scene.raster";
 inline constexpr std::string_view graph_complete_pass = "frame.complete";
+inline constexpr std::uint64_t graph_default_scene_callback_owner = 0x47455343454e4531ULL;
 
 struct GraphResource {
     std::uint64_t owner{};
@@ -95,6 +96,8 @@ struct GraphPassDescription {
     std::vector<GraphPass> after;
     int priority{};
     bool enabled{true};
+    // Cooperative callback ownership, not an authentication capability.
+    std::uint64_t callback_owner{};
 };
 
 struct GraphPassResult {
@@ -143,6 +146,8 @@ struct GraphPassInfo {
     int priority{};
     bool enabled{};
     GraphPassState state{GraphPassState::Pending};
+    std::uint64_t callback_owner{};
+    std::uint64_t callback_revision{};
 };
 
 struct GraphStatistics {
@@ -230,7 +235,14 @@ public:
     [[nodiscard]] std::optional<GraphPassInfo> pass_info(GraphPass pass) const noexcept;
     [[nodiscard]] GraphPass add_pass(GraphPassDescription description, GraphCallback callback);
     bool add_dependency(GraphPass pass, GraphPass prerequisite);
+    // Unconditional replacement clears the owner tag and advances its revision.
     bool replace_callback(GraphPass pass, GraphCallback callback);
+    // Serialized compare-and-replace. A stale stamp preserves the old callback;
+    // inspect pass_info after success to retain the new revision. Graph reset
+    // invalidates the pass handle, and revisions never wrap within a pass.
+    bool replace_callback_if(GraphPass pass, std::uint64_t expected_owner,
+                             std::uint64_t expected_revision, std::uint64_t new_owner,
+                             GraphCallback callback);
     bool set_enabled(GraphPass pass, bool enabled);
     // Insertion inherits anchor predecessors; after-insertion also redirects the
     // anchor's existing direct dependents to the new pass as an atomic edit.

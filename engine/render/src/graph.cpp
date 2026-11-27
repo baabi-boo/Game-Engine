@@ -147,6 +147,7 @@ struct RenderGraph::Impl {
         GraphPassDescription description;
         GraphCallback callback;
         GraphPassState state{GraphPassState::Pending};
+        std::uint64_t callback_revision{1};
     };
     struct Output {
         std::string name;
@@ -518,7 +519,8 @@ std::optional<GraphPassInfo> RenderGraph::pass_info(GraphPass handle) const noex
     const auto* pass = impl_->resolve(handle);
     if (!pass) { return std::nullopt; }
     return GraphPassInfo{handle, pass->description.name, pass->description.resources,
-        pass->description.after, pass->description.priority, pass->description.enabled, pass->state};
+        pass->description.after, pass->description.priority, pass->description.enabled, pass->state,
+        pass->description.callback_owner, pass->callback_revision};
 }
 
 GraphPass RenderGraph::add_pass(GraphPassDescription description, GraphCallback callback) {
@@ -593,8 +595,36 @@ bool RenderGraph::replace_callback(GraphPass handle, GraphCallback callback) {
     auto* pass = impl_->resolve(handle);
     if (!pass) { return impl_->fail(GraphError::InvalidHandle); }
     if (!callback) { return impl_->fail(GraphError::InvalidDescriptor); }
+    if (pass->callback_revision == std::numeric_limits<std::uint64_t>::max()) {
+        return impl_->fail(GraphError::Capacity, "callback revision space exhausted", handle);
+    }
     pass->callback = std::move(callback);
+    pass->description.callback_owner = 0;
+    ++pass->callback_revision;
     impl_->changed();
+    impl_->result = {};
+    return true;
+}
+
+bool RenderGraph::replace_callback_if(GraphPass handle, std::uint64_t expected_owner,
+                                      std::uint64_t expected_revision, std::uint64_t new_owner,
+                                      GraphCallback callback) {
+    if (!impl_->edit()) { return false; }
+    auto* pass = impl_->resolve(handle);
+    if (!pass) { return impl_->fail(GraphError::InvalidHandle); }
+    if (!callback) { return impl_->fail(GraphError::InvalidDescriptor); }
+    if (expected_revision == 0 || pass->description.callback_owner != expected_owner ||
+        pass->callback_revision != expected_revision) {
+        return impl_->fail(GraphError::ResourceConflict, "callback ownership stamp changed", handle);
+    }
+    if (pass->callback_revision == std::numeric_limits<std::uint64_t>::max()) {
+        return impl_->fail(GraphError::Capacity, "callback revision space exhausted", handle);
+    }
+    pass->callback = std::move(callback);
+    pass->description.callback_owner = new_owner;
+    ++pass->callback_revision;
+    impl_->changed();
+    impl_->result = {};
     return true;
 }
 
@@ -1213,7 +1243,8 @@ bool RenderGraph::install_default(core::Kernel& kernel) {
         const auto depth = candidate.import_depth(std::string(graph_main_depth), images->framebuffer());
         auto* host = &kernel;
         const auto scene_pass = candidate.add_pass({std::string(graph_scene_pass),
-            {{color, GraphAccess::ReadWrite}, {depth, GraphAccess::ReadWrite}}, {}, 0, true},
+            {{color, GraphAccess::ReadWrite}, {depth, GraphAccess::ReadWrite}}, {}, 0, true,
+            graph_default_scene_callback_owner},
             [host, color, depth](GraphContext& context) -> GraphPassResult {
                 auto* target = host->services().find<ImageService>();
                 auto* renderer = host->services().find<SoftwareRenderer>();

@@ -3,10 +3,10 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 325
-- **Recorded update:** 2026\-11\-27T23:27:11.010706Z
+- **Ledger revision:** 326
+- **Recorded update:** 2026\-11\-27T23:30:07.708539Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 4f7dc38d9ec0b9a9fce5ed96a9e58a227113953e3da1880ad3580edc9a2b5db9
+- **Source fingerprint:** 742eb32b45be29bbba7b7c9ad90349a3bc785295adaa97201f2d579ddd1f1e8b
 - **Source files:** 214
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.

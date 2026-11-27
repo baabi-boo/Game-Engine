@@ -728,5 +728,6 @@
   ],
   "delivered_worker_count": 54,
   "counted_delivered_worker_code_lines": 76747,
-  "baseline_engine_application_code_lines": 1727
+  "baseline_engine_application_code_lines": 1727,
+  "worker_count_basis": "Per-worker source counts are recorded at frozen delivery. Later coordinator edits connect shared interfaces; the final engine/application total is counted separately from the committed tree."
 }
