@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 31
-- **Recorded update:** 2026\-11\-27T19:40:23.638020Z
+- **Ledger revision:** 46
+- **Recorded update:** 2026\-11\-27T19:47:45.047124Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 6a549cfec7b4c7a0df658c30e1e8639808f3197ac5cf53335e60a6ce5a18f2d2
-- **Source files:** 112
+- **Source fingerprint:** 914b4fb50dfb253768abeeddf8794242cd2a9cce6ee54a6543395d781445fbe5
+- **Source files:** 116
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -77,6 +77,25 @@ Acceptance:
 
 - dev: no receipt.
 
+### CODE\-DEPENDENCIES: Declare runtime expansion dependency policy
+
+Extend repository module declarations for the actual C\+\+ source expansion and standard thread runtime without disabling existing checks.
+
+- State / owner: in\_progress / coordinator
+- Write scope: tools/check\_repo.py
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Update policy declarations by source inspection; checks remain unrun under current user instruction.
+- Required checks: repository
+
+Acceptance:
+
+- Keep core/content/world layering and dependency\-download prohibition; declare the new ge\_engine implementation domains and narrow private OS adapters.
+
+- repository: no receipt.
+
 ### CODE\-002: Bounded allocation and containers
 
 Bounded arenas, object pools, sparse sets, ring buffers and allocation accounting for engine systems. User requests source\-only development; no build, runtime, tests or CI waits in this campaign.
@@ -125,9 +144,9 @@ Implement Entity component registry and deferred mutations. User\-authorized sou
 - Write scope: engine/ecs/include/ge/ecs/registry.hpp, engine/ecs/src/registry.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker004 delivered Entity component registry and deferred mutations; 1354 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/ecs/include/ge/ecs/registry.hpp, engine/ecs/src/registry.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -145,9 +164,9 @@ Implement Bounded task executor and dependency graph. User\-authorized source\-o
 - Write scope: engine/jobs/include/ge/jobs/executor.hpp, engine/jobs/src/executor.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker005 delivered Bounded task executor and dependency graph; 1558 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/jobs/include/ge/jobs/executor.hpp, engine/jobs/src/executor.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -174,6 +193,66 @@ Acceptance:
 
 - Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
 - Expose a working register\_filesystem\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-007: Scene hierarchy and world transforms
+
+Implement Scene hierarchy and world transforms. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker007
+- Write scope: engine/scene/include/ge/scene/scene.hpp, engine/scene/src/scene.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_scene\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-008: Input devices, action maps and rebinding
+
+Implement Input devices, action maps and rebinding. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker008
+- Write scope: engine/input/include/ge/input/actions.hpp, engine/input/src/actions.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_actions\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-009: Asset catalog, typed handles and cache
+
+Implement Asset catalog, typed handles and cache. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker009
+- Write scope: engine/assets/include/ge/assets/catalog.hpp, engine/assets/src/catalog.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_catalog\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
 
 - dev: no receipt.
 

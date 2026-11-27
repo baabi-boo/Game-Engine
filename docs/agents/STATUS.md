@@ -3,11 +3,11 @@
 # Agent project status
 
 - **Project:** Game Engine
-- **Ledger revision:** 31
-- **Recorded update:** 2026\-11\-27T19:40:23.638020Z
+- **Ledger revision:** 46
+- **Recorded update:** 2026\-11\-27T19:47:45.047124Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 6a549cfec7b4c7a0df658c30e1e8639808f3197ac5cf53335e60a6ce5a18f2d2
-- **Source files:** 112
+- **Source fingerprint:** 914b4fb50dfb253768abeeddf8794242cd2a9cce6ee54a6543395d781445fbe5
+- **Source files:** 116
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -42,11 +42,15 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 | M0\-FOUNDATION: Published headless foundation | 0 | M0 | done | setup\-coordinator | none | Preserve historical evidence and continue through the first playable gates. |
 | OPS\-AGENT\-SYSTEM: Install agent coordination and automatic project\-state updates | 0 | OPS | done | coordinator | none | For the next authorized session, inspect the published branch and hosted CI, follow docs/agents/CONTINUE.md, and select M1\-010 only when first\-playable work is within the current user objective. |
 | CODE\-001: Spatial mathematics | 1 | M1 | in\_progress | worker001 | none | Integrate real consumers; source delivered, runtime validation deferred by user request. |
+| CODE\-DEPENDENCIES: Declare runtime expansion dependency policy | 1 | OPS | in\_progress | coordinator | none | Update policy declarations by source inspection; checks remain unrun under current user instruction. |
 | CODE\-002: Bounded allocation and containers | 2 | M1 | in\_progress | worker002 | none | Integrate real consumers; source delivered, runtime validation deferred by user request. |
 | CODE\-003: Bounded binary serialization | 3 | M1 | in\_progress | worker003 | none | Integrate real consumers; source delivered, runtime validation deferred by user request. |
-| CODE\-004: Entity component registry and deferred mutations | 4 | M1 | in\_progress | worker004 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-005: Bounded task executor and dependency graph | 5 | M1 | in\_progress | worker005 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-004: Entity component registry and deferred mutations | 4 | M1 | in\_progress | worker004 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
+| CODE\-005: Bounded task executor and dependency graph | 5 | M1 | in\_progress | worker005 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-006: Virtual filesystem mounts and bounded file access | 6 | M1 | in\_progress | worker006 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-007: Scene hierarchy and world transforms | 7 | M1 | in\_progress | worker007 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-008: Input devices, action maps and rebinding | 8 | M1 | in\_progress | worker008 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-009: Asset catalog, typed handles and cache | 9 | M1 | in\_progress | worker009 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | OPS\-MACOS: Establish observed macOS foundation qualification | 10 | OPS | blocked | unowned | M0\-FOUNDATION | Inspect the latest macOS job and its logs; identify whether execution is available before changing platform code. |
 | M1\-010: Declare the reference platform and playable workload | 100 | M1 | planned \(ready\) | unowned | M0\-FOUNDATION | Read the first\-playable plan and inspect available target evidence; draft the reference\-platform record. |
 | M1\-020: Select one native backend and dependency strategy | 110 | M1 | planned | unowned | M1\-010 | Review ADR0006 and the candidate register; produce an evidence\-backed backend decision and dependency records. |
@@ -134,8 +138,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 21
 - Write scope: engine/ecs/include/ge/ecs/registry.hpp, engine/ecs/src/registry.cpp
 - Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Preserved work: Actual /root/worker004 delivered Entity component registry and deferred mutations; 1354 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 
 ### CODE\-005
 
@@ -144,8 +148,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 24
 - Write scope: engine/jobs/include/ge/jobs/executor.hpp, engine/jobs/src/executor.cpp
 - Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Preserved work: Actual /root/worker005 delivered Bounded task executor and dependency graph; 1558 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 
 ### CODE\-006
 
@@ -156,6 +160,46 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Blocker: none
 - Preserved work: Not started.
 - Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-007
+
+- Status: in\_progress
+- Owner: worker007
+- Claim revision: 34
+- Write scope: engine/scene/include/ge/scene/scene.hpp, engine/scene/src/scene.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-008
+
+- Status: in\_progress
+- Owner: worker008
+- Claim revision: 37
+- Write scope: engine/input/include/ge/input/actions.hpp, engine/input/src/actions.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-009
+
+- Status: in\_progress
+- Owner: worker009
+- Claim revision: 40
+- Write scope: engine/assets/include/ge/assets/catalog.hpp, engine/assets/src/catalog.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-DEPENDENCIES
+
+- Status: in\_progress
+- Owner: coordinator
+- Claim revision: 44
+- Write scope: tools/check\_repo.py
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Update policy declarations by source inspection; checks remain unrun under current user instruction.
 
 
 ## Evidence observations
@@ -176,25 +220,25 @@ These are historical observations. A pass neither completes a task nor remains c
 
 ## Recent operations
 
-- Revision 12 — 2026\-11\-27T19:31:47.467029Z — worker001: claim CODE\-001. Claimed CODE\-001 with its recorded write scope.
-- Revision 13 — 2026\-11\-27T19:31:47.567675Z — coordinator: add CODE\-002. Added planned task CODE\-002: Bounded allocation and containers.
-- Revision 14 — 2026\-11\-27T19:31:47.685576Z — worker002: claim CODE\-002. Claimed CODE\-002 with its recorded write scope.
-- Revision 15 — 2026\-11\-27T19:31:47.901043Z — coordinator: add CODE\-003. Added planned task CODE\-003: Bounded binary serialization.
-- Revision 16 — 2026\-11\-27T19:31:48.006155Z — worker003: claim CODE\-003. Claimed CODE\-003 with its recorded write scope.
-- Revision 17 — 2026\-11\-27T19:33:45.327758Z — coordinator: add CODE\-INTEGRATION. Added planned task CODE\-INTEGRATION: Integrate source\-only 100\-agent engine expansion.
-- Revision 18 — 2026\-11\-27T19:33:45.501796Z — coordinator: claim CODE\-INTEGRATION. Claimed CODE\-INTEGRATION with its recorded write scope.
-- Revision 19 — 2026\-11\-27T19:38:05.328296Z — coordinator: add CODE\-004. Added planned task CODE\-004: Entity component registry and deferred mutations.
-- Revision 20 — 2026\-11\-27T19:38:15.393641Z — coordinator: reconcile. Acknowledge current owned source edits: completed binary and memory, ongoing math, and coordinator runtime/kernel/build composition. No code execution or tests; all new work remains unverified.
-- Revision 21 — 2026\-11\-27T19:38:15.610858Z — worker004: claim CODE\-004. Claimed CODE\-004 with its recorded write scope.
-- Revision 22 — 2026\-11\-27T19:38:15.824154Z — coordinator: add CODE\-005. Added planned task CODE\-005: Bounded task executor and dependency graph.
-- Revision 23 — 2026\-11\-27T19:38:16.007062Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 24 — 2026\-11\-27T19:38:16.142372Z — worker005: claim CODE\-005. Claimed CODE\-005 with its recorded write scope.
-- Revision 25 — 2026\-11\-27T19:38:40.920701Z — coordinator: add CODE\-006. Added planned task CODE\-006: Virtual filesystem mounts and bounded file access.
-- Revision 26 — 2026\-11\-27T19:38:41.081249Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
 - Revision 27 — 2026\-11\-27T19:38:41.237046Z — worker006: claim CODE\-006. Claimed CODE\-006 with its recorded write scope.
 - Revision 28 — 2026\-11\-27T19:40:07.160190Z — worker001: checkpoint CODE\-001. Actual /root/worker001 delivered original source; 2193 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.
 - Revision 29 — 2026\-11\-27T19:40:07.713549Z — worker002: checkpoint CODE\-002. Actual /root/worker002 delivered original source; 1355 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.
 - Revision 30 — 2026\-11\-27T19:40:08.186621Z — worker003: checkpoint CODE\-003. Actual /root/worker003 delivered original source; 1527 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.
 - Revision 31 — 2026\-11\-27T19:40:23.638020Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
+- Revision 32 — 2026\-11\-27T19:42:22.390010Z — coordinator: add CODE\-007. Added planned task CODE\-007: Scene hierarchy and world transforms.
+- Revision 33 — 2026\-11\-27T19:42:22.648665Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 34 — 2026\-11\-27T19:42:22.989770Z — worker007: claim CODE\-007. Claimed CODE\-007 with its recorded write scope.
+- Revision 35 — 2026\-11\-27T19:42:23.126555Z — coordinator: add CODE\-008. Added planned task CODE\-008: Input devices, action maps and rebinding.
+- Revision 36 — 2026\-11\-27T19:42:23.272729Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 37 — 2026\-11\-27T19:42:23.416428Z — worker008: claim CODE\-008. Claimed CODE\-008 with its recorded write scope.
+- Revision 38 — 2026\-11\-27T19:42:23.549112Z — coordinator: add CODE\-009. Added planned task CODE\-009: Asset catalog, typed handles and cache.
+- Revision 39 — 2026\-11\-27T19:42:23.694997Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 40 — 2026\-11\-27T19:42:23.857877Z — worker009: claim CODE\-009. Claimed CODE\-009 with its recorded write scope.
+- Revision 41 — 2026\-11\-27T19:44:07.782501Z — worker004: checkpoint CODE\-004. Actual /root/worker004 delivered Entity component registry and deferred mutations; 1354 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Revision 42 — 2026\-11\-27T19:44:45.219274Z — coordinator: add CODE\-DEPENDENCIES. Added planned task CODE\-DEPENDENCIES: Declare runtime expansion dependency policy.
+- Revision 43 — 2026\-11\-27T19:44:45.607328Z — coordinator: reconcile. Acknowledge known ECS source and ongoing jobs/filesystem/scene development before declaring aggregate runtime module boundaries.
+- Revision 44 — 2026\-11\-27T19:44:45.913357Z — coordinator: claim CODE\-DEPENDENCIES. Claimed CODE\-DEPENDENCIES with its recorded write scope.
+- Revision 45 — 2026\-11\-27T19:47:16.699363Z — worker005: checkpoint CODE\-005. Actual /root/worker005 delivered Bounded task executor and dependency graph; 1558 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Revision 46 — 2026\-11\-27T19:47:45.047124Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 
 The canonical ledger retains the complete operation history.

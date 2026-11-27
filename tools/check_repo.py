@@ -21,6 +21,23 @@ from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parents[1]
 MODULES = {"core": {"core"}, "content": {"content", "core"}, "world": {"world", "core"}}
+# These domains are compiled together in ge_engine. The base utility domains
+# retain narrower boundaries, and no core/content/world reverse edge is added.
+ENGINE_DOMAINS = {
+    "math", "ecs", "jobs", "io", "scene", "input", "assets", "geometry",
+    "render", "spatial", "physics", "animation", "audio", "navigation",
+    "terrain", "effects", "script", "gameplay", "config", "text", "network",
+    "persistence", "ai", "traffic", "editor", "environment", "procedural",
+    "cinematic", "diagnostics", "platform", "ui", "runtime",
+}
+MODULES.update({name: ENGINE_DOMAINS | {"core", "content", "world"}
+                for name in ENGINE_DOMAINS})
+MODULES.update({
+    "math": {"math", "core"},
+    "ecs": {"ecs", "math", "core"},
+    "jobs": {"jobs", "core"},
+    "io": {"io", "jobs", "core"},
+})
 IGNORED_DIRS = {
     ".git", ".venv", "venv", "__pycache__", ".pytest_cache", ".mypy_cache",
     ".ruff_cache", ".cache", ".idea", ".vscode", "node_modules", "CMakeFiles",
@@ -53,7 +70,13 @@ assert.h complex.h ctype.h errno.h fenv.h float.h inttypes.h iso646.h limits.h l
 math.h setjmp.h signal.h stdalign.h stdarg.h stdbool.h stddef.h stdint.h stdio.h
 stdlib.h string.h tgmath.h time.h uchar.h wchar.h wctype.h
 """.split())
-PRIVATE_PLATFORM_HEADERS = {"engine/world/src/state.cpp": {"windows.h"}}
+PRIVATE_PLATFORM_HEADERS = {
+    "engine/world/src/state.cpp": {"windows.h"},
+    "engine/network/src/transport.cpp": {
+        "winsock2.h", "ws2tcpip.h", "windows.h", "sys/socket.h", "sys/types.h",
+        "netinet/in.h", "arpa/inet.h", "netdb.h", "unistd.h", "fcntl.h", "poll.h",
+    },
+}
 RESEARCH_SNAPSHOT = "docs/research/open-world-blueprint.md"
 
 SECRET_PATTERNS = (
@@ -225,6 +248,9 @@ class RepositoryCheck:
         for match in re.finditer(r'\b(?i:target_link_libraries)\s*\(\s*"?(ge_core|ge_content|ge_world)"?\s+([^)]*)\)', clean):
             module = match[1].removeprefix("ge_")
             allowed = {"PRIVATE", "PUBLIC", "INTERFACE"}
+            if module == "core":
+                # CMake's platform support for the C++ standard thread library.
+                allowed.add("Threads::Threads")
             allowed.update(f"ge_{name}" for name in MODULES[module] if name != module)
             allowed.update(f"ge::{name}" for name in MODULES[module] if name != module)
             for dependency in re.findall(r'"[^"]*"|\S+', match[2]):

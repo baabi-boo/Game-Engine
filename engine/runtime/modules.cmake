@@ -1,4 +1,20 @@
-set(GE_ENGINE_MODULES math)
-set(GE_ENGINE_INCLUDE_ROOTS "${PROJECT_SOURCE_DIR}/engine/math/include")
-set(GE_ENGINE_SOURCES "${PROJECT_SOURCE_DIR}/engine/math/src/math.cpp")
-set(GE_ENGINE_HEADERS "${PROJECT_SOURCE_DIR}/engine/math/include/ge/math/math.hpp")
+set(GE_ENGINE_MODULES
+    "math"
+    "ecs"
+    "jobs"
+)
+set(GE_ENGINE_INCLUDE_ROOTS
+    "${PROJECT_SOURCE_DIR}/engine/math/include"
+    "${PROJECT_SOURCE_DIR}/engine/ecs/include"
+    "${PROJECT_SOURCE_DIR}/engine/jobs/include"
+)
+set(GE_ENGINE_SOURCES
+    "${PROJECT_SOURCE_DIR}/engine/math/src/math.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/ecs/src/registry.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/jobs/src/executor.cpp"
+)
+set(GE_ENGINE_HEADERS
+    "${PROJECT_SOURCE_DIR}/engine/math/include/ge/math/math.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/ecs/include/ge/ecs/registry.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/jobs/include/ge/jobs/executor.hpp"
+)

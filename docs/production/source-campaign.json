@@ -46,14 +46,26 @@
       "agent_id": "/root/worker004",
       "task_id": "CODE-004",
       "wave": 2,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Entity component registry and deferred mutations",
+      "files": [
+        "engine/ecs/include/ge/ecs/registry.hpp",
+        "engine/ecs/src/registry.cpp"
+      ],
+      "code_lines": 1354
     },
     {
       "number": 5,
       "agent_id": "/root/worker005",
       "task_id": "CODE-005",
       "wave": 2,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Bounded task executor and dependency graph",
+      "files": [
+        "engine/jobs/include/ge/jobs/executor.hpp",
+        "engine/jobs/src/executor.cpp"
+      ],
+      "code_lines": 1558
     },
     {
       "number": 6,
@@ -61,6 +73,22 @@
       "task_id": "CODE-006",
       "wave": 2,
       "status": "implementing"
+    },
+    {
+      "number": 7,
+      "agent_id": "/root/worker007",
+      "task_id": "CODE-007",
+      "wave": 3,
+      "status": "implementing"
+    },
+    {
+      "number": 8,
+      "agent_id": "/root/worker008",
+      "task_id": "CODE-008",
+      "wave": 3,
+      "status": "implementing"
     }
-  ]
+  ],
+  "delivered_worker_count": 5,
+  "counted_delivered_worker_code_lines": 7987
 }

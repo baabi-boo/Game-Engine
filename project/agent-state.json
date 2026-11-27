@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 31,
-  "updated_at": "2026-11-27T19:40:23.638020Z",
+  "revision": 46,
+  "updated_at": "2026-11-27T19:47:45.047124Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "6a549cfec7b4c7a0df658c30e1e8639808f3197ac5cf53335e60a6ce5a18f2d2",
-    "file_count": 112
+    "sha256": "914b4fb50dfb253768abeeddf8794242cd2a9cce6ee54a6543395d781445fbe5",
+    "file_count": 116
   },
   "milestones": [
     {
@@ -1345,9 +1345,12 @@
       "claim_revision": 21,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker004 delivered Entity component registry and deferred mutations; 1354 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/ecs/include/ge/ecs/registry.hpp",
+          "engine/ecs/src/registry.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -1375,9 +1378,12 @@
       "claim_revision": 24,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker005 delivered Bounded task executor and dependency graph; 1558 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/jobs/include/ge/jobs/executor.hpp",
+          "engine/jobs/src/executor.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -1407,6 +1413,124 @@
       "checkpoint": {
         "summary": "Not started.",
         "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-007",
+      "title": "Scene hierarchy and world transforms",
+      "milestone": "M1",
+      "priority": 7,
+      "description": "Implement Scene hierarchy and world transforms. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/scene/include/ge/scene/scene.hpp",
+        "engine/scene/src/scene.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_scene(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker007",
+      "claim_revision": 34,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-008",
+      "title": "Input devices, action maps and rebinding",
+      "milestone": "M1",
+      "priority": 8,
+      "description": "Implement Input devices, action maps and rebinding. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/input/include/ge/input/actions.hpp",
+        "engine/input/src/actions.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_actions(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker008",
+      "claim_revision": 37,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-009",
+      "title": "Asset catalog, typed handles and cache",
+      "milestone": "M1",
+      "priority": 9,
+      "description": "Implement Asset catalog, typed handles and cache. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/assets/include/ge/assets/catalog.hpp",
+        "engine/assets/src/catalog.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_catalog(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker009",
+      "claim_revision": 40,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-DEPENDENCIES",
+      "title": "Declare runtime expansion dependency policy",
+      "milestone": "OPS",
+      "priority": 1,
+      "description": "Extend repository module declarations for the actual C++ source expansion and standard thread runtime without disabling existing checks.",
+      "depends_on": [],
+      "write_paths": [
+        "tools/check_repo.py"
+      ],
+      "acceptance": [
+        "Keep core/content/world layering and dependency-download prohibition; declare the new ge_engine implementation domains and narrow private OS adapters."
+      ],
+      "required_checks": [
+        "repository"
+      ],
+      "status": "in_progress",
+      "owner": "coordinator",
+      "claim_revision": 44,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Update policy declarations by source inspection; checks remain unrun under current user instruction.",
         "files": []
       },
       "evidence": [],
@@ -1805,6 +1929,126 @@
     {
       "revision": 31,
       "at": "2026-11-27T19:40:23.638020Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 32,
+      "at": "2026-11-27T19:42:22.390010Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-007",
+      "summary": "Added planned task CODE-007: Scene hierarchy and world transforms."
+    },
+    {
+      "revision": 33,
+      "at": "2026-11-27T19:42:22.648665Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 34,
+      "at": "2026-11-27T19:42:22.989770Z",
+      "actor": "worker007",
+      "action": "claim",
+      "task": "CODE-007",
+      "summary": "Claimed CODE-007 with its recorded write scope."
+    },
+    {
+      "revision": 35,
+      "at": "2026-11-27T19:42:23.126555Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-008",
+      "summary": "Added planned task CODE-008: Input devices, action maps and rebinding."
+    },
+    {
+      "revision": 36,
+      "at": "2026-11-27T19:42:23.272729Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 37,
+      "at": "2026-11-27T19:42:23.416428Z",
+      "actor": "worker008",
+      "action": "claim",
+      "task": "CODE-008",
+      "summary": "Claimed CODE-008 with its recorded write scope."
+    },
+    {
+      "revision": 38,
+      "at": "2026-11-27T19:42:23.549112Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-009",
+      "summary": "Added planned task CODE-009: Asset catalog, typed handles and cache."
+    },
+    {
+      "revision": 39,
+      "at": "2026-11-27T19:42:23.694997Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 40,
+      "at": "2026-11-27T19:42:23.857877Z",
+      "actor": "worker009",
+      "action": "claim",
+      "task": "CODE-009",
+      "summary": "Claimed CODE-009 with its recorded write scope."
+    },
+    {
+      "revision": 41,
+      "at": "2026-11-27T19:44:07.782501Z",
+      "actor": "worker004",
+      "action": "checkpoint",
+      "task": "CODE-004",
+      "summary": "Actual /root/worker004 delivered Entity component registry and deferred mutations; 1354 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 42,
+      "at": "2026-11-27T19:44:45.219274Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-DEPENDENCIES",
+      "summary": "Added planned task CODE-DEPENDENCIES: Declare runtime expansion dependency policy."
+    },
+    {
+      "revision": 43,
+      "at": "2026-11-27T19:44:45.607328Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known ECS source and ongoing jobs/filesystem/scene development before declaring aggregate runtime module boundaries."
+    },
+    {
+      "revision": 44,
+      "at": "2026-11-27T19:44:45.913357Z",
+      "actor": "coordinator",
+      "action": "claim",
+      "task": "CODE-DEPENDENCIES",
+      "summary": "Claimed CODE-DEPENDENCIES with its recorded write scope."
+    },
+    {
+      "revision": 45,
+      "at": "2026-11-27T19:47:16.699363Z",
+      "actor": "worker005",
+      "action": "checkpoint",
+      "task": "CODE-005",
+      "summary": "Actual /root/worker005 delivered Bounded task executor and dependency graph; 1558 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 46,
+      "at": "2026-11-27T19:47:45.047124Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,
