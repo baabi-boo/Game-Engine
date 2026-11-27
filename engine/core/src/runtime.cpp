@@ -332,6 +332,10 @@ bool Kernel::tick(double delta_seconds) {
     frame_.elapsed_seconds += delta_seconds;
     ++frame_.tick;
     ticking_ = true;
+    struct TickGuard {
+        bool& active;
+        ~TickGuard() { active = false; }
+    } guard{ticking_};
     bool success = true;
     for (const auto index : schedule_) {
         auto& system = systems_[index];
@@ -357,7 +361,6 @@ bool Kernel::tick(double delta_seconds) {
             std::chrono::steady_clock::now() - begin).count();
         system.statistics.total_seconds += system.statistics.last_seconds;
     }
-    ticking_ = false;
     metric("kernel.events.pending", static_cast<double>(events_.pending()));
     metric("kernel.events.dropped", static_cast<double>(events_.dropped()));
     metric("kernel.services", static_cast<double>(services_.size()));

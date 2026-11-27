@@ -2,19 +2,31 @@ set(GE_ENGINE_MODULES
     "math"
     "ecs"
     "jobs"
+    "io"
+    "scene"
+    "input"
 )
 set(GE_ENGINE_INCLUDE_ROOTS
     "${PROJECT_SOURCE_DIR}/engine/math/include"
     "${PROJECT_SOURCE_DIR}/engine/ecs/include"
     "${PROJECT_SOURCE_DIR}/engine/jobs/include"
+    "${PROJECT_SOURCE_DIR}/engine/io/include"
+    "${PROJECT_SOURCE_DIR}/engine/scene/include"
+    "${PROJECT_SOURCE_DIR}/engine/input/include"
 )
 set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/math/src/math.cpp"
     "${PROJECT_SOURCE_DIR}/engine/ecs/src/registry.cpp"
     "${PROJECT_SOURCE_DIR}/engine/jobs/src/executor.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/io/src/filesystem.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/scene/src/scene.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/input/src/actions.cpp"
 )
 set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/math/include/ge/math/math.hpp"
     "${PROJECT_SOURCE_DIR}/engine/ecs/include/ge/ecs/registry.hpp"
     "${PROJECT_SOURCE_DIR}/engine/jobs/include/ge/jobs/executor.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/io/include/ge/io/filesystem.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/scene/include/ge/scene/scene.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/input/include/ge/input/actions.hpp"
 )

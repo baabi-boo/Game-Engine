@@ -98,7 +98,7 @@ public:
         std::scoped_lock lock(mutex_);
         const auto key = std::type_index(typeid(T));
         auto it = queues_.find(key);
-        if (count_ >= capacity_ ||
+        if (count_ >= capacity_ || channel_capacity_ == 0 ||
             (it != queues_.end() && it->second.size() >= channel_capacity_)) {
             ++dropped_;
             return false;

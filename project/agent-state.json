@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 46,
-  "updated_at": "2026-11-27T19:47:45.047124Z",
+  "revision": 59,
+  "updated_at": "2026-11-27T19:55:45.755073Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "914b4fb50dfb253768abeeddf8794242cd2a9cce6ee54a6543395d781445fbe5",
-    "file_count": 116
+    "sha256": "66e755f584ee4ed18fb692fce5cc9dfbb5812d5927675e6867d12271b16001ae",
+    "file_count": 122
   },
   "milestones": [
     {
@@ -1411,9 +1411,12 @@
       "claim_revision": 27,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker006 delivered Virtual filesystem mounts and bounded file access; 1684 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/io/include/ge/io/filesystem.hpp",
+          "engine/io/src/filesystem.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -1441,9 +1444,12 @@
       "claim_revision": 34,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker007 delivered Scene hierarchy and world transforms; 2075 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/scene/include/ge/scene/scene.hpp",
+          "engine/scene/src/scene.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -1471,9 +1477,12 @@
       "claim_revision": 37,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker008 delivered Input devices, action maps and rebinding; 2007 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/input/include/ge/input/actions.hpp",
+          "engine/input/src/actions.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -1531,6 +1540,96 @@
       "checkpoint": {
         "summary": "Not started.",
         "next_action": "Update policy declarations by source inspection; checks remain unrun under current user instruction.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-010",
+      "title": "Mesh topology, primitives and vertex processing",
+      "milestone": "M1",
+      "priority": 10,
+      "description": "Implement Mesh topology, primitives and vertex processing. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/geometry/include/ge/geometry/mesh.hpp",
+        "engine/geometry/src/mesh.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_mesh(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker010",
+      "claim_revision": 50,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-011",
+      "title": "Images, framebuffers and texture sampling",
+      "milestone": "M1",
+      "priority": 11,
+      "description": "Implement Images, framebuffers and texture sampling. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/render/include/ge/render/image.hpp",
+        "engine/render/src/image.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_image(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker011",
+      "claim_revision": 53,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-012",
+      "title": "Dynamic spatial index and visibility queries",
+      "milestone": "M1",
+      "priority": 12,
+      "description": "Implement Dynamic spatial index and visibility queries. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/spatial/include/ge/spatial/index.hpp",
+        "engine/spatial/src/index.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_index(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker012",
+      "claim_revision": 56,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
         "files": []
       },
       "evidence": [],
@@ -2049,6 +2148,110 @@
     {
       "revision": 46,
       "at": "2026-11-27T19:47:45.047124Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 47,
+      "at": "2026-11-27T19:49:06.031405Z",
+      "actor": "worker006",
+      "action": "checkpoint",
+      "task": "CODE-006",
+      "summary": "Actual /root/worker006 delivered Virtual filesystem mounts and bounded file access; 1684 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 48,
+      "at": "2026-11-27T19:49:06.291072Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-010",
+      "summary": "Added planned task CODE-010: Mesh topology, primitives and vertex processing."
+    },
+    {
+      "revision": 49,
+      "at": "2026-11-27T19:49:06.491691Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 50,
+      "at": "2026-11-27T19:49:06.694739Z",
+      "actor": "worker010",
+      "action": "claim",
+      "task": "CODE-010",
+      "summary": "Claimed CODE-010 with its recorded write scope."
+    },
+    {
+      "revision": 51,
+      "at": "2026-11-27T19:49:06.871897Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-011",
+      "summary": "Added planned task CODE-011: Images, framebuffers and texture sampling."
+    },
+    {
+      "revision": 52,
+      "at": "2026-11-27T19:49:07.077381Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 53,
+      "at": "2026-11-27T19:49:07.280778Z",
+      "actor": "worker011",
+      "action": "claim",
+      "task": "CODE-011",
+      "summary": "Claimed CODE-011 with its recorded write scope."
+    },
+    {
+      "revision": 54,
+      "at": "2026-11-27T19:49:07.430669Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-012",
+      "summary": "Added planned task CODE-012: Dynamic spatial index and visibility queries."
+    },
+    {
+      "revision": 55,
+      "at": "2026-11-27T19:49:07.602122Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 56,
+      "at": "2026-11-27T19:49:07.903712Z",
+      "actor": "worker012",
+      "action": "claim",
+      "task": "CODE-012",
+      "summary": "Claimed CODE-012 with its recorded write scope."
+    },
+    {
+      "revision": 57,
+      "at": "2026-11-27T19:54:35.040477Z",
+      "actor": "worker008",
+      "action": "checkpoint",
+      "task": "CODE-008",
+      "summary": "Actual /root/worker008 delivered Input devices, action maps and rebinding; 2007 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 58,
+      "at": "2026-11-27T19:55:45.110578Z",
+      "actor": "worker007",
+      "action": "checkpoint",
+      "task": "CODE-007",
+      "summary": "Actual /root/worker007 delivered Scene hierarchy and world transforms; 2075 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 59,
+      "at": "2026-11-27T19:55:45.755073Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,

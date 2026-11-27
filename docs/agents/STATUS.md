@@ -3,11 +3,11 @@
 # Agent project status
 
 - **Project:** Game Engine
-- **Ledger revision:** 46
-- **Recorded update:** 2026\-11\-27T19:47:45.047124Z
+- **Ledger revision:** 59
+- **Recorded update:** 2026\-11\-27T19:55:45.755073Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 914b4fb50dfb253768abeeddf8794242cd2a9cce6ee54a6543395d781445fbe5
-- **Source files:** 116
+- **Source fingerprint:** 66e755f584ee4ed18fb692fce5cc9dfbb5812d5927675e6867d12271b16001ae
+- **Source files:** 122
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -47,11 +47,14 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 | CODE\-003: Bounded binary serialization | 3 | M1 | in\_progress | worker003 | none | Integrate real consumers; source delivered, runtime validation deferred by user request. |
 | CODE\-004: Entity component registry and deferred mutations | 4 | M1 | in\_progress | worker004 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-005: Bounded task executor and dependency graph | 5 | M1 | in\_progress | worker005 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-006: Virtual filesystem mounts and bounded file access | 6 | M1 | in\_progress | worker006 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-007: Scene hierarchy and world transforms | 7 | M1 | in\_progress | worker007 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-008: Input devices, action maps and rebinding | 8 | M1 | in\_progress | worker008 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-006: Virtual filesystem mounts and bounded file access | 6 | M1 | in\_progress | worker006 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
+| CODE\-007: Scene hierarchy and world transforms | 7 | M1 | in\_progress | worker007 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
+| CODE\-008: Input devices, action maps and rebinding | 8 | M1 | in\_progress | worker008 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-009: Asset catalog, typed handles and cache | 9 | M1 | in\_progress | worker009 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-010: Mesh topology, primitives and vertex processing | 10 | M1 | in\_progress | worker010 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | OPS\-MACOS: Establish observed macOS foundation qualification | 10 | OPS | blocked | unowned | M0\-FOUNDATION | Inspect the latest macOS job and its logs; identify whether execution is available before changing platform code. |
+| CODE\-011: Images, framebuffers and texture sampling | 11 | M1 | in\_progress | worker011 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-012: Dynamic spatial index and visibility queries | 12 | M1 | in\_progress | worker012 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | M1\-010: Declare the reference platform and playable workload | 100 | M1 | planned \(ready\) | unowned | M0\-FOUNDATION | Read the first\-playable plan and inspect available target evidence; draft the reference\-platform record. |
 | M1\-020: Select one native backend and dependency strategy | 110 | M1 | planned | unowned | M1\-010 | Review ADR0006 and the candidate register; produce an evidence\-backed backend decision and dependency records. |
 | M1\-030: Implement native window and input lifecycle | 120 | M1 | planned | unowned | M1\-020 | Define the minimal platform interface, then wire and test window/input lifecycle on the chosen target. |
@@ -158,8 +161,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 27
 - Write scope: engine/io/include/ge/io/filesystem.hpp, engine/io/src/filesystem.cpp
 - Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Preserved work: Actual /root/worker006 delivered Virtual filesystem mounts and bounded file access; 1684 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 
 ### CODE\-007
 
@@ -168,8 +171,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 34
 - Write scope: engine/scene/include/ge/scene/scene.hpp, engine/scene/src/scene.cpp
 - Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Preserved work: Actual /root/worker007 delivered Scene hierarchy and world transforms; 2075 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 
 ### CODE\-008
 
@@ -178,8 +181,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 37
 - Write scope: engine/input/include/ge/input/actions.hpp, engine/input/src/actions.cpp
 - Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Preserved work: Actual /root/worker008 delivered Input devices, action maps and rebinding; 2007 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 
 ### CODE\-009
 
@@ -201,6 +204,36 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Preserved work: Not started.
 - Next action: Update policy declarations by source inspection; checks remain unrun under current user instruction.
 
+### CODE\-010
+
+- Status: in\_progress
+- Owner: worker010
+- Claim revision: 50
+- Write scope: engine/geometry/include/ge/geometry/mesh.hpp, engine/geometry/src/mesh.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-011
+
+- Status: in\_progress
+- Owner: worker011
+- Claim revision: 53
+- Write scope: engine/render/include/ge/render/image.hpp, engine/render/src/image.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-012
+
+- Status: in\_progress
+- Owner: worker012
+- Claim revision: 56
+- Write scope: engine/spatial/include/ge/spatial/index.hpp, engine/spatial/src/index.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
 
 ## Evidence observations
 
@@ -220,19 +253,6 @@ These are historical observations. A pass neither completes a task nor remains c
 
 ## Recent operations
 
-- Revision 27 — 2026\-11\-27T19:38:41.237046Z — worker006: claim CODE\-006. Claimed CODE\-006 with its recorded write scope.
-- Revision 28 — 2026\-11\-27T19:40:07.160190Z — worker001: checkpoint CODE\-001. Actual /root/worker001 delivered original source; 2193 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.
-- Revision 29 — 2026\-11\-27T19:40:07.713549Z — worker002: checkpoint CODE\-002. Actual /root/worker002 delivered original source; 1355 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.
-- Revision 30 — 2026\-11\-27T19:40:08.186621Z — worker003: checkpoint CODE\-003. Actual /root/worker003 delivered original source; 1527 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.
-- Revision 31 — 2026\-11\-27T19:40:23.638020Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
-- Revision 32 — 2026\-11\-27T19:42:22.390010Z — coordinator: add CODE\-007. Added planned task CODE\-007: Scene hierarchy and world transforms.
-- Revision 33 — 2026\-11\-27T19:42:22.648665Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 34 — 2026\-11\-27T19:42:22.989770Z — worker007: claim CODE\-007. Claimed CODE\-007 with its recorded write scope.
-- Revision 35 — 2026\-11\-27T19:42:23.126555Z — coordinator: add CODE\-008. Added planned task CODE\-008: Input devices, action maps and rebinding.
-- Revision 36 — 2026\-11\-27T19:42:23.272729Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 37 — 2026\-11\-27T19:42:23.416428Z — worker008: claim CODE\-008. Claimed CODE\-008 with its recorded write scope.
-- Revision 38 — 2026\-11\-27T19:42:23.549112Z — coordinator: add CODE\-009. Added planned task CODE\-009: Asset catalog, typed handles and cache.
-- Revision 39 — 2026\-11\-27T19:42:23.694997Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
 - Revision 40 — 2026\-11\-27T19:42:23.857877Z — worker009: claim CODE\-009. Claimed CODE\-009 with its recorded write scope.
 - Revision 41 — 2026\-11\-27T19:44:07.782501Z — worker004: checkpoint CODE\-004. Actual /root/worker004 delivered Entity component registry and deferred mutations; 1354 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 42 — 2026\-11\-27T19:44:45.219274Z — coordinator: add CODE\-DEPENDENCIES. Added planned task CODE\-DEPENDENCIES: Declare runtime expansion dependency policy.
@@ -240,5 +260,18 @@ These are historical observations. A pass neither completes a task nor remains c
 - Revision 44 — 2026\-11\-27T19:44:45.913357Z — coordinator: claim CODE\-DEPENDENCIES. Claimed CODE\-DEPENDENCIES with its recorded write scope.
 - Revision 45 — 2026\-11\-27T19:47:16.699363Z — worker005: checkpoint CODE\-005. Actual /root/worker005 delivered Bounded task executor and dependency graph; 1558 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 46 — 2026\-11\-27T19:47:45.047124Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
+- Revision 47 — 2026\-11\-27T19:49:06.031405Z — worker006: checkpoint CODE\-006. Actual /root/worker006 delivered Virtual filesystem mounts and bounded file access; 1684 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Revision 48 — 2026\-11\-27T19:49:06.291072Z — coordinator: add CODE\-010. Added planned task CODE\-010: Mesh topology, primitives and vertex processing.
+- Revision 49 — 2026\-11\-27T19:49:06.491691Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 50 — 2026\-11\-27T19:49:06.694739Z — worker010: claim CODE\-010. Claimed CODE\-010 with its recorded write scope.
+- Revision 51 — 2026\-11\-27T19:49:06.871897Z — coordinator: add CODE\-011. Added planned task CODE\-011: Images, framebuffers and texture sampling.
+- Revision 52 — 2026\-11\-27T19:49:07.077381Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 53 — 2026\-11\-27T19:49:07.280778Z — worker011: claim CODE\-011. Claimed CODE\-011 with its recorded write scope.
+- Revision 54 — 2026\-11\-27T19:49:07.430669Z — coordinator: add CODE\-012. Added planned task CODE\-012: Dynamic spatial index and visibility queries.
+- Revision 55 — 2026\-11\-27T19:49:07.602122Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 56 — 2026\-11\-27T19:49:07.903712Z — worker012: claim CODE\-012. Claimed CODE\-012 with its recorded write scope.
+- Revision 57 — 2026\-11\-27T19:54:35.040477Z — worker008: checkpoint CODE\-008. Actual /root/worker008 delivered Input devices, action maps and rebinding; 2007 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Revision 58 — 2026\-11\-27T19:55:45.110578Z — worker007: checkpoint CODE\-007. Actual /root/worker007 delivered Scene hierarchy and world transforms; 2075 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Revision 59 — 2026\-11\-27T19:55:45.755073Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 
 The canonical ledger retains the complete operation history.

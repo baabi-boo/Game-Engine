@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 46
-- **Recorded update:** 2026\-11\-27T19:47:45.047124Z
+- **Ledger revision:** 59
+- **Recorded update:** 2026\-11\-27T19:55:45.755073Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 914b4fb50dfb253768abeeddf8794242cd2a9cce6ee54a6543395d781445fbe5
-- **Source files:** 116
+- **Source fingerprint:** 66e755f584ee4ed18fb692fce5cc9dfbb5812d5927675e6867d12271b16001ae
+- **Source files:** 122
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -184,9 +184,9 @@ Implement Virtual filesystem mounts and bounded file access. User\-authorized so
 - Write scope: engine/io/include/ge/io/filesystem.hpp, engine/io/src/filesystem.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker006 delivered Virtual filesystem mounts and bounded file access; 1684 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/io/include/ge/io/filesystem.hpp, engine/io/src/filesystem.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -204,9 +204,9 @@ Implement Scene hierarchy and world transforms. User\-authorized source\-only ca
 - Write scope: engine/scene/include/ge/scene/scene.hpp, engine/scene/src/scene.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker007 delivered Scene hierarchy and world transforms; 2075 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/scene/include/ge/scene/scene.hpp, engine/scene/src/scene.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -224,9 +224,9 @@ Implement Input devices, action maps and rebinding. User\-authorized source\-onl
 - Write scope: engine/input/include/ge/input/actions.hpp, engine/input/src/actions.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker008 delivered Input devices, action maps and rebinding; 2007 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/input/include/ge/input/actions.hpp, engine/input/src/actions.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -256,6 +256,26 @@ Acceptance:
 
 - dev: no receipt.
 
+### CODE\-010: Mesh topology, primitives and vertex processing
+
+Implement Mesh topology, primitives and vertex processing. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker010
+- Write scope: engine/geometry/include/ge/geometry/mesh.hpp, engine/geometry/src/mesh.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_mesh\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
 ### OPS\-MACOS: Establish observed macOS foundation qualification
 
 Inspect current hosted or native macOS results and address only demonstrated platform failures. Preserve Linux and Windows gates.
@@ -277,6 +297,46 @@ Acceptance:
 
 - repository: no receipt.
 - workflow: no receipt.
+
+### CODE\-011: Images, framebuffers and texture sampling
+
+Implement Images, framebuffers and texture sampling. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker011
+- Write scope: engine/render/include/ge/render/image.hpp, engine/render/src/image.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_image\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-012: Dynamic spatial index and visibility queries
+
+Implement Dynamic spatial index and visibility queries. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker012
+- Write scope: engine/spatial/include/ge/spatial/index.hpp, engine/spatial/src/index.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_index\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
 
 ### M1\-010: Declare the reference platform and playable workload
 

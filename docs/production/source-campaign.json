@@ -72,23 +72,56 @@
       "agent_id": "/root/worker006",
       "task_id": "CODE-006",
       "wave": 2,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Virtual filesystem mounts and bounded file access",
+      "files": [
+        "engine/io/include/ge/io/filesystem.hpp",
+        "engine/io/src/filesystem.cpp"
+      ],
+      "code_lines": 1684
     },
     {
       "number": 7,
       "agent_id": "/root/worker007",
       "task_id": "CODE-007",
       "wave": 3,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Scene hierarchy and world transforms",
+      "files": [
+        "engine/scene/include/ge/scene/scene.hpp",
+        "engine/scene/src/scene.cpp"
+      ],
+      "code_lines": 2075
     },
     {
       "number": 8,
       "agent_id": "/root/worker008",
       "task_id": "CODE-008",
       "wave": 3,
+      "status": "source_delivered",
+      "title": "Input devices, action maps and rebinding",
+      "files": [
+        "engine/input/include/ge/input/actions.hpp",
+        "engine/input/src/actions.cpp"
+      ],
+      "code_lines": 2007
+    },
+    {
+      "number": 9,
+      "agent_id": "/root/worker009",
+      "task_id": "CODE-009",
+      "wave": 3,
+      "status": "implementing"
+    },
+    {
+      "number": 10,
+      "agent_id": "/root/worker010",
+      "task_id": "CODE-010",
+      "wave": 4,
       "status": "implementing"
     }
   ],
-  "delivered_worker_count": 5,
-  "counted_delivered_worker_code_lines": 7987
+  "delivered_worker_count": 8,
+  "counted_delivered_worker_code_lines": 13753,
+  "baseline_engine_application_code_lines": 1727
 }
