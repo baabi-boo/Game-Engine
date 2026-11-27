@@ -423,7 +423,13 @@
       "agent_id": "/root/worker033",
       "task_id": "CODE-033",
       "wave": 11,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Rigid body constraints and joints",
+      "files": [
+        "engine/physics/include/ge/physics/constraints.hpp",
+        "engine/physics/src/constraints.cpp"
+      ],
+      "code_lines": 1537
     },
     {
       "number": 34,
@@ -438,9 +444,16 @@
       "task_id": "CODE-035",
       "wave": 12,
       "status": "implementing"
+    },
+    {
+      "number": 36,
+      "agent_id": "/root/worker036",
+      "task_id": "CODE-036",
+      "wave": 12,
+      "status": "implementing"
     }
   ],
-  "delivered_worker_count": 32,
-  "counted_delivered_worker_code_lines": 45753,
+  "delivered_worker_count": 33,
+  "counted_delivered_worker_code_lines": 47290,
   "baseline_engine_application_code_lines": 1727
 }

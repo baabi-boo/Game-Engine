@@ -3,11 +3,11 @@
 # Agent project status
 
 - **Project:** Game Engine
-- **Ledger revision:** 203
-- **Recorded update:** 2026\-11\-27T21:44:41.548310Z
+- **Ledger revision:** 205
+- **Recorded update:** 2026\-11\-27T21:49:41.406012Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 2e95582ff6eec5f813f6a40ae43b5d908a12e15172eb7146ef4674664b920c2a
-- **Source files:** 170
+- **Source fingerprint:** 5c92a0e27567e259c347108cf8320d86389efb19a29d2b882f6e3eed99d57f4c
+- **Source files:** 172
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -75,7 +75,7 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 | CODE\-030: Light collection, shadows and illumination | 30 | M1 | in\_progress | worker030 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-031: Render pass graph and transient resources | 31 | M1 | in\_progress | worker031 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-032: Particle emission, simulation and trails | 32 | M1 | in\_progress | worker032 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-033: Rigid body constraints and joints | 33 | M1 | in\_progress | worker033 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-033: Rigid body constraints and joints | 33 | M1 | in\_progress | worker033 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-034: Versioned scene serialization and transactions | 34 | M1 | in\_progress | worker034 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-035: Bounded bytecode virtual machine | 35 | M1 | in\_progress | worker035 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-036: Interaction targeting, triggers and actions | 36 | M1 | in\_progress | worker036 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
@@ -477,8 +477,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 140
 - Write scope: engine/physics/include/ge/physics/constraints.hpp, engine/physics/src/constraints.cpp
 - Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Preserved work: Actual /root/worker033 delivered Rigid body constraints and joints; 1537 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 
 ### CODE\-034
 
@@ -649,8 +649,6 @@ These are historical observations. A pass neither completes a task nor remains c
 
 ## Recent operations
 
-- Revision 184 — 2026\-11\-27T21:27:22.485934Z — coordinator: add CODE\-045. Added planned task CODE\-045: Transactional save journal and recovery.
-- Revision 185 — 2026\-11\-27T21:27:23.058519Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
 - Revision 186 — 2026\-11\-27T21:27:23.728327Z — worker045: claim CODE\-045. Claimed CODE\-045 with its recorded write scope.
 - Revision 187 — 2026\-11\-27T21:28:31.176482Z — worker029: checkpoint CODE\-029. Actual /root/worker029 delivered Vegetation distribution and instancing; 1317 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 188 — 2026\-11\-27T21:28:56.478604Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
@@ -669,5 +667,7 @@ These are historical observations. A pass neither completes a task nor remains c
 - Revision 201 — 2026\-11\-27T21:43:33.713874Z — worker048: claim CODE\-048. Claimed CODE\-048 with its recorded write scope.
 - Revision 202 — 2026\-11\-27T21:44:40.310894Z — worker032: checkpoint CODE\-032. Actual /root/worker032 delivered Particle emission, simulation and trails; 1436 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 203 — 2026\-11\-27T21:44:41.548310Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
+- Revision 204 — 2026\-11\-27T21:49:40.430774Z — worker033: checkpoint CODE\-033. Actual /root/worker033 delivered Rigid body constraints and joints; 1537 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Revision 205 — 2026\-11\-27T21:49:41.406012Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 
 The canonical ledger retains the complete operation history.

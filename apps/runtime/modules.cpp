@@ -29,6 +29,7 @@
 #include <ge/render/lighting.hpp>
 #include <ge/render/graph.hpp>
 #include <ge/effects/particles.hpp>
+#include <ge/physics/constraints.hpp>
 
 namespace ge::application {
 void install_modules(core::Kernel& kernel) {
@@ -61,6 +62,7 @@ void install_modules(core::Kernel& kernel) {
     ge::render::register_lighting(kernel);
     ge::render::register_graph(kernel);
     ge::effects::register_particles(kernel);
+    ge::physics::register_constraints(kernel);
     (void)kernel.order_after("spatial.sync", "geometry.mesh.bounds");
     (void)kernel.order_after("geometry.mesh.bounds", "camera.update");
     (void)kernel.order_after("geometry.mesh.bounds", "terrain.vegetation");

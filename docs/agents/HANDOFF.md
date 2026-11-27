@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 203
-- **Recorded update:** 2026\-11\-27T21:44:41.548310Z
+- **Ledger revision:** 205
+- **Recorded update:** 2026\-11\-27T21:49:41.406012Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 2e95582ff6eec5f813f6a40ae43b5d908a12e15172eb7146ef4674664b920c2a
-- **Source files:** 170
+- **Source fingerprint:** 5c92a0e27567e259c347108cf8320d86389efb19a29d2b882f6e3eed99d57f4c
+- **Source files:** 172
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -746,9 +746,9 @@ Implement Rigid body constraints and joints. User\-authorized source\-only campa
 - Write scope: engine/physics/include/ge/physics/constraints.hpp, engine/physics/src/constraints.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker033 delivered Rigid body constraints and joints; 1537 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/physics/include/ge/physics/constraints.hpp, engine/physics/src/constraints.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:

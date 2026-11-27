@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 203,
-  "updated_at": "2026-11-27T21:44:41.548310Z",
+  "revision": 205,
+  "updated_at": "2026-11-27T21:49:41.406012Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "2e95582ff6eec5f813f6a40ae43b5d908a12e15172eb7146ef4674664b920c2a",
-    "file_count": 170
+    "sha256": "5c92a0e27567e259c347108cf8320d86389efb19a29d2b882f6e3eed99d57f4c",
+    "file_count": 172
   },
   "milestones": [
     {
@@ -2330,9 +2330,12 @@
       "claim_revision": 140,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker033 delivered Rigid body constraints and joints; 1537 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/physics/include/ge/physics/constraints.hpp",
+          "engine/physics/src/constraints.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -4556,6 +4559,22 @@
     {
       "revision": 203,
       "at": "2026-11-27T21:44:41.548310Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 204,
+      "at": "2026-11-27T21:49:40.430774Z",
+      "actor": "worker033",
+      "action": "checkpoint",
+      "task": "CODE-033",
+      "summary": "Actual /root/worker033 delivered Rigid body constraints and joints; 1537 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 205,
+      "at": "2026-11-27T21:49:41.406012Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,
