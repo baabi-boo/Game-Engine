@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 59,
-  "updated_at": "2026-11-27T19:55:45.755073Z",
+  "revision": 82,
+  "updated_at": "2026-11-27T20:12:01.725979Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "66e755f584ee4ed18fb692fce5cc9dfbb5812d5927675e6867d12271b16001ae",
-    "file_count": 122
+    "sha256": "562f75a84fd57faf546dd7a6bf9858c74f44f1e84eabe7903964d0afcb87c79d",
+    "file_count": 130
   },
   "milestones": [
     {
@@ -1510,9 +1510,12 @@
       "claim_revision": 40,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker009 delivered Asset catalog, typed handles and cache; 1634 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/assets/include/ge/assets/catalog.hpp",
+          "engine/assets/src/catalog.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -1568,9 +1571,12 @@
       "claim_revision": 50,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker010 delivered Mesh topology, primitives and vertex processing; 1261 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/geometry/include/ge/geometry/mesh.hpp",
+          "engine/geometry/src/mesh.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -1598,9 +1604,12 @@
       "claim_revision": 53,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker011 delivered Images, framebuffers and texture sampling; 1248 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/render/include/ge/render/image.hpp",
+          "engine/render/src/image.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -1626,6 +1635,189 @@
       "status": "in_progress",
       "owner": "worker012",
       "claim_revision": 56,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Actual /root/worker012 delivered Dynamic spatial index and visibility queries; 1225 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/spatial/include/ge/spatial/index.hpp",
+          "engine/spatial/src/index.cpp"
+        ]
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-013",
+      "title": "Collision shapes and narrowphase contacts",
+      "milestone": "M1",
+      "priority": 13,
+      "description": "Implement Collision shapes and narrowphase contacts. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/physics/include/ge/physics/collision.hpp",
+        "engine/physics/src/collision.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_collision(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker013",
+      "claim_revision": 62,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-014",
+      "title": "Rigid body integration and contact solving",
+      "milestone": "M1",
+      "priority": 14,
+      "description": "Implement Rigid body integration and contact solving. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/physics/include/ge/physics/dynamics.hpp",
+        "engine/physics/src/dynamics.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_dynamics(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker014",
+      "claim_revision": 65,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-015",
+      "title": "Skeletons, poses and sampled animation",
+      "milestone": "M1",
+      "priority": 15,
+      "description": "Implement Skeletons, poses and sampled animation. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/animation/include/ge/animation/skeleton.hpp",
+        "engine/animation/src/skeleton.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_skeleton(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker015",
+      "claim_revision": 68,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-016",
+      "title": "Audio buffers, voices and mixing graph",
+      "milestone": "M1",
+      "priority": 16,
+      "description": "Implement Audio buffers, voices and mixing graph. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/audio/include/ge/audio/mixer.hpp",
+        "engine/audio/src/mixer.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_mixer(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker016",
+      "claim_revision": 74,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-017",
+      "title": "Graph and grid pathfinding",
+      "milestone": "M1",
+      "priority": 17,
+      "description": "Implement Graph and grid pathfinding. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/navigation/include/ge/navigation/pathfinding.hpp",
+        "engine/navigation/src/pathfinding.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_pathfinding(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker017",
+      "claim_revision": 77,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-018",
+      "title": "Materials and CPU shading",
+      "milestone": "M1",
+      "priority": 18,
+      "description": "Implement Materials and CPU shading. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/render/include/ge/render/material.hpp",
+        "engine/render/src/material.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_material(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker018",
+      "claim_revision": 80,
       "blocker": null,
       "checkpoint": {
         "summary": "Not started.",
@@ -2252,6 +2444,190 @@
     {
       "revision": 59,
       "at": "2026-11-27T19:55:45.755073Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 60,
+      "at": "2026-11-27T19:57:21.662997Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-013",
+      "summary": "Added planned task CODE-013: Collision shapes and narrowphase contacts."
+    },
+    {
+      "revision": 61,
+      "at": "2026-11-27T19:57:22.109367Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 62,
+      "at": "2026-11-27T19:57:22.437754Z",
+      "actor": "worker013",
+      "action": "claim",
+      "task": "CODE-013",
+      "summary": "Claimed CODE-013 with its recorded write scope."
+    },
+    {
+      "revision": 63,
+      "at": "2026-11-27T19:57:22.750368Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-014",
+      "summary": "Added planned task CODE-014: Rigid body integration and contact solving."
+    },
+    {
+      "revision": 64,
+      "at": "2026-11-27T19:57:23.106512Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 65,
+      "at": "2026-11-27T19:57:23.447476Z",
+      "actor": "worker014",
+      "action": "claim",
+      "task": "CODE-014",
+      "summary": "Claimed CODE-014 with its recorded write scope."
+    },
+    {
+      "revision": 66,
+      "at": "2026-11-27T19:57:23.767654Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-015",
+      "summary": "Added planned task CODE-015: Skeletons, poses and sampled animation."
+    },
+    {
+      "revision": 67,
+      "at": "2026-11-27T19:57:24.121244Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 68,
+      "at": "2026-11-27T19:57:24.463549Z",
+      "actor": "worker015",
+      "action": "claim",
+      "task": "CODE-015",
+      "summary": "Claimed CODE-015 with its recorded write scope."
+    },
+    {
+      "revision": 69,
+      "at": "2026-11-27T20:02:01.436542Z",
+      "actor": "worker009",
+      "action": "checkpoint",
+      "task": "CODE-009",
+      "summary": "Actual /root/worker009 delivered Asset catalog, typed handles and cache; 1634 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 70,
+      "at": "2026-11-27T20:04:44.047879Z",
+      "actor": "worker010",
+      "action": "checkpoint",
+      "task": "CODE-010",
+      "summary": "Actual /root/worker010 delivered Mesh topology, primitives and vertex processing; 1261 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 71,
+      "at": "2026-11-27T20:10:00.656158Z",
+      "actor": "worker011",
+      "action": "checkpoint",
+      "task": "CODE-011",
+      "summary": "Actual /root/worker011 delivered Images, framebuffers and texture sampling; 1248 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 72,
+      "at": "2026-11-27T20:10:01.125571Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-016",
+      "summary": "Added planned task CODE-016: Audio buffers, voices and mixing graph."
+    },
+    {
+      "revision": 73,
+      "at": "2026-11-27T20:10:01.547843Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 74,
+      "at": "2026-11-27T20:10:01.962307Z",
+      "actor": "worker016",
+      "action": "claim",
+      "task": "CODE-016",
+      "summary": "Claimed CODE-016 with its recorded write scope."
+    },
+    {
+      "revision": 75,
+      "at": "2026-11-27T20:10:02.331185Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-017",
+      "summary": "Added planned task CODE-017: Graph and grid pathfinding."
+    },
+    {
+      "revision": 76,
+      "at": "2026-11-27T20:10:02.681693Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 77,
+      "at": "2026-11-27T20:10:02.964872Z",
+      "actor": "worker017",
+      "action": "claim",
+      "task": "CODE-017",
+      "summary": "Claimed CODE-017 with its recorded write scope."
+    },
+    {
+      "revision": 78,
+      "at": "2026-11-27T20:10:03.170759Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-018",
+      "summary": "Added planned task CODE-018: Materials and CPU shading."
+    },
+    {
+      "revision": 79,
+      "at": "2026-11-27T20:10:03.402841Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 80,
+      "at": "2026-11-27T20:10:03.642366Z",
+      "actor": "worker018",
+      "action": "claim",
+      "task": "CODE-018",
+      "summary": "Claimed CODE-018 with its recorded write scope."
+    },
+    {
+      "revision": 81,
+      "at": "2026-11-27T20:12:01.011404Z",
+      "actor": "worker012",
+      "action": "checkpoint",
+      "task": "CODE-012",
+      "summary": "Actual /root/worker012 delivered Dynamic spatial index and visibility queries; 1225 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 82,
+      "at": "2026-11-27T20:12:01.725979Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,

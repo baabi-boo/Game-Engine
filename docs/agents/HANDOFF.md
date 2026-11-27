@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 59
-- **Recorded update:** 2026\-11\-27T19:55:45.755073Z
+- **Ledger revision:** 82
+- **Recorded update:** 2026\-11\-27T20:12:01.725979Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 66e755f584ee4ed18fb692fce5cc9dfbb5812d5927675e6867d12271b16001ae
-- **Source files:** 122
+- **Source fingerprint:** 562f75a84fd57faf546dd7a6bf9858c74f44f1e84eabe7903964d0afcb87c79d
+- **Source files:** 130
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -244,9 +244,9 @@ Implement Asset catalog, typed handles and cache. User\-authorized source\-only 
 - Write scope: engine/assets/include/ge/assets/catalog.hpp, engine/assets/src/catalog.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker009 delivered Asset catalog, typed handles and cache; 1634 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/assets/include/ge/assets/catalog.hpp, engine/assets/src/catalog.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -264,9 +264,9 @@ Implement Mesh topology, primitives and vertex processing. User\-authorized sour
 - Write scope: engine/geometry/include/ge/geometry/mesh.hpp, engine/geometry/src/mesh.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker010 delivered Mesh topology, primitives and vertex processing; 1261 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/geometry/include/ge/geometry/mesh.hpp, engine/geometry/src/mesh.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -306,9 +306,9 @@ Implement Images, framebuffers and texture sampling. User\-authorized source\-on
 - Write scope: engine/render/include/ge/render/image.hpp, engine/render/src/image.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker011 delivered Images, framebuffers and texture sampling; 1248 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/render/include/ge/render/image.hpp, engine/render/src/image.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -326,6 +326,26 @@ Implement Dynamic spatial index and visibility queries. User\-authorized source\
 - Write scope: engine/spatial/include/ge/spatial/index.hpp, engine/spatial/src/index.cpp
 - Dependencies: none
 - Blocker: none
+- Checkpoint: Actual /root/worker012 delivered Dynamic spatial index and visibility queries; 1225 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/spatial/include/ge/spatial/index.hpp, engine/spatial/src/index.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_index\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-013: Collision shapes and narrowphase contacts
+
+Implement Collision shapes and narrowphase contacts. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker013
+- Write scope: engine/physics/include/ge/physics/collision.hpp, engine/physics/src/collision.cpp
+- Dependencies: none
+- Blocker: none
 - Checkpoint: Not started.
 - Files: none recorded
 - Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
@@ -334,7 +354,107 @@ Implement Dynamic spatial index and visibility queries. User\-authorized source\
 Acceptance:
 
 - Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
-- Expose a working register\_index\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+- Expose a working register\_collision\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-014: Rigid body integration and contact solving
+
+Implement Rigid body integration and contact solving. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker014
+- Write scope: engine/physics/include/ge/physics/dynamics.hpp, engine/physics/src/dynamics.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_dynamics\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-015: Skeletons, poses and sampled animation
+
+Implement Skeletons, poses and sampled animation. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker015
+- Write scope: engine/animation/include/ge/animation/skeleton.hpp, engine/animation/src/skeleton.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_skeleton\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-016: Audio buffers, voices and mixing graph
+
+Implement Audio buffers, voices and mixing graph. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker016
+- Write scope: engine/audio/include/ge/audio/mixer.hpp, engine/audio/src/mixer.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_mixer\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-017: Graph and grid pathfinding
+
+Implement Graph and grid pathfinding. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker017
+- Write scope: engine/navigation/include/ge/navigation/pathfinding.hpp, engine/navigation/src/pathfinding.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_pathfinding\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-018: Materials and CPU shading
+
+Implement Materials and CPU shading. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker018
+- Write scope: engine/render/include/ge/render/material.hpp, engine/render/src/material.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_material\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
 
 - dev: no receipt.
 

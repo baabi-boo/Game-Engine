@@ -5,6 +5,10 @@ set(GE_ENGINE_MODULES
     "io"
     "scene"
     "input"
+    "assets"
+    "geometry"
+    "render"
+    "spatial"
 )
 set(GE_ENGINE_INCLUDE_ROOTS
     "${PROJECT_SOURCE_DIR}/engine/math/include"
@@ -13,6 +17,10 @@ set(GE_ENGINE_INCLUDE_ROOTS
     "${PROJECT_SOURCE_DIR}/engine/io/include"
     "${PROJECT_SOURCE_DIR}/engine/scene/include"
     "${PROJECT_SOURCE_DIR}/engine/input/include"
+    "${PROJECT_SOURCE_DIR}/engine/assets/include"
+    "${PROJECT_SOURCE_DIR}/engine/geometry/include"
+    "${PROJECT_SOURCE_DIR}/engine/render/include"
+    "${PROJECT_SOURCE_DIR}/engine/spatial/include"
 )
 set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/math/src/math.cpp"
@@ -21,6 +29,10 @@ set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/io/src/filesystem.cpp"
     "${PROJECT_SOURCE_DIR}/engine/scene/src/scene.cpp"
     "${PROJECT_SOURCE_DIR}/engine/input/src/actions.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/assets/src/catalog.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/geometry/src/mesh.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/render/src/image.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/spatial/src/index.cpp"
 )
 set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/math/include/ge/math/math.hpp"
@@ -29,4 +41,8 @@ set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/io/include/ge/io/filesystem.hpp"
     "${PROJECT_SOURCE_DIR}/engine/scene/include/ge/scene/scene.hpp"
     "${PROJECT_SOURCE_DIR}/engine/input/include/ge/input/actions.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/assets/include/ge/assets/catalog.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/geometry/include/ge/geometry/mesh.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/render/include/ge/render/image.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/spatial/include/ge/spatial/index.hpp"
 )

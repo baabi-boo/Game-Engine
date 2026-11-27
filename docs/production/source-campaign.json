@@ -111,17 +111,76 @@
       "agent_id": "/root/worker009",
       "task_id": "CODE-009",
       "wave": 3,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Asset catalog, typed handles and cache",
+      "files": [
+        "engine/assets/include/ge/assets/catalog.hpp",
+        "engine/assets/src/catalog.cpp"
+      ],
+      "code_lines": 1634
     },
     {
       "number": 10,
       "agent_id": "/root/worker010",
       "task_id": "CODE-010",
       "wave": 4,
+      "status": "source_delivered",
+      "title": "Mesh topology, primitives and vertex processing",
+      "files": [
+        "engine/geometry/include/ge/geometry/mesh.hpp",
+        "engine/geometry/src/mesh.cpp"
+      ],
+      "code_lines": 1261
+    },
+    {
+      "number": 11,
+      "agent_id": "/root/worker011",
+      "task_id": "CODE-011",
+      "wave": 4,
+      "status": "source_delivered",
+      "title": "Images, framebuffers and texture sampling",
+      "files": [
+        "engine/render/include/ge/render/image.hpp",
+        "engine/render/src/image.cpp"
+      ],
+      "code_lines": 1248
+    },
+    {
+      "number": 12,
+      "agent_id": "/root/worker012",
+      "task_id": "CODE-012",
+      "wave": 4,
+      "status": "source_delivered",
+      "title": "Dynamic spatial index and visibility queries",
+      "files": [
+        "engine/spatial/include/ge/spatial/index.hpp",
+        "engine/spatial/src/index.cpp"
+      ],
+      "code_lines": 1225
+    },
+    {
+      "number": 13,
+      "agent_id": "/root/worker013",
+      "task_id": "CODE-013",
+      "wave": 5,
+      "status": "implementing"
+    },
+    {
+      "number": 14,
+      "agent_id": "/root/worker014",
+      "task_id": "CODE-014",
+      "wave": 5,
+      "status": "implementing"
+    },
+    {
+      "number": 15,
+      "agent_id": "/root/worker015",
+      "task_id": "CODE-015",
+      "wave": 5,
       "status": "implementing"
     }
   ],
-  "delivered_worker_count": 8,
-  "counted_delivered_worker_code_lines": 13753,
+  "delivered_worker_count": 12,
+  "counted_delivered_worker_code_lines": 19121,
   "baseline_engine_application_code_lines": 1727
 }
