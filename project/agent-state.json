@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 142,
-  "updated_at": "2026-11-27T21:04:45.880004Z",
+  "revision": 154,
+  "updated_at": "2026-11-27T21:11:16.975656Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "8a7ff397e2105d239401596a78fea92afe7aab707c52b6fad6d34df0fb591be0",
-    "file_count": 152
+    "sha256": "e0689fd3ddb0aef046d8af08838a882074c71ecbd42d4d9976a282d9f8186d15",
+    "file_count": 156
   },
   "milestones": [
     {
@@ -2033,9 +2033,12 @@
       "claim_revision": 105,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker024 delivered Animation blending and state machines; 1312 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/animation/include/ge/animation/blend.hpp",
+          "engine/animation/src/blend.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -2063,9 +2066,12 @@
       "claim_revision": 111,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker025 delivered Spatial audio and acoustic attenuation; 1223 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/audio/include/ge/audio/spatial.hpp",
+          "engine/audio/src/spatial.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -2301,6 +2307,96 @@
       "status": "in_progress",
       "owner": "worker033",
       "claim_revision": 140,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-034",
+      "title": "Versioned scene serialization and transactions",
+      "milestone": "M1",
+      "priority": 34,
+      "description": "Implement Versioned scene serialization and transactions. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/scene/include/ge/scene/serialization.hpp",
+        "engine/scene/src/serialization.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_serialization(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker034",
+      "claim_revision": 145,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-035",
+      "title": "Bounded bytecode virtual machine",
+      "milestone": "M1",
+      "priority": 35,
+      "description": "Implement Bounded bytecode virtual machine. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/script/include/ge/script/vm.hpp",
+        "engine/script/src/vm.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_vm(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker035",
+      "claim_revision": 148,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-036",
+      "title": "Interaction targeting, triggers and actions",
+      "milestone": "M1",
+      "priority": 36,
+      "description": "Implement Interaction targeting, triggers and actions. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/gameplay/include/ge/gameplay/interaction.hpp",
+        "engine/gameplay/src/interaction.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_interaction(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker036",
+      "claim_revision": 151,
       "blocker": null,
       "checkpoint": {
         "summary": "Not started.",
@@ -3591,6 +3687,102 @@
     {
       "revision": 142,
       "at": "2026-11-27T21:04:45.880004Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 143,
+      "at": "2026-11-27T21:07:01.873366Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-034",
+      "summary": "Added planned task CODE-034: Versioned scene serialization and transactions."
+    },
+    {
+      "revision": 144,
+      "at": "2026-11-27T21:07:02.293370Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 145,
+      "at": "2026-11-27T21:07:02.730418Z",
+      "actor": "worker034",
+      "action": "claim",
+      "task": "CODE-034",
+      "summary": "Claimed CODE-034 with its recorded write scope."
+    },
+    {
+      "revision": 146,
+      "at": "2026-11-27T21:07:03.151659Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-035",
+      "summary": "Added planned task CODE-035: Bounded bytecode virtual machine."
+    },
+    {
+      "revision": 147,
+      "at": "2026-11-27T21:07:03.585103Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 148,
+      "at": "2026-11-27T21:07:03.985498Z",
+      "actor": "worker035",
+      "action": "claim",
+      "task": "CODE-035",
+      "summary": "Claimed CODE-035 with its recorded write scope."
+    },
+    {
+      "revision": 149,
+      "at": "2026-11-27T21:07:04.373513Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-036",
+      "summary": "Added planned task CODE-036: Interaction targeting, triggers and actions."
+    },
+    {
+      "revision": 150,
+      "at": "2026-11-27T21:07:04.783400Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 151,
+      "at": "2026-11-27T21:07:05.217276Z",
+      "actor": "worker036",
+      "action": "claim",
+      "task": "CODE-036",
+      "summary": "Claimed CODE-036 with its recorded write scope."
+    },
+    {
+      "revision": 152,
+      "at": "2026-11-27T21:10:41.393215Z",
+      "actor": "worker025",
+      "action": "checkpoint",
+      "task": "CODE-025",
+      "summary": "Actual /root/worker025 delivered Spatial audio and acoustic attenuation; 1223 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 153,
+      "at": "2026-11-27T21:11:16.084747Z",
+      "actor": "worker024",
+      "action": "checkpoint",
+      "task": "CODE-024",
+      "summary": "Actual /root/worker024 delivered Animation blending and state machines; 1312 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 154,
+      "at": "2026-11-27T21:11:16.975656Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,

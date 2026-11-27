@@ -306,14 +306,26 @@
       "agent_id": "/root/worker024",
       "task_id": "CODE-024",
       "wave": 8,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Animation blending and state machines",
+      "files": [
+        "engine/animation/include/ge/animation/blend.hpp",
+        "engine/animation/src/blend.cpp"
+      ],
+      "code_lines": 1312
     },
     {
       "number": 25,
       "agent_id": "/root/worker025",
       "task_id": "CODE-025",
       "wave": 9,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Spatial audio and acoustic attenuation",
+      "files": [
+        "engine/audio/include/ge/audio/spatial.hpp",
+        "engine/audio/src/spatial.cpp"
+      ],
+      "code_lines": 1223
     },
     {
       "number": 26,
@@ -321,9 +333,23 @@
       "task_id": "CODE-026",
       "wave": 9,
       "status": "implementing"
+    },
+    {
+      "number": 27,
+      "agent_id": "/root/worker027",
+      "task_id": "CODE-027",
+      "wave": 9,
+      "status": "implementing"
+    },
+    {
+      "number": 28,
+      "agent_id": "/root/worker028",
+      "task_id": "CODE-028",
+      "wave": 10,
+      "status": "implementing"
     }
   ],
-  "delivered_worker_count": 23,
-  "counted_delivered_worker_code_lines": 33652,
+  "delivered_worker_count": 25,
+  "counted_delivered_worker_code_lines": 36187,
   "baseline_engine_application_code_lines": 1727
 }

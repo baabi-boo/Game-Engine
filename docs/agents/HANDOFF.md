@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 142
-- **Recorded update:** 2026\-11\-27T21:04:45.880004Z
+- **Ledger revision:** 154
+- **Recorded update:** 2026\-11\-27T21:11:16.975656Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 8a7ff397e2105d239401596a78fea92afe7aab707c52b6fad6d34df0fb591be0
-- **Source files:** 152
+- **Source fingerprint:** e0689fd3ddb0aef046d8af08838a882074c71ecbd42d4d9976a282d9f8186d15
+- **Source files:** 156
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -566,9 +566,9 @@ Implement Animation blending and state machines. User\-authorized source\-only c
 - Write scope: engine/animation/include/ge/animation/blend.hpp, engine/animation/src/blend.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker024 delivered Animation blending and state machines; 1312 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/animation/include/ge/animation/blend.hpp, engine/animation/src/blend.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -586,9 +586,9 @@ Implement Spatial audio and acoustic attenuation. User\-authorized source\-only 
 - Write scope: engine/audio/include/ge/audio/spatial.hpp, engine/audio/src/spatial.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker025 delivered Spatial audio and acoustic attenuation; 1223 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/audio/include/ge/audio/spatial.hpp, engine/audio/src/spatial.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -755,6 +755,66 @@ Acceptance:
 
 - Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
 - Expose a working register\_constraints\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-034: Versioned scene serialization and transactions
+
+Implement Versioned scene serialization and transactions. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker034
+- Write scope: engine/scene/include/ge/scene/serialization.hpp, engine/scene/src/serialization.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_serialization\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-035: Bounded bytecode virtual machine
+
+Implement Bounded bytecode virtual machine. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker035
+- Write scope: engine/script/include/ge/script/vm.hpp, engine/script/src/vm.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_vm\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-036: Interaction targeting, triggers and actions
+
+Implement Interaction targeting, triggers and actions. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker036
+- Write scope: engine/gameplay/include/ge/gameplay/interaction.hpp, engine/gameplay/src/interaction.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_interaction\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
 
 - dev: no receipt.
 

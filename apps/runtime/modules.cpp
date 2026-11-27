@@ -20,6 +20,8 @@
 #include <ge/render/rasterizer.hpp>
 #include <ge/physics/character.hpp>
 #include <ge/physics/vehicle.hpp>
+#include <ge/animation/blend.hpp>
+#include <ge/audio/spatial.hpp>
 
 namespace ge::application {
 void install_modules(core::Kernel& kernel) {
@@ -43,6 +45,8 @@ void install_modules(core::Kernel& kernel) {
     ge::render::register_rasterizer(kernel);
     ge::physics::register_character(kernel);
     ge::physics::register_vehicle(kernel);
+    ge::animation::register_blend(kernel);
+    ge::audio::register_spatial(kernel);
     (void)kernel.order_after("spatial.sync", "geometry.mesh.bounds");
     (void)kernel.order_after("geometry.mesh.bounds", "camera.update");
 }

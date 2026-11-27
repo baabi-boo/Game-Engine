@@ -52,6 +52,8 @@ set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/render/src/rasterizer.cpp"
     "${PROJECT_SOURCE_DIR}/engine/physics/src/character.cpp"
     "${PROJECT_SOURCE_DIR}/engine/physics/src/vehicle.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/animation/src/blend.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/audio/src/spatial.cpp"
 )
 set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/math/include/ge/math/math.hpp"
@@ -75,4 +77,6 @@ set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/render/include/ge/render/rasterizer.hpp"
     "${PROJECT_SOURCE_DIR}/engine/physics/include/ge/physics/character.hpp"
     "${PROJECT_SOURCE_DIR}/engine/physics/include/ge/physics/vehicle.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/animation/include/ge/animation/blend.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/audio/include/ge/audio/spatial.hpp"
 )
