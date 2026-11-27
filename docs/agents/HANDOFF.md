@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 174
-- **Recorded update:** 2026\-11\-27T21:19:14.811039Z
+- **Ledger revision:** 177
+- **Recorded update:** 2026\-11\-27T21:24:25.175253Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 11009d7fd78c46f167fefe51743dfd8b57daa44f03204050c80c5b124d0a7033
-- **Source files:** 158
+- **Source fingerprint:** 4fa1a763799766b0b0445d713cebfbc45c056db7acdea7b0b90938cca8d7edb7
+- **Source files:** 162
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -626,9 +626,9 @@ Implement World partition activation and origin shifts. User\-authorized source\
 - Write scope: engine/scene/include/ge/scene/partition.hpp, engine/scene/src/partition.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker027 delivered World partition activation and origin shifts; 1235 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/scene/include/ge/scene/partition.hpp, engine/scene/src/partition.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -646,9 +646,9 @@ Implement Terrain tiles, sampling and erosion. User\-authorized source\-only cam
 - Write scope: engine/terrain/include/ge/terrain/heightfield.hpp, engine/terrain/src/heightfield.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker028 delivered Terrain tiles, sampling and erosion; 1353 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/terrain/include/ge/terrain/heightfield.hpp, engine/terrain/src/heightfield.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:

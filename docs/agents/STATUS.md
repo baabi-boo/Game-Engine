@@ -3,11 +3,11 @@
 # Agent project status
 
 - **Project:** Game Engine
-- **Ledger revision:** 174
-- **Recorded update:** 2026\-11\-27T21:19:14.811039Z
+- **Ledger revision:** 177
+- **Recorded update:** 2026\-11\-27T21:24:25.175253Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 11009d7fd78c46f167fefe51743dfd8b57daa44f03204050c80c5b124d0a7033
-- **Source files:** 158
+- **Source fingerprint:** 4fa1a763799766b0b0445d713cebfbc45c056db7acdea7b0b90938cca8d7edb7
+- **Source files:** 162
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -69,8 +69,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 | CODE\-024: Animation blending and state machines | 24 | M1 | in\_progress | worker024 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-025: Spatial audio and acoustic attenuation | 25 | M1 | in\_progress | worker025 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-026: Polygon navigation mesh queries and funnels | 26 | M1 | in\_progress | worker026 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-027: World partition activation and origin shifts | 27 | M1 | in\_progress | worker027 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-028: Terrain tiles, sampling and erosion | 28 | M1 | in\_progress | worker028 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-027: World partition activation and origin shifts | 27 | M1 | in\_progress | worker027 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
+| CODE\-028: Terrain tiles, sampling and erosion | 28 | M1 | in\_progress | worker028 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-029: Vegetation distribution and instancing | 29 | M1 | in\_progress | worker029 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-030: Light collection, shadows and illumination | 30 | M1 | in\_progress | worker030 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-031: Render pass graph and transient resources | 31 | M1 | in\_progress | worker031 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
@@ -411,8 +411,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 117
 - Write scope: engine/scene/include/ge/scene/partition.hpp, engine/scene/src/partition.cpp
 - Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Preserved work: Actual /root/worker027 delivered World partition activation and origin shifts; 1235 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 
 ### CODE\-028
 
@@ -421,8 +421,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 124
 - Write scope: engine/terrain/include/ge/terrain/heightfield.hpp, engine/terrain/src/heightfield.cpp
 - Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Preserved work: Actual /root/worker028 delivered Terrain tiles, sampling and erosion; 1353 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 
 ### CODE\-029
 
@@ -583,9 +583,6 @@ These are historical observations. A pass neither completes a task nor remains c
 
 ## Recent operations
 
-- Revision 155 — 2026\-11\-27T21:12:43.976167Z — coordinator: add CODE\-037. Added planned task CODE\-037: Typed signal subscriptions and transactional event dispatch.
-- Revision 156 — 2026\-11\-27T21:12:44.493733Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 157 — 2026\-11\-27T21:12:45.005926Z — worker037: claim CODE\-037. Claimed CODE\-037 with its recorded write scope.
 - Revision 158 — 2026\-11\-27T21:12:45.447978Z — coordinator: add CODE\-038. Added planned task CODE\-038: Curves, tracks and time mapping.
 - Revision 159 — 2026\-11\-27T21:12:45.931766Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
 - Revision 160 — 2026\-11\-27T21:12:46.413656Z — worker038: claim CODE\-038. Claimed CODE\-038 with its recorded write scope.
@@ -603,5 +600,8 @@ These are historical observations. A pass neither completes a task nor remains c
 - Revision 172 — 2026\-11\-27T21:18:02.336441Z — worker042: claim CODE\-042. Claimed CODE\-042 with its recorded write scope.
 - Revision 173 — 2026\-11\-27T21:18:57.467193Z — worker026: checkpoint CODE\-026. Actual /root/worker026 delivered Polygon navigation mesh queries and funnels; 1340 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 174 — 2026\-11\-27T21:19:14.811039Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
+- Revision 175 — 2026\-11\-27T21:23:10.487991Z — worker028: checkpoint CODE\-028. Actual /root/worker028 delivered Terrain tiles, sampling and erosion; 1353 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Revision 176 — 2026\-11\-27T21:24:24.267561Z — worker027: checkpoint CODE\-027. Actual /root/worker027 delivered World partition activation and origin shifts; 1235 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Revision 177 — 2026\-11\-27T21:24:25.175253Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 
 The canonical ledger retains the complete operation history.

@@ -345,14 +345,26 @@
       "agent_id": "/root/worker027",
       "task_id": "CODE-027",
       "wave": 9,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "World partition activation and origin shifts",
+      "files": [
+        "engine/scene/include/ge/scene/partition.hpp",
+        "engine/scene/src/partition.cpp"
+      ],
+      "code_lines": 1235
     },
     {
       "number": 28,
       "agent_id": "/root/worker028",
       "task_id": "CODE-028",
       "wave": 10,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Terrain tiles, sampling and erosion",
+      "files": [
+        "engine/terrain/include/ge/terrain/heightfield.hpp",
+        "engine/terrain/src/heightfield.cpp"
+      ],
+      "code_lines": 1353
     },
     {
       "number": 29,
@@ -360,9 +372,16 @@
       "task_id": "CODE-029",
       "wave": 10,
       "status": "implementing"
+    },
+    {
+      "number": 30,
+      "agent_id": "/root/worker030",
+      "task_id": "CODE-030",
+      "wave": 10,
+      "status": "implementing"
     }
   ],
-  "delivered_worker_count": 26,
-  "counted_delivered_worker_code_lines": 37527,
+  "delivered_worker_count": 28,
+  "counted_delivered_worker_code_lines": 40115,
   "baseline_engine_application_code_lines": 1727
 }

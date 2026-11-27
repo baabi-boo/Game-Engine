@@ -13,6 +13,7 @@ set(GE_ENGINE_MODULES
     "animation"
     "audio"
     "navigation"
+    "terrain"
 )
 set(GE_ENGINE_INCLUDE_ROOTS
     "${PROJECT_SOURCE_DIR}/engine/math/include"
@@ -29,6 +30,7 @@ set(GE_ENGINE_INCLUDE_ROOTS
     "${PROJECT_SOURCE_DIR}/engine/animation/include"
     "${PROJECT_SOURCE_DIR}/engine/audio/include"
     "${PROJECT_SOURCE_DIR}/engine/navigation/include"
+    "${PROJECT_SOURCE_DIR}/engine/terrain/include"
 )
 set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/math/src/math.cpp"
@@ -55,6 +57,8 @@ set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/animation/src/blend.cpp"
     "${PROJECT_SOURCE_DIR}/engine/audio/src/spatial.cpp"
     "${PROJECT_SOURCE_DIR}/engine/navigation/src/navmesh.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/scene/src/partition.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/terrain/src/heightfield.cpp"
 )
 set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/math/include/ge/math/math.hpp"
@@ -81,4 +85,6 @@ set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/animation/include/ge/animation/blend.hpp"
     "${PROJECT_SOURCE_DIR}/engine/audio/include/ge/audio/spatial.hpp"
     "${PROJECT_SOURCE_DIR}/engine/navigation/include/ge/navigation/navmesh.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/scene/include/ge/scene/partition.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/terrain/include/ge/terrain/heightfield.hpp"
 )

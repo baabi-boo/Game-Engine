@@ -23,6 +23,8 @@
 #include <ge/animation/blend.hpp>
 #include <ge/audio/spatial.hpp>
 #include <ge/navigation/navmesh.hpp>
+#include <ge/scene/partition.hpp>
+#include <ge/terrain/heightfield.hpp>
 
 namespace ge::application {
 void install_modules(core::Kernel& kernel) {
@@ -49,6 +51,8 @@ void install_modules(core::Kernel& kernel) {
     ge::animation::register_blend(kernel);
     ge::audio::register_spatial(kernel);
     ge::navigation::register_navmesh(kernel);
+    ge::scene::register_partition(kernel);
+    ge::terrain::register_heightfield(kernel);
     (void)kernel.order_after("spatial.sync", "geometry.mesh.bounds");
     (void)kernel.order_after("geometry.mesh.bounds", "camera.update");
 }

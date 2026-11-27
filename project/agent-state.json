@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 174,
-  "updated_at": "2026-11-27T21:19:14.811039Z",
+  "revision": 177,
+  "updated_at": "2026-11-27T21:24:25.175253Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "11009d7fd78c46f167fefe51743dfd8b57daa44f03204050c80c5b124d0a7033",
-    "file_count": 158
+    "sha256": "4fa1a763799766b0b0445d713cebfbc45c056db7acdea7b0b90938cca8d7edb7",
+    "file_count": 162
   },
   "milestones": [
     {
@@ -2132,9 +2132,12 @@
       "claim_revision": 117,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker027 delivered World partition activation and origin shifts; 1235 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/scene/include/ge/scene/partition.hpp",
+          "engine/scene/src/partition.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -2162,9 +2165,12 @@
       "claim_revision": 124,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker028 delivered Terrain tiles, sampling and erosion; 1353 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/terrain/include/ge/terrain/heightfield.hpp",
+          "engine/terrain/src/heightfield.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -4126,6 +4132,30 @@
     {
       "revision": 174,
       "at": "2026-11-27T21:19:14.811039Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 175,
+      "at": "2026-11-27T21:23:10.487991Z",
+      "actor": "worker028",
+      "action": "checkpoint",
+      "task": "CODE-028",
+      "summary": "Actual /root/worker028 delivered Terrain tiles, sampling and erosion; 1353 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 176,
+      "at": "2026-11-27T21:24:24.267561Z",
+      "actor": "worker027",
+      "action": "checkpoint",
+      "task": "CODE-027",
+      "summary": "Actual /root/worker027 delivered World partition activation and origin shifts; 1235 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 177,
+      "at": "2026-11-27T21:24:25.175253Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,
