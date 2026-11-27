@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 341,
-  "updated_at": "2026-11-27T23:41:22.209611Z",
+  "revision": 343,
+  "updated_at": "2026-11-27T23:46:20.389765Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "b4af7eb275dc5f793040ab66b82a236bb25d63b5cf7f5f1ec22b3443aa769ec5",
-    "file_count": 220
+    "sha256": "08567a36349996d11c8fe6cebad402d822d51d69af27bf3f077be0b51fe97256",
+    "file_count": 222
   },
   "milestones": [
     {
@@ -3155,9 +3155,12 @@
       "claim_revision": 256,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker058 delivered Draw batching and instance submission; 1133 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/render/include/ge/render/batching.hpp",
+          "engine/render/src/batching.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -6635,6 +6638,22 @@
     {
       "revision": 341,
       "at": "2026-11-27T23:41:22.209611Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 342,
+      "at": "2026-11-27T23:43:55.311600Z",
+      "actor": "worker058",
+      "action": "checkpoint",
+      "task": "CODE-058",
+      "summary": "Actual /root/worker058 delivered Draw batching and instance submission; 1133 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 343,
+      "at": "2026-11-27T23:46:20.389765Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,

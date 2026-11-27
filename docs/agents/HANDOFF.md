@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 341
-- **Recorded update:** 2026\-11\-27T23:41:22.209611Z
+- **Ledger revision:** 343
+- **Recorded update:** 2026\-11\-27T23:46:20.389765Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** b4af7eb275dc5f793040ab66b82a236bb25d63b5cf7f5f1ec22b3443aa769ec5
-- **Source files:** 220
+- **Source fingerprint:** 08567a36349996d11c8fe6cebad402d822d51d69af27bf3f077be0b51fe97256
+- **Source files:** 222
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -1246,9 +1246,9 @@ Implement Draw batching and instance submission. User\-authorized source\-only c
 - Write scope: engine/render/include/ge/render/batching.hpp, engine/render/src/batching.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker058 delivered Draw batching and instance submission; 1133 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/render/include/ge/render/batching.hpp, engine/render/src/batching.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:

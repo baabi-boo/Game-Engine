@@ -3,11 +3,11 @@
 # Agent project status
 
 - **Project:** Game Engine
-- **Ledger revision:** 341
-- **Recorded update:** 2026\-11\-27T23:41:22.209611Z
+- **Ledger revision:** 343
+- **Recorded update:** 2026\-11\-27T23:46:20.389765Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** b4af7eb275dc5f793040ab66b82a236bb25d63b5cf7f5f1ec22b3443aa769ec5
-- **Source files:** 220
+- **Source fingerprint:** 08567a36349996d11c8fe6cebad402d822d51d69af27bf3f077be0b51fe97256
+- **Source files:** 222
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -100,7 +100,7 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 | CODE\-055: Quest dependencies, progression and journal | 55 | M1 | in\_progress | worker055 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-056: Image postprocessing and tone mapping | 56 | M1 | in\_progress | worker056 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-057: Scene culling and level of detail | 57 | M1 | in\_progress | worker057 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-058: Draw batching and instance submission | 58 | M1 | in\_progress | worker058 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-058: Draw batching and instance submission | 58 | M1 | in\_progress | worker058 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-059: Decal projection and surface blending | 59 | M1 | in\_progress | worker059 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-060: Scene picking and selection models | 60 | M1 | in\_progress | worker060 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-061: Inverse kinematics and pose constraints | 61 | M1 | in\_progress | worker061 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
@@ -757,8 +757,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 256
 - Write scope: engine/render/include/ge/render/batching.hpp, engine/render/src/batching.cpp
 - Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Preserved work: Actual /root/worker058 delivered Draw batching and instance submission; 1133 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 
 ### CODE\-059
 
@@ -979,8 +979,6 @@ These are historical observations. A pass neither completes a task nor remains c
 
 ## Recent operations
 
-- Revision 322 — 2026\-11\-27T23:26:38.566549Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 323 — 2026\-11\-27T23:26:39.893014Z — worker075: claim CODE\-075. Claimed CODE\-075 with its recorded write scope.
 - Revision 324 — 2026\-11\-27T23:26:53.019875Z — worker054: checkpoint CODE\-054. Actual /root/worker054 delivered Dialogue graph execution and conditions; 1464 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 325 — 2026\-11\-27T23:27:11.010706Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 - Revision 326 — 2026\-11\-27T23:30:07.708539Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
@@ -999,5 +997,7 @@ These are historical observations. A pass neither completes a task nor remains c
 - Revision 339 — 2026\-11\-27T23:38:31.450039Z — worker055: checkpoint CODE\-055. Actual /root/worker055 delivered Quest dependencies, progression and journal; 1210 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 340 — 2026\-11\-27T23:40:51.328749Z — worker057: checkpoint CODE\-057. Actual /root/worker057 delivered Scene culling and level of detail; 1244 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 341 — 2026\-11\-27T23:41:22.209611Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
+- Revision 342 — 2026\-11\-27T23:43:55.311600Z — worker058: checkpoint CODE\-058. Actual /root/worker058 delivered Draw batching and instance submission; 1133 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Revision 343 — 2026\-11\-27T23:46:20.389765Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 
 The canonical ledger retains the complete operation history.

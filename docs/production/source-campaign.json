@@ -748,7 +748,13 @@
       "agent_id": "/root/worker058",
       "task_id": "CODE-058",
       "wave": 20,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Draw batching and instance submission",
+      "files": [
+        "engine/render/include/ge/render/batching.hpp",
+        "engine/render/src/batching.cpp"
+      ],
+      "code_lines": 1133
     },
     {
       "number": 59,
@@ -763,10 +769,17 @@
       "task_id": "CODE-060",
       "wave": 20,
       "status": "implementing"
+    },
+    {
+      "number": 61,
+      "agent_id": "/root/worker061",
+      "task_id": "CODE-061",
+      "wave": 21,
+      "status": "implementing"
     }
   ],
-  "delivered_worker_count": 57,
-  "counted_delivered_worker_code_lines": 80427,
+  "delivered_worker_count": 58,
+  "counted_delivered_worker_code_lines": 81560,
   "baseline_engine_application_code_lines": 1727,
   "worker_count_basis": "Per-worker source counts are recorded at frozen delivery. Later coordinator edits connect shared interfaces; the final engine/application total is counted separately from the committed tree."
 }
