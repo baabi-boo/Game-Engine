@@ -60,6 +60,7 @@ set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/scene/src/partition.cpp"
     "${PROJECT_SOURCE_DIR}/engine/terrain/src/heightfield.cpp"
     "${PROJECT_SOURCE_DIR}/engine/terrain/src/vegetation.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/render/src/lighting.cpp"
 )
 set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/math/include/ge/math/math.hpp"
@@ -89,4 +90,5 @@ set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/scene/include/ge/scene/partition.hpp"
     "${PROJECT_SOURCE_DIR}/engine/terrain/include/ge/terrain/heightfield.hpp"
     "${PROJECT_SOURCE_DIR}/engine/terrain/include/ge/terrain/vegetation.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/render/include/ge/render/lighting.hpp"
 )

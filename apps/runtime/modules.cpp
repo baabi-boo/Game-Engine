@@ -26,6 +26,7 @@
 #include <ge/scene/partition.hpp>
 #include <ge/terrain/heightfield.hpp>
 #include <ge/terrain/vegetation.hpp>
+#include <ge/render/lighting.hpp>
 
 namespace ge::application {
 void install_modules(core::Kernel& kernel) {
@@ -55,6 +56,7 @@ void install_modules(core::Kernel& kernel) {
     ge::scene::register_partition(kernel);
     ge::terrain::register_heightfield(kernel);
     ge::terrain::register_vegetation(kernel);
+    ge::render::register_lighting(kernel);
     (void)kernel.order_after("spatial.sync", "geometry.mesh.bounds");
     (void)kernel.order_after("geometry.mesh.bounds", "camera.update");
     (void)kernel.order_after("geometry.mesh.bounds", "terrain.vegetation");

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 188,
-  "updated_at": "2026-11-27T21:28:56.478604Z",
+  "revision": 190,
+  "updated_at": "2026-11-27T21:39:33.765191Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "f4776269ab8d547d980aaaa508b65c7994a83713b95745928f4691662160ee63",
-    "file_count": 164
+    "sha256": "20421a86b28c27437ffc8c2f649c32bafb4da24e5c74d1ef4e7f5a8864c16a25",
+    "file_count": 166
   },
   "milestones": [
     {
@@ -2231,9 +2231,12 @@
       "claim_revision": 130,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker030 delivered Light collection, shadows and illumination; 1302 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/render/include/ge/render/lighting.hpp",
+          "engine/render/src/lighting.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -4337,6 +4340,22 @@
     {
       "revision": 188,
       "at": "2026-11-27T21:28:56.478604Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 189,
+      "at": "2026-11-27T21:35:42.252709Z",
+      "actor": "worker030",
+      "action": "checkpoint",
+      "task": "CODE-030",
+      "summary": "Actual /root/worker030 delivered Light collection, shadows and illumination; 1302 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 190,
+      "at": "2026-11-27T21:39:33.765191Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,
