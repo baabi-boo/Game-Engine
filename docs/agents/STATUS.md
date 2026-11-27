@@ -3,11 +3,11 @@
 # Agent project status
 
 - **Project:** Game Engine
-- **Ledger revision:** 374
-- **Recorded update:** 2026\-11\-27T23:50:27.027138Z
+- **Ledger revision:** 415
+- **Recorded update:** 2026\-11\-27T23:54:07.788473Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 57770e8e9c1a5674b50f345aa098c735cb3fd7f69159670a2092b55e6907ff1a
-- **Source files:** 226
+- **Source fingerprint:** a4efc8b949cd5128dc6c01a13ac843705edbecbaaacb1d0e7da33aa036c3646c
+- **Source files:** 228
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -103,7 +103,7 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 | CODE\-058: Draw batching and instance submission | 58 | M1 | in\_progress | worker058 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-059: Decal projection and surface blending | 59 | M1 | in\_progress | worker059 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-060: Scene picking and selection models | 60 | M1 | in\_progress | worker060 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-061: Inverse kinematics and pose constraints | 61 | M1 | in\_progress | worker061 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-061: Inverse kinematics and pose constraints | 61 | M1 | in\_progress | worker061 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-062: Skeleton retargeting and root motion | 62 | M1 | in\_progress | worker062 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-063: DSP filters, reverberation and effects | 63 | M1 | in\_progress | worker063 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-064: Bounded WAV decoding and audio conversion | 64 | M1 | in\_progress | worker064 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
@@ -130,6 +130,19 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 | CODE\-085: Bounded tracing and performance telemetry | 85 | M1 | in\_progress | worker085 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-086: Runtime console command scripts and variables | 86 | M1 | in\_progress | worker086 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-087: Platform events, clocks and application lifecycle | 87 | M1 | in\_progress | worker087 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-088: Retained layout tree and flex/grid sizing | 88 | M1 | in\_progress | worker088 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-089: Widget models and text layout | 89 | M1 | in\_progress | worker089 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-090: UI focus, pointer capture and accessibility | 90 | M1 | in\_progress | worker090 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-091: Vector paths, tessellation and coverage | 91 | M1 | in\_progress | worker091 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-092: Material expression graph and interpreter | 92 | M1 | in\_progress | worker092 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-093: Network sessions, peers and replay streams | 93 | M1 | in\_progress | worker093 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-094: Native asset bundle writer and reader | 94 | M1 | in\_progress | worker094 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-095: Runtime startup profiles and settings application | 95 | M1 | in\_progress | worker095 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-096: Integrated district actors and interaction loop | 96 | M1 | in\_progress | worker096 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-097: Software presentation and frame export | 97 | M1 | in\_progress | worker097 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-098: Scene, physics, animation and rendering bridges | 98 | M1 | in\_progress | worker098 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-099: Scene asset ingestion and resource binding | 99 | M1 | in\_progress | worker099 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-100: Integrated runtime editing and authoring commands | 100 | M1 | in\_progress | worker100 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | M1\-010: Declare the reference platform and playable workload | 100 | M1 | planned \(ready\) | unowned | M0\-FOUNDATION | Read the first\-playable plan and inspect available target evidence; draft the reference\-platform record. |
 | M1\-020: Select one native backend and dependency strategy | 110 | M1 | planned | unowned | M1\-010 | Review ADR0006 and the candidate register; produce an evidence\-backed backend decision and dependency records. |
 | M1\-030: Implement native window and input lifecycle | 120 | M1 | planned | unowned | M1\-020 | Define the minimal platform interface, then wire and test window/input lifecycle on the chosen target. |
@@ -796,8 +809,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 265
 - Write scope: engine/animation/include/ge/animation/ik.hpp, engine/animation/src/ik.cpp
 - Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Preserved work: Actual /root/worker061 delivered Inverse kinematics and pose constraints; 1169 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 
 ### CODE\-062
 
@@ -1059,6 +1072,136 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Preserved work: Not started.
 - Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
 
+### CODE\-088
+
+- Status: in\_progress
+- Owner: worker088
+- Claim revision: 377
+- Write scope: engine/ui/include/ge/ui/layout.hpp, engine/ui/src/layout.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-089
+
+- Status: in\_progress
+- Owner: worker089
+- Claim revision: 380
+- Write scope: engine/ui/include/ge/ui/widgets.hpp, engine/ui/src/widgets.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-090
+
+- Status: in\_progress
+- Owner: worker090
+- Claim revision: 383
+- Write scope: engine/ui/include/ge/ui/interaction.hpp, engine/ui/src/interaction.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-091
+
+- Status: in\_progress
+- Owner: worker091
+- Claim revision: 386
+- Write scope: engine/render/include/ge/render/vector.hpp, engine/render/src/vector.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-092
+
+- Status: in\_progress
+- Owner: worker092
+- Claim revision: 389
+- Write scope: engine/render/include/ge/render/shader.hpp, engine/render/src/shader.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-093
+
+- Status: in\_progress
+- Owner: worker093
+- Claim revision: 392
+- Write scope: engine/network/include/ge/network/session.hpp, engine/network/src/session.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-094
+
+- Status: in\_progress
+- Owner: worker094
+- Claim revision: 395
+- Write scope: engine/assets/include/ge/assets/bundle.hpp, engine/assets/src/bundle.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-095
+
+- Status: in\_progress
+- Owner: worker095
+- Claim revision: 398
+- Write scope: engine/runtime/include/ge/runtime/configuration.hpp, engine/runtime/src/configuration.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-096
+
+- Status: in\_progress
+- Owner: worker096
+- Claim revision: 401
+- Write scope: engine/gameplay/include/ge/gameplay/district.hpp, engine/gameplay/src/district.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-097
+
+- Status: in\_progress
+- Owner: worker097
+- Claim revision: 404
+- Write scope: engine/render/include/ge/render/presentation.hpp, engine/render/src/presentation.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-098
+
+- Status: in\_progress
+- Owner: worker098
+- Claim revision: 407
+- Write scope: engine/runtime/include/ge/runtime/simulation.hpp, engine/runtime/src/simulation.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-099
+
+- Status: in\_progress
+- Owner: worker099
+- Claim revision: 410
+- Write scope: engine/assets/include/ge/assets/scene\_pipeline.hpp, engine/assets/src/scene\_pipeline.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-100
+
+- Status: in\_progress
+- Owner: worker100
+- Claim revision: 413
+- Write scope: engine/runtime/include/ge/runtime/editor\_host.hpp, engine/runtime/src/editor\_host.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
 
 ## Evidence observations
 
@@ -1078,25 +1221,25 @@ These are historical observations. A pass neither completes a task nor remains c
 
 ## Recent operations
 
-- Revision 355 — 2026\-11\-27T23:48:41.823026Z — coordinator: add CODE\-082. Added planned task CODE\-082: Prefab instantiation and property overrides.
-- Revision 356 — 2026\-11\-27T23:48:43.505239Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 357 — 2026\-11\-27T23:48:45.113007Z — worker082: claim CODE\-082. Claimed CODE\-082 with its recorded write scope.
-- Revision 358 — 2026\-11\-27T23:48:46.776698Z — coordinator: add CODE\-083. Added planned task CODE\-083: Cinematic tracks and scene binding.
-- Revision 359 — 2026\-11\-27T23:48:48.450252Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 360 — 2026\-11\-27T23:48:50.092784Z — worker083: claim CODE\-083. Claimed CODE\-083 with its recorded write scope.
-- Revision 361 — 2026\-11\-27T23:48:51.750856Z — coordinator: add CODE\-084. Added planned task CODE\-084: Debug geometry and scene diagnostics.
-- Revision 362 — 2026\-11\-27T23:48:53.468727Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 363 — 2026\-11\-27T23:48:55.110270Z — worker084: claim CODE\-084. Claimed CODE\-084 with its recorded write scope.
-- Revision 364 — 2026\-11\-27T23:49:23.619834Z — coordinator: add CODE\-085. Added planned task CODE\-085: Bounded tracing and performance telemetry.
-- Revision 365 — 2026\-11\-27T23:49:25.379423Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 366 — 2026\-11\-27T23:49:27.068313Z — worker085: claim CODE\-085. Claimed CODE\-085 with its recorded write scope.
-- Revision 367 — 2026\-11\-27T23:49:28.703048Z — coordinator: add CODE\-086. Added planned task CODE\-086: Runtime console command scripts and variables.
-- Revision 368 — 2026\-11\-27T23:49:30.463345Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 369 — 2026\-11\-27T23:49:32.209947Z — worker086: claim CODE\-086. Claimed CODE\-086 with its recorded write scope.
-- Revision 370 — 2026\-11\-27T23:49:33.937237Z — coordinator: add CODE\-087. Added planned task CODE\-087: Platform events, clocks and application lifecycle.
-- Revision 371 — 2026\-11\-27T23:49:35.636074Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 372 — 2026\-11\-27T23:49:37.388165Z — worker087: claim CODE\-087. Claimed CODE\-087 with its recorded write scope.
-- Revision 373 — 2026\-11\-27T23:50:17.277589Z — worker060: checkpoint CODE\-060. Actual /root/worker060 delivered Scene picking and selection models; 1224 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Revision 374 — 2026\-11\-27T23:50:27.027138Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
+- Revision 396 — 2026\-11\-27T23:52:06.454757Z — coordinator: add CODE\-095. Added planned task CODE\-095: Runtime startup profiles and settings application.
+- Revision 397 — 2026\-11\-27T23:52:08.734441Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 398 — 2026\-11\-27T23:52:11.552677Z — worker095: claim CODE\-095. Claimed CODE\-095 with its recorded write scope.
+- Revision 399 — 2026\-11\-27T23:52:14.062562Z — coordinator: add CODE\-096. Added planned task CODE\-096: Integrated district actors and interaction loop.
+- Revision 400 — 2026\-11\-27T23:52:16.144466Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 401 — 2026\-11\-27T23:52:18.232672Z — worker096: claim CODE\-096. Claimed CODE\-096 with its recorded write scope.
+- Revision 402 — 2026\-11\-27T23:52:58.643608Z — coordinator: add CODE\-097. Added planned task CODE\-097: Software presentation and frame export.
+- Revision 403 — 2026\-11\-27T23:53:03.813039Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 404 — 2026\-11\-27T23:53:10.444022Z — worker097: claim CODE\-097. Claimed CODE\-097 with its recorded write scope.
+- Revision 405 — 2026\-11\-27T23:53:17.963583Z — coordinator: add CODE\-098. Added planned task CODE\-098: Scene, physics, animation and rendering bridges.
+- Revision 406 — 2026\-11\-27T23:53:20.336392Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 407 — 2026\-11\-27T23:53:23.217280Z — worker098: claim CODE\-098. Claimed CODE\-098 with its recorded write scope.
+- Revision 408 — 2026\-11\-27T23:53:28.345362Z — coordinator: add CODE\-099. Added planned task CODE\-099: Scene asset ingestion and resource binding.
+- Revision 409 — 2026\-11\-27T23:53:33.343446Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 410 — 2026\-11\-27T23:53:36.477853Z — worker099: claim CODE\-099. Claimed CODE\-099 with its recorded write scope.
+- Revision 411 — 2026\-11\-27T23:53:40.522603Z — coordinator: add CODE\-100. Added planned task CODE\-100: Integrated runtime editing and authoring commands.
+- Revision 412 — 2026\-11\-27T23:53:44.965179Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 413 — 2026\-11\-27T23:53:47.358538Z — worker100: claim CODE\-100. Claimed CODE\-100 with its recorded write scope.
+- Revision 414 — 2026\-11\-27T23:53:57.491684Z — worker061: checkpoint CODE\-061. Actual /root/worker061 delivered Inverse kinematics and pose constraints; 1169 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Revision 415 — 2026\-11\-27T23:54:07.788473Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 
 The canonical ledger retains the complete operation history.

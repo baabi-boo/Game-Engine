@@ -110,6 +110,7 @@ set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/render/src/batching.cpp"
     "${PROJECT_SOURCE_DIR}/engine/render/src/decals.cpp"
     "${PROJECT_SOURCE_DIR}/engine/editor/src/selection.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/animation/src/ik.cpp"
 )
 set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/math/include/ge/math/math.hpp"
@@ -169,4 +170,5 @@ set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/render/include/ge/render/batching.hpp"
     "${PROJECT_SOURCE_DIR}/engine/render/include/ge/render/decals.hpp"
     "${PROJECT_SOURCE_DIR}/engine/editor/include/ge/editor/selection.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/animation/include/ge/animation/ik.hpp"
 )

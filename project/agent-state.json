@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 374,
-  "updated_at": "2026-11-27T23:50:27.027138Z",
+  "revision": 415,
+  "updated_at": "2026-11-27T23:54:07.788473Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "57770e8e9c1a5674b50f345aa098c735cb3fd7f69159670a2092b55e6907ff1a",
-    "file_count": 226
+    "sha256": "a4efc8b949cd5128dc6c01a13ac843705edbecbaaacb1d0e7da33aa036c3646c",
+    "file_count": 228
   },
   "milestones": [
     {
@@ -3254,9 +3254,12 @@
       "claim_revision": 265,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker061 delivered Inverse kinematics and pose constraints; 1169 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/animation/include/ge/animation/ik.hpp",
+          "engine/animation/src/ik.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -4032,6 +4035,396 @@
       "status": "in_progress",
       "owner": "worker087",
       "claim_revision": 372,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-088",
+      "title": "Retained layout tree and flex/grid sizing",
+      "milestone": "M1",
+      "priority": 88,
+      "description": "Implement Retained layout tree and flex/grid sizing. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/ui/include/ge/ui/layout.hpp",
+        "engine/ui/src/layout.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_layout(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker088",
+      "claim_revision": 377,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-089",
+      "title": "Widget models and text layout",
+      "milestone": "M1",
+      "priority": 89,
+      "description": "Implement Widget models and text layout. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/ui/include/ge/ui/widgets.hpp",
+        "engine/ui/src/widgets.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_widgets(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker089",
+      "claim_revision": 380,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-090",
+      "title": "UI focus, pointer capture and accessibility",
+      "milestone": "M1",
+      "priority": 90,
+      "description": "Implement UI focus, pointer capture and accessibility. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/ui/include/ge/ui/interaction.hpp",
+        "engine/ui/src/interaction.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_interaction(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker090",
+      "claim_revision": 383,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-091",
+      "title": "Vector paths, tessellation and coverage",
+      "milestone": "M1",
+      "priority": 91,
+      "description": "Implement Vector paths, tessellation and coverage. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/render/include/ge/render/vector.hpp",
+        "engine/render/src/vector.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_vector(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker091",
+      "claim_revision": 386,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-092",
+      "title": "Material expression graph and interpreter",
+      "milestone": "M1",
+      "priority": 92,
+      "description": "Implement Material expression graph and interpreter. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/render/include/ge/render/shader.hpp",
+        "engine/render/src/shader.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_shader(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker092",
+      "claim_revision": 389,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-093",
+      "title": "Network sessions, peers and replay streams",
+      "milestone": "M1",
+      "priority": 93,
+      "description": "Implement Network sessions, peers and replay streams. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/network/include/ge/network/session.hpp",
+        "engine/network/src/session.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_session(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker093",
+      "claim_revision": 392,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-094",
+      "title": "Native asset bundle writer and reader",
+      "milestone": "M1",
+      "priority": 94,
+      "description": "Implement Native asset bundle writer and reader. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/assets/include/ge/assets/bundle.hpp",
+        "engine/assets/src/bundle.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_bundle(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker094",
+      "claim_revision": 395,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-095",
+      "title": "Runtime startup profiles and settings application",
+      "milestone": "M1",
+      "priority": 95,
+      "description": "Implement Runtime startup profiles and settings application. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/runtime/include/ge/runtime/configuration.hpp",
+        "engine/runtime/src/configuration.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_configuration(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker095",
+      "claim_revision": 398,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-096",
+      "title": "Integrated district actors and interaction loop",
+      "milestone": "M1",
+      "priority": 96,
+      "description": "Implement Integrated district actors and interaction loop. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/gameplay/include/ge/gameplay/district.hpp",
+        "engine/gameplay/src/district.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_district(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker096",
+      "claim_revision": 401,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-097",
+      "title": "Software presentation and frame export",
+      "milestone": "M1",
+      "priority": 97,
+      "description": "Implement Software presentation and frame export. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/render/include/ge/render/presentation.hpp",
+        "engine/render/src/presentation.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_presentation(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker097",
+      "claim_revision": 404,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-098",
+      "title": "Scene, physics, animation and rendering bridges",
+      "milestone": "M1",
+      "priority": 98,
+      "description": "Implement Scene, physics, animation and rendering bridges. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/runtime/include/ge/runtime/simulation.hpp",
+        "engine/runtime/src/simulation.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_simulation(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker098",
+      "claim_revision": 407,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-099",
+      "title": "Scene asset ingestion and resource binding",
+      "milestone": "M1",
+      "priority": 99,
+      "description": "Implement Scene asset ingestion and resource binding. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/assets/include/ge/assets/scene_pipeline.hpp",
+        "engine/assets/src/scene_pipeline.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_scene_pipeline(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker099",
+      "claim_revision": 410,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-100",
+      "title": "Integrated runtime editing and authoring commands",
+      "milestone": "M1",
+      "priority": 100,
+      "description": "Implement Integrated runtime editing and authoring commands. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/runtime/include/ge/runtime/editor_host.hpp",
+        "engine/runtime/src/editor_host.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_editor_host(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker100",
+      "claim_revision": 413,
       "blocker": null,
       "checkpoint": {
         "summary": "Not started.",
@@ -7178,6 +7571,334 @@
     {
       "revision": 374,
       "at": "2026-11-27T23:50:27.027138Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 375,
+      "at": "2026-11-27T23:50:48.730893Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-088",
+      "summary": "Added planned task CODE-088: Retained layout tree and flex/grid sizing."
+    },
+    {
+      "revision": 376,
+      "at": "2026-11-27T23:50:50.566074Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 377,
+      "at": "2026-11-27T23:50:52.343128Z",
+      "actor": "worker088",
+      "action": "claim",
+      "task": "CODE-088",
+      "summary": "Claimed CODE-088 with its recorded write scope."
+    },
+    {
+      "revision": 378,
+      "at": "2026-11-27T23:50:54.179088Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-089",
+      "summary": "Added planned task CODE-089: Widget models and text layout."
+    },
+    {
+      "revision": 379,
+      "at": "2026-11-27T23:50:56.054847Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 380,
+      "at": "2026-11-27T23:50:57.835563Z",
+      "actor": "worker089",
+      "action": "claim",
+      "task": "CODE-089",
+      "summary": "Claimed CODE-089 with its recorded write scope."
+    },
+    {
+      "revision": 381,
+      "at": "2026-11-27T23:50:59.669609Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-090",
+      "summary": "Added planned task CODE-090: UI focus, pointer capture and accessibility."
+    },
+    {
+      "revision": 382,
+      "at": "2026-11-27T23:51:01.579945Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 383,
+      "at": "2026-11-27T23:51:03.402431Z",
+      "actor": "worker090",
+      "action": "claim",
+      "task": "CODE-090",
+      "summary": "Claimed CODE-090 with its recorded write scope."
+    },
+    {
+      "revision": 384,
+      "at": "2026-11-27T23:51:29.288643Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-091",
+      "summary": "Added planned task CODE-091: Vector paths, tessellation and coverage."
+    },
+    {
+      "revision": 385,
+      "at": "2026-11-27T23:51:31.295664Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 386,
+      "at": "2026-11-27T23:51:33.334940Z",
+      "actor": "worker091",
+      "action": "claim",
+      "task": "CODE-091",
+      "summary": "Claimed CODE-091 with its recorded write scope."
+    },
+    {
+      "revision": 387,
+      "at": "2026-11-27T23:51:35.410860Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-092",
+      "summary": "Added planned task CODE-092: Material expression graph and interpreter."
+    },
+    {
+      "revision": 388,
+      "at": "2026-11-27T23:51:37.405390Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 389,
+      "at": "2026-11-27T23:51:39.397777Z",
+      "actor": "worker092",
+      "action": "claim",
+      "task": "CODE-092",
+      "summary": "Claimed CODE-092 with its recorded write scope."
+    },
+    {
+      "revision": 390,
+      "at": "2026-11-27T23:51:41.336957Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-093",
+      "summary": "Added planned task CODE-093: Network sessions, peers and replay streams."
+    },
+    {
+      "revision": 391,
+      "at": "2026-11-27T23:51:43.235894Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 392,
+      "at": "2026-11-27T23:51:45.302564Z",
+      "actor": "worker093",
+      "action": "claim",
+      "task": "CODE-093",
+      "summary": "Claimed CODE-093 with its recorded write scope."
+    },
+    {
+      "revision": 393,
+      "at": "2026-11-27T23:52:00.262247Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-094",
+      "summary": "Added planned task CODE-094: Native asset bundle writer and reader."
+    },
+    {
+      "revision": 394,
+      "at": "2026-11-27T23:52:02.369623Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 395,
+      "at": "2026-11-27T23:52:04.432176Z",
+      "actor": "worker094",
+      "action": "claim",
+      "task": "CODE-094",
+      "summary": "Claimed CODE-094 with its recorded write scope."
+    },
+    {
+      "revision": 396,
+      "at": "2026-11-27T23:52:06.454757Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-095",
+      "summary": "Added planned task CODE-095: Runtime startup profiles and settings application."
+    },
+    {
+      "revision": 397,
+      "at": "2026-11-27T23:52:08.734441Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 398,
+      "at": "2026-11-27T23:52:11.552677Z",
+      "actor": "worker095",
+      "action": "claim",
+      "task": "CODE-095",
+      "summary": "Claimed CODE-095 with its recorded write scope."
+    },
+    {
+      "revision": 399,
+      "at": "2026-11-27T23:52:14.062562Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-096",
+      "summary": "Added planned task CODE-096: Integrated district actors and interaction loop."
+    },
+    {
+      "revision": 400,
+      "at": "2026-11-27T23:52:16.144466Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 401,
+      "at": "2026-11-27T23:52:18.232672Z",
+      "actor": "worker096",
+      "action": "claim",
+      "task": "CODE-096",
+      "summary": "Claimed CODE-096 with its recorded write scope."
+    },
+    {
+      "revision": 402,
+      "at": "2026-11-27T23:52:58.643608Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-097",
+      "summary": "Added planned task CODE-097: Software presentation and frame export."
+    },
+    {
+      "revision": 403,
+      "at": "2026-11-27T23:53:03.813039Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 404,
+      "at": "2026-11-27T23:53:10.444022Z",
+      "actor": "worker097",
+      "action": "claim",
+      "task": "CODE-097",
+      "summary": "Claimed CODE-097 with its recorded write scope."
+    },
+    {
+      "revision": 405,
+      "at": "2026-11-27T23:53:17.963583Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-098",
+      "summary": "Added planned task CODE-098: Scene, physics, animation and rendering bridges."
+    },
+    {
+      "revision": 406,
+      "at": "2026-11-27T23:53:20.336392Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 407,
+      "at": "2026-11-27T23:53:23.217280Z",
+      "actor": "worker098",
+      "action": "claim",
+      "task": "CODE-098",
+      "summary": "Claimed CODE-098 with its recorded write scope."
+    },
+    {
+      "revision": 408,
+      "at": "2026-11-27T23:53:28.345362Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-099",
+      "summary": "Added planned task CODE-099: Scene asset ingestion and resource binding."
+    },
+    {
+      "revision": 409,
+      "at": "2026-11-27T23:53:33.343446Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 410,
+      "at": "2026-11-27T23:53:36.477853Z",
+      "actor": "worker099",
+      "action": "claim",
+      "task": "CODE-099",
+      "summary": "Claimed CODE-099 with its recorded write scope."
+    },
+    {
+      "revision": 411,
+      "at": "2026-11-27T23:53:40.522603Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-100",
+      "summary": "Added planned task CODE-100: Integrated runtime editing and authoring commands."
+    },
+    {
+      "revision": 412,
+      "at": "2026-11-27T23:53:44.965179Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 413,
+      "at": "2026-11-27T23:53:47.358538Z",
+      "actor": "worker100",
+      "action": "claim",
+      "task": "CODE-100",
+      "summary": "Claimed CODE-100 with its recorded write scope."
+    },
+    {
+      "revision": 414,
+      "at": "2026-11-27T23:53:57.491684Z",
+      "actor": "worker061",
+      "action": "checkpoint",
+      "task": "CODE-061",
+      "summary": "Actual /root/worker061 delivered Inverse kinematics and pose constraints; 1169 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 415,
+      "at": "2026-11-27T23:54:07.788473Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,
