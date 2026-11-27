@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 10,
-  "updated_at": "2026-11-23T13:17:46.254135Z",
+  "revision": 31,
+  "updated_at": "2026-11-27T19:40:23.638020Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "1ade509f95561c6c6d39738ec08f2484aa5f1a82064ba5e836fe6df4b0924a4b",
-    "file_count": 97
+    "sha256": "6a549cfec7b4c7a0df658c30e1e8639808f3197ac5cf53335e60a6ce5a18f2d2",
+    "file_count": 112
   },
   "milestones": [
     {
@@ -1184,6 +1184,233 @@
       "blocker": null,
       "evidence": [],
       "completion": null
+    },
+    {
+      "id": "CODE-001",
+      "title": "Spatial mathematics",
+      "milestone": "M1",
+      "priority": 1,
+      "description": "Vectors, quaternions, matrices, transforms, bounds and numerical geometry shared by simulation and rendering. User requests source-only development; no build, runtime, tests or CI waits in this campaign.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/math/include/ge/math/math.hpp",
+        "engine/math/src/math.cpp"
+      ],
+      "acceptance": [
+        "Substantive C++20 implementation with bounded failure handling and real consumers in the integrated runtime.",
+        "At least 1000 nonblank noncomment implementation/header lines without filler or copied vendor code; source count is not a correctness claim."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker001",
+      "claim_revision": 12,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Actual /root/worker001 delivered original source; 2193 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.",
+        "next_action": "Integrate real consumers; source delivered, runtime validation deferred by user request.",
+        "files": [
+          "engine/math/include/ge/math/math.hpp",
+          "engine/math/src/math.cpp"
+        ]
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-002",
+      "title": "Bounded allocation and containers",
+      "milestone": "M1",
+      "priority": 2,
+      "description": "Bounded arenas, object pools, sparse sets, ring buffers and allocation accounting for engine systems. User requests source-only development; no build, runtime, tests or CI waits in this campaign.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/core/include/ge/core/memory.hpp"
+      ],
+      "acceptance": [
+        "Substantive C++20 implementation with bounded failure handling and real consumers in the integrated runtime.",
+        "At least 1000 nonblank noncomment implementation/header lines without filler or copied vendor code; source count is not a correctness claim."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker002",
+      "claim_revision": 14,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Actual /root/worker002 delivered original source; 1355 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.",
+        "next_action": "Integrate real consumers; source delivered, runtime validation deferred by user request.",
+        "files": [
+          "engine/core/include/ge/core/memory.hpp"
+        ]
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-003",
+      "title": "Bounded binary serialization",
+      "milestone": "M1",
+      "priority": 3,
+      "description": "Endian codecs, bounded binary readers and writers, checksums, chunk containers and transactional parsing for runtime content. User requests source-only development; no build, runtime, tests or CI waits in this campaign.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/core/include/ge/core/binary.hpp",
+        "engine/core/src/binary.cpp"
+      ],
+      "acceptance": [
+        "Substantive C++20 implementation with bounded failure handling and real consumers in the integrated runtime.",
+        "At least 1000 nonblank noncomment implementation/header lines without filler or copied vendor code; source count is not a correctness claim."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker003",
+      "claim_revision": 16,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Actual /root/worker003 delivered original source; 1527 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.",
+        "next_action": "Integrate real consumers; source delivered, runtime validation deferred by user request.",
+        "files": [
+          "engine/core/include/ge/core/binary.hpp",
+          "engine/core/src/binary.cpp"
+        ]
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-INTEGRATION",
+      "title": "Integrate source-only 100-agent engine expansion",
+      "milestone": "M1",
+      "priority": 0,
+      "description": "User authorizes 100 actual workers and source-only C++20 growth to 100k connected source lines; no tests/build/runtime or CI waits. Preserve all existing evidence and do not claim acceptance.",
+      "depends_on": [],
+      "write_paths": [
+        "CMakeLists.txt",
+        "engine/core/CMakeLists.txt",
+        "engine/runtime/CMakeLists.txt",
+        "engine/runtime/modules.cmake",
+        "engine/core/include/ge/core/runtime.hpp",
+        "engine/core/src/runtime.cpp",
+        "apps/runtime",
+        "cmake/GameEngineConfig.cmake.in",
+        "README.md",
+        "docs/architecture/overview.md",
+        "docs/architecture/runtime-expansion.md",
+        "docs/production/source-campaign.json"
+      ],
+      "acceptance": [
+        "Every delivered source component belongs to a build target and is used through a runtime consumer or registration path.",
+        "Record real workers, source counts, publication commits and untested status without replacing historical acceptance evidence."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "coordinator",
+      "claim_revision": 18,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement kernel and compose completed worker modules; publish incremental source checkpoints without execution.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-004",
+      "title": "Entity component registry and deferred mutations",
+      "milestone": "M1",
+      "priority": 4,
+      "description": "Implement Entity component registry and deferred mutations. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/ecs/include/ge/ecs/registry.hpp",
+        "engine/ecs/src/registry.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_registry(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker004",
+      "claim_revision": 21,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-005",
+      "title": "Bounded task executor and dependency graph",
+      "milestone": "M1",
+      "priority": 5,
+      "description": "Implement Bounded task executor and dependency graph. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/jobs/include/ge/jobs/executor.hpp",
+        "engine/jobs/src/executor.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_executor(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker005",
+      "claim_revision": 24,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-006",
+      "title": "Virtual filesystem mounts and bounded file access",
+      "milestone": "M1",
+      "priority": 6,
+      "description": "Implement Virtual filesystem mounts and bounded file access. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/io/include/ge/io/filesystem.hpp",
+        "engine/io/src/filesystem.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_filesystem(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker006",
+      "claim_revision": 27,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
     }
   ],
   "evidence": [
@@ -1414,6 +1641,174 @@
       "action": "accept",
       "task": "OPS-AGENT-SYSTEM",
       "summary": "Accepted after coordinator integration review and real delegated implementation, independent regression tests and documentation review. All five task criteria are supported: stale source/views and invalid claims fail; current required checks and explicit review gate completion; mutations retain evidence/history and regenerate views; prompts cover startup, scope, checkpoints, recovery and authorized publication; 33 workflow cases plus all 14 Debug/Release CTest suites and the relocated SDK/package gate passed in RUN-000001 through RUN-000004. This is explicitly coordinator self-review, not authenticated peer approval. Local Linux execution qualifies this source; new hosted platform results remain unobserved. Ready for the already authorized commit and push."
+    },
+    {
+      "revision": 11,
+      "at": "2026-11-27T19:31:47.338107Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-001",
+      "summary": "Added planned task CODE-001: Spatial mathematics."
+    },
+    {
+      "revision": 12,
+      "at": "2026-11-27T19:31:47.467029Z",
+      "actor": "worker001",
+      "action": "claim",
+      "task": "CODE-001",
+      "summary": "Claimed CODE-001 with its recorded write scope."
+    },
+    {
+      "revision": 13,
+      "at": "2026-11-27T19:31:47.567675Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-002",
+      "summary": "Added planned task CODE-002: Bounded allocation and containers."
+    },
+    {
+      "revision": 14,
+      "at": "2026-11-27T19:31:47.685576Z",
+      "actor": "worker002",
+      "action": "claim",
+      "task": "CODE-002",
+      "summary": "Claimed CODE-002 with its recorded write scope."
+    },
+    {
+      "revision": 15,
+      "at": "2026-11-27T19:31:47.901043Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-003",
+      "summary": "Added planned task CODE-003: Bounded binary serialization."
+    },
+    {
+      "revision": 16,
+      "at": "2026-11-27T19:31:48.006155Z",
+      "actor": "worker003",
+      "action": "claim",
+      "task": "CODE-003",
+      "summary": "Claimed CODE-003 with its recorded write scope."
+    },
+    {
+      "revision": 17,
+      "at": "2026-11-27T19:33:45.327758Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-INTEGRATION",
+      "summary": "Added planned task CODE-INTEGRATION: Integrate source-only 100-agent engine expansion."
+    },
+    {
+      "revision": 18,
+      "at": "2026-11-27T19:33:45.501796Z",
+      "actor": "coordinator",
+      "action": "claim",
+      "task": "CODE-INTEGRATION",
+      "summary": "Claimed CODE-INTEGRATION with its recorded write scope."
+    },
+    {
+      "revision": 19,
+      "at": "2026-11-27T19:38:05.328296Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-004",
+      "summary": "Added planned task CODE-004: Entity component registry and deferred mutations."
+    },
+    {
+      "revision": 20,
+      "at": "2026-11-27T19:38:15.393641Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge current owned source edits: completed binary and memory, ongoing math, and coordinator runtime/kernel/build composition. No code execution or tests; all new work remains unverified."
+    },
+    {
+      "revision": 21,
+      "at": "2026-11-27T19:38:15.610858Z",
+      "actor": "worker004",
+      "action": "claim",
+      "task": "CODE-004",
+      "summary": "Claimed CODE-004 with its recorded write scope."
+    },
+    {
+      "revision": 22,
+      "at": "2026-11-27T19:38:15.824154Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-005",
+      "summary": "Added planned task CODE-005: Bounded task executor and dependency graph."
+    },
+    {
+      "revision": 23,
+      "at": "2026-11-27T19:38:16.007062Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 24,
+      "at": "2026-11-27T19:38:16.142372Z",
+      "actor": "worker005",
+      "action": "claim",
+      "task": "CODE-005",
+      "summary": "Claimed CODE-005 with its recorded write scope."
+    },
+    {
+      "revision": 25,
+      "at": "2026-11-27T19:38:40.920701Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-006",
+      "summary": "Added planned task CODE-006: Virtual filesystem mounts and bounded file access."
+    },
+    {
+      "revision": 26,
+      "at": "2026-11-27T19:38:41.081249Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 27,
+      "at": "2026-11-27T19:38:41.237046Z",
+      "actor": "worker006",
+      "action": "claim",
+      "task": "CODE-006",
+      "summary": "Claimed CODE-006 with its recorded write scope."
+    },
+    {
+      "revision": 28,
+      "at": "2026-11-27T19:40:07.160190Z",
+      "actor": "worker001",
+      "action": "checkpoint",
+      "task": "CODE-001",
+      "summary": "Actual /root/worker001 delivered original source; 2193 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun."
+    },
+    {
+      "revision": 29,
+      "at": "2026-11-27T19:40:07.713549Z",
+      "actor": "worker002",
+      "action": "checkpoint",
+      "task": "CODE-002",
+      "summary": "Actual /root/worker002 delivered original source; 1355 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun."
+    },
+    {
+      "revision": 30,
+      "at": "2026-11-27T19:40:08.186621Z",
+      "actor": "worker003",
+      "action": "checkpoint",
+      "task": "CODE-003",
+      "summary": "Actual /root/worker003 delivered original source; 1527 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun."
+    },
+    {
+      "revision": 31,
+      "at": "2026-11-27T19:40:23.638020Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
     }
   ]
 }

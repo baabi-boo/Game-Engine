@@ -3,11 +3,11 @@
 # Agent project status
 
 - **Project:** Game Engine
-- **Ledger revision:** 10
-- **Recorded update:** 2026\-11\-23T13:17:46.254135Z
+- **Ledger revision:** 31
+- **Recorded update:** 2026\-11\-27T19:40:23.638020Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 1ade509f95561c6c6d39738ec08f2484aa5f1a82064ba5e836fe6df4b0924a4b
-- **Source files:** 97
+- **Source fingerprint:** 6a549cfec7b4c7a0df658c30e1e8639808f3197ac5cf53335e60a6ce5a18f2d2
+- **Source files:** 112
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -38,8 +38,15 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 
 | Task | Priority | Milestone | Status | Owner | Dependencies | Next action |
 | --- | --- | --- | --- | --- | --- | --- |
+| CODE\-INTEGRATION: Integrate source\-only 100\-agent engine expansion | 0 | M1 | in\_progress | coordinator | none | Implement kernel and compose completed worker modules; publish incremental source checkpoints without execution. |
 | M0\-FOUNDATION: Published headless foundation | 0 | M0 | done | setup\-coordinator | none | Preserve historical evidence and continue through the first playable gates. |
 | OPS\-AGENT\-SYSTEM: Install agent coordination and automatic project\-state updates | 0 | OPS | done | coordinator | none | For the next authorized session, inspect the published branch and hosted CI, follow docs/agents/CONTINUE.md, and select M1\-010 only when first\-playable work is within the current user objective. |
+| CODE\-001: Spatial mathematics | 1 | M1 | in\_progress | worker001 | none | Integrate real consumers; source delivered, runtime validation deferred by user request. |
+| CODE\-002: Bounded allocation and containers | 2 | M1 | in\_progress | worker002 | none | Integrate real consumers; source delivered, runtime validation deferred by user request. |
+| CODE\-003: Bounded binary serialization | 3 | M1 | in\_progress | worker003 | none | Integrate real consumers; source delivered, runtime validation deferred by user request. |
+| CODE\-004: Entity component registry and deferred mutations | 4 | M1 | in\_progress | worker004 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-005: Bounded task executor and dependency graph | 5 | M1 | in\_progress | worker005 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-006: Virtual filesystem mounts and bounded file access | 6 | M1 | in\_progress | worker006 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | OPS\-MACOS: Establish observed macOS foundation qualification | 10 | OPS | blocked | unowned | M0\-FOUNDATION | Inspect the latest macOS job and its logs; identify whether execution is available before changing platform code. |
 | M1\-010: Declare the reference platform and playable workload | 100 | M1 | planned \(ready\) | unowned | M0\-FOUNDATION | Read the first\-playable plan and inspect available target evidence; draft the reference\-platform record. |
 | M1\-020: Select one native backend and dependency strategy | 110 | M1 | planned | unowned | M1\-010 | Review ADR0006 and the candidate register; produce an evidence\-backed backend decision and dependency records. |
@@ -80,6 +87,76 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Preserved work: Planned work; no implementation or passing evidence is inferred.
 - Next action: Inspect the latest macOS job and its logs; identify whether execution is available before changing platform code.
 
+### CODE\-001
+
+- Status: in\_progress
+- Owner: worker001
+- Claim revision: 12
+- Write scope: engine/math/include/ge/math/math.hpp, engine/math/src/math.cpp
+- Blocker: none
+- Preserved work: Actual /root/worker001 delivered original source; 2193 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.
+- Next action: Integrate real consumers; source delivered, runtime validation deferred by user request.
+
+### CODE\-002
+
+- Status: in\_progress
+- Owner: worker002
+- Claim revision: 14
+- Write scope: engine/core/include/ge/core/memory.hpp
+- Blocker: none
+- Preserved work: Actual /root/worker002 delivered original source; 1355 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.
+- Next action: Integrate real consumers; source delivered, runtime validation deferred by user request.
+
+### CODE\-003
+
+- Status: in\_progress
+- Owner: worker003
+- Claim revision: 16
+- Write scope: engine/core/include/ge/core/binary.hpp, engine/core/src/binary.cpp
+- Blocker: none
+- Preserved work: Actual /root/worker003 delivered original source; 1527 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.
+- Next action: Integrate real consumers; source delivered, runtime validation deferred by user request.
+
+### CODE\-INTEGRATION
+
+- Status: in\_progress
+- Owner: coordinator
+- Claim revision: 18
+- Write scope: CMakeLists.txt, engine/core/CMakeLists.txt, engine/runtime/CMakeLists.txt, engine/runtime/modules.cmake, engine/core/include/ge/core/runtime.hpp, engine/core/src/runtime.cpp, apps/runtime, cmake/GameEngineConfig.cmake.in, README.md, docs/architecture/overview.md, docs/architecture/runtime\-expansion.md, docs/production/source\-campaign.json
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement kernel and compose completed worker modules; publish incremental source checkpoints without execution.
+
+### CODE\-004
+
+- Status: in\_progress
+- Owner: worker004
+- Claim revision: 21
+- Write scope: engine/ecs/include/ge/ecs/registry.hpp, engine/ecs/src/registry.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-005
+
+- Status: in\_progress
+- Owner: worker005
+- Claim revision: 24
+- Write scope: engine/jobs/include/ge/jobs/executor.hpp, engine/jobs/src/executor.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-006
+
+- Status: in\_progress
+- Owner: worker006
+- Claim revision: 27
+- Write scope: engine/io/include/ge/io/filesystem.hpp, engine/io/src/filesystem.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
 
 ## Evidence observations
 
@@ -87,10 +164,10 @@ These are historical observations. A pass neither completes a task nor remains c
 
 | Receipt | Task | Check | Result | Source | Recorded at |
 | --- | --- | --- | --- | --- | --- |
-| RUN-000001 | OPS\-AGENT\-SYSTEM | repository | passed | 1ade509f95561c6c (recorded snapshot) | 2026\-11\-23T13:15:29.829605Z |
-| RUN-000002 | OPS\-AGENT\-SYSTEM | workflow\-tests | passed | 1ade509f95561c6c (recorded snapshot) | 2026\-11\-23T13:15:43.783975Z |
-| RUN-000003 | OPS\-AGENT\-SYSTEM | dev | passed | 1ade509f95561c6c (recorded snapshot) | 2026\-11\-23T13:16:05.911866Z |
-| RUN-000004 | OPS\-AGENT\-SYSTEM | package | passed | 1ade509f95561c6c (recorded snapshot) | 2026\-11\-23T13:16:34.781251Z |
+| RUN-000001 | OPS\-AGENT\-SYSTEM | repository | passed | 1ade509f95561c6c (historical) | 2026\-11\-23T13:15:29.829605Z |
+| RUN-000002 | OPS\-AGENT\-SYSTEM | workflow\-tests | passed | 1ade509f95561c6c (historical) | 2026\-11\-23T13:15:43.783975Z |
+| RUN-000003 | OPS\-AGENT\-SYSTEM | dev | passed | 1ade509f95561c6c (historical) | 2026\-11\-23T13:16:05.911866Z |
+| RUN-000004 | OPS\-AGENT\-SYSTEM | package | passed | 1ade509f95561c6c (historical) | 2026\-11\-23T13:16:34.781251Z |
 
 ## Completion records
 
@@ -99,15 +176,25 @@ These are historical observations. A pass neither completes a task nor remains c
 
 ## Recent operations
 
-- Revision 1 — 2026\-11\-23T13:01:02.152612Z — coordinator: bootstrap OPS\-AGENT\-SYSTEM. Initialize the user\-requested agent workflow and concrete milestone backlog. Import prior M0 evidence explicitly; ongoing bootstrap work has not yet been accepted.
-- Revision 2 — 2026\-11\-23T13:15:12.719042Z — coordinator: reconcile. Reconcile the completed agent coordination implementation, precise prompts, 29\-task roadmap, independent 33\-case regression suite, and build/CTest/CI integration before recorded acceptance gates.
-- Revision 3 — 2026\-11\-23T13:15:24.191969Z — coordinator: checkpoint OPS\-AGENT\-SYSTEM. Implemented the CLI, live ledger, generated views, precise coordinator/worker prompts, roadmap and ge/CTest/CI integration. Separate implementation, regression\-test and documentation/review agents contributed. Exploratory verification passed 33 workflow tests with no skips and all 18 help pages; review fixes cover pending repeats, blocked receipt retention, brief attachment contention, invalid IDs, temporary exclusions and managed paths. Required recorded integration gates are still pending.
-- Revision 4 — 2026\-11\-23T13:15:29.834304Z — coordinator: run\-check OPS\-AGENT\-SYSTEM. repository: passed; receipt RUN\-000001; Process exited successfully.
-- Revision 5 — 2026\-11\-23T13:15:43.789548Z — coordinator: run\-check OPS\-AGENT\-SYSTEM. workflow\-tests: passed; receipt RUN\-000002; Process exited successfully.
-- Revision 6 — 2026\-11\-23T13:16:05.918049Z — coordinator: run\-check OPS\-AGENT\-SYSTEM. dev: passed; receipt RUN\-000003; Process exited successfully.
-- Revision 7 — 2026\-11\-23T13:16:34.786221Z — coordinator: run\-check OPS\-AGENT\-SYSTEM. package: passed; receipt RUN\-000004; Process exited successfully.
-- Revision 8 — 2026\-11\-23T13:17:27.231068Z — coordinator: checkpoint OPS\-AGENT\-SYSTEM. All four required receipts passed against the same inspected source: RUN\-000001 repository policy, RUN\-000002 33 workflow regression cases with no skips, RUN\-000003 Debug with 14 CTest suites, and RUN\-000004 Release with 14 CTest suites, installed/relocated runtime and independent SDK consumer, ZIP/TGZ archives and checksums. Three focused agents supplied implementation, independent tests and documentation/review. The original 60\-agent register and historical foundation verification remain unchanged. New hosted CI results have not been observed.
-- Revision 9 — 2026\-11\-23T13:17:33.556288Z — coordinator: submit OPS\-AGENT\-SYSTEM. Ready for review: strict canonical state, deterministic derived views, guarded ownership/transitions, current executed receipts, source/CI freshness enforcement, precise continuation and worker prompts, and the dependency\-ordered project backlog are implemented. Required receipts RUN\-000001 through RUN\-000004 pass at the current source fingerprint. Independent reviews exercised concurrency, publication recovery, invalid inputs, archive behavior and command/document alignment.
-- Revision 10 — 2026\-11\-23T13:17:46.254135Z — coordinator: accept OPS\-AGENT\-SYSTEM. Accepted after coordinator integration review and real delegated implementation, independent regression tests and documentation review. All five task criteria are supported: stale source/views and invalid claims fail; current required checks and explicit review gate completion; mutations retain evidence/history and regenerate views; prompts cover startup, scope, checkpoints, recovery and authorized publication; 33 workflow cases plus all 14 Debug/Release CTest suites and the relocated SDK/package gate passed in RUN\-000001 through RUN\-000004. This is explicitly coordinator self\-review, not authenticated peer approval. Local Linux execution qualifies this source; new hosted platform results remain unobserved. Ready for the already authorized commit and push.
+- Revision 12 — 2026\-11\-27T19:31:47.467029Z — worker001: claim CODE\-001. Claimed CODE\-001 with its recorded write scope.
+- Revision 13 — 2026\-11\-27T19:31:47.567675Z — coordinator: add CODE\-002. Added planned task CODE\-002: Bounded allocation and containers.
+- Revision 14 — 2026\-11\-27T19:31:47.685576Z — worker002: claim CODE\-002. Claimed CODE\-002 with its recorded write scope.
+- Revision 15 — 2026\-11\-27T19:31:47.901043Z — coordinator: add CODE\-003. Added planned task CODE\-003: Bounded binary serialization.
+- Revision 16 — 2026\-11\-27T19:31:48.006155Z — worker003: claim CODE\-003. Claimed CODE\-003 with its recorded write scope.
+- Revision 17 — 2026\-11\-27T19:33:45.327758Z — coordinator: add CODE\-INTEGRATION. Added planned task CODE\-INTEGRATION: Integrate source\-only 100\-agent engine expansion.
+- Revision 18 — 2026\-11\-27T19:33:45.501796Z — coordinator: claim CODE\-INTEGRATION. Claimed CODE\-INTEGRATION with its recorded write scope.
+- Revision 19 — 2026\-11\-27T19:38:05.328296Z — coordinator: add CODE\-004. Added planned task CODE\-004: Entity component registry and deferred mutations.
+- Revision 20 — 2026\-11\-27T19:38:15.393641Z — coordinator: reconcile. Acknowledge current owned source edits: completed binary and memory, ongoing math, and coordinator runtime/kernel/build composition. No code execution or tests; all new work remains unverified.
+- Revision 21 — 2026\-11\-27T19:38:15.610858Z — worker004: claim CODE\-004. Claimed CODE\-004 with its recorded write scope.
+- Revision 22 — 2026\-11\-27T19:38:15.824154Z — coordinator: add CODE\-005. Added planned task CODE\-005: Bounded task executor and dependency graph.
+- Revision 23 — 2026\-11\-27T19:38:16.007062Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 24 — 2026\-11\-27T19:38:16.142372Z — worker005: claim CODE\-005. Claimed CODE\-005 with its recorded write scope.
+- Revision 25 — 2026\-11\-27T19:38:40.920701Z — coordinator: add CODE\-006. Added planned task CODE\-006: Virtual filesystem mounts and bounded file access.
+- Revision 26 — 2026\-11\-27T19:38:41.081249Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 27 — 2026\-11\-27T19:38:41.237046Z — worker006: claim CODE\-006. Claimed CODE\-006 with its recorded write scope.
+- Revision 28 — 2026\-11\-27T19:40:07.160190Z — worker001: checkpoint CODE\-001. Actual /root/worker001 delivered original source; 2193 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.
+- Revision 29 — 2026\-11\-27T19:40:07.713549Z — worker002: checkpoint CODE\-002. Actual /root/worker002 delivered original source; 1355 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.
+- Revision 30 — 2026\-11\-27T19:40:08.186621Z — worker003: checkpoint CODE\-003. Actual /root/worker003 delivered original source; 1527 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.
+- Revision 31 — 2026\-11\-27T19:40:23.638020Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 
 The canonical ledger retains the complete operation history.

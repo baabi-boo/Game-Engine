@@ -1,0 +1,66 @@
+{
+  "objective": "100 actual delegated implementation runs; at least 100000 connected nonblank noncomment engine/application C++ source lines",
+  "baseline_commit": "b1595b4",
+  "requested_workers": 100,
+  "concurrent_worker_limit": 3,
+  "execution_policy": "No builds, tests, engine execution or CI monitoring at user request. Source implementation and inspection only; no acceptance or production-readiness claim.",
+  "count_scope": "Original engine/ and apps/ C++ source and headers, excluding comments and blank lines; excludes tests, tools, docs, generated status, third-party code and assets.",
+  "workers": [
+    {
+      "number": 1,
+      "agent_id": "/root/worker001",
+      "task_id": "CODE-001",
+      "wave": 1,
+      "status": "source_delivered",
+      "files": [
+        "engine/math/include/ge/math/math.hpp",
+        "engine/math/src/math.cpp"
+      ],
+      "code_lines": 2193
+    },
+    {
+      "number": 2,
+      "agent_id": "/root/worker002",
+      "task_id": "CODE-002",
+      "wave": 1,
+      "status": "source_delivered",
+      "files": [
+        "engine/core/include/ge/core/memory.hpp"
+      ],
+      "code_lines": 1355
+    },
+    {
+      "number": 3,
+      "agent_id": "/root/worker003",
+      "task_id": "CODE-003",
+      "wave": 1,
+      "status": "source_delivered",
+      "files": [
+        "engine/core/include/ge/core/binary.hpp",
+        "engine/core/src/binary.cpp"
+      ],
+      "code_lines": 1527
+    },
+    {
+      "number": 4,
+      "agent_id": "/root/worker004",
+      "task_id": "CODE-004",
+      "wave": 2,
+      "status": "implementing"
+    },
+    {
+      "number": 5,
+      "agent_id": "/root/worker005",
+      "task_id": "CODE-005",
+      "wave": 2,
+      "status": "implementing"
+    },
+    {
+      "number": 6,
+      "agent_id": "/root/worker006",
+      "task_id": "CODE-006",
+      "wave": 2,
+      "status": "implementing"
+    }
+  ]
+}

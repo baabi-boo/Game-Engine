@@ -1,5 +1,9 @@
 # Architecture and current scope
 
+The [runtime source expansion](runtime-expansion.md) describes the new, explicitly
+untested implementation campaign. The verified foundation scope described below
+remains historical; it is not evidence for the new subsystems.
+
 Game Engine is an independent C++20 engine foundation informed by
 [public open-world research](../research/open-world-blueprint.md). It is currently
 a **headless contract prototype preceding the playable feasibility milestone**.

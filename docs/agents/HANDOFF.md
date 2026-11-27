@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 10
-- **Recorded update:** 2026\-11\-23T13:17:46.254135Z
+- **Ledger revision:** 31
+- **Recorded update:** 2026\-11\-27T19:40:23.638020Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 1ade509f95561c6c6d39738ec08f2484aa5f1a82064ba5e836fe6df4b0924a4b
-- **Source files:** 97
+- **Source fingerprint:** 6a549cfec7b4c7a0df658c30e1e8639808f3197ac5cf53335e60a6ce5a18f2d2
+- **Source files:** 112
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -36,6 +36,146 @@ Source-of-truth documents:
 Ready is derived from dependencies and active claims. A new claim also requires a current source fingerprint and the revision observed by the claimant.
 
 ## Preserved task context
+
+### CODE\-INTEGRATION: Integrate source\-only 100\-agent engine expansion
+
+User authorizes 100 actual workers and source\-only C\+\+20 growth to 100k connected source lines; no tests/build/runtime or CI waits. Preserve all existing evidence and do not claim acceptance.
+
+- State / owner: in\_progress / coordinator
+- Write scope: CMakeLists.txt, engine/core/CMakeLists.txt, engine/runtime/CMakeLists.txt, engine/runtime/modules.cmake, engine/core/include/ge/core/runtime.hpp, engine/core/src/runtime.cpp, apps/runtime, cmake/GameEngineConfig.cmake.in, README.md, docs/architecture/overview.md, docs/architecture/runtime\-expansion.md, docs/production/source\-campaign.json
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement kernel and compose completed worker modules; publish incremental source checkpoints without execution.
+- Required checks: dev
+
+Acceptance:
+
+- Every delivered source component belongs to a build target and is used through a runtime consumer or registration path.
+- Record real workers, source counts, publication commits and untested status without replacing historical acceptance evidence.
+
+- dev: no receipt.
+
+### CODE\-001: Spatial mathematics
+
+Vectors, quaternions, matrices, transforms, bounds and numerical geometry shared by simulation and rendering. User requests source\-only development; no build, runtime, tests or CI waits in this campaign.
+
+- State / owner: in\_progress / worker001
+- Write scope: engine/math/include/ge/math/math.hpp, engine/math/src/math.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Actual /root/worker001 delivered original source; 2193 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.
+- Files: engine/math/include/ge/math/math.hpp, engine/math/src/math.cpp
+- Next action: Integrate real consumers; source delivered, runtime validation deferred by user request.
+- Required checks: dev
+
+Acceptance:
+
+- Substantive C\+\+20 implementation with bounded failure handling and real consumers in the integrated runtime.
+- At least 1000 nonblank noncomment implementation/header lines without filler or copied vendor code; source count is not a correctness claim.
+
+- dev: no receipt.
+
+### CODE\-002: Bounded allocation and containers
+
+Bounded arenas, object pools, sparse sets, ring buffers and allocation accounting for engine systems. User requests source\-only development; no build, runtime, tests or CI waits in this campaign.
+
+- State / owner: in\_progress / worker002
+- Write scope: engine/core/include/ge/core/memory.hpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Actual /root/worker002 delivered original source; 1355 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.
+- Files: engine/core/include/ge/core/memory.hpp
+- Next action: Integrate real consumers; source delivered, runtime validation deferred by user request.
+- Required checks: dev
+
+Acceptance:
+
+- Substantive C\+\+20 implementation with bounded failure handling and real consumers in the integrated runtime.
+- At least 1000 nonblank noncomment implementation/header lines without filler or copied vendor code; source count is not a correctness claim.
+
+- dev: no receipt.
+
+### CODE\-003: Bounded binary serialization
+
+Endian codecs, bounded binary readers and writers, checksums, chunk containers and transactional parsing for runtime content. User requests source\-only development; no build, runtime, tests or CI waits in this campaign.
+
+- State / owner: in\_progress / worker003
+- Write scope: engine/core/include/ge/core/binary.hpp, engine/core/src/binary.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Actual /root/worker003 delivered original source; 1527 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.
+- Files: engine/core/include/ge/core/binary.hpp, engine/core/src/binary.cpp
+- Next action: Integrate real consumers; source delivered, runtime validation deferred by user request.
+- Required checks: dev
+
+Acceptance:
+
+- Substantive C\+\+20 implementation with bounded failure handling and real consumers in the integrated runtime.
+- At least 1000 nonblank noncomment implementation/header lines without filler or copied vendor code; source count is not a correctness claim.
+
+- dev: no receipt.
+
+### CODE\-004: Entity component registry and deferred mutations
+
+Implement Entity component registry and deferred mutations. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker004
+- Write scope: engine/ecs/include/ge/ecs/registry.hpp, engine/ecs/src/registry.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_registry\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-005: Bounded task executor and dependency graph
+
+Implement Bounded task executor and dependency graph. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker005
+- Write scope: engine/jobs/include/ge/jobs/executor.hpp, engine/jobs/src/executor.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_executor\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-006: Virtual filesystem mounts and bounded file access
+
+Implement Virtual filesystem mounts and bounded file access. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker006
+- Write scope: engine/io/include/ge/io/filesystem.hpp, engine/io/src/filesystem.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_filesystem\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
 
 ### OPS\-MACOS: Establish observed macOS foundation qualification
 
