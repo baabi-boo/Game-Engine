@@ -3,11 +3,11 @@
 # Agent project status
 
 - **Project:** Game Engine
-- **Ledger revision:** 310
-- **Recorded update:** 2026\-11\-27T23:09:52.330677Z
+- **Ledger revision:** 312
+- **Recorded update:** 2026\-11\-27T23:21:52.517829Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 68b3f6f6f31b5f14622f21a40d08d1d7e28bf5d6dee56494b7d21c0121fa31b2
-- **Source files:** 208
+- **Source fingerprint:** 26effe8d845e6b12063addf3dc19a6c04518cb3ddce446c3af0c6a4472df408a
+- **Source files:** 210
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -94,7 +94,7 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 | CODE\-049: Traffic agents, intersections and signals | 49 | M1 | in\_progress | worker049 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-050: Mission objectives and idempotent rewards | 50 | M1 | in\_progress | worker050 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-051: Inventory stacks, containers and transactions | 51 | M1 | in\_progress | worker051 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-052: Equipment slots, crafting and resource costs | 52 | M1 | in\_progress | worker052 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-052: Equipment slots, crafting and resource costs | 52 | M1 | in\_progress | worker052 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-053: Damage, hit resolution and status effects | 53 | M1 | in\_progress | worker053 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-054: Dialogue graph execution and conditions | 54 | M1 | in\_progress | worker054 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-055: Quest dependencies, progression and journal | 55 | M1 | in\_progress | worker055 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
@@ -691,8 +691,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 225
 - Write scope: engine/gameplay/include/ge/gameplay/equipment.hpp, engine/gameplay/src/equipment.cpp
 - Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Preserved work: Actual /root/worker052 delivered Equipment slots, crafting and resource costs; 1372 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 
 ### CODE\-053
 
@@ -913,8 +913,6 @@ These are historical observations. A pass neither completes a task nor remains c
 
 ## Recent operations
 
-- Revision 291 — 2026\-11\-27T22:54:56.714827Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 292 — 2026\-11\-27T22:54:58.111449Z — worker068: claim CODE\-068. Claimed CODE\-068 with its recorded write scope.
 - Revision 293 — 2026\-11\-27T22:54:59.447786Z — coordinator: add CODE\-069. Added planned task CODE\-069: Swept collision and time of impact.
 - Revision 294 — 2026\-11\-27T22:55:00.606196Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
 - Revision 295 — 2026\-11\-27T22:55:01.962279Z — worker069: claim CODE\-069. Claimed CODE\-069 with its recorded write scope.
@@ -933,5 +931,7 @@ These are historical observations. A pass neither completes a task nor remains c
 - Revision 308 — 2026\-11\-27T23:08:46.829630Z — worker050: checkpoint CODE\-050. Actual /root/worker050 delivered Mission objectives and idempotent rewards; 1265 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 309 — 2026\-11\-27T23:08:48.107401Z — worker051: checkpoint CODE\-051. Actual /root/worker051 delivered Inventory stacks, containers and transactions; 1541 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 310 — 2026\-11\-27T23:09:52.330677Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
+- Revision 311 — 2026\-11\-27T23:20:58.178796Z — worker052: checkpoint CODE\-052. Actual /root/worker052 delivered Equipment slots, crafting and resource costs; 1372 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Revision 312 — 2026\-11\-27T23:21:52.517829Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 
 The canonical ledger retains the complete operation history.

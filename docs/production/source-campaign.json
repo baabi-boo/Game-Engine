@@ -670,7 +670,13 @@
       "agent_id": "/root/worker052",
       "task_id": "CODE-052",
       "wave": 18,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Equipment slots, crafting and resource costs",
+      "files": [
+        "engine/gameplay/include/ge/gameplay/equipment.hpp",
+        "engine/gameplay/src/equipment.cpp"
+      ],
+      "code_lines": 1372
     },
     {
       "number": 53,
@@ -685,9 +691,16 @@
       "task_id": "CODE-054",
       "wave": 18,
       "status": "implementing"
+    },
+    {
+      "number": 55,
+      "agent_id": "/root/worker055",
+      "task_id": "CODE-055",
+      "wave": 19,
+      "status": "implementing"
     }
   ],
-  "delivered_worker_count": 51,
-  "counted_delivered_worker_code_lines": 72628,
+  "delivered_worker_count": 52,
+  "counted_delivered_worker_code_lines": 74000,
   "baseline_engine_application_code_lines": 1727
 }

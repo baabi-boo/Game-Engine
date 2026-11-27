@@ -99,6 +99,7 @@ set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/traffic/src/simulation.cpp"
     "${PROJECT_SOURCE_DIR}/engine/gameplay/src/mission.cpp"
     "${PROJECT_SOURCE_DIR}/engine/gameplay/src/inventory.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/gameplay/src/equipment.cpp"
 )
 set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/math/include/ge/math/math.hpp"
@@ -149,4 +150,5 @@ set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/traffic/include/ge/traffic/simulation.hpp"
     "${PROJECT_SOURCE_DIR}/engine/gameplay/include/ge/gameplay/mission.hpp"
     "${PROJECT_SOURCE_DIR}/engine/gameplay/include/ge/gameplay/inventory.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/gameplay/include/ge/gameplay/equipment.hpp"
 )
