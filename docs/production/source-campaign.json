@@ -514,7 +514,13 @@
       "agent_id": "/root/worker040",
       "task_id": "CODE-040",
       "wave": 14,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Localization catalogs, Unicode and formatting",
+      "files": [
+        "engine/text/include/ge/text/localization.hpp",
+        "engine/text/src/localization.cpp"
+      ],
+      "code_lines": 1424
     },
     {
       "number": 41,
@@ -529,9 +535,16 @@
       "task_id": "CODE-042",
       "wave": 14,
       "status": "implementing"
+    },
+    {
+      "number": 43,
+      "agent_id": "/root/worker043",
+      "task_id": "CODE-043",
+      "wave": 15,
+      "status": "implementing"
     }
   ],
-  "delivered_worker_count": 39,
-  "counted_delivered_worker_code_lines": 55733,
+  "delivered_worker_count": 40,
+  "counted_delivered_worker_code_lines": 57157,
   "baseline_engine_application_code_lines": 1727
 }

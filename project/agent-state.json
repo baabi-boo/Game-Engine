@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 235,
-  "updated_at": "2026-11-27T22:16:38.312886Z",
+  "revision": 237,
+  "updated_at": "2026-11-27T22:19:53.254084Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "72f466cb6ff4647318c4f118ee432f61e47e99a490659a69920c6c69004fb6b2",
-    "file_count": 184
+    "sha256": "abe70ed9402bf6a04e91b0b8343fe8463673c42982318138452895e477289d1f",
+    "file_count": 186
   },
   "milestones": [
     {
@@ -2561,9 +2561,12 @@
       "claim_revision": 166,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker040 delivered Localization catalogs, Unicode and formatting; 1424 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/text/include/ge/text/localization.hpp",
+          "engine/text/src/localization.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -5013,6 +5016,22 @@
     {
       "revision": 235,
       "at": "2026-11-27T22:16:38.312886Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 236,
+      "at": "2026-11-27T22:19:51.991614Z",
+      "actor": "worker040",
+      "action": "checkpoint",
+      "task": "CODE-040",
+      "summary": "Actual /root/worker040 delivered Localization catalogs, Unicode and formatting; 1424 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 237,
+      "at": "2026-11-27T22:19:53.254084Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,
