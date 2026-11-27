@@ -2,6 +2,7 @@
 
 #include <ge/core/runtime.hpp>
 #include <ge/input/actions.hpp>
+#include <ge/physics/dynamics.hpp>
 #include <ge/scene/scene.hpp>
 
 #include <algorithm>
@@ -197,6 +198,7 @@ std::string_view describe(CameraError error) noexcept {
     case CameraError::InvalidBounds: return "bounds cannot be fitted by this camera";
     case CameraError::SceneRejected: return "scene rejected the camera pose";
     case CameraError::Disabled: return "camera is disabled";
+    case CameraError::PhysicsOwned: return "camera pose is owned by physics";
     }
     return "unknown camera error";
 }
@@ -357,6 +359,7 @@ struct CameraService::Impl {
     struct Entry {
         ecs::Entity entity{};
         std::optional<CameraView> last;
+        math::Mat4 sampled_effect{};
         CameraError error{CameraError::None};
         Transition transition{};
         std::vector<Shake> shakes;
@@ -381,6 +384,7 @@ struct CameraService::Impl {
     std::uint32_t width{640};
     std::uint32_t height{360};
     CameraStatistics statistics{};
+    std::uint64_t view_revision{};
 
     Impl(scene::Scene& shared_scene, CameraLimits configuration)
         : scene(shared_scene), registry(shared_scene.registry()), limits(configuration) {
@@ -445,6 +449,9 @@ struct CameraService::Impl {
     }
 
     bool write_pose(Entry& value, const math::Transform& pose) {
+        if (registry.has<physics::BodyComponent>(value.entity)) {
+            return reject(&value, CameraError::PhysicsOwned);
+        }
         if (!valid_pose(pose)) { return reject(&value, CameraError::InvalidTransform); }
         if (!scene.set_world_transform(value.entity, pose)) {
             return reject(&value, CameraError::SceneRejected);
@@ -622,10 +629,22 @@ struct CameraService::Impl {
         result.near_plane = camera.projection.near_plane;
         result.far_plane = camera.projection.far_plane;
         result.visibility_mask = camera.visibility_mask;
-        result.revision = statistics.updates;
+        increment(view_revision);
+        result.revision = view_revision;
         result.stale = value.error != CameraError::None;
         value.last = result;
         return true;
+    }
+
+    void publish_views() {
+        published.clear();
+        for (std::size_t slot = 0; slot < active.size(); ++slot) {
+            const auto* value = entry(active[slot]);
+            if (value == nullptr || !value->last || value->error == CameraError::Disabled) { continue; }
+            auto snapshot = *value->last;
+            snapshot.slot = slot;
+            published.push_back(snapshot);
+        }
     }
 };
 
@@ -936,6 +955,7 @@ bool CameraService::clear_effects(ecs::Entity entity) noexcept {
     value->shakes.clear();
     value->recoil_position = {};
     value->recoil_rotation = {};
+    value->sampled_effect = {};
     return true;
 }
 
@@ -955,21 +975,64 @@ void CameraService::update(double delta_seconds, const input::InputSystem* input
         }
         const bool moved = value.transition.active ? impl_->advance_transition(value, delta) :
             impl_->controller(value, *camera, controls, delta);
-        const auto effect = impl_->effects(value, delta);
-        const bool refreshed = moved && impl_->build_view(value, *camera, effect);
+        value.sampled_effect = impl_->effects(value, delta);
+        const bool refreshed = moved && impl_->build_view(value, *camera, value.sampled_effect);
         if (!refreshed) {
             increment(impl_->statistics.rejected_views);
             if (value.last) { value.last->stale = true; }
         }
     }
-    impl_->published.clear();
-    for (std::size_t slot = 0; slot < impl_->active.size(); ++slot) {
-        const auto* value = impl_->entry(impl_->active[slot]);
-        if (value == nullptr || !value->last || value->error == CameraError::Disabled) { continue; }
-        auto snapshot = *value->last;
-        snapshot.slot = slot;
-        impl_->published.push_back(snapshot);
+    impl_->publish_views();
+}
+
+void CameraService::refresh_views() {
+    increment(impl_->statistics.view_refreshes);
+    (void)impl_->scene.update();
+    impl_->sync_entries();
+    for (auto& value : impl_->entries) {
+        const auto* camera = component(value.entity);
+        value.error = CameraError::None;
+        if (camera == nullptr || !camera->enabled || !impl_->scene.effective_enabled(value.entity)) {
+            value.error = CameraError::Disabled;
+            continue;
+        }
+        if (!impl_->build_view(value, *camera, value.sampled_effect)) {
+            increment(impl_->statistics.rejected_views);
+            if (value.last) { value.last->stale = true; }
+        }
     }
+    impl_->publish_views();
+}
+
+bool CameraService::rebase_cached_world(math::Vec3 offset) {
+    if (!bounded(offset) || impl_->registry.iterating()) { return false; }
+    impl_->sync_entries();
+    for (const auto& value : impl_->entries) {
+        const auto* camera = component(value.entity);
+        if (camera == nullptr) { return false; }
+        if (!camera->controller.target && !bounded(camera->controller.focus_point - offset)) {
+            return false;
+        }
+        if (value.transition.active &&
+            (!bounded(value.transition.source.position - offset) ||
+             !bounded(value.transition.destination.position - offset))) {
+            return false;
+        }
+    }
+    for (auto& value : impl_->entries) {
+        auto* camera = component(value.entity);
+        if (!camera->controller.target) {
+            camera->controller.focus_point -= offset;
+            (void)impl_->registry.mark_changed<CameraComponent>(value.entity);
+        }
+        if (value.transition.active) {
+            value.transition.source.position -= offset;
+            value.transition.destination.position -= offset;
+        }
+        value.last.reset();
+    }
+    impl_->published.clear();
+    return true;
 }
 
 const CameraView* CameraService::current_view() const noexcept { return view(0); }

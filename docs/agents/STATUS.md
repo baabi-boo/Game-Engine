@@ -3,10 +3,10 @@
 # Agent project status
 
 - **Project:** Game Engine
-- **Ledger revision:** 415
-- **Recorded update:** 2026\-11\-27T23:54:07.788473Z
+- **Ledger revision:** 416
+- **Recorded update:** 2026\-11\-27T23:56:28.925924Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** a4efc8b949cd5128dc6c01a13ac843705edbecbaaacb1d0e7da33aa036c3646c
+- **Source fingerprint:** fd61a6095a09b8ed540a515259ccf3785df543d1297867e8f817788b16efd475
 - **Source files:** 228
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
@@ -1221,7 +1221,6 @@ These are historical observations. A pass neither completes a task nor remains c
 
 ## Recent operations
 
-- Revision 396 — 2026\-11\-27T23:52:06.454757Z — coordinator: add CODE\-095. Added planned task CODE\-095: Runtime startup profiles and settings application.
 - Revision 397 — 2026\-11\-27T23:52:08.734441Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
 - Revision 398 — 2026\-11\-27T23:52:11.552677Z — worker095: claim CODE\-095. Claimed CODE\-095 with its recorded write scope.
 - Revision 399 — 2026\-11\-27T23:52:14.062562Z — coordinator: add CODE\-096. Added planned task CODE\-096: Integrated district actors and interaction loop.
@@ -1241,5 +1240,6 @@ These are historical observations. A pass neither completes a task nor remains c
 - Revision 413 — 2026\-11\-27T23:53:47.358538Z — worker100: claim CODE\-100. Claimed CODE\-100 with its recorded write scope.
 - Revision 414 — 2026\-11\-27T23:53:57.491684Z — worker061: checkpoint CODE\-061. Actual /root/worker061 delivered Inverse kinematics and pose constraints; 1169 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 415 — 2026\-11\-27T23:54:07.788473Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
+- Revision 416 — 2026\-11\-27T23:56:28.925924Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 
 The canonical ledger retains the complete operation history.

@@ -32,7 +32,8 @@ enum class CameraError : std::uint8_t {
     InvalidTarget,
     InvalidBounds,
     SceneRejected,
-    Disabled
+    Disabled,
+    PhysicsOwned
 };
 
 [[nodiscard]] std::string_view describe(CameraError error) noexcept;
@@ -145,6 +146,7 @@ struct CameraStatistics {
     std::size_t shakes{};
     std::uint64_t updates{};
     std::uint64_t rejected_views{};
+    std::uint64_t view_refreshes{};
 };
 
 [[nodiscard]] bool valid(const CameraProjection& projection) noexcept;
@@ -212,6 +214,15 @@ public:
     bool clear_effects(ecs::Entity entity) noexcept;
 
     void update(double delta_seconds, const input::InputSystem* input = nullptr);
+    // Rebuild matrices from current Scene/projection state and the last sampled
+    // shake/recoil transform. Does not advance controls, transitions or effects.
+    // Late follow-target movement still needs the next normal controller update.
+    void refresh_views();
+    // Apply once after an external world-origin shift. Only tracked cameras'
+    // world focus points and active transition endpoints move; Scene poses do not.
+    // Target-local offsets and direction/velocity vectors remain unchanged.
+    // Published snapshots are invalidated until refresh_views() or update().
+    [[nodiscard]] bool rebase_cached_world(math::Vec3 offset);
     [[nodiscard]] const CameraView* current_view() const noexcept;
     [[nodiscard]] const CameraView* view(std::size_t slot) const noexcept;
     [[nodiscard]] const CameraView* snapshot(ecs::Entity entity) const noexcept;

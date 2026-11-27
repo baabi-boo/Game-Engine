@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 415,
-  "updated_at": "2026-11-27T23:54:07.788473Z",
+  "revision": 416,
+  "updated_at": "2026-11-27T23:56:28.925924Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,7 +27,7 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "a4efc8b949cd5128dc6c01a13ac843705edbecbaaacb1d0e7da33aa036c3646c",
+    "sha256": "fd61a6095a09b8ed540a515259ccf3785df543d1297867e8f817788b16efd475",
     "file_count": 228
   },
   "milestones": [
@@ -7899,6 +7899,14 @@
     {
       "revision": 415,
       "at": "2026-11-27T23:54:07.788473Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 416,
+      "at": "2026-11-27T23:56:28.925924Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,
