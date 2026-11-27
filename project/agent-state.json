@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 273,
-  "updated_at": "2026-11-27T22:41:53.116574Z",
+  "revision": 286,
+  "updated_at": "2026-11-27T22:54:26.262671Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "608c341004b7612cf99b8d5b6ce03f9b44fb64a892b6f33ccc2d4cef29fcc781",
-    "file_count": 196
+    "sha256": "a64003d1f2cb295f2bddf629baba822f69697520ad2775b6102a024d1cec796e",
+    "file_count": 202
   },
   "milestones": [
     {
@@ -2759,9 +2759,12 @@
       "claim_revision": 195,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker046 delivered Behavior tree execution and blackboards; 1274 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/ai/include/ge/ai/behavior.hpp",
+          "engine/ai/src/behavior.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -2789,9 +2792,12 @@
       "claim_revision": 198,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker047 delivered Perception, memory and utility decisions; 1165 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/ai/include/ge/ai/perception.hpp",
+          "engine/ai/src/perception.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -2819,9 +2825,12 @@
       "claim_revision": 201,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker048 delivered Road geometry and lane graph routing; 1755 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/traffic/include/ge/traffic/roads.hpp",
+          "engine/traffic/src/roads.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -3267,6 +3276,96 @@
       "status": "in_progress",
       "owner": "worker063",
       "claim_revision": 271,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-064",
+      "title": "Bounded WAV decoding and audio conversion",
+      "milestone": "M1",
+      "priority": 64,
+      "description": "Implement Bounded WAV decoding and audio conversion. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/audio/include/ge/audio/wave.hpp",
+        "engine/audio/src/wave.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_wave(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker064",
+      "claim_revision": 276,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-065",
+      "title": "OBJ and PLY model import",
+      "milestone": "M1",
+      "priority": 65,
+      "description": "Implement OBJ and PLY model import. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/assets/include/ge/assets/model.hpp",
+        "engine/assets/src/model.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_model(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker065",
+      "claim_revision": 279,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-066",
+      "title": "BMP, TGA and PPM texture import",
+      "milestone": "M1",
+      "priority": 66,
+      "description": "Implement BMP, TGA and PPM texture import. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/assets/include/ge/assets/textures.hpp",
+        "engine/assets/src/textures.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_textures(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker066",
+      "claim_revision": 282,
       "blocker": null,
       "checkpoint": {
         "summary": "Not started.",
@@ -5605,6 +5704,110 @@
     {
       "revision": 273,
       "at": "2026-11-27T22:41:53.116574Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 274,
+      "at": "2026-11-27T22:51:12.401573Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-064",
+      "summary": "Added planned task CODE-064: Bounded WAV decoding and audio conversion."
+    },
+    {
+      "revision": 275,
+      "at": "2026-11-27T22:51:14.967662Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 276,
+      "at": "2026-11-27T22:51:17.149874Z",
+      "actor": "worker064",
+      "action": "claim",
+      "task": "CODE-064",
+      "summary": "Claimed CODE-064 with its recorded write scope."
+    },
+    {
+      "revision": 277,
+      "at": "2026-11-27T22:51:19.374304Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-065",
+      "summary": "Added planned task CODE-065: OBJ and PLY model import."
+    },
+    {
+      "revision": 278,
+      "at": "2026-11-27T22:51:21.673098Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 279,
+      "at": "2026-11-27T22:51:24.023279Z",
+      "actor": "worker065",
+      "action": "claim",
+      "task": "CODE-065",
+      "summary": "Claimed CODE-065 with its recorded write scope."
+    },
+    {
+      "revision": 280,
+      "at": "2026-11-27T22:51:26.533336Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-066",
+      "summary": "Added planned task CODE-066: BMP, TGA and PPM texture import."
+    },
+    {
+      "revision": 281,
+      "at": "2026-11-27T22:51:28.966455Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 282,
+      "at": "2026-11-27T22:51:31.729851Z",
+      "actor": "worker066",
+      "action": "claim",
+      "task": "CODE-066",
+      "summary": "Claimed CODE-066 with its recorded write scope."
+    },
+    {
+      "revision": 283,
+      "at": "2026-11-27T22:53:52.929603Z",
+      "actor": "worker046",
+      "action": "checkpoint",
+      "task": "CODE-046",
+      "summary": "Actual /root/worker046 delivered Behavior tree execution and blackboards; 1274 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 284,
+      "at": "2026-11-27T22:53:55.139795Z",
+      "actor": "worker047",
+      "action": "checkpoint",
+      "task": "CODE-047",
+      "summary": "Actual /root/worker047 delivered Perception, memory and utility decisions; 1165 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 285,
+      "at": "2026-11-27T22:54:17.858943Z",
+      "actor": "worker048",
+      "action": "checkpoint",
+      "task": "CODE-048",
+      "summary": "Actual /root/worker048 delivered Road geometry and lane graph routing; 1755 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 286,
+      "at": "2026-11-27T22:54:26.262671Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,

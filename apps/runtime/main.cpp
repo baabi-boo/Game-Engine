@@ -173,7 +173,7 @@ int main(int argc, char** argv) {
             success = consume_commands(kernel, input, false);
         }
         for (std::uint64_t i = 0; i < options.ticks && !kernel.stop_requested(); ++i) {
-            success = kernel.tick(options.step) && success;
+            success = kernel.tick(kernel.config().number("runtime.step", options.step)) && success;
         }
         if (options.interactive) {
             success = consume_commands(kernel, std::cin, true) && success;

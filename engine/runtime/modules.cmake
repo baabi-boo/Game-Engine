@@ -21,6 +21,8 @@ set(GE_ENGINE_MODULES
     "text"
     "network"
     "persistence"
+    "ai"
+    "traffic"
 )
 set(GE_ENGINE_INCLUDE_ROOTS
     "${PROJECT_SOURCE_DIR}/engine/math/include"
@@ -45,6 +47,8 @@ set(GE_ENGINE_INCLUDE_ROOTS
     "${PROJECT_SOURCE_DIR}/engine/text/include"
     "${PROJECT_SOURCE_DIR}/engine/network/include"
     "${PROJECT_SOURCE_DIR}/engine/persistence/include"
+    "${PROJECT_SOURCE_DIR}/engine/ai/include"
+    "${PROJECT_SOURCE_DIR}/engine/traffic/include"
 )
 set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/math/src/math.cpp"
@@ -89,6 +93,9 @@ set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/network/src/replication.cpp"
     "${PROJECT_SOURCE_DIR}/engine/network/src/prediction.cpp"
     "${PROJECT_SOURCE_DIR}/engine/persistence/src/journal.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/ai/src/behavior.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/ai/src/perception.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/traffic/src/roads.cpp"
 )
 set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/math/include/ge/math/math.hpp"
@@ -133,4 +140,7 @@ set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/network/include/ge/network/replication.hpp"
     "${PROJECT_SOURCE_DIR}/engine/network/include/ge/network/prediction.hpp"
     "${PROJECT_SOURCE_DIR}/engine/persistence/include/ge/persistence/journal.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/ai/include/ge/ai/behavior.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/ai/include/ge/ai/perception.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/traffic/include/ge/traffic/roads.hpp"
 )

@@ -3,11 +3,11 @@
 # Agent project status
 
 - **Project:** Game Engine
-- **Ledger revision:** 273
-- **Recorded update:** 2026\-11\-27T22:41:53.116574Z
+- **Ledger revision:** 286
+- **Recorded update:** 2026\-11\-27T22:54:26.262671Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 608c341004b7612cf99b8d5b6ce03f9b44fb64a892b6f33ccc2d4cef29fcc781
-- **Source files:** 196
+- **Source fingerprint:** a64003d1f2cb295f2bddf629baba822f69697520ad2775b6102a024d1cec796e
+- **Source files:** 202
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -88,9 +88,9 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 | CODE\-043: Entity snapshots and delta replication | 43 | M1 | in\_progress | worker043 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-044: Input prediction and rollback state | 44 | M1 | in\_progress | worker044 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-045: Transactional save journal and recovery | 45 | M1 | in\_progress | worker045 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-046: Behavior tree execution and blackboards | 46 | M1 | in\_progress | worker046 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-047: Perception, memory and utility decisions | 47 | M1 | in\_progress | worker047 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-048: Road geometry and lane graph routing | 48 | M1 | in\_progress | worker048 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-046: Behavior tree execution and blackboards | 46 | M1 | in\_progress | worker046 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
+| CODE\-047: Perception, memory and utility decisions | 47 | M1 | in\_progress | worker047 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
+| CODE\-048: Road geometry and lane graph routing | 48 | M1 | in\_progress | worker048 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-049: Traffic agents, intersections and signals | 49 | M1 | in\_progress | worker049 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-050: Mission objectives and idempotent rewards | 50 | M1 | in\_progress | worker050 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-051: Inventory stacks, containers and transactions | 51 | M1 | in\_progress | worker051 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
@@ -106,6 +106,9 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 | CODE\-061: Inverse kinematics and pose constraints | 61 | M1 | in\_progress | worker061 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-062: Skeleton retargeting and root motion | 62 | M1 | in\_progress | worker062 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-063: DSP filters, reverberation and effects | 63 | M1 | in\_progress | worker063 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-064: Bounded WAV decoding and audio conversion | 64 | M1 | in\_progress | worker064 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-065: OBJ and PLY model import | 65 | M1 | in\_progress | worker065 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-066: BMP, TGA and PPM texture import | 66 | M1 | in\_progress | worker066 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | M1\-010: Declare the reference platform and playable workload | 100 | M1 | planned \(ready\) | unowned | M0\-FOUNDATION | Read the first\-playable plan and inspect available target evidence; draft the reference\-platform record. |
 | M1\-020: Select one native backend and dependency strategy | 110 | M1 | planned | unowned | M1\-010 | Review ADR0006 and the candidate register; produce an evidence\-backed backend decision and dependency records. |
 | M1\-030: Implement native window and input lifecycle | 120 | M1 | planned | unowned | M1\-020 | Define the minimal platform interface, then wire and test window/input lifecycle on the chosen target. |
@@ -622,8 +625,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 195
 - Write scope: engine/ai/include/ge/ai/behavior.hpp, engine/ai/src/behavior.cpp
 - Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Preserved work: Actual /root/worker046 delivered Behavior tree execution and blackboards; 1274 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 
 ### CODE\-047
 
@@ -632,8 +635,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 198
 - Write scope: engine/ai/include/ge/ai/perception.hpp, engine/ai/src/perception.cpp
 - Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Preserved work: Actual /root/worker047 delivered Perception, memory and utility decisions; 1165 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 
 ### CODE\-048
 
@@ -642,8 +645,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 201
 - Write scope: engine/traffic/include/ge/traffic/roads.hpp, engine/traffic/src/roads.cpp
 - Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Preserved work: Actual /root/worker048 delivered Road geometry and lane graph routing; 1755 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 
 ### CODE\-049
 
@@ -795,6 +798,36 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Preserved work: Not started.
 - Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
 
+### CODE\-064
+
+- Status: in\_progress
+- Owner: worker064
+- Claim revision: 276
+- Write scope: engine/audio/include/ge/audio/wave.hpp, engine/audio/src/wave.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-065
+
+- Status: in\_progress
+- Owner: worker065
+- Claim revision: 279
+- Write scope: engine/assets/include/ge/assets/model.hpp, engine/assets/src/model.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-066
+
+- Status: in\_progress
+- Owner: worker066
+- Claim revision: 282
+- Write scope: engine/assets/include/ge/assets/textures.hpp, engine/assets/src/textures.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
 
 ## Evidence observations
 
@@ -814,19 +847,6 @@ These are historical observations. A pass neither completes a task nor remains c
 
 ## Recent operations
 
-- Revision 254 — 2026\-11\-27T22:40:01.718448Z — coordinator: add CODE\-058. Added planned task CODE\-058: Draw batching and instance submission.
-- Revision 255 — 2026\-11\-27T22:40:02.668651Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 256 — 2026\-11\-27T22:40:03.528728Z — worker058: claim CODE\-058. Claimed CODE\-058 with its recorded write scope.
-- Revision 257 — 2026\-11\-27T22:40:04.426589Z — coordinator: add CODE\-059. Added planned task CODE\-059: Decal projection and surface blending.
-- Revision 258 — 2026\-11\-27T22:40:05.347886Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 259 — 2026\-11\-27T22:40:06.263445Z — worker059: claim CODE\-059. Claimed CODE\-059 with its recorded write scope.
-- Revision 260 — 2026\-11\-27T22:40:07.164508Z — coordinator: add CODE\-060. Added planned task CODE\-060: Scene picking and selection models.
-- Revision 261 — 2026\-11\-27T22:40:08.076800Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 262 — 2026\-11\-27T22:40:09.061946Z — worker060: claim CODE\-060. Claimed CODE\-060 with its recorded write scope.
-- Revision 263 — 2026\-11\-27T22:40:35.003951Z — coordinator: add CODE\-061. Added planned task CODE\-061: Inverse kinematics and pose constraints.
-- Revision 264 — 2026\-11\-27T22:40:37.123997Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 265 — 2026\-11\-27T22:40:39.105057Z — worker061: claim CODE\-061. Claimed CODE\-061 with its recorded write scope.
-- Revision 266 — 2026\-11\-27T22:40:41.075897Z — coordinator: add CODE\-062. Added planned task CODE\-062: Skeleton retargeting and root motion.
 - Revision 267 — 2026\-11\-27T22:40:43.150601Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
 - Revision 268 — 2026\-11\-27T22:40:45.228368Z — worker062: claim CODE\-062. Claimed CODE\-062 with its recorded write scope.
 - Revision 269 — 2026\-11\-27T22:40:47.266175Z — coordinator: add CODE\-063. Added planned task CODE\-063: DSP filters, reverberation and effects.
@@ -834,5 +854,18 @@ These are historical observations. A pass neither completes a task nor remains c
 - Revision 271 — 2026\-11\-27T22:40:51.901781Z — worker063: claim CODE\-063. Claimed CODE\-063 with its recorded write scope.
 - Revision 272 — 2026\-11\-27T22:41:47.449237Z — worker044: checkpoint CODE\-044. Actual /root/worker044 delivered Input prediction and rollback state; 1365 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 273 — 2026\-11\-27T22:41:53.116574Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
+- Revision 274 — 2026\-11\-27T22:51:12.401573Z — coordinator: add CODE\-064. Added planned task CODE\-064: Bounded WAV decoding and audio conversion.
+- Revision 275 — 2026\-11\-27T22:51:14.967662Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 276 — 2026\-11\-27T22:51:17.149874Z — worker064: claim CODE\-064. Claimed CODE\-064 with its recorded write scope.
+- Revision 277 — 2026\-11\-27T22:51:19.374304Z — coordinator: add CODE\-065. Added planned task CODE\-065: OBJ and PLY model import.
+- Revision 278 — 2026\-11\-27T22:51:21.673098Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 279 — 2026\-11\-27T22:51:24.023279Z — worker065: claim CODE\-065. Claimed CODE\-065 with its recorded write scope.
+- Revision 280 — 2026\-11\-27T22:51:26.533336Z — coordinator: add CODE\-066. Added planned task CODE\-066: BMP, TGA and PPM texture import.
+- Revision 281 — 2026\-11\-27T22:51:28.966455Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 282 — 2026\-11\-27T22:51:31.729851Z — worker066: claim CODE\-066. Claimed CODE\-066 with its recorded write scope.
+- Revision 283 — 2026\-11\-27T22:53:52.929603Z — worker046: checkpoint CODE\-046. Actual /root/worker046 delivered Behavior tree execution and blackboards; 1274 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Revision 284 — 2026\-11\-27T22:53:55.139795Z — worker047: checkpoint CODE\-047. Actual /root/worker047 delivered Perception, memory and utility decisions; 1165 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Revision 285 — 2026\-11\-27T22:54:17.858943Z — worker048: checkpoint CODE\-048. Actual /root/worker048 delivered Road geometry and lane graph routing; 1755 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Revision 286 — 2026\-11\-27T22:54:26.262671Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 
 The canonical ledger retains the complete operation history.

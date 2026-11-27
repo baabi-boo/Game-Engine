@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 273
-- **Recorded update:** 2026\-11\-27T22:41:53.116574Z
+- **Ledger revision:** 286
+- **Recorded update:** 2026\-11\-27T22:54:26.262671Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 608c341004b7612cf99b8d5b6ce03f9b44fb64a892b6f33ccc2d4cef29fcc781
-- **Source files:** 196
+- **Source fingerprint:** a64003d1f2cb295f2bddf629baba822f69697520ad2775b6102a024d1cec796e
+- **Source files:** 202
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -1006,9 +1006,9 @@ Implement Behavior tree execution and blackboards. User\-authorized source\-only
 - Write scope: engine/ai/include/ge/ai/behavior.hpp, engine/ai/src/behavior.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker046 delivered Behavior tree execution and blackboards; 1274 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/ai/include/ge/ai/behavior.hpp, engine/ai/src/behavior.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -1026,9 +1026,9 @@ Implement Perception, memory and utility decisions. User\-authorized source\-onl
 - Write scope: engine/ai/include/ge/ai/perception.hpp, engine/ai/src/perception.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker047 delivered Perception, memory and utility decisions; 1165 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/ai/include/ge/ai/perception.hpp, engine/ai/src/perception.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -1046,9 +1046,9 @@ Implement Road geometry and lane graph routing. User\-authorized source\-only ca
 - Write scope: engine/traffic/include/ge/traffic/roads.hpp, engine/traffic/src/roads.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker048 delivered Road geometry and lane graph routing; 1755 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/traffic/include/ge/traffic/roads.hpp, engine/traffic/src/roads.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -1355,6 +1355,66 @@ Acceptance:
 
 - Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
 - Expose a working register\_dsp\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-064: Bounded WAV decoding and audio conversion
+
+Implement Bounded WAV decoding and audio conversion. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker064
+- Write scope: engine/audio/include/ge/audio/wave.hpp, engine/audio/src/wave.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_wave\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-065: OBJ and PLY model import
+
+Implement OBJ and PLY model import. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker065
+- Write scope: engine/assets/include/ge/assets/model.hpp, engine/assets/src/model.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_model\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-066: BMP, TGA and PPM texture import
+
+Implement BMP, TGA and PPM texture import. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker066
+- Write scope: engine/assets/include/ge/assets/textures.hpp, engine/assets/src/textures.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_textures\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
 
 - dev: no receipt.
 

@@ -592,17 +592,63 @@
       "agent_id": "/root/worker046",
       "task_id": "CODE-046",
       "wave": 16,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Behavior tree execution and blackboards",
+      "files": [
+        "engine/ai/include/ge/ai/behavior.hpp",
+        "engine/ai/src/behavior.cpp"
+      ],
+      "code_lines": 1274
     },
     {
       "number": 47,
       "agent_id": "/root/worker047",
       "task_id": "CODE-047",
       "wave": 16,
+      "status": "source_delivered",
+      "title": "Perception, memory and utility decisions",
+      "files": [
+        "engine/ai/include/ge/ai/perception.hpp",
+        "engine/ai/src/perception.cpp"
+      ],
+      "code_lines": 1165
+    },
+    {
+      "number": 48,
+      "agent_id": "/root/worker048",
+      "task_id": "CODE-048",
+      "wave": 16,
+      "status": "source_delivered",
+      "title": "Road geometry and lane graph routing",
+      "files": [
+        "engine/traffic/include/ge/traffic/roads.hpp",
+        "engine/traffic/src/roads.cpp"
+      ],
+      "code_lines": 1755
+    },
+    {
+      "number": 49,
+      "agent_id": "/root/worker049",
+      "task_id": "CODE-049",
+      "wave": 17,
+      "status": "implementing"
+    },
+    {
+      "number": 50,
+      "agent_id": "/root/worker050",
+      "task_id": "CODE-050",
+      "wave": 17,
+      "status": "implementing"
+    },
+    {
+      "number": 51,
+      "agent_id": "/root/worker051",
+      "task_id": "CODE-051",
+      "wave": 17,
       "status": "implementing"
     }
   ],
-  "delivered_worker_count": 45,
-  "counted_delivered_worker_code_lines": 64381,
+  "delivered_worker_count": 48,
+  "counted_delivered_worker_code_lines": 68575,
   "baseline_engine_application_code_lines": 1727
 }
