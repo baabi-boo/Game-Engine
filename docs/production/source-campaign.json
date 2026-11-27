@@ -202,24 +202,63 @@
       "agent_id": "/root/worker016",
       "task_id": "CODE-016",
       "wave": 6,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Audio buffers, voices and mixing graph",
+      "files": [
+        "engine/audio/include/ge/audio/mixer.hpp",
+        "engine/audio/src/mixer.cpp"
+      ],
+      "code_lines": 1252
     },
     {
       "number": 17,
       "agent_id": "/root/worker017",
       "task_id": "CODE-017",
       "wave": 6,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Graph and grid pathfinding",
+      "files": [
+        "engine/navigation/include/ge/navigation/pathfinding.hpp",
+        "engine/navigation/src/pathfinding.cpp"
+      ],
+      "code_lines": 1544
     },
     {
       "number": 18,
       "agent_id": "/root/worker018",
       "task_id": "CODE-018",
       "wave": 6,
+      "status": "source_delivered",
+      "title": "Materials and CPU shading",
+      "files": [
+        "engine/render/include/ge/render/material.hpp",
+        "engine/render/src/material.cpp"
+      ],
+      "code_lines": 1150
+    },
+    {
+      "number": 19,
+      "agent_id": "/root/worker019",
+      "task_id": "CODE-019",
+      "wave": 7,
+      "status": "implementing"
+    },
+    {
+      "number": 20,
+      "agent_id": "/root/worker020",
+      "task_id": "CODE-020",
+      "wave": 7,
+      "status": "implementing"
+    },
+    {
+      "number": 21,
+      "agent_id": "/root/worker021",
+      "task_id": "CODE-021",
+      "wave": 7,
       "status": "implementing"
     }
   ],
-  "delivered_worker_count": 15,
-  "counted_delivered_worker_code_lines": 23106,
+  "delivered_worker_count": 18,
+  "counted_delivered_worker_code_lines": 27052,
   "baseline_engine_application_code_lines": 1727
 }

@@ -12,6 +12,9 @@
 #include <ge/physics/collision.hpp>
 #include <ge/physics/dynamics.hpp>
 #include <ge/animation/skeleton.hpp>
+#include <ge/audio/mixer.hpp>
+#include <ge/navigation/pathfinding.hpp>
+#include <ge/render/material.hpp>
 
 namespace ge::application {
 void install_modules(core::Kernel& kernel) {
@@ -27,6 +30,9 @@ void install_modules(core::Kernel& kernel) {
     ge::physics::register_collision(kernel);
     ge::physics::register_dynamics(kernel);
     ge::animation::register_skeleton(kernel);
+    ge::audio::register_mixer(kernel);
+    ge::navigation::register_pathfinding(kernel);
+    ge::render::register_material(kernel);
     (void)kernel.order_after("spatial.sync", "geometry.mesh.bounds");
 }
 }

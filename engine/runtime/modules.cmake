@@ -11,6 +11,8 @@ set(GE_ENGINE_MODULES
     "spatial"
     "physics"
     "animation"
+    "audio"
+    "navigation"
 )
 set(GE_ENGINE_INCLUDE_ROOTS
     "${PROJECT_SOURCE_DIR}/engine/math/include"
@@ -25,6 +27,8 @@ set(GE_ENGINE_INCLUDE_ROOTS
     "${PROJECT_SOURCE_DIR}/engine/spatial/include"
     "${PROJECT_SOURCE_DIR}/engine/physics/include"
     "${PROJECT_SOURCE_DIR}/engine/animation/include"
+    "${PROJECT_SOURCE_DIR}/engine/audio/include"
+    "${PROJECT_SOURCE_DIR}/engine/navigation/include"
 )
 set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/math/src/math.cpp"
@@ -40,6 +44,9 @@ set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/physics/src/collision.cpp"
     "${PROJECT_SOURCE_DIR}/engine/physics/src/dynamics.cpp"
     "${PROJECT_SOURCE_DIR}/engine/animation/src/skeleton.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/audio/src/mixer.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/navigation/src/pathfinding.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/render/src/material.cpp"
 )
 set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/math/include/ge/math/math.hpp"
@@ -55,4 +62,7 @@ set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/physics/include/ge/physics/collision.hpp"
     "${PROJECT_SOURCE_DIR}/engine/physics/include/ge/physics/dynamics.hpp"
     "${PROJECT_SOURCE_DIR}/engine/animation/include/ge/animation/skeleton.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/audio/include/ge/audio/mixer.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/navigation/include/ge/navigation/pathfinding.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/render/include/ge/render/material.hpp"
 )

@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 86
-- **Recorded update:** 2026\-11\-27T20:23:37.969696Z
+- **Ledger revision:** 108
+- **Recorded update:** 2026\-11\-27T20:37:32.443108Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 9b14a84c8ba349409a93aa7c2e969543f31d2c1217b7e730ed03fd0fdb857c69
-- **Source files:** 136
+- **Source fingerprint:** 0ed87a0cfea5ee81698113ee026ab7d6524864a0d8aee1aac35eacc15ee18462
+- **Source files:** 142
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -406,9 +406,9 @@ Implement Audio buffers, voices and mixing graph. User\-authorized source\-only 
 - Write scope: engine/audio/include/ge/audio/mixer.hpp, engine/audio/src/mixer.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker016 delivered Audio buffers, voices and mixing graph; 1252 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/audio/include/ge/audio/mixer.hpp, engine/audio/src/mixer.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -426,9 +426,9 @@ Implement Graph and grid pathfinding. User\-authorized source\-only campaign: no
 - Write scope: engine/navigation/include/ge/navigation/pathfinding.hpp, engine/navigation/src/pathfinding.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker017 delivered Graph and grid pathfinding; 1544 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/navigation/include/ge/navigation/pathfinding.hpp, engine/navigation/src/pathfinding.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -446,6 +446,26 @@ Implement Materials and CPU shading. User\-authorized source\-only campaign: no 
 - Write scope: engine/render/include/ge/render/material.hpp, engine/render/src/material.cpp
 - Dependencies: none
 - Blocker: none
+- Checkpoint: Actual /root/worker018 delivered Materials and CPU shading; 1150 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/render/include/ge/render/material.hpp, engine/render/src/material.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_material\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-019: Camera rigs, projections and viewport mapping
+
+Implement Camera rigs, projections and viewport mapping. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker019
+- Write scope: engine/render/include/ge/render/camera.hpp, engine/render/src/camera.cpp
+- Dependencies: none
+- Blocker: none
 - Checkpoint: Not started.
 - Files: none recorded
 - Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
@@ -454,7 +474,107 @@ Implement Materials and CPU shading. User\-authorized source\-only campaign: no 
 Acceptance:
 
 - Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
-- Expose a working register\_material\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+- Expose a working register\_camera\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-020: Asynchronous resource loading and residency
+
+Implement Asynchronous resource loading and residency. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker020
+- Write scope: engine/assets/include/ge/assets/streaming.hpp, engine/assets/src/streaming.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_streaming\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-021: Software triangle rasterization
+
+Implement Software triangle rasterization. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker021
+- Write scope: engine/render/include/ge/render/rasterizer.hpp, engine/render/src/rasterizer.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_rasterizer\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-022: Character movement and grounding
+
+Implement Character movement and grounding. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker022
+- Write scope: engine/physics/include/ge/physics/character.hpp, engine/physics/src/character.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_character\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-023: Vehicle suspension and tire forces
+
+Implement Vehicle suspension and tire forces. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker023
+- Write scope: engine/physics/include/ge/physics/vehicle.hpp, engine/physics/src/vehicle.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_vehicle\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-024: Animation blending and state machines
+
+Implement Animation blending and state machines. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker024
+- Write scope: engine/animation/include/ge/animation/blend.hpp, engine/animation/src/blend.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_blend\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
 
 - dev: no receipt.
 
