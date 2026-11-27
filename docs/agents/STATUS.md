@@ -3,11 +3,11 @@
 # Agent project status
 
 - **Project:** Game Engine
-- **Ledger revision:** 82
-- **Recorded update:** 2026\-11\-27T20:12:01.725979Z
+- **Ledger revision:** 86
+- **Recorded update:** 2026\-11\-27T20:23:37.969696Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 562f75a84fd57faf546dd7a6bf9858c74f44f1e84eabe7903964d0afcb87c79d
-- **Source files:** 130
+- **Source fingerprint:** 9b14a84c8ba349409a93aa7c2e969543f31d2c1217b7e730ed03fd0fdb857c69
+- **Source files:** 136
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -55,9 +55,9 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 | OPS\-MACOS: Establish observed macOS foundation qualification | 10 | OPS | blocked | unowned | M0\-FOUNDATION | Inspect the latest macOS job and its logs; identify whether execution is available before changing platform code. |
 | CODE\-011: Images, framebuffers and texture sampling | 11 | M1 | in\_progress | worker011 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-012: Dynamic spatial index and visibility queries | 12 | M1 | in\_progress | worker012 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-013: Collision shapes and narrowphase contacts | 13 | M1 | in\_progress | worker013 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-014: Rigid body integration and contact solving | 14 | M1 | in\_progress | worker014 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-015: Skeletons, poses and sampled animation | 15 | M1 | in\_progress | worker015 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-013: Collision shapes and narrowphase contacts | 13 | M1 | in\_progress | worker013 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
+| CODE\-014: Rigid body integration and contact solving | 14 | M1 | in\_progress | worker014 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
+| CODE\-015: Skeletons, poses and sampled animation | 15 | M1 | in\_progress | worker015 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-016: Audio buffers, voices and mixing graph | 16 | M1 | in\_progress | worker016 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-017: Graph and grid pathfinding | 17 | M1 | in\_progress | worker017 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-018: Materials and CPU shading | 18 | M1 | in\_progress | worker018 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
@@ -247,8 +247,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 62
 - Write scope: engine/physics/include/ge/physics/collision.hpp, engine/physics/src/collision.cpp
 - Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Preserved work: Actual /root/worker013 delivered Collision shapes and narrowphase contacts; 1382 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 
 ### CODE\-014
 
@@ -257,8 +257,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 65
 - Write scope: engine/physics/include/ge/physics/dynamics.hpp, engine/physics/src/dynamics.cpp
 - Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Preserved work: Actual /root/worker014 delivered Rigid body integration and contact solving; 1480 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 
 ### CODE\-015
 
@@ -267,8 +267,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 68
 - Write scope: engine/animation/include/ge/animation/skeleton.hpp, engine/animation/src/skeleton.cpp
 - Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Preserved work: Actual /root/worker015 delivered Skeletons, poses and sampled animation; 1123 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 
 ### CODE\-016
 
@@ -319,10 +319,6 @@ These are historical observations. A pass neither completes a task nor remains c
 
 ## Recent operations
 
-- Revision 63 — 2026\-11\-27T19:57:22.750368Z — coordinator: add CODE\-014. Added planned task CODE\-014: Rigid body integration and contact solving.
-- Revision 64 — 2026\-11\-27T19:57:23.106512Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 65 — 2026\-11\-27T19:57:23.447476Z — worker014: claim CODE\-014. Claimed CODE\-014 with its recorded write scope.
-- Revision 66 — 2026\-11\-27T19:57:23.767654Z — coordinator: add CODE\-015. Added planned task CODE\-015: Skeletons, poses and sampled animation.
 - Revision 67 — 2026\-11\-27T19:57:24.121244Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
 - Revision 68 — 2026\-11\-27T19:57:24.463549Z — worker015: claim CODE\-015. Claimed CODE\-015 with its recorded write scope.
 - Revision 69 — 2026\-11\-27T20:02:01.436542Z — worker009: checkpoint CODE\-009. Actual /root/worker009 delivered Asset catalog, typed handles and cache; 1634 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
@@ -339,5 +335,9 @@ These are historical observations. A pass neither completes a task nor remains c
 - Revision 80 — 2026\-11\-27T20:10:03.642366Z — worker018: claim CODE\-018. Claimed CODE\-018 with its recorded write scope.
 - Revision 81 — 2026\-11\-27T20:12:01.011404Z — worker012: checkpoint CODE\-012. Actual /root/worker012 delivered Dynamic spatial index and visibility queries; 1225 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 82 — 2026\-11\-27T20:12:01.725979Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
+- Revision 83 — 2026\-11\-27T20:23:36.931390Z — worker013: checkpoint CODE\-013. Actual /root/worker013 delivered Collision shapes and narrowphase contacts; 1382 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Revision 84 — 2026\-11\-27T20:23:37.346180Z — worker014: checkpoint CODE\-014. Actual /root/worker014 delivered Rigid body integration and contact solving; 1480 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Revision 85 — 2026\-11\-27T20:23:37.601895Z — worker015: checkpoint CODE\-015. Actual /root/worker015 delivered Skeletons, poses and sampled animation; 1123 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Revision 86 — 2026\-11\-27T20:23:37.969696Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 
 The canonical ledger retains the complete operation history.

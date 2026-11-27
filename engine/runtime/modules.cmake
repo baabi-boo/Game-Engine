@@ -9,6 +9,8 @@ set(GE_ENGINE_MODULES
     "geometry"
     "render"
     "spatial"
+    "physics"
+    "animation"
 )
 set(GE_ENGINE_INCLUDE_ROOTS
     "${PROJECT_SOURCE_DIR}/engine/math/include"
@@ -21,6 +23,8 @@ set(GE_ENGINE_INCLUDE_ROOTS
     "${PROJECT_SOURCE_DIR}/engine/geometry/include"
     "${PROJECT_SOURCE_DIR}/engine/render/include"
     "${PROJECT_SOURCE_DIR}/engine/spatial/include"
+    "${PROJECT_SOURCE_DIR}/engine/physics/include"
+    "${PROJECT_SOURCE_DIR}/engine/animation/include"
 )
 set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/math/src/math.cpp"
@@ -33,6 +37,9 @@ set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/geometry/src/mesh.cpp"
     "${PROJECT_SOURCE_DIR}/engine/render/src/image.cpp"
     "${PROJECT_SOURCE_DIR}/engine/spatial/src/index.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/physics/src/collision.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/physics/src/dynamics.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/animation/src/skeleton.cpp"
 )
 set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/math/include/ge/math/math.hpp"
@@ -45,4 +52,7 @@ set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/geometry/include/ge/geometry/mesh.hpp"
     "${PROJECT_SOURCE_DIR}/engine/render/include/ge/render/image.hpp"
     "${PROJECT_SOURCE_DIR}/engine/spatial/include/ge/spatial/index.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/physics/include/ge/physics/collision.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/physics/include/ge/physics/dynamics.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/animation/include/ge/animation/skeleton.hpp"
 )

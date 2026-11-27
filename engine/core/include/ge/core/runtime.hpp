@@ -250,6 +250,7 @@ public:
     bool register_module(ModuleDescription module);
     [[nodiscard]] const std::vector<ModuleDescription>& modules() const noexcept;
     bool add_system(SystemSpec spec, SystemFunction function);
+    bool order_after(std::string_view system, std::string_view prerequisite);
     bool set_system_enabled(std::string_view name, bool enabled);
     [[nodiscard]] std::vector<SystemStatistics> system_statistics() const;
     [[nodiscard]] std::vector<std::string> execution_order();

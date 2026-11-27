@@ -159,6 +159,30 @@ bool Kernel::add_system(SystemSpec spec, SystemFunction function) {
     return true;
 }
 
+bool Kernel::order_after(std::string_view name, std::string_view prerequisite) {
+    if (ticking_ || name == prerequisite) {
+        return false;
+    }
+    auto target = std::find_if(systems_.begin(), systems_.end(),
+        [&](const auto& entry) { return entry.spec.name == name; });
+    const auto dependency = std::find_if(systems_.begin(), systems_.end(),
+        [&](const auto& entry) { return entry.spec.name == prerequisite; });
+    if (target == systems_.end() || dependency == systems_.end() ||
+        dependency->spec.phase > target->spec.phase) {
+        return false;
+    }
+    auto& after = target->spec.after;
+    if (std::find(after.begin(), after.end(), prerequisite) != after.end()) {
+        return true;
+    }
+    if (after.size() >= 256) {
+        return false;
+    }
+    after.emplace_back(prerequisite);
+    schedule_dirty_ = true;
+    return true;
+}
+
 bool Kernel::set_system_enabled(std::string_view name, bool enabled) {
     for (auto& system : systems_) {
         if (system.spec.name == name) {

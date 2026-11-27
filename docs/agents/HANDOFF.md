@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 82
-- **Recorded update:** 2026\-11\-27T20:12:01.725979Z
+- **Ledger revision:** 86
+- **Recorded update:** 2026\-11\-27T20:23:37.969696Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 562f75a84fd57faf546dd7a6bf9858c74f44f1e84eabe7903964d0afcb87c79d
-- **Source files:** 130
+- **Source fingerprint:** 9b14a84c8ba349409a93aa7c2e969543f31d2c1217b7e730ed03fd0fdb857c69
+- **Source files:** 136
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -346,9 +346,9 @@ Implement Collision shapes and narrowphase contacts. User\-authorized source\-on
 - Write scope: engine/physics/include/ge/physics/collision.hpp, engine/physics/src/collision.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker013 delivered Collision shapes and narrowphase contacts; 1382 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/physics/include/ge/physics/collision.hpp, engine/physics/src/collision.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -366,9 +366,9 @@ Implement Rigid body integration and contact solving. User\-authorized source\-o
 - Write scope: engine/physics/include/ge/physics/dynamics.hpp, engine/physics/src/dynamics.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker014 delivered Rigid body integration and contact solving; 1480 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/physics/include/ge/physics/dynamics.hpp, engine/physics/src/dynamics.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -386,9 +386,9 @@ Implement Skeletons, poses and sampled animation. User\-authorized source\-only 
 - Write scope: engine/animation/include/ge/animation/skeleton.hpp, engine/animation/src/skeleton.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker015 delivered Skeletons, poses and sampled animation; 1123 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/animation/include/ge/animation/skeleton.hpp, engine/animation/src/skeleton.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:

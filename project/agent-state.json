@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 82,
-  "updated_at": "2026-11-27T20:12:01.725979Z",
+  "revision": 86,
+  "updated_at": "2026-11-27T20:23:37.969696Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "562f75a84fd57faf546dd7a6bf9858c74f44f1e84eabe7903964d0afcb87c79d",
-    "file_count": 130
+    "sha256": "9b14a84c8ba349409a93aa7c2e969543f31d2c1217b7e730ed03fd0fdb857c69",
+    "file_count": 136
   },
   "milestones": [
     {
@@ -1670,9 +1670,12 @@
       "claim_revision": 62,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker013 delivered Collision shapes and narrowphase contacts; 1382 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/physics/include/ge/physics/collision.hpp",
+          "engine/physics/src/collision.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -1700,9 +1703,12 @@
       "claim_revision": 65,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker014 delivered Rigid body integration and contact solving; 1480 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/physics/include/ge/physics/dynamics.hpp",
+          "engine/physics/src/dynamics.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -1730,9 +1736,12 @@
       "claim_revision": 68,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker015 delivered Skeletons, poses and sampled animation; 1123 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/animation/include/ge/animation/skeleton.hpp",
+          "engine/animation/src/skeleton.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -2628,6 +2637,38 @@
     {
       "revision": 82,
       "at": "2026-11-27T20:12:01.725979Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 83,
+      "at": "2026-11-27T20:23:36.931390Z",
+      "actor": "worker013",
+      "action": "checkpoint",
+      "task": "CODE-013",
+      "summary": "Actual /root/worker013 delivered Collision shapes and narrowphase contacts; 1382 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 84,
+      "at": "2026-11-27T20:23:37.346180Z",
+      "actor": "worker014",
+      "action": "checkpoint",
+      "task": "CODE-014",
+      "summary": "Actual /root/worker014 delivered Rigid body integration and contact solving; 1480 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 85,
+      "at": "2026-11-27T20:23:37.601895Z",
+      "actor": "worker015",
+      "action": "checkpoint",
+      "task": "CODE-015",
+      "summary": "Actual /root/worker015 delivered Skeletons, poses and sampled animation; 1123 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 86,
+      "at": "2026-11-27T20:23:37.969696Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,

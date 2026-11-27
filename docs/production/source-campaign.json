@@ -163,24 +163,63 @@
       "agent_id": "/root/worker013",
       "task_id": "CODE-013",
       "wave": 5,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Collision shapes and narrowphase contacts",
+      "files": [
+        "engine/physics/include/ge/physics/collision.hpp",
+        "engine/physics/src/collision.cpp"
+      ],
+      "code_lines": 1382
     },
     {
       "number": 14,
       "agent_id": "/root/worker014",
       "task_id": "CODE-014",
       "wave": 5,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Rigid body integration and contact solving",
+      "files": [
+        "engine/physics/include/ge/physics/dynamics.hpp",
+        "engine/physics/src/dynamics.cpp"
+      ],
+      "code_lines": 1480
     },
     {
       "number": 15,
       "agent_id": "/root/worker015",
       "task_id": "CODE-015",
       "wave": 5,
+      "status": "source_delivered",
+      "title": "Skeletons, poses and sampled animation",
+      "files": [
+        "engine/animation/include/ge/animation/skeleton.hpp",
+        "engine/animation/src/skeleton.cpp"
+      ],
+      "code_lines": 1123
+    },
+    {
+      "number": 16,
+      "agent_id": "/root/worker016",
+      "task_id": "CODE-016",
+      "wave": 6,
+      "status": "implementing"
+    },
+    {
+      "number": 17,
+      "agent_id": "/root/worker017",
+      "task_id": "CODE-017",
+      "wave": 6,
+      "status": "implementing"
+    },
+    {
+      "number": 18,
+      "agent_id": "/root/worker018",
+      "task_id": "CODE-018",
+      "wave": 6,
       "status": "implementing"
     }
   ],
-  "delivered_worker_count": 12,
-  "counted_delivered_worker_code_lines": 19121,
+  "delivered_worker_count": 15,
+  "counted_delivered_worker_code_lines": 23106,
   "baseline_engine_application_code_lines": 1727
 }
