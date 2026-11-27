@@ -49,6 +49,7 @@
 #include <ge/gameplay/mission.hpp>
 #include <ge/gameplay/inventory.hpp>
 #include <ge/gameplay/equipment.hpp>
+#include <ge/gameplay/combat.hpp>
 
 namespace ge::application {
 void install_modules(core::Kernel& kernel) {
@@ -101,6 +102,7 @@ void install_modules(core::Kernel& kernel) {
     ge::gameplay::register_mission(kernel);
     ge::gameplay::register_inventory(kernel);
     ge::gameplay::register_equipment(kernel);
+    ge::gameplay::register_combat(kernel);
     (void)kernel.order_after("spatial.sync", "geometry.mesh.bounds");
     (void)kernel.order_after("geometry.mesh.bounds", "camera.update");
     (void)kernel.order_after("geometry.mesh.bounds", "terrain.vegetation");

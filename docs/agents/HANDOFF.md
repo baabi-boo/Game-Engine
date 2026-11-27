@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 312
-- **Recorded update:** 2026\-11\-27T23:21:52.517829Z
+- **Ledger revision:** 314
+- **Recorded update:** 2026\-11\-27T23:25:01.121660Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 26effe8d845e6b12063addf3dc19a6c04518cb3ddce446c3af0c6a4472df408a
-- **Source files:** 210
+- **Source fingerprint:** 4fbc779558c8a160499bc4daec8e82b3b948f672e172a0701c9e05e2b7d6e8f0
+- **Source files:** 212
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -1146,9 +1146,9 @@ Implement Damage, hit resolution and status effects. User\-authorized source\-on
 - Write scope: engine/gameplay/include/ge/gameplay/combat.hpp, engine/gameplay/src/combat.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker053 delivered Damage, hit resolution and status effects; 1283 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/gameplay/include/ge/gameplay/combat.hpp, engine/gameplay/src/combat.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:

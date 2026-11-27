@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 312,
-  "updated_at": "2026-11-27T23:21:52.517829Z",
+  "revision": 314,
+  "updated_at": "2026-11-27T23:25:01.121660Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "26effe8d845e6b12063addf3dc19a6c04518cb3ddce446c3af0c6a4472df408a",
-    "file_count": 210
+    "sha256": "4fbc779558c8a160499bc4daec8e82b3b948f672e172a0701c9e05e2b7d6e8f0",
+    "file_count": 212
   },
   "milestones": [
     {
@@ -2990,9 +2990,12 @@
       "claim_revision": 228,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker053 delivered Damage, hit resolution and status effects; 1283 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/gameplay/include/ge/gameplay/combat.hpp",
+          "engine/gameplay/src/combat.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -6208,6 +6211,22 @@
     {
       "revision": 312,
       "at": "2026-11-27T23:21:52.517829Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 313,
+      "at": "2026-11-27T23:23:39.976864Z",
+      "actor": "worker053",
+      "action": "checkpoint",
+      "task": "CODE-053",
+      "summary": "Actual /root/worker053 delivered Damage, hit resolution and status effects; 1283 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 314,
+      "at": "2026-11-27T23:25:01.121660Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,
