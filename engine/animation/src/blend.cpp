@@ -1,6 +1,7 @@
 #include <ge/animation/blend.hpp>
 
 #include <ge/core/runtime.hpp>
+#include <ge/physics/dynamics.hpp>
 #include <ge/scene/scene.hpp>
 
 #include <algorithm>
@@ -943,7 +944,7 @@ BlendServiceUpdate BlendService::update(ecs::Registry& registry, AnimationServic
             for (std::size_t bone = 0; valid && bone < skeleton->size(); ++bone) {
                 const auto parent = skeleton->bones()[bone].parent;
                 const auto child = animated.bone_entities[bone];
-                valid = scene_graph->contains(child) &&
+                valid = scene_graph->contains(child) && !registry.has<physics::BodyComponent>(child) &&
                     (parent == no_bone || scene_graph->parent(child) == animated.bone_entities[parent]);
             }
             if (!valid) { ++result.errors; continue; }

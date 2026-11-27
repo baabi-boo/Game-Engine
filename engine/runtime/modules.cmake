@@ -106,6 +106,7 @@ set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/render/src/postprocess.cpp"
     "${PROJECT_SOURCE_DIR}/engine/render/src/visibility.cpp"
     "${PROJECT_SOURCE_DIR}/engine/render/src/batching.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/render/src/decals.cpp"
 )
 set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/math/include/ge/math/math.hpp"
@@ -163,4 +164,5 @@ set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/render/include/ge/render/postprocess.hpp"
     "${PROJECT_SOURCE_DIR}/engine/render/include/ge/render/visibility.hpp"
     "${PROJECT_SOURCE_DIR}/engine/render/include/ge/render/batching.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/render/include/ge/render/decals.hpp"
 )

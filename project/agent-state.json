@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 343,
-  "updated_at": "2026-11-27T23:46:20.389765Z",
+  "revision": 354,
+  "updated_at": "2026-11-27T23:48:25.540399Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "08567a36349996d11c8fe6cebad402d822d51d69af27bf3f077be0b51fe97256",
-    "file_count": 222
+    "sha256": "8d3d227b3700798fc03e9959625dedc645ce2be9dff8177a719eb7c97f097961",
+    "file_count": 224
   },
   "milestones": [
     {
@@ -3188,9 +3188,12 @@
       "claim_revision": 259,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker059 delivered Decal projection and surface blending; 1239 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/render/include/ge/render/decals.hpp",
+          "engine/render/src/decals.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -3756,6 +3759,96 @@
       "status": "in_progress",
       "owner": "worker078",
       "claim_revision": 336,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-079",
+      "title": "Scene hierarchy and property inspection",
+      "milestone": "M1",
+      "priority": 79,
+      "description": "Implement Scene hierarchy and property inspection. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/editor/include/ge/editor/inspector.hpp",
+        "engine/editor/src/inspector.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_inspector(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker079",
+      "claim_revision": 346,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-080",
+      "title": "Transform gizmos and manipulation",
+      "milestone": "M1",
+      "priority": 80,
+      "description": "Implement Transform gizmos and manipulation. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/editor/include/ge/editor/gizmo.hpp",
+        "engine/editor/src/gizmo.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_gizmo(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker080",
+      "claim_revision": 349,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-081",
+      "title": "Asset browsing, filtering and import queue",
+      "milestone": "M1",
+      "priority": 81,
+      "description": "Implement Asset browsing, filtering and import queue. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/editor/include/ge/editor/asset_browser.hpp",
+        "engine/editor/src/asset_browser.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_asset_browser(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker081",
+      "claim_revision": 352,
       "blocker": null,
       "checkpoint": {
         "summary": "Not started.",
@@ -6654,6 +6747,94 @@
     {
       "revision": 343,
       "at": "2026-11-27T23:46:20.389765Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 344,
+      "at": "2026-11-27T23:46:45.976719Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-079",
+      "summary": "Added planned task CODE-079: Scene hierarchy and property inspection."
+    },
+    {
+      "revision": 345,
+      "at": "2026-11-27T23:46:47.507083Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 346,
+      "at": "2026-11-27T23:46:49.091713Z",
+      "actor": "worker079",
+      "action": "claim",
+      "task": "CODE-079",
+      "summary": "Claimed CODE-079 with its recorded write scope."
+    },
+    {
+      "revision": 347,
+      "at": "2026-11-27T23:46:50.674061Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-080",
+      "summary": "Added planned task CODE-080: Transform gizmos and manipulation."
+    },
+    {
+      "revision": 348,
+      "at": "2026-11-27T23:46:52.257296Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 349,
+      "at": "2026-11-27T23:46:53.869845Z",
+      "actor": "worker080",
+      "action": "claim",
+      "task": "CODE-080",
+      "summary": "Claimed CODE-080 with its recorded write scope."
+    },
+    {
+      "revision": 350,
+      "at": "2026-11-27T23:46:55.406135Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-081",
+      "summary": "Added planned task CODE-081: Asset browsing, filtering and import queue."
+    },
+    {
+      "revision": 351,
+      "at": "2026-11-27T23:46:57.045535Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 352,
+      "at": "2026-11-27T23:46:58.557858Z",
+      "actor": "worker081",
+      "action": "claim",
+      "task": "CODE-081",
+      "summary": "Claimed CODE-081 with its recorded write scope."
+    },
+    {
+      "revision": 353,
+      "at": "2026-11-27T23:48:18.944599Z",
+      "actor": "worker059",
+      "action": "checkpoint",
+      "task": "CODE-059",
+      "summary": "Actual /root/worker059 delivered Decal projection and surface blending; 1239 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 354,
+      "at": "2026-11-27T23:48:25.540399Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,

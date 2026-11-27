@@ -761,7 +761,13 @@
       "agent_id": "/root/worker059",
       "task_id": "CODE-059",
       "wave": 20,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Decal projection and surface blending",
+      "files": [
+        "engine/render/include/ge/render/decals.hpp",
+        "engine/render/src/decals.cpp"
+      ],
+      "code_lines": 1239
     },
     {
       "number": 60,
@@ -776,10 +782,17 @@
       "task_id": "CODE-061",
       "wave": 21,
       "status": "implementing"
+    },
+    {
+      "number": 62,
+      "agent_id": "/root/worker062",
+      "task_id": "CODE-062",
+      "wave": 21,
+      "status": "implementing"
     }
   ],
-  "delivered_worker_count": 58,
-  "counted_delivered_worker_code_lines": 81560,
+  "delivered_worker_count": 59,
+  "counted_delivered_worker_code_lines": 82799,
   "baseline_engine_application_code_lines": 1727,
   "worker_count_basis": "Per-worker source counts are recorded at frozen delivery. Later coordinator edits connect shared interfaces; the final engine/application total is counted separately from the committed tree."
 }

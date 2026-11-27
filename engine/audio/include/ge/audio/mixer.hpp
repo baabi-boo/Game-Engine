@@ -247,6 +247,13 @@ public:
     bool set_bus_mute(BusId bus, bool mute) noexcept;
     bool set_bus_solo(BusId bus, bool solo) noexcept;
     bool set_bus_processor(BusId bus, std::shared_ptr<AudioProcessor> processor) noexcept;
+    // Serialized control-plane access only; never call from process(). An empty
+    // result means no processor or an invalid bus. Use bus() to distinguish.
+    [[nodiscard]] std::shared_ptr<AudioProcessor> bus_processor(BusId bus) const noexcept;
+    // Cooperative ownership: replace only the exact currently installed object.
+    // An empty expected value claims an unoccupied slot. Failure preserves it.
+    bool replace_bus_processor(BusId bus, const std::shared_ptr<AudioProcessor>& expected,
+                               std::shared_ptr<AudioProcessor> replacement) noexcept;
     bool set_limiter(LimiterSettings settings) noexcept;
     [[nodiscard]] std::span<const float> mix(std::size_t frames) noexcept;
     // Drops excess time demand above the configured block budget and counts it.

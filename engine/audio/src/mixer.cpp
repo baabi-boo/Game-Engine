@@ -927,6 +927,22 @@ bool AudioMixer::set_bus_processor(BusId id, std::shared_ptr<AudioProcessor> pro
     return true;
 }
 
+std::shared_ptr<AudioProcessor> AudioMixer::bus_processor(BusId id) const noexcept {
+    if (impl_->mixing || id >= impl_->buses.size()) { return {}; }
+    return impl_->buses[id].processor;
+}
+
+bool AudioMixer::replace_bus_processor(BusId id,
+                                      const std::shared_ptr<AudioProcessor>& expected,
+                                      std::shared_ptr<AudioProcessor> replacement) noexcept {
+    if (impl_->mixing || id >= impl_->buses.size() ||
+        impl_->buses[id].processor != expected) {
+        return false;
+    }
+    impl_->buses[id].processor = std::move(replacement);
+    return true;
+}
+
 bool AudioMixer::set_limiter(LimiterSettings settings) noexcept {
     if (impl_->mixing || !valid_limiter(settings)) { return false; }
     impl_->config.limiter = settings;

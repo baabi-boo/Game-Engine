@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 343
-- **Recorded update:** 2026\-11\-27T23:46:20.389765Z
+- **Ledger revision:** 354
+- **Recorded update:** 2026\-11\-27T23:48:25.540399Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 08567a36349996d11c8fe6cebad402d822d51d69af27bf3f077be0b51fe97256
-- **Source files:** 222
+- **Source fingerprint:** 8d3d227b3700798fc03e9959625dedc645ce2be9dff8177a719eb7c97f097961
+- **Source files:** 224
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -1266,9 +1266,9 @@ Implement Decal projection and surface blending. User\-authorized source\-only c
 - Write scope: engine/render/include/ge/render/decals.hpp, engine/render/src/decals.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker059 delivered Decal projection and surface blending; 1239 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/render/include/ge/render/decals.hpp, engine/render/src/decals.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -1655,6 +1655,66 @@ Acceptance:
 
 - Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
 - Expose a working register\_commands\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-079: Scene hierarchy and property inspection
+
+Implement Scene hierarchy and property inspection. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker079
+- Write scope: engine/editor/include/ge/editor/inspector.hpp, engine/editor/src/inspector.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_inspector\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-080: Transform gizmos and manipulation
+
+Implement Transform gizmos and manipulation. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker080
+- Write scope: engine/editor/include/ge/editor/gizmo.hpp, engine/editor/src/gizmo.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_gizmo\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-081: Asset browsing, filtering and import queue
+
+Implement Asset browsing, filtering and import queue. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker081
+- Write scope: engine/editor/include/ge/editor/asset\_browser.hpp, engine/editor/src/asset\_browser.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_asset\_browser\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
 
 - dev: no receipt.
 

@@ -1,6 +1,7 @@
 #include <ge/animation/skeleton.hpp>
 
 #include <ge/core/runtime.hpp>
+#include <ge/physics/dynamics.hpp>
 #include <ge/scene/scene.hpp>
 
 #include <algorithm>
@@ -767,7 +768,8 @@ AnimationUpdate AnimationService::update(ecs::Registry& registry, scene::Scene* 
             for (std::size_t index = 0; valid_binding && index < skeleton->size(); ++index) {
                 const auto bone_entity = component.bone_entities[index];
                 const auto parent = skeleton->bones()[index].parent;
-                valid_binding = scene_graph->contains(bone_entity) && (parent == no_bone ||
+                valid_binding = scene_graph->contains(bone_entity) &&
+                    !registry.has<physics::BodyComponent>(bone_entity) && (parent == no_bone ||
                     scene_graph->parent(bone_entity) == component.bone_entities[parent]);
                 if (valid_binding) { edits.push_back({bone_entity, component.animator.pose().local[index]}); }
             }
