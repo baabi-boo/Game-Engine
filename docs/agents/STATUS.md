@@ -3,11 +3,11 @@
 # Agent project status
 
 - **Project:** Game Engine
-- **Ledger revision:** 207
-- **Recorded update:** 2026\-11\-27T21:54:21.700855Z
+- **Ledger revision:** 209
+- **Recorded update:** 2026\-11\-27T21:59:01.712904Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 55a9822569fef80fe8b91a954ff019ec9a18d96072178132211f661f2b3c5cd0
-- **Source files:** 174
+- **Source fingerprint:** c3738f46d55ae936fcd05176a3c72e5bc566a674a92b35bfc6e4c2ece384d7b0
+- **Source files:** 176
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -77,7 +77,7 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 | CODE\-032: Particle emission, simulation and trails | 32 | M1 | in\_progress | worker032 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-033: Rigid body constraints and joints | 33 | M1 | in\_progress | worker033 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-034: Versioned scene serialization and transactions | 34 | M1 | in\_progress | worker034 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-035: Bounded bytecode virtual machine | 35 | M1 | in\_progress | worker035 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-035: Bounded bytecode virtual machine | 35 | M1 | in\_progress | worker035 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-036: Interaction targeting, triggers and actions | 36 | M1 | in\_progress | worker036 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-037: Typed signal subscriptions and transactional event dispatch | 37 | M1 | in\_progress | worker037 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-038: Curves, tracks and time mapping | 38 | M1 | in\_progress | worker038 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
@@ -497,8 +497,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 148
 - Write scope: engine/script/include/ge/script/vm.hpp, engine/script/src/vm.cpp
 - Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Preserved work: Actual /root/worker035 delivered Bounded bytecode virtual machine; 1557 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 
 ### CODE\-036
 
@@ -649,8 +649,6 @@ These are historical observations. A pass neither completes a task nor remains c
 
 ## Recent operations
 
-- Revision 188 — 2026\-11\-27T21:28:56.478604Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
-- Revision 189 — 2026\-11\-27T21:35:42.252709Z — worker030: checkpoint CODE\-030. Actual /root/worker030 delivered Light collection, shadows and illumination; 1302 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 190 — 2026\-11\-27T21:39:33.765191Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 - Revision 191 — 2026\-11\-27T21:40:48.521588Z — worker031: checkpoint CODE\-031. Actual /root/worker031 delivered Render pass graph and transient resources; 1583 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 192 — 2026\-11\-27T21:40:49.679696Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
@@ -669,5 +667,7 @@ These are historical observations. A pass neither completes a task nor remains c
 - Revision 205 — 2026\-11\-27T21:49:41.406012Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 - Revision 206 — 2026\-11\-27T21:54:20.664152Z — worker034: checkpoint CODE\-034. Actual /root/worker034 delivered Versioned scene serialization and transactions; 1315 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 207 — 2026\-11\-27T21:54:21.700855Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
+- Revision 208 — 2026\-11\-27T21:59:00.698175Z — worker035: checkpoint CODE\-035. Actual /root/worker035 delivered Bounded bytecode virtual machine; 1557 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Revision 209 — 2026\-11\-27T21:59:01.712904Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 
 The canonical ledger retains the complete operation history.

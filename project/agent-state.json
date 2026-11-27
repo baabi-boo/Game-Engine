@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 207,
-  "updated_at": "2026-11-27T21:54:21.700855Z",
+  "revision": 209,
+  "updated_at": "2026-11-27T21:59:01.712904Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "55a9822569fef80fe8b91a954ff019ec9a18d96072178132211f661f2b3c5cd0",
-    "file_count": 174
+    "sha256": "c3738f46d55ae936fcd05176a3c72e5bc566a674a92b35bfc6e4c2ece384d7b0",
+    "file_count": 176
   },
   "milestones": [
     {
@@ -2396,9 +2396,12 @@
       "claim_revision": 148,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker035 delivered Bounded bytecode virtual machine; 1557 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/script/include/ge/script/vm.hpp",
+          "engine/script/src/vm.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -4594,6 +4597,22 @@
     {
       "revision": 207,
       "at": "2026-11-27T21:54:21.700855Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 208,
+      "at": "2026-11-27T21:59:00.698175Z",
+      "actor": "worker035",
+      "action": "checkpoint",
+      "task": "CODE-035",
+      "summary": "Actual /root/worker035 delivered Bounded bytecode virtual machine; 1557 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 209,
+      "at": "2026-11-27T21:59:01.712904Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,

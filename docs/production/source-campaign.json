@@ -449,7 +449,13 @@
       "agent_id": "/root/worker035",
       "task_id": "CODE-035",
       "wave": 12,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Bounded bytecode virtual machine",
+      "files": [
+        "engine/script/include/ge/script/vm.hpp",
+        "engine/script/src/vm.cpp"
+      ],
+      "code_lines": 1557
     },
     {
       "number": 36,
@@ -464,9 +470,16 @@
       "task_id": "CODE-037",
       "wave": 13,
       "status": "implementing"
+    },
+    {
+      "number": 38,
+      "agent_id": "/root/worker038",
+      "task_id": "CODE-038",
+      "wave": 13,
+      "status": "implementing"
     }
   ],
-  "delivered_worker_count": 34,
-  "counted_delivered_worker_code_lines": 48605,
+  "delivered_worker_count": 35,
+  "counted_delivered_worker_code_lines": 50162,
   "baseline_engine_application_code_lines": 1727
 }

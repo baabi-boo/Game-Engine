@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 207
-- **Recorded update:** 2026\-11\-27T21:54:21.700855Z
+- **Ledger revision:** 209
+- **Recorded update:** 2026\-11\-27T21:59:01.712904Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 55a9822569fef80fe8b91a954ff019ec9a18d96072178132211f661f2b3c5cd0
-- **Source files:** 174
+- **Source fingerprint:** c3738f46d55ae936fcd05176a3c72e5bc566a674a92b35bfc6e4c2ece384d7b0
+- **Source files:** 176
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -786,9 +786,9 @@ Implement Bounded bytecode virtual machine. User\-authorized source\-only campai
 - Write scope: engine/script/include/ge/script/vm.hpp, engine/script/src/vm.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker035 delivered Bounded bytecode virtual machine; 1557 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/script/include/ge/script/vm.hpp, engine/script/src/vm.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:

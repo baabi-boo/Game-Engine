@@ -31,6 +31,7 @@
 #include <ge/effects/particles.hpp>
 #include <ge/physics/constraints.hpp>
 #include <ge/scene/serialization.hpp>
+#include <ge/script/vm.hpp>
 
 namespace ge::application {
 void install_modules(core::Kernel& kernel) {
@@ -65,6 +66,7 @@ void install_modules(core::Kernel& kernel) {
     ge::effects::register_particles(kernel);
     ge::physics::register_constraints(kernel);
     ge::scene::register_serialization(kernel);
+    ge::script::register_vm(kernel);
     (void)kernel.order_after("spatial.sync", "geometry.mesh.bounds");
     (void)kernel.order_after("geometry.mesh.bounds", "camera.update");
     (void)kernel.order_after("geometry.mesh.bounds", "terrain.vegetation");
