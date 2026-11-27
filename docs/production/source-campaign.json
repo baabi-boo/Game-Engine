@@ -800,7 +800,13 @@
       "agent_id": "/root/worker062",
       "task_id": "CODE-062",
       "wave": 21,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Skeleton retargeting and root motion",
+      "files": [
+        "engine/animation/include/ge/animation/retarget.hpp",
+        "engine/animation/src/retarget.cpp"
+      ],
+      "code_lines": 1183
     },
     {
       "number": 63,
@@ -815,10 +821,17 @@
       "task_id": "CODE-064",
       "wave": 22,
       "status": "implementing"
+    },
+    {
+      "number": 65,
+      "agent_id": "/root/worker065",
+      "task_id": "CODE-065",
+      "wave": 22,
+      "status": "implementing"
     }
   ],
-  "delivered_worker_count": 61,
-  "counted_delivered_worker_code_lines": 85192,
+  "delivered_worker_count": 62,
+  "counted_delivered_worker_code_lines": 86375,
   "baseline_engine_application_code_lines": 1727,
   "worker_count_basis": "Per-worker source counts are recorded at frozen delivery. Later coordinator edits connect shared interfaces; the final engine/application total is counted separately from the committed tree."
 }

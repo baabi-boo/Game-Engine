@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 416,
-  "updated_at": "2026-11-27T23:56:28.925924Z",
+  "revision": 418,
+  "updated_at": "2026-11-27T23:59:26.398647Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "fd61a6095a09b8ed540a515259ccf3785df543d1297867e8f817788b16efd475",
-    "file_count": 228
+    "sha256": "9254e8c2e025e57d464fcadd26ec17cbd76e90f778eb2236d46c3be7b0981e33",
+    "file_count": 230
   },
   "milestones": [
     {
@@ -3287,9 +3287,12 @@
       "claim_revision": 268,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker062 delivered Skeleton retargeting and root motion; 1183 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/animation/include/ge/animation/retarget.hpp",
+          "engine/animation/src/retarget.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -7907,6 +7910,22 @@
     {
       "revision": 416,
       "at": "2026-11-27T23:56:28.925924Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 417,
+      "at": "2026-11-27T23:59:14.917169Z",
+      "actor": "worker062",
+      "action": "checkpoint",
+      "task": "CODE-062",
+      "summary": "Actual /root/worker062 delivered Skeleton retargeting and root motion; 1183 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 418,
+      "at": "2026-11-27T23:59:26.398647Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,
