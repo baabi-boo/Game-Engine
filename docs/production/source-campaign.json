@@ -332,7 +332,13 @@
       "agent_id": "/root/worker026",
       "task_id": "CODE-026",
       "wave": 9,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Polygon navigation mesh queries and funnels",
+      "files": [
+        "engine/navigation/include/ge/navigation/navmesh.hpp",
+        "engine/navigation/src/navmesh.cpp"
+      ],
+      "code_lines": 1340
     },
     {
       "number": 27,
@@ -347,9 +353,16 @@
       "task_id": "CODE-028",
       "wave": 10,
       "status": "implementing"
+    },
+    {
+      "number": 29,
+      "agent_id": "/root/worker029",
+      "task_id": "CODE-029",
+      "wave": 10,
+      "status": "implementing"
     }
   ],
-  "delivered_worker_count": 25,
-  "counted_delivered_worker_code_lines": 36187,
+  "delivered_worker_count": 26,
+  "counted_delivered_worker_code_lines": 37527,
   "baseline_engine_application_code_lines": 1727
 }

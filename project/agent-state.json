@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 154,
-  "updated_at": "2026-11-27T21:11:16.975656Z",
+  "revision": 174,
+  "updated_at": "2026-11-27T21:19:14.811039Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "e0689fd3ddb0aef046d8af08838a882074c71ecbd42d4d9976a282d9f8186d15",
-    "file_count": 156
+    "sha256": "11009d7fd78c46f167fefe51743dfd8b57daa44f03204050c80c5b124d0a7033",
+    "file_count": 158
   },
   "milestones": [
     {
@@ -2099,9 +2099,12 @@
       "claim_revision": 114,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker026 delivered Polygon navigation mesh queries and funnels; 1340 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/navigation/include/ge/navigation/navmesh.hpp",
+          "engine/navigation/src/navmesh.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -2397,6 +2400,186 @@
       "status": "in_progress",
       "owner": "worker036",
       "claim_revision": 151,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-037",
+      "title": "Typed signal subscriptions and transactional event dispatch",
+      "milestone": "M1",
+      "priority": 37,
+      "description": "Implement Typed signal subscriptions and transactional event dispatch. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/core/include/ge/core/signals.hpp",
+        "engine/core/src/signals.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_signals(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker037",
+      "claim_revision": 157,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-038",
+      "title": "Curves, tracks and time mapping",
+      "milestone": "M1",
+      "priority": 38,
+      "description": "Implement Curves, tracks and time mapping. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/animation/include/ge/animation/curves.hpp",
+        "engine/animation/src/curves.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_curves(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker038",
+      "claim_revision": 160,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-039",
+      "title": "Layered configuration parsing and persistence",
+      "milestone": "M1",
+      "priority": 39,
+      "description": "Implement Layered configuration parsing and persistence. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/config/include/ge/config/settings.hpp",
+        "engine/config/src/settings.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_settings(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker039",
+      "claim_revision": 163,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-040",
+      "title": "Localization catalogs, Unicode and formatting",
+      "milestone": "M1",
+      "priority": 40,
+      "description": "Implement Localization catalogs, Unicode and formatting. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/text/include/ge/text/localization.hpp",
+        "engine/text/src/localization.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_localization(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker040",
+      "claim_revision": 166,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-041",
+      "title": "Packet encoding and reliable channel protocol",
+      "milestone": "M1",
+      "priority": 41,
+      "description": "Implement Packet encoding and reliable channel protocol. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/network/include/ge/network/protocol.hpp",
+        "engine/network/src/protocol.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_protocol(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker041",
+      "claim_revision": 169,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-042",
+      "title": "Native datagram transport and bounded network pump",
+      "milestone": "M1",
+      "priority": 42,
+      "description": "Implement Native datagram transport and bounded network pump. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/network/include/ge/network/transport.hpp",
+        "engine/network/src/transport.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_transport(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker042",
+      "claim_revision": 172,
       "blocker": null,
       "checkpoint": {
         "summary": "Not started.",
@@ -3783,6 +3966,166 @@
     {
       "revision": 154,
       "at": "2026-11-27T21:11:16.975656Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 155,
+      "at": "2026-11-27T21:12:43.976167Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-037",
+      "summary": "Added planned task CODE-037: Typed signal subscriptions and transactional event dispatch."
+    },
+    {
+      "revision": 156,
+      "at": "2026-11-27T21:12:44.493733Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 157,
+      "at": "2026-11-27T21:12:45.005926Z",
+      "actor": "worker037",
+      "action": "claim",
+      "task": "CODE-037",
+      "summary": "Claimed CODE-037 with its recorded write scope."
+    },
+    {
+      "revision": 158,
+      "at": "2026-11-27T21:12:45.447978Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-038",
+      "summary": "Added planned task CODE-038: Curves, tracks and time mapping."
+    },
+    {
+      "revision": 159,
+      "at": "2026-11-27T21:12:45.931766Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 160,
+      "at": "2026-11-27T21:12:46.413656Z",
+      "actor": "worker038",
+      "action": "claim",
+      "task": "CODE-038",
+      "summary": "Claimed CODE-038 with its recorded write scope."
+    },
+    {
+      "revision": 161,
+      "at": "2026-11-27T21:12:46.912935Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-039",
+      "summary": "Added planned task CODE-039: Layered configuration parsing and persistence."
+    },
+    {
+      "revision": 162,
+      "at": "2026-11-27T21:12:47.409098Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 163,
+      "at": "2026-11-27T21:12:47.916568Z",
+      "actor": "worker039",
+      "action": "claim",
+      "task": "CODE-039",
+      "summary": "Claimed CODE-039 with its recorded write scope."
+    },
+    {
+      "revision": 164,
+      "at": "2026-11-27T21:17:57.977596Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-040",
+      "summary": "Added planned task CODE-040: Localization catalogs, Unicode and formatting."
+    },
+    {
+      "revision": 165,
+      "at": "2026-11-27T21:17:58.571421Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 166,
+      "at": "2026-11-27T21:17:59.097432Z",
+      "actor": "worker040",
+      "action": "claim",
+      "task": "CODE-040",
+      "summary": "Claimed CODE-040 with its recorded write scope."
+    },
+    {
+      "revision": 167,
+      "at": "2026-11-27T21:17:59.631868Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-041",
+      "summary": "Added planned task CODE-041: Packet encoding and reliable channel protocol."
+    },
+    {
+      "revision": 168,
+      "at": "2026-11-27T21:18:00.142252Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 169,
+      "at": "2026-11-27T21:18:00.671280Z",
+      "actor": "worker041",
+      "action": "claim",
+      "task": "CODE-041",
+      "summary": "Claimed CODE-041 with its recorded write scope."
+    },
+    {
+      "revision": 170,
+      "at": "2026-11-27T21:18:01.186431Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-042",
+      "summary": "Added planned task CODE-042: Native datagram transport and bounded network pump."
+    },
+    {
+      "revision": 171,
+      "at": "2026-11-27T21:18:01.739365Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 172,
+      "at": "2026-11-27T21:18:02.336441Z",
+      "actor": "worker042",
+      "action": "claim",
+      "task": "CODE-042",
+      "summary": "Claimed CODE-042 with its recorded write scope."
+    },
+    {
+      "revision": 173,
+      "at": "2026-11-27T21:18:57.467193Z",
+      "actor": "worker026",
+      "action": "checkpoint",
+      "task": "CODE-026",
+      "summary": "Actual /root/worker026 delivered Polygon navigation mesh queries and funnels; 1340 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 174,
+      "at": "2026-11-27T21:19:14.811039Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,
