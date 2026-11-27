@@ -482,6 +482,12 @@ const MissionDefinition* MissionService::definition(std::string_view id) const n
     return found == impl_->definitions.end() ? nullptr : &found->second.value;
 }
 
+std::optional<std::uint64_t> MissionService::definition_hash(std::string_view id) const noexcept {
+    const auto found = impl_->definitions.find(id);
+    if (found == impl_->definitions.end()) { return std::nullopt; }
+    return found->second.fingerprint;
+}
+
 std::vector<std::string> MissionService::definitions() const {
     std::vector<std::string> result;
     result.reserve(impl_->definitions.size());

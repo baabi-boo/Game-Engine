@@ -709,7 +709,13 @@
       "agent_id": "/root/worker055",
       "task_id": "CODE-055",
       "wave": 19,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Quest dependencies, progression and journal",
+      "files": [
+        "engine/gameplay/include/ge/gameplay/quests.hpp",
+        "engine/gameplay/src/quests.cpp"
+      ],
+      "code_lines": 1210
     },
     {
       "number": 56,
@@ -729,7 +735,13 @@
       "agent_id": "/root/worker057",
       "task_id": "CODE-057",
       "wave": 19,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Scene culling and level of detail",
+      "files": [
+        "engine/render/include/ge/render/visibility.hpp",
+        "engine/render/src/visibility.cpp"
+      ],
+      "code_lines": 1244
     },
     {
       "number": 58,
@@ -737,10 +749,24 @@
       "task_id": "CODE-058",
       "wave": 20,
       "status": "implementing"
+    },
+    {
+      "number": 59,
+      "agent_id": "/root/worker059",
+      "task_id": "CODE-059",
+      "wave": 20,
+      "status": "implementing"
+    },
+    {
+      "number": 60,
+      "agent_id": "/root/worker060",
+      "task_id": "CODE-060",
+      "wave": 20,
+      "status": "implementing"
     }
   ],
-  "delivered_worker_count": 55,
-  "counted_delivered_worker_code_lines": 77973,
+  "delivered_worker_count": 57,
+  "counted_delivered_worker_code_lines": 80427,
   "baseline_engine_application_code_lines": 1727,
   "worker_count_basis": "Per-worker source counts are recorded at frozen delivery. Later coordinator edits connect shared interfaces; the final engine/application total is counted separately from the committed tree."
 }

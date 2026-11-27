@@ -252,6 +252,8 @@ public:
     MissionService& operator=(const MissionService&) = delete;
     MissionResult define(MissionDefinition definition);
     [[nodiscard]] const MissionDefinition* definition(std::string_view id) const noexcept;
+    // The same immutable fingerprint stored in runs and mission snapshots.
+    [[nodiscard]] std::optional<std::uint64_t> definition_hash(std::string_view id) const noexcept;
     [[nodiscard]] std::vector<std::string> definitions() const;
     MissionResult start(ecs::Entity actor, std::string_view mission);
     MissionResult submit(const MissionInput& input);

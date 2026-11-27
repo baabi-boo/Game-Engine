@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 338
-- **Recorded update:** 2026\-11\-27T23:35:20.305015Z
+- **Ledger revision:** 341
+- **Recorded update:** 2026\-11\-27T23:41:22.209611Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** e0db76e8c9ee3e72a8f4e1f780fb21c44de2488a0c42e44462d59b9bbbef42a6
-- **Source files:** 216
+- **Source fingerprint:** b4af7eb275dc5f793040ab66b82a236bb25d63b5cf7f5f1ec22b3443aa769ec5
+- **Source files:** 220
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -1186,9 +1186,9 @@ Implement Quest dependencies, progression and journal. User\-authorized source\-
 - Write scope: engine/gameplay/include/ge/gameplay/quests.hpp, engine/gameplay/src/quests.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker055 delivered Quest dependencies, progression and journal; 1210 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/gameplay/include/ge/gameplay/quests.hpp, engine/gameplay/src/quests.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -1226,9 +1226,9 @@ Implement Scene culling and level of detail. User\-authorized source\-only campa
 - Write scope: engine/render/include/ge/render/visibility.hpp, engine/render/src/visibility.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker057 delivered Scene culling and level of detail; 1244 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/render/include/ge/render/visibility.hpp, engine/render/src/visibility.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 338,
-  "updated_at": "2026-11-27T23:35:20.305015Z",
+  "revision": 341,
+  "updated_at": "2026-11-27T23:41:22.209611Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "e0db76e8c9ee3e72a8f4e1f780fb21c44de2488a0c42e44462d59b9bbbef42a6",
-    "file_count": 216
+    "sha256": "b4af7eb275dc5f793040ab66b82a236bb25d63b5cf7f5f1ec22b3443aa769ec5",
+    "file_count": 220
   },
   "milestones": [
     {
@@ -3056,9 +3056,12 @@
       "claim_revision": 243,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker055 delivered Quest dependencies, progression and journal; 1210 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/gameplay/include/ge/gameplay/quests.hpp",
+          "engine/gameplay/src/quests.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -3119,9 +3122,12 @@
       "claim_revision": 250,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker057 delivered Scene culling and level of detail; 1244 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/render/include/ge/render/visibility.hpp",
+          "engine/render/src/visibility.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -6605,6 +6611,30 @@
     {
       "revision": 338,
       "at": "2026-11-27T23:35:20.305015Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 339,
+      "at": "2026-11-27T23:38:31.450039Z",
+      "actor": "worker055",
+      "action": "checkpoint",
+      "task": "CODE-055",
+      "summary": "Actual /root/worker055 delivered Quest dependencies, progression and journal; 1210 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 340,
+      "at": "2026-11-27T23:40:51.328749Z",
+      "actor": "worker057",
+      "action": "checkpoint",
+      "task": "CODE-057",
+      "summary": "Actual /root/worker057 delivered Scene culling and level of detail; 1244 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 341,
+      "at": "2026-11-27T23:41:22.209611Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,
