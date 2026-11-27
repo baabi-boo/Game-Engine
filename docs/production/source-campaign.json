@@ -241,24 +241,63 @@
       "agent_id": "/root/worker019",
       "task_id": "CODE-019",
       "wave": 7,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Camera rigs, projections and viewport mapping",
+      "files": [
+        "engine/render/include/ge/render/camera.hpp",
+        "engine/render/src/camera.cpp"
+      ],
+      "code_lines": 1231
     },
     {
       "number": 20,
       "agent_id": "/root/worker020",
       "task_id": "CODE-020",
       "wave": 7,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Asynchronous resource loading and residency",
+      "files": [
+        "engine/assets/include/ge/assets/streaming.hpp",
+        "engine/assets/src/streaming.cpp"
+      ],
+      "code_lines": 1358
     },
     {
       "number": 21,
       "agent_id": "/root/worker021",
       "task_id": "CODE-021",
       "wave": 7,
+      "status": "source_delivered",
+      "title": "Software triangle rasterization",
+      "files": [
+        "engine/render/include/ge/render/rasterizer.hpp",
+        "engine/render/src/rasterizer.cpp"
+      ],
+      "code_lines": 1375
+    },
+    {
+      "number": 22,
+      "agent_id": "/root/worker022",
+      "task_id": "CODE-022",
+      "wave": 8,
+      "status": "implementing"
+    },
+    {
+      "number": 23,
+      "agent_id": "/root/worker023",
+      "task_id": "CODE-023",
+      "wave": 8,
+      "status": "implementing"
+    },
+    {
+      "number": 24,
+      "agent_id": "/root/worker024",
+      "task_id": "CODE-024",
+      "wave": 8,
       "status": "implementing"
     }
   ],
-  "delivered_worker_count": 18,
-  "counted_delivered_worker_code_lines": 27052,
+  "delivered_worker_count": 21,
+  "counted_delivered_worker_code_lines": 31016,
   "baseline_engine_application_code_lines": 1727
 }

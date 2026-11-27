@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 108
-- **Recorded update:** 2026\-11\-27T20:37:32.443108Z
+- **Ledger revision:** 121
+- **Recorded update:** 2026\-11\-27T20:57:36.558757Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 0ed87a0cfea5ee81698113ee026ab7d6524864a0d8aee1aac35eacc15ee18462
-- **Source files:** 142
+- **Source fingerprint:** 3a4c8ef23a2222b63021237aafa4f73827eb7d1262a7a374799bb55d1ffa2fe7
+- **Source files:** 148
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -466,9 +466,9 @@ Implement Camera rigs, projections and viewport mapping. User\-authorized source
 - Write scope: engine/render/include/ge/render/camera.hpp, engine/render/src/camera.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker019 delivered Camera rigs, projections and viewport mapping; 1231 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/render/include/ge/render/camera.hpp, engine/render/src/camera.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -486,9 +486,9 @@ Implement Asynchronous resource loading and residency. User\-authorized source\-
 - Write scope: engine/assets/include/ge/assets/streaming.hpp, engine/assets/src/streaming.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker020 delivered Asynchronous resource loading and residency; 1358 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/assets/include/ge/assets/streaming.hpp, engine/assets/src/streaming.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -506,9 +506,9 @@ Implement Software triangle rasterization. User\-authorized source\-only campaig
 - Write scope: engine/render/include/ge/render/rasterizer.hpp, engine/render/src/rasterizer.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker021 delivered Software triangle rasterization; 1375 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/render/include/ge/render/rasterizer.hpp, engine/render/src/rasterizer.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -575,6 +575,66 @@ Acceptance:
 
 - Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
 - Expose a working register\_blend\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-025: Spatial audio and acoustic attenuation
+
+Implement Spatial audio and acoustic attenuation. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker025
+- Write scope: engine/audio/include/ge/audio/spatial.hpp, engine/audio/src/spatial.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_spatial\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-026: Polygon navigation mesh queries and funnels
+
+Implement Polygon navigation mesh queries and funnels. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker026
+- Write scope: engine/navigation/include/ge/navigation/navmesh.hpp, engine/navigation/src/navmesh.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_navmesh\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-027: World partition activation and origin shifts
+
+Implement World partition activation and origin shifts. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker027
+- Write scope: engine/scene/include/ge/scene/partition.hpp, engine/scene/src/partition.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_partition\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
 
 - dev: no receipt.
 

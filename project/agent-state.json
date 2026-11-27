@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 108,
-  "updated_at": "2026-11-27T20:37:32.443108Z",
+  "revision": 121,
+  "updated_at": "2026-11-27T20:57:36.558757Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "0ed87a0cfea5ee81698113ee026ab7d6524864a0d8aee1aac35eacc15ee18462",
-    "file_count": 142
+    "sha256": "3a4c8ef23a2222b63021237aafa4f73827eb7d1262a7a374799bb55d1ffa2fe7",
+    "file_count": 148
   },
   "milestones": [
     {
@@ -1868,9 +1868,12 @@
       "claim_revision": 89,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker019 delivered Camera rigs, projections and viewport mapping; 1231 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/render/include/ge/render/camera.hpp",
+          "engine/render/src/camera.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -1898,9 +1901,12 @@
       "claim_revision": 92,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker020 delivered Asynchronous resource loading and residency; 1358 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/assets/include/ge/assets/streaming.hpp",
+          "engine/assets/src/streaming.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -1928,9 +1934,12 @@
       "claim_revision": 95,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker021 delivered Software triangle rasterization; 1375 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/render/include/ge/render/rasterizer.hpp",
+          "engine/render/src/rasterizer.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -2016,6 +2025,96 @@
       "status": "in_progress",
       "owner": "worker024",
       "claim_revision": 105,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-025",
+      "title": "Spatial audio and acoustic attenuation",
+      "milestone": "M1",
+      "priority": 25,
+      "description": "Implement Spatial audio and acoustic attenuation. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/audio/include/ge/audio/spatial.hpp",
+        "engine/audio/src/spatial.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_spatial(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker025",
+      "claim_revision": 111,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-026",
+      "title": "Polygon navigation mesh queries and funnels",
+      "milestone": "M1",
+      "priority": 26,
+      "description": "Implement Polygon navigation mesh queries and funnels. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/navigation/include/ge/navigation/navmesh.hpp",
+        "engine/navigation/src/navmesh.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_navmesh(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker026",
+      "claim_revision": 114,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-027",
+      "title": "World partition activation and origin shifts",
+      "milestone": "M1",
+      "priority": 27,
+      "description": "Implement World partition activation and origin shifts. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/scene/include/ge/scene/partition.hpp",
+        "engine/scene/src/partition.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_partition(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker027",
+      "claim_revision": 117,
       "blocker": null,
       "checkpoint": {
         "summary": "Not started.",
@@ -3034,6 +3133,110 @@
     {
       "revision": 108,
       "at": "2026-11-27T20:37:32.443108Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 109,
+      "at": "2026-11-27T20:41:58.205840Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-025",
+      "summary": "Added planned task CODE-025: Spatial audio and acoustic attenuation."
+    },
+    {
+      "revision": 110,
+      "at": "2026-11-27T20:41:58.688995Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 111,
+      "at": "2026-11-27T20:41:59.039730Z",
+      "actor": "worker025",
+      "action": "claim",
+      "task": "CODE-025",
+      "summary": "Claimed CODE-025 with its recorded write scope."
+    },
+    {
+      "revision": 112,
+      "at": "2026-11-27T20:41:59.343547Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-026",
+      "summary": "Added planned task CODE-026: Polygon navigation mesh queries and funnels."
+    },
+    {
+      "revision": 113,
+      "at": "2026-11-27T20:41:59.644063Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 114,
+      "at": "2026-11-27T20:41:59.959238Z",
+      "actor": "worker026",
+      "action": "claim",
+      "task": "CODE-026",
+      "summary": "Claimed CODE-026 with its recorded write scope."
+    },
+    {
+      "revision": 115,
+      "at": "2026-11-27T20:42:00.282158Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-027",
+      "summary": "Added planned task CODE-027: World partition activation and origin shifts."
+    },
+    {
+      "revision": 116,
+      "at": "2026-11-27T20:42:00.698945Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 117,
+      "at": "2026-11-27T20:42:01.025965Z",
+      "actor": "worker027",
+      "action": "claim",
+      "task": "CODE-027",
+      "summary": "Claimed CODE-027 with its recorded write scope."
+    },
+    {
+      "revision": 118,
+      "at": "2026-11-27T20:49:51.080186Z",
+      "actor": "worker019",
+      "action": "checkpoint",
+      "task": "CODE-019",
+      "summary": "Actual /root/worker019 delivered Camera rigs, projections and viewport mapping; 1231 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 119,
+      "at": "2026-11-27T20:49:51.414981Z",
+      "actor": "worker021",
+      "action": "checkpoint",
+      "task": "CODE-021",
+      "summary": "Actual /root/worker021 delivered Software triangle rasterization; 1375 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 120,
+      "at": "2026-11-27T20:57:35.817918Z",
+      "actor": "worker020",
+      "action": "checkpoint",
+      "task": "CODE-020",
+      "summary": "Actual /root/worker020 delivered Asynchronous resource loading and residency; 1358 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 121,
+      "at": "2026-11-27T20:57:36.558757Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,

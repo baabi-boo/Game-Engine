@@ -47,6 +47,9 @@ set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/audio/src/mixer.cpp"
     "${PROJECT_SOURCE_DIR}/engine/navigation/src/pathfinding.cpp"
     "${PROJECT_SOURCE_DIR}/engine/render/src/material.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/render/src/camera.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/assets/src/streaming.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/render/src/rasterizer.cpp"
 )
 set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/math/include/ge/math/math.hpp"
@@ -65,4 +68,7 @@ set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/audio/include/ge/audio/mixer.hpp"
     "${PROJECT_SOURCE_DIR}/engine/navigation/include/ge/navigation/pathfinding.hpp"
     "${PROJECT_SOURCE_DIR}/engine/render/include/ge/render/material.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/render/include/ge/render/camera.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/assets/include/ge/assets/streaming.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/render/include/ge/render/rasterizer.hpp"
 )
