@@ -410,7 +410,13 @@
       "agent_id": "/root/worker032",
       "task_id": "CODE-032",
       "wave": 11,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Particle emission, simulation and trails",
+      "files": [
+        "engine/effects/include/ge/effects/particles.hpp",
+        "engine/effects/src/particles.cpp"
+      ],
+      "code_lines": 1436
     },
     {
       "number": 33,
@@ -418,9 +424,23 @@
       "task_id": "CODE-033",
       "wave": 11,
       "status": "implementing"
+    },
+    {
+      "number": 34,
+      "agent_id": "/root/worker034",
+      "task_id": "CODE-034",
+      "wave": 12,
+      "status": "implementing"
+    },
+    {
+      "number": 35,
+      "agent_id": "/root/worker035",
+      "task_id": "CODE-035",
+      "wave": 12,
+      "status": "implementing"
     }
   ],
-  "delivered_worker_count": 31,
-  "counted_delivered_worker_code_lines": 44317,
+  "delivered_worker_count": 32,
+  "counted_delivered_worker_code_lines": 45753,
   "baseline_engine_application_code_lines": 1727
 }

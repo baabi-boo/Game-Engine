@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 192,
-  "updated_at": "2026-11-27T21:40:49.679696Z",
+  "revision": 203,
+  "updated_at": "2026-11-27T21:44:41.548310Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "4c4356155c4ad6e1c6bc95bab50e38922b6c9f85a5b7335410940a7251f6d465",
-    "file_count": 168
+    "sha256": "2e95582ff6eec5f813f6a40ae43b5d908a12e15172eb7146ef4674664b920c2a",
+    "file_count": 170
   },
   "milestones": [
     {
@@ -2297,9 +2297,12 @@
       "claim_revision": 137,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker032 delivered Particle emission, simulation and trails; 1436 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/effects/include/ge/effects/particles.hpp",
+          "engine/effects/src/particles.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -2685,6 +2688,96 @@
       "status": "in_progress",
       "owner": "worker045",
       "claim_revision": 186,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-046",
+      "title": "Behavior tree execution and blackboards",
+      "milestone": "M1",
+      "priority": 46,
+      "description": "Implement Behavior tree execution and blackboards. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/ai/include/ge/ai/behavior.hpp",
+        "engine/ai/src/behavior.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_behavior(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker046",
+      "claim_revision": 195,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-047",
+      "title": "Perception, memory and utility decisions",
+      "milestone": "M1",
+      "priority": 47,
+      "description": "Implement Perception, memory and utility decisions. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/ai/include/ge/ai/perception.hpp",
+        "engine/ai/src/perception.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_perception(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker047",
+      "claim_revision": 198,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-048",
+      "title": "Road geometry and lane graph routing",
+      "milestone": "M1",
+      "priority": 48,
+      "description": "Implement Road geometry and lane graph routing. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/traffic/include/ge/traffic/roads.hpp",
+        "engine/traffic/src/roads.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_roads(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker048",
+      "claim_revision": 201,
       "blocker": null,
       "checkpoint": {
         "summary": "Not started.",
@@ -4375,6 +4468,94 @@
     {
       "revision": 192,
       "at": "2026-11-27T21:40:49.679696Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 193,
+      "at": "2026-11-27T21:43:21.800712Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-046",
+      "summary": "Added planned task CODE-046: Behavior tree execution and blackboards."
+    },
+    {
+      "revision": 194,
+      "at": "2026-11-27T21:43:23.853667Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 195,
+      "at": "2026-11-27T21:43:25.639252Z",
+      "actor": "worker046",
+      "action": "claim",
+      "task": "CODE-046",
+      "summary": "Claimed CODE-046 with its recorded write scope."
+    },
+    {
+      "revision": 196,
+      "at": "2026-11-27T21:43:27.769052Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-047",
+      "summary": "Added planned task CODE-047: Perception, memory and utility decisions."
+    },
+    {
+      "revision": 197,
+      "at": "2026-11-27T21:43:28.927118Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 198,
+      "at": "2026-11-27T21:43:30.135428Z",
+      "actor": "worker047",
+      "action": "claim",
+      "task": "CODE-047",
+      "summary": "Claimed CODE-047 with its recorded write scope."
+    },
+    {
+      "revision": 199,
+      "at": "2026-11-27T21:43:31.044497Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-048",
+      "summary": "Added planned task CODE-048: Road geometry and lane graph routing."
+    },
+    {
+      "revision": 200,
+      "at": "2026-11-27T21:43:32.151366Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 201,
+      "at": "2026-11-27T21:43:33.713874Z",
+      "actor": "worker048",
+      "action": "claim",
+      "task": "CODE-048",
+      "summary": "Claimed CODE-048 with its recorded write scope."
+    },
+    {
+      "revision": 202,
+      "at": "2026-11-27T21:44:40.310894Z",
+      "actor": "worker032",
+      "action": "checkpoint",
+      "task": "CODE-032",
+      "summary": "Actual /root/worker032 delivered Particle emission, simulation and trails; 1436 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 203,
+      "at": "2026-11-27T21:44:41.548310Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,

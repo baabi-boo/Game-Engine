@@ -3,11 +3,11 @@
 # Agent project status
 
 - **Project:** Game Engine
-- **Ledger revision:** 192
-- **Recorded update:** 2026\-11\-27T21:40:49.679696Z
+- **Ledger revision:** 203
+- **Recorded update:** 2026\-11\-27T21:44:41.548310Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 4c4356155c4ad6e1c6bc95bab50e38922b6c9f85a5b7335410940a7251f6d465
-- **Source files:** 168
+- **Source fingerprint:** 2e95582ff6eec5f813f6a40ae43b5d908a12e15172eb7146ef4674664b920c2a
+- **Source files:** 170
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -74,7 +74,7 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 | CODE\-029: Vegetation distribution and instancing | 29 | M1 | in\_progress | worker029 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-030: Light collection, shadows and illumination | 30 | M1 | in\_progress | worker030 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-031: Render pass graph and transient resources | 31 | M1 | in\_progress | worker031 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-032: Particle emission, simulation and trails | 32 | M1 | in\_progress | worker032 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-032: Particle emission, simulation and trails | 32 | M1 | in\_progress | worker032 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-033: Rigid body constraints and joints | 33 | M1 | in\_progress | worker033 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-034: Versioned scene serialization and transactions | 34 | M1 | in\_progress | worker034 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-035: Bounded bytecode virtual machine | 35 | M1 | in\_progress | worker035 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
@@ -88,6 +88,9 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 | CODE\-043: Entity snapshots and delta replication | 43 | M1 | in\_progress | worker043 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-044: Input prediction and rollback state | 44 | M1 | in\_progress | worker044 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-045: Transactional save journal and recovery | 45 | M1 | in\_progress | worker045 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-046: Behavior tree execution and blackboards | 46 | M1 | in\_progress | worker046 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-047: Perception, memory and utility decisions | 47 | M1 | in\_progress | worker047 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-048: Road geometry and lane graph routing | 48 | M1 | in\_progress | worker048 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | M1\-010: Declare the reference platform and playable workload | 100 | M1 | planned \(ready\) | unowned | M0\-FOUNDATION | Read the first\-playable plan and inspect available target evidence; draft the reference\-platform record. |
 | M1\-020: Select one native backend and dependency strategy | 110 | M1 | planned | unowned | M1\-010 | Review ADR0006 and the candidate register; produce an evidence\-backed backend decision and dependency records. |
 | M1\-030: Implement native window and input lifecycle | 120 | M1 | planned | unowned | M1\-020 | Define the minimal platform interface, then wire and test window/input lifecycle on the chosen target. |
@@ -464,8 +467,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 137
 - Write scope: engine/effects/include/ge/effects/particles.hpp, engine/effects/src/particles.cpp
 - Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Preserved work: Actual /root/worker032 delivered Particle emission, simulation and trails; 1436 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 
 ### CODE\-033
 
@@ -597,6 +600,36 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Preserved work: Not started.
 - Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
 
+### CODE\-046
+
+- Status: in\_progress
+- Owner: worker046
+- Claim revision: 195
+- Write scope: engine/ai/include/ge/ai/behavior.hpp, engine/ai/src/behavior.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-047
+
+- Status: in\_progress
+- Owner: worker047
+- Claim revision: 198
+- Write scope: engine/ai/include/ge/ai/perception.hpp, engine/ai/src/perception.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
+### CODE\-048
+
+- Status: in\_progress
+- Owner: worker048
+- Claim revision: 201
+- Write scope: engine/traffic/include/ge/traffic/roads.hpp, engine/traffic/src/roads.cpp
+- Blocker: none
+- Preserved work: Not started.
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+
 
 ## Evidence observations
 
@@ -616,17 +649,6 @@ These are historical observations. A pass neither completes a task nor remains c
 
 ## Recent operations
 
-- Revision 173 — 2026\-11\-27T21:18:57.467193Z — worker026: checkpoint CODE\-026. Actual /root/worker026 delivered Polygon navigation mesh queries and funnels; 1340 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Revision 174 — 2026\-11\-27T21:19:14.811039Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
-- Revision 175 — 2026\-11\-27T21:23:10.487991Z — worker028: checkpoint CODE\-028. Actual /root/worker028 delivered Terrain tiles, sampling and erosion; 1353 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Revision 176 — 2026\-11\-27T21:24:24.267561Z — worker027: checkpoint CODE\-027. Actual /root/worker027 delivered World partition activation and origin shifts; 1235 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Revision 177 — 2026\-11\-27T21:24:25.175253Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
-- Revision 178 — 2026\-11\-27T21:27:18.774829Z — coordinator: add CODE\-043. Added planned task CODE\-043: Entity snapshots and delta replication.
-- Revision 179 — 2026\-11\-27T21:27:19.445123Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 180 — 2026\-11\-27T21:27:20.033738Z — worker043: claim CODE\-043. Claimed CODE\-043 with its recorded write scope.
-- Revision 181 — 2026\-11\-27T21:27:20.588346Z — coordinator: add CODE\-044. Added planned task CODE\-044: Input prediction and rollback state.
-- Revision 182 — 2026\-11\-27T21:27:21.170898Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 183 — 2026\-11\-27T21:27:21.886591Z — worker044: claim CODE\-044. Claimed CODE\-044 with its recorded write scope.
 - Revision 184 — 2026\-11\-27T21:27:22.485934Z — coordinator: add CODE\-045. Added planned task CODE\-045: Transactional save journal and recovery.
 - Revision 185 — 2026\-11\-27T21:27:23.058519Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
 - Revision 186 — 2026\-11\-27T21:27:23.728327Z — worker045: claim CODE\-045. Claimed CODE\-045 with its recorded write scope.
@@ -636,5 +658,16 @@ These are historical observations. A pass neither completes a task nor remains c
 - Revision 190 — 2026\-11\-27T21:39:33.765191Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 - Revision 191 — 2026\-11\-27T21:40:48.521588Z — worker031: checkpoint CODE\-031. Actual /root/worker031 delivered Render pass graph and transient resources; 1583 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 192 — 2026\-11\-27T21:40:49.679696Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
+- Revision 193 — 2026\-11\-27T21:43:21.800712Z — coordinator: add CODE\-046. Added planned task CODE\-046: Behavior tree execution and blackboards.
+- Revision 194 — 2026\-11\-27T21:43:23.853667Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 195 — 2026\-11\-27T21:43:25.639252Z — worker046: claim CODE\-046. Claimed CODE\-046 with its recorded write scope.
+- Revision 196 — 2026\-11\-27T21:43:27.769052Z — coordinator: add CODE\-047. Added planned task CODE\-047: Perception, memory and utility decisions.
+- Revision 197 — 2026\-11\-27T21:43:28.927118Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 198 — 2026\-11\-27T21:43:30.135428Z — worker047: claim CODE\-047. Claimed CODE\-047 with its recorded write scope.
+- Revision 199 — 2026\-11\-27T21:43:31.044497Z — coordinator: add CODE\-048. Added planned task CODE\-048: Road geometry and lane graph routing.
+- Revision 200 — 2026\-11\-27T21:43:32.151366Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
+- Revision 201 — 2026\-11\-27T21:43:33.713874Z — worker048: claim CODE\-048. Claimed CODE\-048 with its recorded write scope.
+- Revision 202 — 2026\-11\-27T21:44:40.310894Z — worker032: checkpoint CODE\-032. Actual /root/worker032 delivered Particle emission, simulation and trails; 1436 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Revision 203 — 2026\-11\-27T21:44:41.548310Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 
 The canonical ledger retains the complete operation history.

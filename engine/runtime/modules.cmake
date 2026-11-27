@@ -14,6 +14,7 @@ set(GE_ENGINE_MODULES
     "audio"
     "navigation"
     "terrain"
+    "effects"
 )
 set(GE_ENGINE_INCLUDE_ROOTS
     "${PROJECT_SOURCE_DIR}/engine/math/include"
@@ -31,6 +32,7 @@ set(GE_ENGINE_INCLUDE_ROOTS
     "${PROJECT_SOURCE_DIR}/engine/audio/include"
     "${PROJECT_SOURCE_DIR}/engine/navigation/include"
     "${PROJECT_SOURCE_DIR}/engine/terrain/include"
+    "${PROJECT_SOURCE_DIR}/engine/effects/include"
 )
 set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/math/src/math.cpp"
@@ -62,6 +64,7 @@ set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/terrain/src/vegetation.cpp"
     "${PROJECT_SOURCE_DIR}/engine/render/src/lighting.cpp"
     "${PROJECT_SOURCE_DIR}/engine/render/src/graph.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/effects/src/particles.cpp"
 )
 set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/math/include/ge/math/math.hpp"
@@ -93,4 +96,5 @@ set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/terrain/include/ge/terrain/vegetation.hpp"
     "${PROJECT_SOURCE_DIR}/engine/render/include/ge/render/lighting.hpp"
     "${PROJECT_SOURCE_DIR}/engine/render/include/ge/render/graph.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/effects/include/ge/effects/particles.hpp"
 )

@@ -28,6 +28,7 @@
 #include <ge/terrain/vegetation.hpp>
 #include <ge/render/lighting.hpp>
 #include <ge/render/graph.hpp>
+#include <ge/effects/particles.hpp>
 
 namespace ge::application {
 void install_modules(core::Kernel& kernel) {
@@ -59,6 +60,7 @@ void install_modules(core::Kernel& kernel) {
     ge::terrain::register_vegetation(kernel);
     ge::render::register_lighting(kernel);
     ge::render::register_graph(kernel);
+    ge::effects::register_particles(kernel);
     (void)kernel.order_after("spatial.sync", "geometry.mesh.bounds");
     (void)kernel.order_after("geometry.mesh.bounds", "camera.update");
     (void)kernel.order_after("geometry.mesh.bounds", "terrain.vegetation");

@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 192
-- **Recorded update:** 2026\-11\-27T21:40:49.679696Z
+- **Ledger revision:** 203
+- **Recorded update:** 2026\-11\-27T21:44:41.548310Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 4c4356155c4ad6e1c6bc95bab50e38922b6c9f85a5b7335410940a7251f6d465
-- **Source files:** 168
+- **Source fingerprint:** 2e95582ff6eec5f813f6a40ae43b5d908a12e15172eb7146ef4674664b920c2a
+- **Source files:** 170
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -726,9 +726,9 @@ Implement Particle emission, simulation and trails. User\-authorized source\-onl
 - Write scope: engine/effects/include/ge/effects/particles.hpp, engine/effects/src/particles.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker032 delivered Particle emission, simulation and trails; 1436 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/effects/include/ge/effects/particles.hpp, engine/effects/src/particles.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -995,6 +995,66 @@ Acceptance:
 
 - Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
 - Expose a working register\_journal\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-046: Behavior tree execution and blackboards
+
+Implement Behavior tree execution and blackboards. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker046
+- Write scope: engine/ai/include/ge/ai/behavior.hpp, engine/ai/src/behavior.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_behavior\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-047: Perception, memory and utility decisions
+
+Implement Perception, memory and utility decisions. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker047
+- Write scope: engine/ai/include/ge/ai/perception.hpp, engine/ai/src/perception.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_perception\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
+
+- dev: no receipt.
+
+### CODE\-048: Road geometry and lane graph routing
+
+Implement Road geometry and lane graph routing. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
+
+- State / owner: in\_progress / worker048
+- Write scope: engine/traffic/include/ge/traffic/roads.hpp, engine/traffic/src/roads.cpp
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Not started.
+- Files: none recorded
+- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Required checks: dev
+
+Acceptance:
+
+- Implement substantive bounded C\+\+20 algorithms with at least 1000 nonblank noncomment source lines, without filler.
+- Expose a working register\_roads\(ge::core::Kernel&amp;\) integration that connects real services, commands and frame work; production correctness remains unverified.
 
 - dev: no receipt.
 
