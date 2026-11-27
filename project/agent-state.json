@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 286,
-  "updated_at": "2026-11-27T22:54:26.262671Z",
+  "revision": 307,
+  "updated_at": "2026-11-27T23:06:42.798934Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "a64003d1f2cb295f2bddf629baba822f69697520ad2775b6102a024d1cec796e",
-    "file_count": 202
+    "sha256": "57548f6f3ee4fb43930ecab2a08c753d2bb48dc6174aae185f6b3eb0d96005af",
+    "file_count": 204
   },
   "milestones": [
     {
@@ -2858,9 +2858,12 @@
       "claim_revision": 212,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker049 delivered Traffic agents, intersections and signals; 1247 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/traffic/include/ge/traffic/simulation.hpp",
+          "engine/traffic/src/simulation.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -3366,6 +3369,186 @@
       "status": "in_progress",
       "owner": "worker066",
       "claim_revision": 282,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-067",
+      "title": "Mesh simplification and LOD generation",
+      "milestone": "M1",
+      "priority": 67,
+      "description": "Implement Mesh simplification and LOD generation. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/geometry/include/ge/geometry/simplify.hpp",
+        "engine/geometry/src/simplify.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_simplify(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker067",
+      "claim_revision": 289,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-068",
+      "title": "Splines, swept meshes and route sampling",
+      "milestone": "M1",
+      "priority": 68,
+      "description": "Implement Splines, swept meshes and route sampling. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/geometry/include/ge/geometry/splines.hpp",
+        "engine/geometry/src/splines.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_splines(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker068",
+      "claim_revision": 292,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-069",
+      "title": "Swept collision and time of impact",
+      "milestone": "M1",
+      "priority": 69,
+      "description": "Implement Swept collision and time of impact. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/physics/include/ge/physics/continuous.hpp",
+        "engine/physics/src/continuous.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_continuous(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker069",
+      "claim_revision": 295,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-070",
+      "title": "Scene raycasts, overlaps and shape casts",
+      "milestone": "M1",
+      "priority": 70,
+      "description": "Implement Scene raycasts, overlaps and shape casts. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/physics/include/ge/physics/queries.hpp",
+        "engine/physics/src/queries.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_queries(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker070",
+      "claim_revision": 298,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-071",
+      "title": "Crowd avoidance and local steering",
+      "milestone": "M1",
+      "priority": 71,
+      "description": "Implement Crowd avoidance and local steering. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/navigation/include/ge/navigation/crowd.hpp",
+        "engine/navigation/src/crowd.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_crowd(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker071",
+      "claim_revision": 301,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-072",
+      "title": "Cover analysis and tactical position scoring",
+      "milestone": "M1",
+      "priority": 72,
+      "description": "Implement Cover analysis and tactical position scoring. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/ai/include/ge/ai/tactical.hpp",
+        "engine/ai/src/tactical.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_tactical(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker072",
+      "claim_revision": 305,
       "blocker": null,
       "checkpoint": {
         "summary": "Not started.",
@@ -5808,6 +5991,174 @@
     {
       "revision": 286,
       "at": "2026-11-27T22:54:26.262671Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 287,
+      "at": "2026-11-27T22:54:51.842957Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-067",
+      "summary": "Added planned task CODE-067: Mesh simplification and LOD generation."
+    },
+    {
+      "revision": 288,
+      "at": "2026-11-27T22:54:53.044514Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 289,
+      "at": "2026-11-27T22:54:54.334487Z",
+      "actor": "worker067",
+      "action": "claim",
+      "task": "CODE-067",
+      "summary": "Claimed CODE-067 with its recorded write scope."
+    },
+    {
+      "revision": 290,
+      "at": "2026-11-27T22:54:55.536366Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-068",
+      "summary": "Added planned task CODE-068: Splines, swept meshes and route sampling."
+    },
+    {
+      "revision": 291,
+      "at": "2026-11-27T22:54:56.714827Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 292,
+      "at": "2026-11-27T22:54:58.111449Z",
+      "actor": "worker068",
+      "action": "claim",
+      "task": "CODE-068",
+      "summary": "Claimed CODE-068 with its recorded write scope."
+    },
+    {
+      "revision": 293,
+      "at": "2026-11-27T22:54:59.447786Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-069",
+      "summary": "Added planned task CODE-069: Swept collision and time of impact."
+    },
+    {
+      "revision": 294,
+      "at": "2026-11-27T22:55:00.606196Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 295,
+      "at": "2026-11-27T22:55:01.962279Z",
+      "actor": "worker069",
+      "action": "claim",
+      "task": "CODE-069",
+      "summary": "Claimed CODE-069 with its recorded write scope."
+    },
+    {
+      "revision": 296,
+      "at": "2026-11-27T23:01:57.397335Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-070",
+      "summary": "Added planned task CODE-070: Scene raycasts, overlaps and shape casts."
+    },
+    {
+      "revision": 297,
+      "at": "2026-11-27T23:01:58.708547Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 298,
+      "at": "2026-11-27T23:01:59.969531Z",
+      "actor": "worker070",
+      "action": "claim",
+      "task": "CODE-070",
+      "summary": "Claimed CODE-070 with its recorded write scope."
+    },
+    {
+      "revision": 299,
+      "at": "2026-11-27T23:02:01.490406Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-071",
+      "summary": "Added planned task CODE-071: Crowd avoidance and local steering."
+    },
+    {
+      "revision": 300,
+      "at": "2026-11-27T23:02:02.692639Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 301,
+      "at": "2026-11-27T23:02:03.858403Z",
+      "actor": "worker071",
+      "action": "claim",
+      "task": "CODE-071",
+      "summary": "Claimed CODE-071 with its recorded write scope."
+    },
+    {
+      "revision": 302,
+      "at": "2026-11-27T23:02:05.091366Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-072",
+      "summary": "Added planned task CODE-072: Cover analysis and tactical position scoring."
+    },
+    {
+      "revision": 303,
+      "at": "2026-11-27T23:02:06.330500Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 304,
+      "at": "2026-11-27T23:03:03.648623Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Known traffic, mission and inventory source edits plus coordinator host timestep formatting; no compilation, tests or execution."
+    },
+    {
+      "revision": 305,
+      "at": "2026-11-27T23:03:04.943453Z",
+      "actor": "worker072",
+      "action": "claim",
+      "task": "CODE-072",
+      "summary": "Claimed CODE-072 with its recorded write scope."
+    },
+    {
+      "revision": 306,
+      "at": "2026-11-27T23:06:31.709547Z",
+      "actor": "worker049",
+      "action": "checkpoint",
+      "task": "CODE-049",
+      "summary": "Actual /root/worker049 delivered Traffic agents, intersections and signals; 1247 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 307,
+      "at": "2026-11-27T23:06:42.798934Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,

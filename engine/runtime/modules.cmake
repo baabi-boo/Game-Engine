@@ -96,6 +96,7 @@ set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/ai/src/behavior.cpp"
     "${PROJECT_SOURCE_DIR}/engine/ai/src/perception.cpp"
     "${PROJECT_SOURCE_DIR}/engine/traffic/src/roads.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/traffic/src/simulation.cpp"
 )
 set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/math/include/ge/math/math.hpp"
@@ -143,4 +144,5 @@ set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/ai/include/ge/ai/behavior.hpp"
     "${PROJECT_SOURCE_DIR}/engine/ai/include/ge/ai/perception.hpp"
     "${PROJECT_SOURCE_DIR}/engine/traffic/include/ge/traffic/roads.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/traffic/include/ge/traffic/simulation.hpp"
 )

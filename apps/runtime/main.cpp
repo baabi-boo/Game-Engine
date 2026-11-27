@@ -4,6 +4,7 @@
 #include <ge/core/memory.hpp>
 #include <ge/core/runtime.hpp>
 
+#include <array>
 #include <charconv>
 #include <cmath>
 #include <cstdint>
@@ -28,6 +29,17 @@ struct Options {
     bool help{};
     bool list_commands{};
 };
+
+std::string format_step(double step) {
+    std::array<char, 64> buffer{};
+    const auto result = std::to_chars(buffer.data(), buffer.data() + buffer.size(), step,
+                                      std::chars_format::general,
+                                      std::numeric_limits<double>::max_digits10);
+    if (result.ec != std::errc{}) {
+        throw std::runtime_error("cannot encode runtime timestep");
+    }
+    return std::string(buffer.data(), result.ptr);
+}
 
 Options parse_options(int argc, char** argv) {
     Options options;
@@ -150,7 +162,7 @@ int main(int argc, char** argv) {
             return 0;
         }
         ge::core::Kernel kernel;
-        (void)kernel.config().set("runtime.step", std::to_string(options.step));
+        (void)kernel.config().set("runtime.step", format_step(options.step));
         for (const auto& [key, value] : options.settings) {
             if (!kernel.config().set(key, value)) {
                 throw std::invalid_argument("configuration bounds exceeded");
