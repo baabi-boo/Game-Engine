@@ -527,14 +527,26 @@
       "agent_id": "/root/worker041",
       "task_id": "CODE-041",
       "wave": 14,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Packet encoding and reliable channel protocol",
+      "files": [
+        "engine/network/include/ge/network/protocol.hpp",
+        "engine/network/src/protocol.cpp"
+      ],
+      "code_lines": 1300
     },
     {
       "number": 42,
       "agent_id": "/root/worker042",
       "task_id": "CODE-042",
       "wave": 14,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Native datagram transport and bounded network pump",
+      "files": [
+        "engine/network/include/ge/network/transport.hpp",
+        "engine/network/src/transport.cpp"
+      ],
+      "code_lines": 1411
     },
     {
       "number": 43,
@@ -542,9 +554,23 @@
       "task_id": "CODE-043",
       "wave": 15,
       "status": "implementing"
+    },
+    {
+      "number": 44,
+      "agent_id": "/root/worker044",
+      "task_id": "CODE-044",
+      "wave": 15,
+      "status": "implementing"
+    },
+    {
+      "number": 45,
+      "agent_id": "/root/worker045",
+      "task_id": "CODE-045",
+      "wave": 15,
+      "status": "implementing"
     }
   ],
-  "delivered_worker_count": 40,
-  "counted_delivered_worker_code_lines": 57157,
+  "delivered_worker_count": 42,
+  "counted_delivered_worker_code_lines": 59868,
   "baseline_engine_application_code_lines": 1727
 }

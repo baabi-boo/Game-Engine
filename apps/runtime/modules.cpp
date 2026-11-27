@@ -37,6 +37,8 @@
 #include <ge/animation/curves.hpp>
 #include <ge/config/settings.hpp>
 #include <ge/text/localization.hpp>
+#include <ge/network/protocol.hpp>
+#include <ge/network/transport.hpp>
 
 namespace ge::application {
 void install_modules(core::Kernel& kernel) {
@@ -77,6 +79,8 @@ void install_modules(core::Kernel& kernel) {
     ge::animation::register_curves(kernel);
     ge::config::register_settings(kernel);
     ge::text::register_localization(kernel);
+    ge::network::register_protocol(kernel);
+    ge::network::register_transport(kernel);
     (void)kernel.order_after("spatial.sync", "geometry.mesh.bounds");
     (void)kernel.order_after("geometry.mesh.bounds", "camera.update");
     (void)kernel.order_after("geometry.mesh.bounds", "terrain.vegetation");

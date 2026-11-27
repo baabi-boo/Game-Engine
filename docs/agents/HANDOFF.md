@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 237
-- **Recorded update:** 2026\-11\-27T22:19:53.254084Z
+- **Ledger revision:** 240
+- **Recorded update:** 2026\-11\-27T22:27:44.740844Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** abe70ed9402bf6a04e91b0b8343fe8463673c42982318138452895e477289d1f
-- **Source files:** 186
+- **Source fingerprint:** 0fccb0ae6a4fc04dc4c31ed618d38f56369a61f3866b94dd98350489e877aa40
+- **Source files:** 190
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -906,9 +906,9 @@ Implement Packet encoding and reliable channel protocol. User\-authorized source
 - Write scope: engine/network/include/ge/network/protocol.hpp, engine/network/src/protocol.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker041 delivered Packet encoding and reliable channel protocol; 1300 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/network/include/ge/network/protocol.hpp, engine/network/src/protocol.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:
@@ -926,9 +926,9 @@ Implement Native datagram transport and bounded network pump. User\-authorized s
 - Write scope: engine/network/include/ge/network/transport.hpp, engine/network/src/transport.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker042 delivered Native datagram transport and bounded network pump; 1411 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/network/include/ge/network/transport.hpp, engine/network/src/transport.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 237,
-  "updated_at": "2026-11-27T22:19:53.254084Z",
+  "revision": 240,
+  "updated_at": "2026-11-27T22:27:44.740844Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "abe70ed9402bf6a04e91b0b8343fe8463673c42982318138452895e477289d1f",
-    "file_count": 186
+    "sha256": "0fccb0ae6a4fc04dc4c31ed618d38f56369a61f3866b94dd98350489e877aa40",
+    "file_count": 190
   },
   "milestones": [
     {
@@ -2594,9 +2594,12 @@
       "claim_revision": 169,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker041 delivered Packet encoding and reliable channel protocol; 1300 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/network/include/ge/network/protocol.hpp",
+          "engine/network/src/protocol.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -2624,9 +2627,12 @@
       "claim_revision": 172,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker042 delivered Native datagram transport and bounded network pump; 1411 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/network/include/ge/network/transport.hpp",
+          "engine/network/src/transport.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -5032,6 +5038,30 @@
     {
       "revision": 237,
       "at": "2026-11-27T22:19:53.254084Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 238,
+      "at": "2026-11-27T22:27:02.414035Z",
+      "actor": "worker042",
+      "action": "checkpoint",
+      "task": "CODE-042",
+      "summary": "Actual /root/worker042 delivered Native datagram transport and bounded network pump; 1411 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 239,
+      "at": "2026-11-27T22:27:43.201278Z",
+      "actor": "worker041",
+      "action": "checkpoint",
+      "task": "CODE-041",
+      "summary": "Actual /root/worker041 delivered Packet encoding and reliable channel protocol; 1300 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 240,
+      "at": "2026-11-27T22:27:44.740844Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,

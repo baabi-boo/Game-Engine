@@ -19,6 +19,7 @@ set(GE_ENGINE_MODULES
     "gameplay"
     "config"
     "text"
+    "network"
 )
 set(GE_ENGINE_INCLUDE_ROOTS
     "${PROJECT_SOURCE_DIR}/engine/math/include"
@@ -41,6 +42,7 @@ set(GE_ENGINE_INCLUDE_ROOTS
     "${PROJECT_SOURCE_DIR}/engine/gameplay/include"
     "${PROJECT_SOURCE_DIR}/engine/config/include"
     "${PROJECT_SOURCE_DIR}/engine/text/include"
+    "${PROJECT_SOURCE_DIR}/engine/network/include"
 )
 set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/math/src/math.cpp"
@@ -80,6 +82,8 @@ set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/animation/src/curves.cpp"
     "${PROJECT_SOURCE_DIR}/engine/config/src/settings.cpp"
     "${PROJECT_SOURCE_DIR}/engine/text/src/localization.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/network/src/protocol.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/network/src/transport.cpp"
 )
 set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/math/include/ge/math/math.hpp"
@@ -119,4 +123,6 @@ set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/animation/include/ge/animation/curves.hpp"
     "${PROJECT_SOURCE_DIR}/engine/config/include/ge/config/settings.hpp"
     "${PROJECT_SOURCE_DIR}/engine/text/include/ge/text/localization.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/network/include/ge/network/protocol.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/network/include/ge/network/transport.hpp"
 )

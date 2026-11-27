@@ -73,7 +73,7 @@ stdlib.h string.h tgmath.h time.h uchar.h wchar.h wctype.h
 PRIVATE_PLATFORM_HEADERS = {
     "engine/world/src/state.cpp": {"windows.h"},
     "engine/network/src/transport.cpp": {
-        "winsock2.h", "ws2tcpip.h", "windows.h", "sys/socket.h", "sys/types.h",
+        "winsock2.h", "ws2tcpip.h", "windows.h", "sys/socket.h", "sys/types.h", "sys/uio.h",
         "netinet/in.h", "arpa/inet.h", "netdb.h", "unistd.h", "fcntl.h", "poll.h",
     },
 }
