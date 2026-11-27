@@ -59,6 +59,7 @@ set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/navigation/src/navmesh.cpp"
     "${PROJECT_SOURCE_DIR}/engine/scene/src/partition.cpp"
     "${PROJECT_SOURCE_DIR}/engine/terrain/src/heightfield.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/terrain/src/vegetation.cpp"
 )
 set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/math/include/ge/math/math.hpp"
@@ -87,4 +88,5 @@ set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/navigation/include/ge/navigation/navmesh.hpp"
     "${PROJECT_SOURCE_DIR}/engine/scene/include/ge/scene/partition.hpp"
     "${PROJECT_SOURCE_DIR}/engine/terrain/include/ge/terrain/heightfield.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/terrain/include/ge/terrain/vegetation.hpp"
 )

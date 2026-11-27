@@ -371,7 +371,13 @@
       "agent_id": "/root/worker029",
       "task_id": "CODE-029",
       "wave": 10,
-      "status": "implementing"
+      "status": "source_delivered",
+      "title": "Vegetation distribution and instancing",
+      "files": [
+        "engine/terrain/include/ge/terrain/vegetation.hpp",
+        "engine/terrain/src/vegetation.cpp"
+      ],
+      "code_lines": 1317
     },
     {
       "number": 30,
@@ -379,9 +385,23 @@
       "task_id": "CODE-030",
       "wave": 10,
       "status": "implementing"
+    },
+    {
+      "number": 31,
+      "agent_id": "/root/worker031",
+      "task_id": "CODE-031",
+      "wave": 11,
+      "status": "implementing"
+    },
+    {
+      "number": 32,
+      "agent_id": "/root/worker032",
+      "task_id": "CODE-032",
+      "wave": 11,
+      "status": "implementing"
     }
   ],
-  "delivered_worker_count": 28,
-  "counted_delivered_worker_code_lines": 40115,
+  "delivered_worker_count": 29,
+  "counted_delivered_worker_code_lines": 41432,
   "baseline_engine_application_code_lines": 1727
 }

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 177,
-  "updated_at": "2026-11-27T21:24:25.175253Z",
+  "revision": 188,
+  "updated_at": "2026-11-27T21:28:56.478604Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "4fa1a763799766b0b0445d713cebfbc45c056db7acdea7b0b90938cca8d7edb7",
-    "file_count": 162
+    "sha256": "f4776269ab8d547d980aaaa508b65c7994a83713b95745928f4691662160ee63",
+    "file_count": 164
   },
   "milestones": [
     {
@@ -2198,9 +2198,12 @@
       "claim_revision": 127,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker029 delivered Vegetation distribution and instancing; 1317 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/terrain/include/ge/terrain/vegetation.hpp",
+          "engine/terrain/src/vegetation.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -2586,6 +2589,96 @@
       "status": "in_progress",
       "owner": "worker042",
       "claim_revision": 172,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-043",
+      "title": "Entity snapshots and delta replication",
+      "milestone": "M1",
+      "priority": 43,
+      "description": "Implement Entity snapshots and delta replication. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/network/include/ge/network/replication.hpp",
+        "engine/network/src/replication.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_replication(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker043",
+      "claim_revision": 180,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-044",
+      "title": "Input prediction and rollback state",
+      "milestone": "M1",
+      "priority": 44,
+      "description": "Implement Input prediction and rollback state. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/network/include/ge/network/prediction.hpp",
+        "engine/network/src/prediction.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_prediction(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker044",
+      "claim_revision": 183,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Not started.",
+        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "files": []
+      },
+      "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "CODE-045",
+      "title": "Transactional save journal and recovery",
+      "milestone": "M1",
+      "priority": 45,
+      "description": "Implement Transactional save journal and recovery. User-authorized source-only campaign: no tests, builds, engine execution or CI waits.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/persistence/include/ge/persistence/journal.hpp",
+        "engine/persistence/src/journal.cpp"
+      ],
+      "acceptance": [
+        "Implement substantive bounded C++20 algorithms with at least 1000 nonblank noncomment source lines, without filler.",
+        "Expose a working register_journal(ge::core::Kernel&) integration that connects real services, commands and frame work; production correctness remains unverified."
+      ],
+      "required_checks": [
+        "dev"
+      ],
+      "status": "in_progress",
+      "owner": "worker045",
+      "claim_revision": 186,
       "blocker": null,
       "checkpoint": {
         "summary": "Not started.",
@@ -4156,6 +4249,94 @@
     {
       "revision": 177,
       "at": "2026-11-27T21:24:25.175253Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 178,
+      "at": "2026-11-27T21:27:18.774829Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-043",
+      "summary": "Added planned task CODE-043: Entity snapshots and delta replication."
+    },
+    {
+      "revision": 179,
+      "at": "2026-11-27T21:27:19.445123Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 180,
+      "at": "2026-11-27T21:27:20.033738Z",
+      "actor": "worker043",
+      "action": "claim",
+      "task": "CODE-043",
+      "summary": "Claimed CODE-043 with its recorded write scope."
+    },
+    {
+      "revision": 181,
+      "at": "2026-11-27T21:27:20.588346Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-044",
+      "summary": "Added planned task CODE-044: Input prediction and rollback state."
+    },
+    {
+      "revision": 182,
+      "at": "2026-11-27T21:27:21.170898Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 183,
+      "at": "2026-11-27T21:27:21.886591Z",
+      "actor": "worker044",
+      "action": "claim",
+      "task": "CODE-044",
+      "summary": "Claimed CODE-044 with its recorded write scope."
+    },
+    {
+      "revision": 184,
+      "at": "2026-11-27T21:27:22.485934Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "CODE-045",
+      "summary": "Added planned task CODE-045: Transactional save journal and recovery."
+    },
+    {
+      "revision": 185,
+      "at": "2026-11-27T21:27:23.058519Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks."
+    },
+    {
+      "revision": 186,
+      "at": "2026-11-27T21:27:23.728327Z",
+      "actor": "worker045",
+      "action": "claim",
+      "task": "CODE-045",
+      "summary": "Claimed CODE-045 with its recorded write scope."
+    },
+    {
+      "revision": 187,
+      "at": "2026-11-27T21:28:31.176482Z",
+      "actor": "worker029",
+      "action": "checkpoint",
+      "task": "CODE-029",
+      "summary": "Actual /root/worker029 delivered Vegetation distribution and instancing; 1317 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 188,
+      "at": "2026-11-27T21:28:56.478604Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,
