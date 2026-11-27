@@ -85,6 +85,13 @@ struct RasterDraw {
     std::optional<FillMode> fill;
 };
 
+// Every borrowed draw and lighting resource must outlive the synchronous batch.
+struct RasterViewSubmission {
+    CameraView view{};
+    std::span<const RasterDraw> draws{};
+    ShadingContext lighting{};
+};
+
 // Synchronous callbacks borrow their user state for the duration of rendering.
 // They must not mutate shared resources or reenter the renderer and must bound
 // their own work. The supplied light span/max_lights already obey frame limits.
@@ -174,6 +181,13 @@ public:
                                      const ShadingContext& lighting = {},
                                      const TextureLibrary* textures = nullptr,
                                      bool clear = false);
+    // All views preflight before any clear/write and share one work budget.
+    // Immediate batches use their supplied lighting/shadow context; the existing
+    // fragment-shader override applies to every view. The manual queue is untouched.
+    [[nodiscard]] RasterResult draw_views(Framebuffer& target,
+                                          std::span<const RasterViewSubmission> submissions,
+                                          const TextureLibrary* textures = nullptr,
+                                          bool clear = false);
     // Accepted render attempts consume the queue, including partial WorkLimit
     // frames. Preflight rejection leaves the queue available for correction.
     [[nodiscard]] RasterResult render(Framebuffer& target, const CameraView& view,

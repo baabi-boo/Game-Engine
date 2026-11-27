@@ -3,10 +3,10 @@
 # Agent project status
 
 - **Project:** Game Engine
-- **Ledger revision:** 326
-- **Recorded update:** 2026\-11\-27T23:30:07.708539Z
+- **Ledger revision:** 327
+- **Recorded update:** 2026\-11\-27T23:32:19.330834Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 742eb32b45be29bbba7b7c9ad90349a3bc785295adaa97201f2d579ddd1f1e8b
+- **Source fingerprint:** 1b10f0c223382a37983762ede90ad54929f839ec4201ef384407e466f4f71fd3
 - **Source files:** 214
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
@@ -946,7 +946,6 @@ These are historical observations. A pass neither completes a task nor remains c
 
 ## Recent operations
 
-- Revision 307 — 2026\-11\-27T23:06:42.798934Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 - Revision 308 — 2026\-11\-27T23:08:46.829630Z — worker050: checkpoint CODE\-050. Actual /root/worker050 delivered Mission objectives and idempotent rewards; 1265 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 309 — 2026\-11\-27T23:08:48.107401Z — worker051: checkpoint CODE\-051. Actual /root/worker051 delivered Inventory stacks, containers and transactions; 1541 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 310 — 2026\-11\-27T23:09:52.330677Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
@@ -966,5 +965,6 @@ These are historical observations. A pass neither completes a task nor remains c
 - Revision 324 — 2026\-11\-27T23:26:53.019875Z — worker054: checkpoint CODE\-054. Actual /root/worker054 delivered Dialogue graph execution and conditions; 1464 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 325 — 2026\-11\-27T23:27:11.010706Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 - Revision 326 — 2026\-11\-27T23:30:07.708539Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
+- Revision 327 — 2026\-11\-27T23:32:19.330834Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 
 The canonical ledger retains the complete operation history.

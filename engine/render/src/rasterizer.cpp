@@ -1009,19 +1009,45 @@ RasterResult SoftwareRenderer::draw(Framebuffer& target, const CameraView& view,
 RasterResult SoftwareRenderer::draw(Framebuffer& target, const CameraView& view,
                                     std::span<const RasterDraw> submissions,
                                     const ShadingContext& lighting, const TextureLibrary* textures, bool clear) {
+    const RasterViewSubmission submission{view, submissions, lighting};
+    return draw_views(target, std::span<const RasterViewSubmission>{&submission, 1}, textures, clear);
+}
+
+RasterResult SoftwareRenderer::draw_views(Framebuffer& target,
+                                          std::span<const RasterViewSubmission> submissions,
+                                          const TextureLibrary* textures, bool clear) {
     impl_->begin();
-    impl_->statistics.draws_submitted = submissions.size();
     if (!impl_->settings.enabled) {
         return impl_->result(RasterError::None);
     }
-    try {
-        PreparedView prepared;
-        std::size_t triangle_reservation{};
-        const auto error = impl_->prepare(target, view, submissions, lighting, triangle_reservation, prepared);
-        if (error != RasterError::None) {
-            return impl_->result(error);
+    if (submissions.empty()) {
+        return impl_->result(RasterError::InvalidView);
+    }
+    if (submissions.size() > impl_->limits.max_views) {
+        return impl_->result(RasterError::WorkLimit);
+    }
+    for (const auto& submission : submissions) {
+        if (submission.draws.size() > impl_->limits.max_draws) {
+            return impl_->result(RasterError::QueueCapacity);
         }
-        return impl_->execute(target, std::span<const PreparedView>{&prepared, 1}, textures, clear);
+        if (submission.draws.size() > std::numeric_limits<std::size_t>::max() -
+            impl_->statistics.draws_submitted) {
+            return impl_->result(RasterError::WorkLimit);
+        }
+        impl_->statistics.draws_submitted += submission.draws.size();
+    }
+    try {
+        std::vector<PreparedView> prepared(submissions.size());
+        std::size_t triangle_reservation{};
+        for (std::size_t index = 0; index < submissions.size(); ++index) {
+            const auto& submission = submissions[index];
+            const auto error = impl_->prepare(target, submission.view, submission.draws,
+                submission.lighting, triangle_reservation, prepared[index]);
+            if (error != RasterError::None) {
+                return impl_->result(error);
+            }
+        }
+        return impl_->execute(target, prepared, textures, clear);
     } catch (const std::bad_alloc&) {
         return impl_->result(RasterError::AllocationFailure);
     } catch (const std::length_error&) {
