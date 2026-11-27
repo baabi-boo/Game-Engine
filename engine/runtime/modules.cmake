@@ -17,6 +17,7 @@ set(GE_ENGINE_MODULES
     "effects"
     "script"
     "gameplay"
+    "config"
 )
 set(GE_ENGINE_INCLUDE_ROOTS
     "${PROJECT_SOURCE_DIR}/engine/math/include"
@@ -37,6 +38,7 @@ set(GE_ENGINE_INCLUDE_ROOTS
     "${PROJECT_SOURCE_DIR}/engine/effects/include"
     "${PROJECT_SOURCE_DIR}/engine/script/include"
     "${PROJECT_SOURCE_DIR}/engine/gameplay/include"
+    "${PROJECT_SOURCE_DIR}/engine/config/include"
 )
 set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/math/src/math.cpp"
@@ -74,6 +76,7 @@ set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/script/src/vm.cpp"
     "${PROJECT_SOURCE_DIR}/engine/gameplay/src/interaction.cpp"
     "${PROJECT_SOURCE_DIR}/engine/animation/src/curves.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/config/src/settings.cpp"
 )
 set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/math/include/ge/math/math.hpp"
@@ -111,4 +114,5 @@ set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/script/include/ge/script/vm.hpp"
     "${PROJECT_SOURCE_DIR}/engine/gameplay/include/ge/gameplay/interaction.hpp"
     "${PROJECT_SOURCE_DIR}/engine/animation/include/ge/animation/curves.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/config/include/ge/config/settings.hpp"
 )

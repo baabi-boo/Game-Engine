@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 233,
-  "updated_at": "2026-11-27T22:16:08.971497Z",
+  "revision": 235,
+  "updated_at": "2026-11-27T22:16:38.312886Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "9e43f18797ef63dbcf7609a8a7f8e68f6ae958108518102a57757115a6305d12",
-    "file_count": 182
+    "sha256": "72f466cb6ff4647318c4f118ee432f61e47e99a490659a69920c6c69004fb6b2",
+    "file_count": 184
   },
   "milestones": [
     {
@@ -2528,9 +2528,12 @@
       "claim_revision": 163,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker039 delivered Layered configuration parsing and persistence; 1459 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/config/include/ge/config/settings.hpp",
+          "engine/config/src/settings.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -4994,6 +4997,22 @@
     {
       "revision": 233,
       "at": "2026-11-27T22:16:08.971497Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 234,
+      "at": "2026-11-27T22:16:37.086889Z",
+      "actor": "worker039",
+      "action": "checkpoint",
+      "task": "CODE-039",
+      "summary": "Actual /root/worker039 delivered Layered configuration parsing and persistence; 1459 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 235,
+      "at": "2026-11-27T22:16:38.312886Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,

@@ -3,11 +3,11 @@
 # Agent project status
 
 - **Project:** Game Engine
-- **Ledger revision:** 233
-- **Recorded update:** 2026\-11\-27T22:16:08.971497Z
+- **Ledger revision:** 235
+- **Recorded update:** 2026\-11\-27T22:16:38.312886Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 9e43f18797ef63dbcf7609a8a7f8e68f6ae958108518102a57757115a6305d12
-- **Source files:** 182
+- **Source fingerprint:** 72f466cb6ff4647318c4f118ee432f61e47e99a490659a69920c6c69004fb6b2
+- **Source files:** 184
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -81,7 +81,7 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 | CODE\-036: Interaction targeting, triggers and actions | 36 | M1 | in\_progress | worker036 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-037: Typed signal subscriptions and transactional event dispatch | 37 | M1 | in\_progress | worker037 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-038: Curves, tracks and time mapping | 38 | M1 | in\_progress | worker038 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-039: Layered configuration parsing and persistence | 39 | M1 | in\_progress | worker039 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
+| CODE\-039: Layered configuration parsing and persistence | 39 | M1 | in\_progress | worker039 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
 | CODE\-040: Localization catalogs, Unicode and formatting | 40 | M1 | in\_progress | worker040 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-041: Packet encoding and reliable channel protocol | 41 | M1 | in\_progress | worker041 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
 | CODE\-042: Native datagram transport and bounded network pump | 42 | M1 | in\_progress | worker042 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
@@ -543,8 +543,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 163
 - Write scope: engine/config/include/ge/config/settings.hpp, engine/config/src/settings.cpp
 - Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Preserved work: Actual /root/worker039 delivered Layered configuration parsing and persistence; 1459 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 
 ### CODE\-040
 
@@ -715,8 +715,6 @@ These are historical observations. A pass neither completes a task nor remains c
 
 ## Recent operations
 
-- Revision 214 — 2026\-11\-27T22:02:52.231487Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 215 — 2026\-11\-27T22:02:52.907340Z — worker050: claim CODE\-050. Claimed CODE\-050 with its recorded write scope.
 - Revision 216 — 2026\-11\-27T22:02:53.606785Z — coordinator: add CODE\-051. Added planned task CODE\-051: Inventory stacks, containers and transactions.
 - Revision 217 — 2026\-11\-27T22:02:54.475579Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
 - Revision 218 — 2026\-11\-27T22:02:55.200776Z — worker051: claim CODE\-051. Claimed CODE\-051 with its recorded write scope.
@@ -735,5 +733,7 @@ These are historical observations. A pass neither completes a task nor remains c
 - Revision 231 — 2026\-11\-27T22:13:27.734420Z — worker054: claim CODE\-054. Claimed CODE\-054 with its recorded write scope.
 - Revision 232 — 2026\-11\-27T22:16:07.554696Z — worker038: checkpoint CODE\-038. Actual /root/worker038 delivered Curves, tracks and time mapping; 1377 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 233 — 2026\-11\-27T22:16:08.971497Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
+- Revision 234 — 2026\-11\-27T22:16:37.086889Z — worker039: checkpoint CODE\-039. Actual /root/worker039 delivered Layered configuration parsing and persistence; 1459 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Revision 235 — 2026\-11\-27T22:16:38.312886Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 
 The canonical ledger retains the complete operation history.
