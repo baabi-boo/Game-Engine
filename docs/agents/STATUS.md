@@ -3,10 +3,10 @@
 # Agent project status
 
 - **Project:** Game Engine
-- **Ledger revision:** 420
-- **Recorded update:** 2026\-11\-28T00:02:12.404746Z
+- **Ledger revision:** 421
+- **Recorded update:** 2026\-11\-28T00:04:00.377753Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 0b1a037d9b367245c5e326bcf12b0509e5fe4aed4596bcb37ae2aa4764d4d815
+- **Source fingerprint:** be30cb8a04270f128250777169c080c2589e98a91d4402c4b8411594e81e0cc5
 - **Source files:** 232
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
@@ -1221,7 +1221,6 @@ These are historical observations. A pass neither completes a task nor remains c
 
 ## Recent operations
 
-- Revision 401 — 2026\-11\-27T23:52:18.232672Z — worker096: claim CODE\-096. Claimed CODE\-096 with its recorded write scope.
 - Revision 402 — 2026\-11\-27T23:52:58.643608Z — coordinator: add CODE\-097. Added planned task CODE\-097: Software presentation and frame export.
 - Revision 403 — 2026\-11\-27T23:53:03.813039Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
 - Revision 404 — 2026\-11\-27T23:53:10.444022Z — worker097: claim CODE\-097. Claimed CODE\-097 with its recorded write scope.
@@ -1241,5 +1240,6 @@ These are historical observations. A pass neither completes a task nor remains c
 - Revision 418 — 2026\-11\-27T23:59:26.398647Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 - Revision 419 — 2026\-11\-28T00:01:59.660181Z — worker063: checkpoint CODE\-063. Actual /root/worker063 delivered DSP filters, reverberation and effects; 1167 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
 - Revision 420 — 2026\-11\-28T00:02:12.404746Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
+- Revision 421 — 2026\-11\-28T00:04:00.377753Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
 
 The canonical ledger retains the complete operation history.

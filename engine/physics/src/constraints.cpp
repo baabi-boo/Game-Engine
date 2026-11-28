@@ -817,6 +817,8 @@ struct JointService::Impl {
         case ConstraintStage::Velocity: solve_velocity(); break;
         case ConstraintStage::Position: solve_position(context.delta_seconds); break;
         case ConstraintStage::Finish: finish(context.delta_seconds); break;
+        case ConstraintStage::BeforeIntegrate:
+        case ConstraintStage::AfterIntegrate: break;
         }
     }
 };

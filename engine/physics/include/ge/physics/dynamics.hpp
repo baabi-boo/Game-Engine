@@ -147,12 +147,15 @@ struct PhysicsStatistics {
     bool busy{};
 };
 
-enum class ConstraintStage : std::uint8_t { Prepare, Velocity, Position, Finish };
+enum class ConstraintStage : std::uint8_t {
+    Prepare, Velocity, Position, Finish, BeforeIntegrate, AfterIntegrate
+};
 
 struct ConstraintContext {
     ConstraintStage stage{ConstraintStage::Prepare};
     double delta_seconds{};
     std::uint32_t iteration{};
+    std::uint64_t step{};
 };
 
 class PhysicsWorld;
@@ -220,8 +223,14 @@ public:
     [[nodiscard]] PhysicsStatistics step(double delta_seconds);
     [[nodiscard]] std::span<const PhysicsContactEvent> events() const noexcept;
     void clear_events() noexcept;
-    // Named callbacks execute in registration order. Structural mutation and
-    // hook replacement are rejected during stepping; throwing hooks are disabled.
+    // Named callbacks execute in registration order. BeforeIntegrate sees the
+    // substep's initial body poses; AfterIntegrate sees integrated body poses
+    // before collider synchronization and discrete contact detection. These
+    // stages support swept collision without adding a second body integrator.
+    // CollisionWorld still holds initial poses during AfterIntegrate. Hooks may
+    // correct owned bodies through this PhysicsWorld; do not write Scene there.
+    // Structural mutation and hook replacement are rejected during stepping;
+    // throwing hooks are disabled. All other stages retain their solver timing.
     bool add_constraint_solver(std::string name, ConstraintSolver solver);
     bool remove_constraint_solver(std::string_view name);
     [[nodiscard]] std::size_t constraint_solver_count() const noexcept;

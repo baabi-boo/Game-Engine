@@ -1036,7 +1036,7 @@ void PhysicsWorld::update_sleep(double delta_seconds) {
 }
 
 void PhysicsWorld::invoke_solvers(ConstraintStage stage, double delta_seconds, std::uint32_t iteration) {
-    const ConstraintContext context{stage, delta_seconds, iteration};
+    const ConstraintContext context{stage, delta_seconds, iteration, steps_};
     for (auto& hook : hooks_) {
         if (hook.enabled) {
             try {
@@ -1133,7 +1133,9 @@ PhysicsStatistics PhysicsWorld::step(double delta_seconds) {
             ++steps_;
         }
         const double remaining = delta * static_cast<double>(count - substep);
+        invoke_solvers(ConstraintStage::BeforeIntegrate, delta, 0);
         integrate(delta, remaining);
+        invoke_solvers(ConstraintStage::AfterIntegrate, delta, 0);
         synchronize_colliders();
         const auto detected = collision_.detect();
         statistics_.contacts_truncated = statistics_.contacts_truncated || detected.contacts_truncated || detected.pairs_truncated;
