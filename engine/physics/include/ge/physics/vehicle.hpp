@@ -235,7 +235,8 @@ public:
     bool set_chassis_mass(VehicleHandle vehicle, const MassProperties& mass);
     bool set_drive_mode(VehicleHandle vehicle, VehicleDriveMode mode);
     // External torques require WheelTorques mode. Submissions are consumed once
-    // by pre_step; absent submissions are zero. Positive drive means forward.
+    // by the next accepted pre_step, including zero-duration frames; absent
+    // submissions are zero. Positive drive means forward.
     // External brake torque adds to the normal service and handbrake inputs.
     bool set_wheel_torque(VehicleHandle vehicle, std::size_t wheel, WheelTorque torque);
     bool set_wheel_torques(VehicleHandle vehicle, std::span<const WheelTorque> torques);

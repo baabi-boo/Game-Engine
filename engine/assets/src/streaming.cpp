@@ -303,19 +303,80 @@ struct AssetStreamer::Impl {
         request.error.clear();
     }
 
-    void reconcile() {
-        if (catalog_dirty) {
-            for (auto& [generation, request] : requests) {
-                (void)generation;
-                if (!request.cancelled) {
-                    try {
-                        set_closure(request, catalog.dependency_order(request.ticket.asset));
-                    } catch (const std::exception& error) {
-                        request.error = diagnostic(error.what(), limits.max_error_bytes);
-                    }
+    void refresh_closures() {
+        struct Replacement {
+            Request* request;
+            std::vector<AssetId> closure;
+        };
+        std::vector<Replacement> replacements;
+        replacements.reserve(requests.size());
+        std::set<AssetId> required;
+        auto references = dependency_references;
+        bool retry_pending{};
+        for (auto& [generation, request] : requests) {
+            (void)generation;
+            if (request.cancelled) {
+                continue;
+            }
+            try {
+                auto closure = catalog.dependency_order(request.ticket.asset);
+                const auto remaining = references - request.closure.size();
+                if (!fits(remaining, closure.size(), limits.max_dependency_references)) {
+                    retry_pending = true;
+                    stream_error(AssetError::limit_exceeded, "streaming dependency reference limit reached");
+                }
+                references = remaining + closure.size();
+                replacements.push_back({&request, std::move(closure)});
+            } catch (const std::exception& error) {
+                request.error = diagnostic(error.what(), limits.max_error_bytes);
+                required.insert(request.closure.begin(), request.closure.end());
+            }
+        }
+        for (const auto& replacement : replacements) {
+            required.insert(replacement.closure.begin(), replacement.closure.end());
+        }
+        // The complete replacement graph can shed obsolete shared demand, but
+        // submitted work keeps its tracking slot until its retirement is observed.
+        for (const auto& [asset, node] : nodes) {
+            if (node.active) {
+                required.insert(asset);
+            }
+        }
+        if (required.size() > limits.max_assets) {
+            for (const auto& replacement : replacements) {
+                if (replacement.closure != replacement.request->closure) {
+                    replacement.request->error = "streaming asset tracking limit reached";
                 }
             }
-            catalog_dirty = false;
+            catalog_dirty = true;
+            return;
+        }
+
+        // Allocate before committing so every published closure has its nodes.
+        std::map<AssetId, Node> additions;
+        for (const auto asset : required) {
+            if (!nodes.contains(asset)) {
+                Node node;
+                node.asset = asset;
+                node.generation = next_identity(next_node);
+                additions.emplace(asset, std::move(node));
+            }
+        }
+        for (auto& replacement : replacements) {
+            replacement.request->closure = std::move(replacement.closure);
+            replacement.request->error.clear();
+        }
+        dependency_references = references;
+        for (auto it = nodes.begin(); it != nodes.end();) {
+            it = required.contains(it->first) ? std::next(it) : nodes.erase(it);
+        }
+        nodes.merge(additions);
+        catalog_dirty = retry_pending;
+    }
+
+    void reconcile() {
+        if (catalog_dirty) {
+            refresh_closures();
         }
         for (auto& [asset, node] : nodes) {
             (void)asset;
@@ -352,6 +413,9 @@ struct AssetStreamer::Impl {
                 continue;
             }
             if (record->revision != node.revision || record->definition.type != node.type) {
+                // API-driven reconciliation can observe this revision before
+                // its catalog event. Keep the graph refresh pending separately.
+                catalog_dirty = true;
                 abandon(node);
                 node.generation = next_identity(next_node);
                 node.revision = record->revision;

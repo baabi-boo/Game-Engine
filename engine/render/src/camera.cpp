@@ -183,6 +183,54 @@ ControlSample sample_input(const input::InputSystem* system) {
     return sample;
 }
 
+CameraError refresh_matrices(CameraView& camera, const math::Mat4& world) noexcept {
+    if (world(3, 0) != 0.0 || world(3, 1) != 0.0 ||
+        world(3, 2) != 0.0 || world(3, 3) != 1.0) {
+        return CameraError::InvalidTransform;
+    }
+    const auto inverted = math::inverse(world);
+    if (!inverted) { return CameraError::InvalidTransform; }
+    if (camera.clip_depth != math::ClipDepth::zero_to_one &&
+        camera.clip_depth != math::ClipDepth::negative_one_to_one) {
+        return CameraError::InvalidProjection;
+    }
+    const auto inverse_projection = math::inverse(camera.projection);
+    auto frustum = math::extract_frustum(camera.projection, camera.clip_depth);
+    if (!inverse_projection || !frustum) { return CameraError::InvalidProjection; }
+
+    auto result = camera;
+    result.view = *inverted;
+    result.inverse_view = world;
+    result.view_projection = result.projection * result.view;
+    result.inverse_projection = *inverse_projection;
+    // Large translations must not dominate the projective inverse's pivots.
+    result.inverse_view_projection = world * *inverse_projection;
+    if (!math::finite(result.view_projection) || !math::finite(result.inverse_view_projection)) {
+        return CameraError::InvalidProjection;
+    }
+    const auto plane_transform = math::transpose(result.view);
+    for (auto& plane : frustum->planes) {
+        const auto coefficients = plane_transform * math::homogeneous(plane.normal, plane.distance);
+        const auto transformed = math::normalized(math::Plane{math::xyz(coefficients), coefficients.w});
+        if (!transformed) { return CameraError::InvalidTransform; }
+        plane = *transformed;
+    }
+    for (auto& corner : frustum->corners) {
+        corner = math::transform_point(world, corner);
+        if (!math::finite(corner)) { return CameraError::InvalidTransform; }
+    }
+    result.frustum = *frustum;
+    result.position = math::transform_point(world, {});
+    result.forward = math::normalized(math::transform_vector(world, {0.0, 0.0, -1.0}));
+    result.up = math::normalized(math::transform_vector(world, {0.0, 1.0, 0.0}));
+    if (!bounded(result.position) || math::length_squared(result.forward) < 0.5 ||
+        math::length_squared(result.up) < 0.5) {
+        return CameraError::InvalidTransform;
+    }
+    camera = result;
+    return CameraError::None;
+}
+
 } // namespace
 
 std::string_view describe(CameraError error) noexcept {
@@ -344,6 +392,10 @@ std::optional<math::Vec3> camera_project(const CameraView& view, math::Vec3 worl
     return math::finite(result) ? std::optional<math::Vec3>{result} : std::nullopt;
 }
 
+bool refresh_camera_matrices(CameraView& camera, const math::Mat4& world) noexcept {
+    return refresh_matrices(camera, world) == CameraError::None;
+}
+
 struct CameraService::Impl {
     struct Transition {
         math::Transform source{};
@@ -417,6 +469,13 @@ struct CameraService::Impl {
         return false;
     }
 
+    void invalidate(Entry& value) noexcept {
+        if (value.last) { value.last->stale = true; }
+        for (auto& snapshot : published) {
+            if (snapshot.entity == value.entity) { snapshot.stale = true; }
+        }
+    }
+
     bool track(ecs::Entity entity) {
         if (entry(entity) != nullptr) { return true; }
         if (entries.size() >= limits.cameras) { return false; }
@@ -434,6 +493,9 @@ struct CameraService::Impl {
         for (auto& entity : active) {
             if (entry(entity) == nullptr) { entity = {}; }
         }
+        std::erase_if(published, [this](const CameraView& value) {
+            return entry(value.entity) == nullptr;
+        });
         for (const auto entity : registry.view<CameraComponent>(true)) {
             if (scene.contains(entity) && entries.size() < limits.cameras) {
                 (void)track(entity);
@@ -456,6 +518,7 @@ struct CameraService::Impl {
         if (!scene.set_world_transform(value.entity, pose)) {
             return reject(&value, CameraError::SceneRejected);
         }
+        invalidate(value);
         return true;
     }
 
@@ -474,7 +537,11 @@ struct CameraService::Impl {
     bool controller(Entry& value, CameraComponent& camera, ControlSample controls, double delta) {
         auto& settings = camera.controller;
         if (!valid(settings)) { return reject(&value, CameraError::InvalidController); }
-        if (settings.mode == CameraMode::Fixed) { return true; }
+        if (settings.mode == CameraMode::Fixed) {
+            value.angles_initialized = false;
+            value.velocity = {};
+            return true;
+        }
         const auto exact = scene.world_matrix(value.entity);
         const auto current = exact ? math::decompose(*exact) : std::nullopt;
         if (!current) { return reject(&value, CameraError::InvalidTransform); }
@@ -599,32 +666,13 @@ struct CameraService::Impl {
         const auto world = scene.world_matrix(value.entity);
         if (!world) { return reject(&value, CameraError::InvalidTransform); }
         const auto render_world = *world * effect;
-        const auto inverted = math::inverse(render_world);
-        if (!inverted) { return reject(&value, CameraError::InvalidTransform); }
         CameraView result;
         result.entity = value.entity;
-        result.view = *inverted;
-        result.inverse_view = render_world;
         result.projection = *projection;
-        result.view_projection = result.projection * result.view;
-        const auto inverse_projection = math::inverse(result.projection);
-        const auto inverse_combined = math::inverse(result.view_projection);
-        const auto frustum = math::extract_frustum(result.view_projection, camera.projection.clip_depth);
-        if (!inverse_projection || !inverse_combined || !frustum) {
-            return reject(&value, CameraError::InvalidProjection);
-        }
-        result.inverse_projection = *inverse_projection;
-        result.inverse_view_projection = *inverse_combined;
-        result.position = math::transform_point(render_world, {});
-        result.forward = math::normalized(math::transform_vector(render_world, {0.0, 0.0, -1.0}));
-        result.up = math::normalized(math::transform_vector(render_world, {0.0, 1.0, 0.0}));
-        if (!bounded(result.position) || math::length_squared(result.forward) < 0.5 ||
-            math::length_squared(result.up) < 0.5) {
-            return reject(&value, CameraError::InvalidTransform);
-        }
-        result.viewport = *viewport;
-        result.frustum = *frustum;
         result.clip_depth = camera.projection.clip_depth;
+        const auto error = refresh_matrices(result, render_world);
+        if (error != CameraError::None) { return reject(&value, error); }
+        result.viewport = *viewport;
         result.projection_mode = camera.projection.mode;
         result.near_plane = camera.projection.near_plane;
         result.far_plane = camera.projection.far_plane;
@@ -640,7 +688,9 @@ struct CameraService::Impl {
         published.clear();
         for (std::size_t slot = 0; slot < active.size(); ++slot) {
             const auto* value = entry(active[slot]);
-            if (value == nullptr || !value->last || value->error == CameraError::Disabled) { continue; }
+            const auto* camera = registry.get<CameraComponent>(active[slot]);
+            if (value == nullptr || !value->last || camera == nullptr || !camera->enabled ||
+                !scene.effective_enabled(active[slot])) { continue; }
             auto snapshot = *value->last;
             snapshot.slot = slot;
             published.push_back(snapshot);
@@ -664,6 +714,7 @@ const CameraComponent* CameraService::component(ecs::Entity entity) const noexce
 
 ecs::Entity CameraService::create(std::string_view name, const math::Transform& transform,
                                   CameraComponent settings) {
+    impl_->sync_entries();
     if (impl_->entries.size() >= impl_->limits.cameras || !valid_pose(transform) ||
         !valid(settings.projection) || !valid(settings.viewport) || !valid(settings.controller)) {
         return {};
@@ -684,6 +735,7 @@ ecs::Entity CameraService::create(std::string_view name, const math::Transform& 
 }
 
 bool CameraService::attach(ecs::Entity entity, CameraComponent settings) {
+    impl_->sync_entries();
     auto* value = impl_->entry(entity);
     if (!impl_->scene.contains(entity)) { return impl_->reject(value, CameraError::MissingCamera); }
     if (!valid(settings.projection)) { return impl_->reject(value, CameraError::InvalidProjection); }
@@ -708,6 +760,8 @@ bool CameraService::attach(ecs::Entity entity, CameraComponent settings) {
     value->velocity = {};
     value->error = CameraError::None;
     value->transition.active = false;
+    impl_->invalidate(*value);
+    impl_->publish_views();
     return true;
 }
 
@@ -730,6 +784,7 @@ bool CameraService::set_projection(ecs::Entity entity, const CameraProjection& p
         return impl_->reject(value, CameraError::InvalidProjection);
     }
     camera->projection = projection;
+    if (value != nullptr) { impl_->invalidate(*value); }
     return true;
 }
 
@@ -739,6 +794,7 @@ bool CameraService::set_viewport(ecs::Entity entity, const CameraViewport& viewp
     if (camera == nullptr) { return impl_->reject(value, CameraError::MissingCamera); }
     if (!valid(viewport)) { return impl_->reject(value, CameraError::InvalidViewport); }
     camera->viewport = viewport;
+    if (value != nullptr) { impl_->invalidate(*value); }
     return true;
 }
 
@@ -754,11 +810,13 @@ bool CameraService::set_controller(ecs::Entity entity, const CameraController& c
 }
 
 bool CameraService::set_active(ecs::Entity entity, std::size_t slot) {
+    impl_->sync_entries();
     if (slot >= impl_->active.size() || component(entity) == nullptr ||
         !impl_->scene.contains(entity) || !impl_->track(entity)) {
         return false;
     }
     impl_->active[slot] = entity;
+    impl_->publish_views();
     return true;
 }
 
@@ -770,7 +828,9 @@ bool CameraService::clear_view(std::size_t slot) noexcept {
 }
 
 ecs::Entity CameraService::active_entity(std::size_t slot) const noexcept {
-    return slot < impl_->active.size() ? impl_->active[slot] : ecs::Entity{};
+    if (slot >= impl_->active.size()) { return {}; }
+    const auto entity = impl_->active[slot];
+    return impl_->scene.contains(entity) && component(entity) != nullptr ? entity : ecs::Entity{};
 }
 
 bool CameraService::set_input_view(std::size_t slot) noexcept {
@@ -782,14 +842,19 @@ bool CameraService::set_input_view(std::size_t slot) noexcept {
 bool CameraService::set_framebuffer_size(std::uint32_t width, std::uint32_t height) noexcept {
     constexpr auto maximum = static_cast<std::uint32_t>(std::numeric_limits<std::int32_t>::max());
     if (width > maximum || height > maximum || ((width == 0) != (height == 0))) { return false; }
+    if (impl_->width == width && impl_->height == height) { return true; }
     impl_->width = width;
     impl_->height = height;
+    for (auto& value : impl_->entries) { impl_->invalidate(value); }
     return true;
 }
 
 bool CameraService::look_at(ecs::Entity entity, math::Vec3 point, math::Vec3 up) {
     auto* value = impl_->entry(entity);
     if (value == nullptr || component(entity) == nullptr) { return false; }
+    if (impl_->registry.has<physics::BodyComponent>(entity)) {
+        return impl_->reject(value, CameraError::PhysicsOwned);
+    }
     const auto world = impl_->scene.world_matrix(entity);
     if (!world || !bounded(point) || !math::normalize(up)) {
         return impl_->reject(value, CameraError::InvalidTarget);
@@ -801,6 +866,7 @@ bool CameraService::look_at(ecs::Entity entity, math::Vec3 point, math::Vec3 up)
     if (!impl_->scene.look_at(entity, point, up)) { return impl_->reject(value, CameraError::SceneRejected); }
     value->angles_initialized = false;
     value->transition.active = false;
+    impl_->invalidate(*value);
     return true;
 }
 
@@ -878,6 +944,7 @@ bool CameraService::fit(ecs::Entity entity, const math::Aabb& bounds, double pad
     pose->position = center - forward(pose->rotation) * distance;
     if (!transition(entity, *pose, duration)) { return false; }
     camera->projection = settings;
+    impl_->invalidate(*value);
     camera->controller.focus_point = center;
     camera->controller.target = {};
     if (camera->controller.mode == CameraMode::Follow) { camera->controller.mode = CameraMode::Orbit; }
@@ -956,6 +1023,7 @@ bool CameraService::clear_effects(ecs::Entity entity) noexcept {
     value->recoil_position = {};
     value->recoil_rotation = {};
     value->sampled_effect = {};
+    impl_->invalidate(*value);
     return true;
 }
 

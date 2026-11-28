@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 527
-- **Recorded update:** 2026\-11\-28T07:13:06.930913Z
+- **Ledger revision:** 530
+- **Recorded update:** 2026\-11\-28T10:09:36.233748Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** eeb75026bf9d5fd5feed769799a7ee1a6462a36a768d8089785f3ea7781af21f
-- **Source files:** 248
+- **Source fingerprint:** 56e69ecb94636f2ebd73b97c1e4920e6b8c144a6c760da1a9a7cd2ce2ed3c9ae
+- **Source files:** 261
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -65,9 +65,9 @@ User explicitly authorizes validating and repairing all code delivered at 3dcb0d
 - Write scope: engine/, apps/, tests/, tools/, cmake/, CMakeLists.txt, CMakePresets.json, README.md, docs/architecture/, docs/development/, docs/production/, docs/quality\-gates.md, .github/workflows/ci.yml
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Integrated first audit repairs and meaningful runtime coverage: strict build blockers, kernel/event lifecycle, executor cancellation, IO, CLI, math, codecs, allocator/ECS safety, CPU skinning bridge, module boundaries and packaging. Scene\-depth defect reproduced and repaired. Input disconnect and serialization findings remain queued for subsequent repair; audit remains in progress.
-- Files: engine/core/src/runtime.cpp, apps/runtime/modules.cpp, tests/CMakeLists.txt, docs/production/integration\-audit\-register.json
-- Next action: Run frozen development integration gate, publish a checkpoint, then continue the remaining actual worker assignments and repair queued findings.
+- Checkpoint: Completed 22 actual new worker runs and integrated input, serialization, streaming, kernel lifecycle, math, physics, character, vehicle, constraints, geometry and camera/visibility repairs. Preserved prior audit history. Baseline builds and exploratory targeted regressions passed; LSan unavailable under host tracing. Batching cache lifetime defect is queued for next isolated repair.
+- Files: docs/production/stabilization\-register\-2026\-11\-28.json, docs/production/stabilization\-2026\-11\-28.md, tests/CMakeLists.txt
+- Next action: Verify this frozen checkpoint through the development gate, publish it, and continue remaining distinct workers using isolated source while checks run.
 - Required checks: repository, dev, release, package
 
 Acceptance:
@@ -78,7 +78,7 @@ Acceptance:
 - Publish passing local development, release and package evidence; document platform and functional limitations without claiming exhaustive correctness.
 
 - repository: no receipt.
-- dev: RUN-000005 / passed / recorded source snapshot.
+- dev: RUN-000006 / passed / recorded source snapshot.
 - release: no receipt.
 - package: no receipt.
 

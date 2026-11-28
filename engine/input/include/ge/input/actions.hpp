@@ -45,6 +45,9 @@ enum class ControlKind : std::uint8_t {
     WheelY
 };
 enum class ActionKind : std::uint8_t { Button, Axis, Vector2 };
+// Losing a required control through device removal or consumption/capture cancels
+// timed interactions. Visible wildcard sources retain continuity and physical
+// releases can complete taps. Already-down actions still publish a release edge.
 enum class Interaction : std::uint8_t { Immediate, Tap, Hold, DoubleTap };
 enum class CaptureStatus : std::uint8_t { Idle, Waiting, Captured, Cancelled, TimedOut };
 

@@ -1,4 +1,5 @@
 #include <ge/math/math.hpp>
+#include <ge/physics/collision.hpp>
 
 #include "test_support.hpp"
 
@@ -65,6 +66,71 @@ void projective_inverse_retains_the_general_path() {
     CHECK((*nearly_affine_inverse)(3, 0) == -1.0e-12);
 }
 
+void triangle_closest_points_preserve_small_faces() {
+    using namespace ge::math;
+    for (const double scale : {1.0, 1.0e-6}) {
+        const Triangle triangle{{}, {2.0 * scale, 0.0, 0.0}, {0.0, 2.0 * scale, 0.0}};
+        const Vec3 face{0.5 * scale, 0.5 * scale, 0.0};
+        const double tolerance = scale * 1.0e-12;
+        CHECK(distance(closest_point(triangle, face), face) < tolerance);
+        CHECK(distance(closest_point(triangle, face + Vec3{0.0, 0.0, scale}), face) < tolerance);
+        CHECK(distance(closest_point(Triangle{triangle.a, triangle.c, triangle.b}, face), face) < tolerance);
+        CHECK(distance(closest_point(triangle, {2.0 * scale, 2.0 * scale, scale}),
+                       Vec3{scale, scale, 0.0}) < tolerance);
+        CHECK(distance(closest_point(triangle, {-scale, -scale, scale}), triangle.a) < tolerance);
+    }
+}
+
+void small_triangle_faces_produce_sphere_contacts() {
+    using namespace ge::math;
+    for (const double scale : {1.0, 1.0e-6}) {
+        const Triangle triangle{{}, {2.0 * scale, 0.0, 0.0}, {0.0, 2.0 * scale, 0.0}};
+        const Sphere sphere{{0.5 * scale, 0.5 * scale, 0.0}, 0.1 * scale};
+        CHECK(ge::physics::valid_shape(triangle));
+        CHECK(ge::physics::valid_shape(sphere));
+        const auto contact = ge::physics::narrowphase(sphere, triangle, 0.0);
+        CHECK(contact.touching());
+        CHECK(distance(contact.points[0].point_b, sphere.center) < scale * 1.0e-12);
+        CHECK(almost_equal(contact.normal, Vec3{0.0, 0.0, -1.0}));
+    }
+}
+
+void degenerate_triangles_retain_edge_closest_points() {
+    using namespace ge::math;
+    for (const double scale : {1.0, 1.0e-6}) {
+        const Triangle line{{}, {2.0 * scale, 0.0, 0.0}, {4.0 * scale, 0.0, 0.0}};
+        const Vec3 query{scale, scale, scale};
+        const Vec3 expected{scale, 0.0, 0.0};
+        CHECK(distance(closest_point(line, query), expected) < scale * 1.0e-12);
+        CHECK(distance(closest_point(Triangle{line.a, line.b, line.b}, query), expected) < scale * 1.0e-12);
+        CHECK(closest_point(Triangle{line.b, line.b, line.b}, query) == line.b);
+        CHECK(!barycentric(line, query));
+        CHECK(!intersect(Ray{query, {0.0, 0.0, -1.0}}, line));
+    }
+}
+
+void triangle_rays_and_coordinates_preserve_scale() {
+    using namespace ge::math;
+    for (const double scale : {1.0, 1.0e-6}) {
+        const Triangle triangle{{}, {2.0 * scale, 0.0, 0.0}, {0.0, 2.0 * scale, 0.0}};
+        const Vec3 face{0.5 * scale, 0.5 * scale, 0.0};
+        const auto coordinates = barycentric(triangle, face);
+        CHECK(coordinates);
+        CHECK(almost_equal(*coordinates, Vec3{0.5, 0.25, 0.25}));
+        for (const double direction_scale : {1.0, scale}) {
+            const Ray ray{face + Vec3{0.0, 0.0, scale}, {0.0, 0.0, -2.0 * direction_scale}};
+            const auto hit = intersect(ray, triangle, 0.0, infinity, true);
+            CHECK(hit);
+            CHECK(distance(hit->point, face) < scale * 1.0e-12);
+            CHECK(almost_equal(hit->distance, scale / (2.0 * direction_scale)));
+            CHECK(almost_equal(hit->normal, Vec3{0.0, 0.0, 1.0}));
+            CHECK(almost_equal(hit->barycentric, *coordinates));
+            CHECK(!intersect(ray, Triangle{triangle.a, triangle.c, triangle.b}, 0.0, infinity, true));
+        }
+        CHECK(!intersect(Ray{face, {scale, 0.0, 0.0}}, triangle));
+    }
+}
+
 } // namespace
 
 int main() {
@@ -72,5 +138,9 @@ int main() {
         {"affine_translation", affine_inverse_is_independent_of_translation_size},
         {"affine_validation", affine_inverse_keeps_validation_and_singularity_checks},
         {"projective_inverse", projective_inverse_retains_the_general_path},
+        {"small_triangle_faces", triangle_closest_points_preserve_small_faces},
+        {"small_triangle_contacts", small_triangle_faces_produce_sphere_contacts},
+        {"degenerate_triangles", degenerate_triangles_retain_edge_closest_points},
+        {"triangle_query_scale", triangle_rays_and_coordinates_preserve_scale},
     });
 }

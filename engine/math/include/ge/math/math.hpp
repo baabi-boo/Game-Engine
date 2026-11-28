@@ -394,6 +394,8 @@ struct RayInterval {
 [[nodiscard]] bool overlaps(const Obb& a, const Obb& b, double tolerance = 1.0e-8) noexcept;
 [[nodiscard]] Vec3 closest_point(const Aabb& box, Vec3 p) noexcept;
 [[nodiscard]] Vec3 closest_point(const Segment& segment, Vec3 p) noexcept;
+// Collapsed or nearly collinear triangles fall back to their edges. The
+// collinearity tolerance is relative to edge lengths, preserving small faces.
 [[nodiscard]] Vec3 closest_point(const Triangle& triangle, Vec3 p) noexcept;
 [[nodiscard]] Vec3 closest_point(const Obb& box, Vec3 p) noexcept;
 [[nodiscard]] double distance_squared(const Aabb& box, Vec3 p) noexcept;

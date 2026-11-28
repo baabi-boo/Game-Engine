@@ -1405,7 +1405,10 @@ Vec3 closest_point(const Segment& segment, Vec3 p) noexcept {
 Vec3 closest_point(const Triangle& triangle, Vec3 p) noexcept {
     const Vec3 ab = triangle.b-triangle.a;
     const Vec3 ac = triangle.c-triangle.a;
-    if (length_squared(cross(ab,ac)) <= epsilon*epsilon) {
+    // Both sides have length to the fourth power: degeneracy depends on
+    // the angle between the edges, not on the triangle's absolute size.
+    const double edge_scale = length_squared(ab)*length_squared(ac);
+    if (length_squared(cross(ab,ac)) <= epsilon*epsilon*edge_scale) {
         const Vec3 first = closest_point(Segment{triangle.a,triangle.b},p);
         const Vec3 second = closest_point(Segment{triangle.b,triangle.c},p);
         const Vec3 third = closest_point(Segment{triangle.c,triangle.a},p);

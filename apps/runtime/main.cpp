@@ -238,6 +238,12 @@ int main(int argc, char* argv[]) {
                 std::cout << name << "\t" << help << '\n';
             }
             std::cout << "tick\tAdvance one simulation frame\n";
+            kernel.shutdown();
+            if (kernel.shutdown_failures() != 0) {
+                std::cerr << "runtime shutdown failed: " << kernel.shutdown_failures()
+                          << " callback(s) failed\n";
+                return 1;
+            }
             return 0;
         }
         bool success = true;
@@ -257,6 +263,10 @@ int main(int argc, char* argv[]) {
         if (options.interactive) {
             success = consume_commands(kernel, std::cin, true) && success;
         }
+        // Cleanup failures belong to this execution's report and exit status.
+        // Services remain alive until Kernel destruction, so reporting is safe.
+        kernel.shutdown();
+        success = kernel.shutdown_failures() == 0 && success;
         for (const auto& diagnostic : kernel.diagnostics()) {
             if (diagnostic.severity == ge::core::Diagnostic::Severity::Error) {
                 success = false;
@@ -278,7 +288,6 @@ int main(int argc, char* argv[]) {
         if (!std::cout) {
             throw std::runtime_error("cannot write runtime output");
         }
-        kernel.shutdown();
         return success ? 0 : 1;
     } catch (const std::exception& error) {
         std::cerr << "ge_runtime: " << error.what() << '\n';

@@ -426,7 +426,7 @@ SegmentClosestPoints segment_box(math::Segment segment, const BoxFrame& box) noe
         }
         consider(low);
         consider(high);
-        if (denominator > tiny) {
+        if (denominator > tiny * tiny) {
             consider(math::clamp(-numerator / denominator, low, high));
         }
     }
@@ -566,14 +566,16 @@ SegmentClosestPoints closest_segments(math::Segment first, math::Segment second)
     const double f = math::dot(v, offset);
     double s = 0.0;
     double t = 0.0;
-    if (a <= tiny && e <= tiny) {
+    // These values are squared lengths; using the linear tolerance here would
+    // collapse valid short capsule centerlines and miss their contacts.
+    if (a <= tiny * tiny && e <= tiny * tiny) {
         return result;
     }
-    if (a <= tiny) {
+    if (a <= tiny * tiny) {
         t = math::clamp(f / e, 0.0, 1.0);
     } else {
         const double c = math::dot(u, offset);
-        if (e <= tiny) {
+        if (e <= tiny * tiny) {
             s = math::clamp(-c / a, 0.0, 1.0);
         } else {
             const double b = math::dot(u, v);

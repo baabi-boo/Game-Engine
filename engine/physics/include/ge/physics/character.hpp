@@ -189,6 +189,7 @@ struct CharacterStatistics {
 // copied by Registry cloning never transfers ownership. Assistance uses bounded
 // overlap samples, not continuous sweeps; unsupported primitive pairs fail closed.
 // Run control before PhysicsWorld::step and sample afterward for each frame.
+// Control imports valid Scene pose edits before applying movement assistance.
 // Call shutdown before borrowed services die. The destructor performs no borrowed
 // service access; the dynamics callback holds only weak ownership of this service.
 class CharacterSystem final {

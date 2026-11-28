@@ -40,9 +40,18 @@ void shutdown_is_reentrant_and_idempotent() {
     CHECK(calls == std::vector<int>({3, 2, 1}));
     CHECK(recursive_calls == 1);
     CHECK(kernel.stop_requested());
+    CHECK(kernel.shutdown_failures() == 1);
+    CHECK(kernel.diagnostics().size() == 1);
+    CHECK(kernel.diagnostics().front().severity == ge::core::Diagnostic::Severity::Error);
+    CHECK(kernel.diagnostics().front().subsystem == "throws");
+    CHECK(kernel.diagnostics().front().message == "shutdown failure");
+    CHECK(kernel.report_json().find("\"shutdown_complete\":true") != std::string::npos);
+    CHECK(kernel.report_json().find("\"shutdown_failures\":1") != std::string::npos);
+    CHECK(kernel.report_json().find("\"severity\":\"error\"") != std::string::npos);
     CHECK(!kernel.tick(0.01));
     kernel.shutdown();
     CHECK(calls == std::vector<int>({3, 2, 1}));
+    CHECK(kernel.shutdown_failures() == 1);
 }
 
 void shutdown_rejects_registration_and_runs_all_handlers() {
@@ -64,8 +73,202 @@ void shutdown_rejects_registration_and_runs_all_handlers() {
         CHECK(!nested_tick);
         CHECK(calls == std::vector<int>({3, 2, 1}));
         CHECK(!kernel.add_shutdown("after", [] {}));
+        CHECK(kernel.shutdown_failures() == 1);
+        CHECK(kernel.diagnostics().front().message == "non-standard shutdown exception");
     }
     CHECK(calls == std::vector<int>({3, 2, 1}));
+}
+
+void shutdown_during_a_system_finishes_the_callback_and_aborts_the_frame() {
+    for (const bool throw_after_shutdown : {false, true}) {
+        std::vector<int> calls;
+        bool closed{};
+        bool callback_kept_service{};
+        bool rejected_command{};
+        bool rejected_queue{};
+        Kernel kernel;
+        CHECK(kernel.add_command("late", [&](Kernel&, CommandArgs) {
+            calls.push_back(9);
+            return CommandResult{};
+        }));
+        CHECK(kernel.add_shutdown("close", [&] {
+            calls.push_back(3);
+            closed = true;
+        }));
+        CHECK(kernel.add_system({"shutdown", Phase::Input, 0, {}},
+            [&](Kernel& host, const Frame&) {
+                calls.push_back(1);
+                (void)host.enqueue_command("late");
+                host.shutdown();
+                callback_kept_service = !closed;
+                rejected_command = !host.command("late").success;
+                rejected_queue = !host.enqueue_command("late");
+                calls.push_back(2);
+                if (throw_after_shutdown) {
+                    throw std::runtime_error("failure after requesting shutdown");
+                }
+            }));
+        CHECK(kernel.add_system({"tail", Phase::EndFrame, 0, {}},
+            [&](Kernel&, const Frame&) { calls.push_back(9); }));
+        CHECK(kernel.events().publish(1));
+        kernel.events().retire_frame_events();
+        CHECK(!kernel.tick(0.125));
+        CHECK(callback_kept_service);
+        CHECK(rejected_command && rejected_queue);
+        CHECK(closed);
+        CHECK(calls == std::vector<int>({1, 2, 3}));
+        CHECK(kernel.frame().tick == 1);
+        CHECK(kernel.frame().elapsed_seconds == 0.125);
+        CHECK(kernel.events().pending<int>() == 1);
+        CHECK(kernel.events().retired() == 0);
+        CHECK(kernel.drain_commands().empty());
+        CHECK(!kernel.tick(0.125));
+        const auto statistics = kernel.system_statistics();
+        CHECK(statistics[0].invocations == (throw_after_shutdown ? 0U : 1U));
+        CHECK(statistics[0].failures == (throw_after_shutdown ? 1U : 0U));
+        CHECK(statistics[1].invocations == 0);
+        CHECK(kernel.shutdown_failures() == 0);
+    }
+}
+
+void queued_shutdown_discards_the_batch_and_pending_commands() {
+    for (const bool enter_through_tick : {false, true}) {
+        std::vector<int> calls;
+        bool closed{};
+        bool callback_kept_service{};
+        Kernel kernel;
+        CHECK(kernel.add_shutdown("close", [&] {
+            calls.push_back(3);
+            closed = true;
+        }));
+        CHECK(kernel.add_command("shutdown", [&](Kernel& host, CommandArgs) {
+            calls.push_back(1);
+            host.shutdown();
+            callback_kept_service = !closed;
+            calls.push_back(2);
+            return CommandResult{};
+        }));
+        CHECK(kernel.add_command("late", [&](Kernel&, CommandArgs) {
+            calls.push_back(9);
+            return CommandResult{};
+        }));
+        CHECK(kernel.add_system({"tail", Phase::Simulation, 0, {}},
+            [&](Kernel&, const Frame&) { calls.push_back(9); }));
+        CHECK(kernel.enqueue_command("shutdown"));
+        CHECK(kernel.enqueue_command("late"));
+        CHECK(kernel.enqueue_command("late"));
+        if (enter_through_tick) {
+            CHECK(!kernel.tick(0.01));
+        } else {
+            // The final command stays outside the detached batch and must also
+            // be discarded when shutdown becomes terminal.
+            const auto results = kernel.drain_commands(2);
+            CHECK(results.size() == 1 && results.front().success);
+        }
+        CHECK(callback_kept_service && closed);
+        CHECK(calls == std::vector<int>({1, 2, 3}));
+        CHECK(kernel.frame().tick == 0);
+        CHECK(kernel.drain_commands().empty());
+        CHECK(!kernel.command("late").success);
+        CHECK(!kernel.execute("late").success);
+        CHECK(!kernel.execute("").success);
+        CHECK(!kernel.enqueue_command("late"));
+        CHECK(kernel.shutdown_failures() == 0);
+    }
+}
+
+void nested_commands_defer_shutdown_until_the_outer_callback_returns() {
+    for (const bool throw_after_shutdown : {false, true}) {
+        std::vector<int> calls;
+        bool closed{};
+        bool inner_kept_service{};
+        bool outer_kept_service{};
+        bool inner_success{};
+        Kernel kernel;
+        CHECK(kernel.add_shutdown("close", [&] {
+            calls.push_back(5);
+            closed = true;
+        }));
+        CHECK(kernel.add_command("inner", [&](Kernel& host, CommandArgs) {
+            calls.push_back(2);
+            host.shutdown();
+            inner_kept_service = !closed;
+            calls.push_back(3);
+            if (throw_after_shutdown) {
+                throw std::runtime_error("inner failed");
+            }
+            return CommandResult{};
+        }));
+        CHECK(kernel.add_command("outer", [&](Kernel& host, CommandArgs) {
+            calls.push_back(1);
+            inner_success = host.command("inner").success;
+            outer_kept_service = !closed;
+            calls.push_back(4);
+            return CommandResult{};
+        }));
+        CHECK(kernel.command("outer").success);
+        CHECK(inner_success == !throw_after_shutdown);
+        CHECK(inner_kept_service && outer_kept_service && closed);
+        CHECK(calls == std::vector<int>({1, 2, 3, 4, 5}));
+        CHECK(!kernel.command("outer").success);
+        CHECK(kernel.shutdown_failures() == 0);
+    }
+}
+
+void shutdown_rejects_kernel_mutations_and_preserves_inspection() {
+    unsigned command_calls{};
+    bool rejected_during_shutdown{};
+    Kernel kernel;
+    CHECK(kernel.register_module({"original", "original module", 1}));
+    CHECK(kernel.add_command("probe", [&](Kernel&, CommandArgs) {
+        ++command_calls;
+        return CommandResult{};
+    }));
+    for (const std::string name : {"first", "tail"}) {
+        CHECK(kernel.add_system({name, Phase::Simulation, 0, {}}, [](Kernel&, const Frame&) {}));
+    }
+    const auto rejects_mutations = [&] {
+        return !kernel.register_module({"late", "late module", 1}) &&
+            !kernel.add_system({"late", Phase::Simulation, 0, {}}, [](Kernel&, const Frame&) {}) &&
+            !kernel.add_command("late", [](Kernel&, CommandArgs) { return CommandResult{}; }) &&
+            !kernel.order_after("first", "tail") &&
+            !kernel.set_system_enabled("first", false) &&
+            !kernel.add_shutdown("late", [] {}) &&
+            !kernel.enqueue_command("probe") && !kernel.command("probe").success &&
+            !kernel.execute("probe").success && kernel.drain_commands().empty();
+    };
+    CHECK(kernel.add_shutdown("check", [&] { rejected_during_shutdown = rejects_mutations(); }));
+    kernel.shutdown();
+    CHECK(rejected_during_shutdown);
+    CHECK(rejects_mutations());
+    CHECK(command_calls == 0);
+    CHECK(kernel.modules().size() == 1);
+    CHECK(kernel.execution_order() == std::vector<std::string>({"first", "tail"}));
+    CHECK(kernel.system_statistics().front().enabled);
+    CHECK(kernel.shutdown_failures() == 0);
+    CHECK(kernel.report_json().find("\"shutdown_complete\":true") != std::string::npos);
+}
+
+void stop_requests_finish_the_frame_without_closing_the_kernel() {
+    std::vector<int> calls;
+    Kernel kernel;
+    CHECK(kernel.add_shutdown("close", [&] { calls.push_back(3); }));
+    CHECK(kernel.add_system({"stop", Phase::Input, 0, {}},
+        [&](Kernel& host, const Frame&) {
+            calls.push_back(1);
+            host.request_stop();
+        }));
+    CHECK(kernel.add_system({"tail", Phase::EndFrame, 0, {}},
+        [&](Kernel&, const Frame&) { calls.push_back(2); }));
+    CHECK(kernel.tick(0.01));
+    CHECK(calls == std::vector<int>({1, 2}));
+    CHECK(!kernel.tick(0.01));
+    CHECK(kernel.add_command("probe", [](Kernel&, CommandArgs) { return CommandResult{}; }));
+    CHECK(kernel.command("probe").success);
+    CHECK(kernel.enqueue_command("probe"));
+    CHECK(kernel.drain_commands().size() == 1);
+    kernel.shutdown();
+    CHECK(calls == std::vector<int>({1, 2, 3}));
 }
 
 void command_drains_use_a_snapshot_and_reject_recursion() {
@@ -397,6 +600,11 @@ int main() {
     return ge::test::run("runtime kernel", {
         {"reentrant and idempotent shutdown", shutdown_is_reentrant_and_idempotent},
         {"shutdown registration rejection", shutdown_rejects_registration_and_runs_all_handlers},
+        {"system shutdown deferral and frame abort", shutdown_during_a_system_finishes_the_callback_and_aborts_the_frame},
+        {"queued shutdown discards pending work", queued_shutdown_discards_the_batch_and_pending_commands},
+        {"nested command shutdown deferral", nested_commands_defer_shutdown_until_the_outer_callback_returns},
+        {"terminal mutation rejection and inspection", shutdown_rejects_kernel_mutations_and_preserves_inspection},
+        {"stop request completes its frame", stop_requests_finish_the_frame_without_closing_the_kernel},
         {"bounded recursive command drains", command_drains_use_a_snapshot_and_reject_recursion},
         {"recursive tick rejection", commands_and_systems_cannot_reenter_ticks},
         {"command-installed systems", command_installed_systems_run_in_the_current_frame},

@@ -39,6 +39,8 @@ enum class StreamState : std::uint8_t {
 
 struct StreamLimits {
     std::size_t max_requests{4096};
+    // Tracked demand and imports awaiting retirement; historical pins are
+    // retained independently under max_versions.
     std::size_t max_assets{8192};
     std::size_t max_consumers{1024};
     std::size_t max_pins{8192};
@@ -126,7 +128,9 @@ struct StreamPumpResult {
 // serialized on the constructing thread. Jobs touch only their owning request,
 // shared result state and the thread-safe VFS. Decoders must be thread-safe and
 // obey their advertised output cap; arbitrary decoder scratch is not measured.
-// Requests retain their dependency closure and last good versions until released.
+// Requests refresh their dependency closure on catalog revision changes and
+// retain last good versions until released. Closure admission blocked by live
+// imports or other consumers is retried during reconciliation.
 // Historical dependency graphs are preserved for versions published here. An
 // external stale cache version with dependencies needs its original manifest and
 // is not adopted as a fallback when that version was never tracked here.

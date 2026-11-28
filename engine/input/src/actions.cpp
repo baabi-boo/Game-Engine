@@ -513,6 +513,8 @@ struct InputSystem::Impl {
 
     struct Sample {
         double value{};
+        bool available{};
+        bool hidden{};
         bool pressed{};
         bool released{};
         std::uint16_t presses{};
@@ -723,17 +725,7 @@ struct InputSystem::Impl {
             return;
         }
         if (event.kind == EventKind::Disconnected) {
-            clear_device(*slot);
-            slot->connected = false;
-            if (slot->generation == std::numeric_limits<std::uint32_t>::max()) {
-                slot->retired = true;
-            } else {
-                ++slot->generation;
-            }
-            for (auto& [binding, state] : runtime) {
-                static_cast<void>(binding);
-                state = {};
-            }
+            disconnect(*slot);
             return;
         }
         if (!focused) {
@@ -804,21 +796,35 @@ struct InputSystem::Impl {
         }
     }
 
-    Sample sample(const Control& control) const {
+    static double control_value(const DeviceSlot& slot, const Control& control) {
+        switch (control.kind) {
+        case ControlKind::Button: return slot.state.buttons[control.code].down ? 1.0 : 0.0;
+        case ControlKind::Axis: return slot.state.axes[control.code];
+        case ControlKind::PointerX: return slot.state.pointer_delta.x;
+        case ControlKind::PointerY: return slot.state.pointer_delta.y;
+        case ControlKind::WheelX: return slot.state.wheel.x;
+        case ControlKind::WheelY: return slot.state.wheel.y;
+        }
+        return 0.0;
+    }
+
+    Sample sample(const Control& control, bool include_hidden = false) const {
         Sample result;
         const auto index = control_index(control);
         for (std::size_t slot_index = 0; slot_index < slots.size(); ++slot_index) {
             const auto& slot = slots[slot_index];
             if (!slot.connected || slot.state.kind != control.device ||
-                (control.instance.valid() && slot.state.id != control.instance) ||
-                slot.consumed.test(index) || slot.suppressed.test(index)) {
+                (control.instance.valid() && slot.state.id != control.instance)) {
                 continue;
             }
-            double value = 0.0;
-            switch (control.kind) {
-            case ControlKind::Button: {
+            if (!include_hidden && (slot.consumed.test(index) || slot.suppressed.test(index))) {
+                result.hidden = true;
+                continue;
+            }
+            result.available = true;
+            const double value = control_value(slot, control);
+            if (control.kind == ControlKind::Button) {
                 const auto& button = slot.state.buttons[control.code];
-                value = button.down ? 1.0 : 0.0;
                 result.pressed = result.pressed || button.pressed;
                 result.released = result.released || button.released;
                 result.presses = std::max(result.presses, slot.presses[control.code]);
@@ -826,13 +832,6 @@ struct InputSystem::Impl {
                 if (button.pressed || button.released) {
                     result.sources.emplace_back(slot_index, index);
                 }
-                break;
-            }
-            case ControlKind::Axis: value = slot.state.axes[control.code]; break;
-            case ControlKind::PointerX: value = slot.state.pointer_delta.x; break;
-            case ControlKind::PointerY: value = slot.state.pointer_delta.y; break;
-            case ControlKind::WheelX: value = slot.state.wheel.x; break;
-            case ControlKind::WheelY: value = slot.state.wheel.y; break;
             }
             if (value != 0.0) {
                 result.sources.emplace_back(slot_index, index);
@@ -842,6 +841,54 @@ struct InputSystem::Impl {
             }
         }
         return result;
+    }
+
+    void disconnect(DeviceSlot& slot) {
+        slot.connected = false;
+        for (const auto& context_value : contexts) {
+            for (const auto& binding : context_value.bindings) {
+                // Immediate actions need their existing edge state even when the
+                // aggregate value changes. Timed interactions cancel on input loss.
+                if (binding.interaction == Interaction::Immediate) {
+                    continue;
+                }
+                const auto lost = [&](const Control& control, bool chord) {
+                    if (control.device != slot.state.kind ||
+                        (control.instance.valid() && control.instance != slot.state.id)) {
+                        return false;
+                    }
+                    // Direct removal may follow evaluation, when surviving controls
+                    // still carry the preceding frame's consumption masks.
+                    const auto remaining = sample(control, true);
+                    if (!remaining.available) {
+                        return true;
+                    }
+                    const auto active = [&](double value) {
+                        if (chord) {
+                            return value >= binding.threshold;
+                        }
+                        const bool relative = control.kind == ControlKind::PointerX ||
+                            control.kind == ControlKind::PointerY || control.kind == ControlKind::WheelX ||
+                            control.kind == ControlKind::WheelY;
+                        const double response = relative ? value * binding.response.sensitivity :
+                            apply_response(value, binding.response);
+                        return std::abs(response * binding.scale.x) >= binding.threshold;
+                    };
+                    return active(control_value(slot, control)) && !active(remaining.value);
+                };
+                if (lost(binding.controls[0], false) ||
+                    std::any_of(binding.chord.begin(), binding.chord.end(),
+                        [&](const Control& control) { return lost(control, true); })) {
+                    runtime.at(binding.id) = {};
+                }
+            }
+        }
+        clear_device(slot);
+        if (slot.generation == std::numeric_limits<std::uint32_t>::max()) {
+            slot.retired = true;
+        } else {
+            ++slot.generation;
+        }
     }
 
     ActionState evaluate_binding(const Binding& binding, double delta,
@@ -859,7 +906,6 @@ struct InputSystem::Impl {
             sources.insert(sources.end(), value.sources.begin(), value.sources.end());
         }
         if (!chord_active) {
-            result.released = state.previous_down;
             state = {};
             return result;
         }
@@ -906,6 +952,16 @@ struct InputSystem::Impl {
             std::min(maximum_motion, std::hypot(result.vector.x, result.vector.y)) : result.vector.x;
         const bool raw_down = binding.kind == ActionKind::Button ?
             std::abs(result.value) >= binding.threshold : std::abs(result.value) > 1.0e-8;
+        const bool hidden = std::any_of(values.begin(), values.begin() + binding.control_count,
+            [](const Sample& value) { return value.hidden; });
+        if (!raw_down && hidden && !values[0].released) {
+            // A consumed/captured control does not complete a tap. A visible
+            // wildcard source can still supply a genuine release or stay held.
+            state = {};
+            result.value = 0.0;
+            result.vector = {};
+            return result;
+        }
         const bool rising = (raw_down && !state.previous_down) || values[0].pressed;
         const bool falling = (!raw_down && state.previous_down) || values[0].released;
         const bool completed_cycle = falling && (state.previous_down || values[0].pressed);
@@ -1106,17 +1162,7 @@ bool InputSystem::disconnect_device(DeviceId id) {
     if (slot == nullptr) {
         return false;
     }
-    impl_->clear_device(*slot);
-    slot->connected = false;
-    if (slot->generation == std::numeric_limits<std::uint32_t>::max()) {
-        slot->retired = true;
-    } else {
-        ++slot->generation;
-    }
-    for (auto& [binding, state] : impl_->runtime) {
-        static_cast<void>(binding);
-        state = {};
-    }
+    impl_->disconnect(*slot);
     return true;
 }
 

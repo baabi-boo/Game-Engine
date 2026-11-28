@@ -189,6 +189,7 @@ struct JointStatistics {
 // Single writer, borrowing PhysicsWorld. All response goes through that world's
 // shared velocities and inertia. No collider filters or body ownership change.
 // Removal during a step only marks records; maintenance erases outside a step.
+// Losing either body stops subsequent solve work and queues joint removal.
 // Explicit shutdown unregisters the named callback while PhysicsWorld is alive.
 // Destruction only drops shared state; the retained callback is weak and inert.
 class JointService final {

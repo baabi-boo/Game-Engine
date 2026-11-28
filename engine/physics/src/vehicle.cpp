@@ -752,6 +752,7 @@ bool VehicleSystem::set_authority(VehicleHandle vehicle, VehicleAuthority author
     record->state.authority = authority;
     record->state.input = {};
     record->state.input_age = 0.0;
+    record->state.input_expired = false;
     std::fill(record->torques.begin(), record->torques.end(), WheelTorque{});
     return true;
 }
@@ -858,6 +859,7 @@ bool VehicleSystem::select_player(VehicleHandle vehicle, input::InputSystem& inp
     record->state.authority = VehicleAuthority::Human;
     record->state.input = {};
     record->state.input_age = 0.0;
+    record->state.input_expired = false;
     std::fill(record->torques.begin(), record->torques.end(), WheelTorque{});
     impl_->human = vehicle;
     return true;
@@ -949,7 +951,14 @@ void VehicleSystem::pre_step(double delta_seconds, std::uint64_t tick) {
                 std::fill(record.torques.begin(), record.torques.end(), WheelTorque{});
             }
         }
-        if (service.delta <= 1.0e-8) { continue; }
+        if (service.delta <= 1.0e-8) {
+            std::fill(record.torques.begin(), record.torques.end(), WheelTorque{});
+            for (auto& wheel : record.wheels) {
+                wheel.drive_torque = 0.0;
+                wheel.brake_torque = 0.0;
+            }
+            continue;
+        }
         record.integrated = true;
         record.state.steering_angle = math::move_towards(record.state.steering_angle,
             record.state.input.steering * tuning.maximum_steering_angle, tuning.steering_rate * service.delta);

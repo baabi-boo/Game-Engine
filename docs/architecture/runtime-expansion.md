@@ -34,7 +34,15 @@ standalone event buses retain events until drained or explicitly maintained.
 This prevents unused notifications from permanently starving input and filesystem
 changes. Shutdown callbacks execute once in reverse registration order before
 service destruction so worker threads can join while dependent services live;
-recursive shutdown is harmless and new handlers are rejected after it starts.
+recursive shutdown is harmless. A shutdown request closes command, registration
+and schedule mutation admission immediately. Cleanup waits for active command,
+queue-drain and frame callbacks to unwind, so services cannot be torn down below
+their current consumers. Remaining queued commands and scheduled systems are
+discarded. An interrupted tick returns false and does not retire its frame events.
+The separate `request_stop()` operation still finishes the current frame.
+Cleanup failures are counted without allocation and recorded as diagnostics when
+possible; the CLI completes shutdown before emitting its final report and exit
+status. A handler failure never prevents the remaining cleanup callbacks.
 
 The command host supports startup settings, command scripts, interactive commands,
 bounded frame advancement and JSON diagnostics. The command listing comes from

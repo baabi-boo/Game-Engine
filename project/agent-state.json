@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 527,
-  "updated_at": "2026-11-28T07:13:06.930913Z",
+  "revision": 530,
+  "updated_at": "2026-11-28T10:09:36.233748Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "eeb75026bf9d5fd5feed769799a7ee1a6462a36a768d8089785f3ea7781af21f",
-    "file_count": 248
+    "sha256": "56e69ecb94636f2ebd73b97c1e4920e6b8c144a6c760da1a9a7cd2ce2ed3c9ae",
+    "file_count": 261
   },
   "milestones": [
     {
@@ -4479,17 +4479,17 @@
       "claim_revision": 525,
       "blocker": null,
       "checkpoint": {
-        "summary": "Integrated first audit repairs and meaningful runtime coverage: strict build blockers, kernel/event lifecycle, executor cancellation, IO, CLI, math, codecs, allocator/ECS safety, CPU skinning bridge, module boundaries and packaging. Scene-depth defect reproduced and repaired. Input disconnect and serialization findings remain queued for subsequent repair; audit remains in progress.",
-        "next_action": "Run frozen development integration gate, publish a checkpoint, then continue the remaining actual worker assignments and repair queued findings.",
+        "summary": "Completed 22 actual new worker runs and integrated input, serialization, streaming, kernel lifecycle, math, physics, character, vehicle, constraints, geometry and camera/visibility repairs. Preserved prior audit history. Baseline builds and exploratory targeted regressions passed; LSan unavailable under host tracing. Batching cache lifetime defect is queued for next isolated repair.",
+        "next_action": "Verify this frozen checkpoint through the development gate, publish it, and continue remaining distinct workers using isolated source while checks run.",
         "files": [
-          "engine/core/src/runtime.cpp",
-          "apps/runtime/modules.cpp",
-          "tests/CMakeLists.txt",
-          "docs/production/integration-audit-register.json"
+          "docs/production/stabilization-register-2026-11-28.json",
+          "docs/production/stabilization-2026-11-28.md",
+          "tests/CMakeLists.txt"
         ]
       },
       "evidence": [
-        "RUN-000005"
+        "RUN-000005",
+        "RUN-000006"
       ],
       "completion": null
     }
@@ -4677,6 +4677,45 @@
         "path": "out/agent-runs/RUN-000005-555f092f120442c3a087c3a44011859e.log",
         "sha256": "df9a5995b036597b78b94cf17aeb3505c8f68e26b72f3b63cd36e2a0de20149b",
         "bytes": 18683
+      },
+      "note": "Process exited successfully."
+    },
+    {
+      "id": "RUN-000006",
+      "task": "AUDIT-20261128",
+      "check": "dev",
+      "actor": "coordinator",
+      "argv": [
+        "python",
+        "tools/ge.py",
+        "check",
+        "--preset",
+        "dev",
+        "--jobs",
+        "2"
+      ],
+      "started_at": "2026-11-28T10:05:29.863902Z",
+      "finished_at": "2026-11-28T10:09:36.198255Z",
+      "result": "passed",
+      "exit_code": 0,
+      "source_before": {
+        "sha256": "56e69ecb94636f2ebd73b97c1e4920e6b8c144a6c760da1a9a7cd2ce2ed3c9ae",
+        "file_count": 261
+      },
+      "source_after": {
+        "sha256": "56e69ecb94636f2ebd73b97c1e4920e6b8c144a6c760da1a9a7cd2ce2ed3c9ae",
+        "file_count": 261
+      },
+      "git": {
+        "status": "git",
+        "commit": "5d43f1d31c5b95c7333ffdea3148dbc40387615a",
+        "dirty": false
+      },
+      "platform": "Linux x86_64 / Python 3.12.14",
+      "log": {
+        "path": "out/agent-runs/RUN-000006-dfb58b69f6a740bdb66214ae0fdd3362.log",
+        "sha256": "081ac0b787573c1119f3f00c2ba70fc7627b4ae03ad6866771f558922e5bac39",
+        "bytes": 22100
       },
       "note": "Process exited successfully."
     }
@@ -8897,6 +8936,30 @@
       "action": "run-check",
       "task": "AUDIT-20261128",
       "summary": "dev: passed; receipt RUN-000005; Process exited successfully."
+    },
+    {
+      "revision": 528,
+      "at": "2026-11-28T09:35:53.799122Z",
+      "actor": "coordinator",
+      "action": "checkpoint",
+      "task": "AUDIT-20261128",
+      "summary": "Resumed the owner-authorized existing-code audit from published checkpoint 876ec25 in a clean checkout. Preserved prior 21-worker register and unresolved input/serialization findings; beginning a separate 100-worker stabilization pass with actual IDs. Toolchain doctor now passes; baseline strict GCC build is running."
+    },
+    {
+      "revision": 529,
+      "at": "2026-11-28T10:04:48.212380Z",
+      "actor": "coordinator",
+      "action": "checkpoint",
+      "task": "AUDIT-20261128",
+      "summary": "Completed 22 actual new worker runs and integrated input, serialization, streaming, kernel lifecycle, math, physics, character, vehicle, constraints, geometry and camera/visibility repairs. Preserved prior audit history. Baseline builds and exploratory targeted regressions passed; LSan unavailable under host tracing. Batching cache lifetime defect is queued for next isolated repair."
+    },
+    {
+      "revision": 530,
+      "at": "2026-11-28T10:09:36.233748Z",
+      "actor": "coordinator",
+      "action": "run-check",
+      "task": "AUDIT-20261128",
+      "summary": "dev: passed; receipt RUN-000006; Process exited successfully."
     }
   ]
 }

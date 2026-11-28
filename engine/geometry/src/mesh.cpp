@@ -211,7 +211,7 @@ MeshValidation validate_mesh(const MeshData& mesh, MeshLimits limits, bool rejec
         return {MeshError::InvalidLimits, 0, "invalid mesh limits"};
     }
     if (mesh.vertices.size() > limits.max_vertices || mesh.indices.size() > limits.max_indices ||
-        mesh.submeshes.size() > limits.max_submeshes) {
+        range_count(mesh) > limits.max_submeshes) {
         return {MeshError::CapacityExceeded, 0, "mesh capacity exceeded"};
     }
     if (mesh.indices.size() % 3 != 0) {

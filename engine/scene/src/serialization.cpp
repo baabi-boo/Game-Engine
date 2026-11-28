@@ -19,6 +19,20 @@ namespace {
 
 constexpr std::string_view archive_magic{"GESCENE1"};
 constexpr std::size_t envelope_bytes = 32;
+// Fixed sizes in the version-one GECHNK01 container and scene sections.
+constexpr std::size_t archive_header_bytes = 40;
+constexpr std::size_t archive_entry_bytes = 32;
+constexpr std::size_t archive_checksum_bytes = 4;
+constexpr std::size_t string_length_bytes = 4;
+constexpr std::size_t manifest_fixed_bytes = 4 + 4 + 8 + string_length_bytes + 4;
+constexpr std::size_t nodes_header_bytes = 4;
+constexpr std::size_t node_fixed_bytes = 8 + 4 + 1 + 8 + string_length_bytes + 80 + 1 + 4;
+constexpr std::size_t bounds_bytes = 6 * 8;
+constexpr std::size_t extension_header_bytes = 4;
+constexpr std::size_t archive_fixed_bytes =
+    envelope_bytes + archive_header_bytes + archive_checksum_bytes;
+constexpr std::size_t minimum_archive_bytes =
+    archive_fixed_bytes + 2 * archive_entry_bytes + manifest_fixed_bytes + nodes_header_bytes;
 constexpr std::uint32_t archive_schema = 0x53434e45U;
 constexpr std::uint32_t manifest_section = 1;
 constexpr std::uint32_t nodes_section = 2;
@@ -64,7 +78,7 @@ DocumentResult guarded(Function&& function) {
 }
 
 void check_limits(const SceneArchiveLimits& limits) {
-    if (limits.max_archive_bytes < 165U ||
+    if (limits.max_archive_bytes < minimum_archive_bytes ||
         limits.max_section_bytes < 32U || limits.max_depth == 0 ||
         limits.max_nodes >= disk_no_parent || limits.max_extensions > 65534U ||
         limits.max_nodes > static_cast<std::size_t>(std::numeric_limits<std::ptrdiff_t>::max()) ||
@@ -90,6 +104,51 @@ void charge(std::size_t& total, std::size_t amount, std::size_t maximum,
     total += amount;
 }
 
+void check_encoded_size(const SceneDocument& document, const SceneArchiveLimits& limits) {
+    std::size_t archive_bytes = archive_fixed_bytes;
+    const auto section = [&](std::size_t bytes) {
+        charge(archive_bytes, archive_entry_bytes, limits.max_archive_bytes,
+               "scene archive table exceeds byte budget");
+        charge(archive_bytes, bytes, limits.max_archive_bytes,
+               "scene archive exceeds byte budget");
+    };
+    std::size_t manifest_bytes = manifest_fixed_bytes;
+    const auto manifest = [&](std::size_t bytes) {
+        charge(manifest_bytes, bytes, limits.max_section_bytes,
+               "manifest exceeds section budget");
+    };
+    manifest(document.name.size());
+    for (const auto& [key, value] : document.metadata) {
+        manifest(2 * string_length_bytes);
+        manifest(key.size());
+        manifest(value.size());
+    }
+    section(manifest_bytes);
+    std::size_t nodes_bytes = nodes_header_bytes;
+    const auto nodes = [&](std::size_t bytes) {
+        charge(nodes_bytes, bytes, limits.max_section_bytes,
+               "nodes exceed section budget");
+    };
+    for (const auto& node : document.snapshot.nodes) {
+        nodes(node_fixed_bytes);
+        nodes(node.name.size());
+        if (node.bounds) {
+            nodes(bounds_bytes);
+        }
+        for (const auto& tag : node.tags) {
+            nodes(string_length_bytes);
+            nodes(tag.size());
+        }
+    }
+    section(nodes_bytes);
+    for (const auto& extension : document.extensions) {
+        std::size_t extension_bytes = extension_header_bytes;
+        charge(extension_bytes, extension.payload.size(), limits.max_section_bytes,
+               "extension exceeds section budget");
+        section(extension_bytes);
+    }
+}
+
 void check_text(std::string_view text, std::size_t maximum, bool nonempty,
                 bool no_controls, std::size_t index = no_parent) {
     const bool controls = std::any_of(text.begin(), text.end(), [](char character) {
@@ -112,6 +171,7 @@ void validate_document(const SceneDocument& document, const SceneArchiveLimits& 
         document.extensions.size() > limits.max_extensions) {
         reject(DocumentError::Limit, "scene document count exceeds configured limit");
     }
+    check_encoded_size(document, limits);
     std::size_t string_bytes{};
     const auto text = [&](std::string_view value, std::size_t maximum,
                           bool nonempty, bool controls, std::size_t index = no_parent) {
@@ -167,17 +227,11 @@ void validate_document(const SceneDocument& document, const SceneArchiveLimits& 
         }
     }
     std::unordered_set<std::uint32_t> section_ids;
-    std::size_t payload_bytes{};
     for (const auto& extension : document.extensions) {
         if (extension.id < first_scene_extension || extension.version == 0 ||
             !section_ids.insert(extension.id).second) {
             reject(DocumentError::InvalidSection, "invalid or duplicate extension identifier/version");
         }
-        if (extension.payload.size() > limits.max_section_bytes - 4U) {
-            reject(DocumentError::Limit, "extension payload exceeds section budget");
-        }
-        charge(payload_bytes, extension.payload.size(), limits.max_archive_bytes,
-               "combined extension payload budget exceeded");
     }
 }
 
@@ -346,8 +400,7 @@ SceneDocument decode_document(std::span<const std::byte> bytes,
     info.require_end();
     core::ByteReader records(nodes->data, core::ByteOrder::little, binary_limits(limits));
     const auto count = records.read_u32();
-    constexpr std::size_t minimum_node_bytes = 107;
-    if (count > limits.max_nodes || count > records.remaining() / minimum_node_bytes) {
+    if (count > limits.max_nodes || count > records.remaining() / node_fixed_bytes) {
         reject(DocumentError::Limit, "invalid node count or truncated node section");
     }
     result.snapshot.nodes.reserve(count);
@@ -425,6 +478,19 @@ bool same_node_payload(const SnapshotNode& first, const SnapshotNode& second) {
     std::sort(first_tags.begin(), first_tags.end());
     std::sort(second_tags.begin(), second_tags.end());
     return first_tags == second_tags;
+}
+
+bool same_parent_identity(const SceneDocument& before, const SnapshotNode& previous,
+                          const SceneDocument& after, const SnapshotNode& current) {
+    if (previous.parent_index == no_parent || current.parent_index == no_parent) {
+        return previous.parent_index == current.parent_index;
+    }
+    const auto before_id = before.snapshot.nodes[previous.parent_index].persistent;
+    const auto after_id = after.snapshot.nodes[current.parent_index].persistent;
+    if (before_id || after_id) {
+        return before_id == after_id;
+    }
+    return previous.parent_index == current.parent_index;
 }
 
 std::vector<SceneSectionVersion> acknowledged_sections(const SceneDocument& document) {
@@ -637,7 +703,8 @@ DocumentResult diff_scene_documents(const SceneDocument& before, const SceneDocu
             if (!same_node_payload(previous, current)) {
                 candidate.changes.push_back({SceneNodeChangeKind::Modified, previous.persistent, index, next});
             }
-            if (index != next || previous.parent_index != current.parent_index) {
+            if (index != next || previous.parent_index != current.parent_index ||
+                !same_parent_identity(before, previous, after, current)) {
                 candidate.changes.push_back({SceneNodeChangeKind::Moved, previous.persistent, index, next});
             }
         }

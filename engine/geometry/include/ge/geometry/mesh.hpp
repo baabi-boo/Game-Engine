@@ -54,7 +54,7 @@ struct MeshLimits {
     // These defaults are also the absolute algorithm ceilings; callers may lower them.
     std::size_t max_vertices{1'048'576};
     std::size_t max_indices{6'291'456};
-    std::size_t max_submeshes{4096};
+    std::size_t max_submeshes{4096}; // Includes an implicit range when indices are present.
     std::uint32_t max_tessellation{1024};
 };
 

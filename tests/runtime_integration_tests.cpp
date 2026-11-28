@@ -119,7 +119,7 @@ void all_modules_install_and_enabled_systems_run() {
         "traffic.roads", "traffic.simulation", "gameplay.mission", "gameplay.inventory",
         "gameplay.equipment", "gameplay.combat", "gameplay.dialogue", "gameplay.quests",
         "render.postprocess", "render.visibility", "render.batching", "render.decals",
-        "editor.selection", "animation.ik", "animation.retarget", "audio.dsp",
+        "editor.selection", "animation.ik", "animation.retarget", "animation.skinning", "audio.dsp",
     };
     std::set<std::string_view> installed;
     for (const auto& module : kernel.modules()) {
@@ -138,6 +138,9 @@ void all_modules_install_and_enabled_systems_run() {
     require_before(order, "physics.character.control", "physics.dynamics.step");
     require_before(order, "physics.dynamics.step", "scene.transforms.post");
     require_before(order, "camera.update", "geometry.mesh.bounds");
+    require_before(order, "animation.ik.solve", "animation.skinning");
+    require_before(order, "animation.retarget.pose", "animation.skinning");
+    require_before(order, "animation.skinning", "geometry.mesh.bounds");
     require_before(order, "geometry.mesh.bounds", "spatial.sync");
     require_before(order, "render.visibility.install", "render.batching.install");
     require_before(order, "render.batching.install", "render.graph.frame");

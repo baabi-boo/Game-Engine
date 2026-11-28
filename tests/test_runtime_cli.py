@@ -52,7 +52,10 @@ class RuntimeCliTests(unittest.TestCase):
         self.assertTrue(result.stderr, "failed commands must explain the failure")
         report = self.read_report(path)
         self.assertIs(report["success"], False)
+        self.assertIs(report["shutdown_complete"], True)
+        self.assertEqual(report["shutdown_failures"], 0)
         self.assertTrue(report["diagnostics"], "the failure must be visible in the report")
+        self.assertTrue(any(item["severity"] == "error" for item in report["diagnostics"]))
         return report
 
     def test_help_and_command_discovery(self) -> None:
@@ -74,6 +77,8 @@ class RuntimeCliTests(unittest.TestCase):
         self.assertEqual(result.stdout, "")
         report = self.read_report(path)
         self.assertIs(report["success"], True)
+        self.assertIs(report["shutdown_complete"], True)
+        self.assertEqual(report["shutdown_failures"], 0)
         self.assertEqual(report["tick"], 3)
         self.assertAlmostEqual(report["elapsed_seconds"], 0.375)
         self.assertTrue(report["modules"])
@@ -87,6 +92,8 @@ class RuntimeCliTests(unittest.TestCase):
         self.assert_success(result)
         report = json.loads(result.stdout)
         self.assertIs(report["success"], True)
+        self.assertIs(report["shutdown_complete"], True)
+        self.assertEqual(report["shutdown_failures"], 0)
         self.assertEqual(report["tick"], 2)
         self.assertAlmostEqual(report["elapsed_seconds"], 2.0 / 60.0)
 

@@ -250,6 +250,9 @@ struct ModuleDescription {
 
 // The kernel composes concrete subsystems. It owns no renderer, scene or game
 // type; modules add their services and processing functions to the host.
+// Host APIs are serialized. Shutdown permanently rejects new command dispatch,
+// queued work and module/system/command/shutdown registrations or schedule edits.
+// Reports, diagnostics and already-owned service objects remain available.
 class Kernel final {
 public:
     explicit Kernel(std::size_t service_capacity = 512);
@@ -281,7 +284,8 @@ public:
     [[nodiscard]] std::vector<std::pair<std::string, std::string>> commands() const;
     bool enqueue_command(std::string line);
     // Execute a bounded snapshot in FIFO order. Recursive drains do no work;
-    // commands enqueued by callbacks remain queued for a later drain.
+    // commands enqueued by callbacks remain queued for a later drain. Shutdown
+    // discards unexecuted commands; results cover only commands actually invoked.
     [[nodiscard]] std::vector<CommandResult> drain_commands(std::size_t limit = 256);
 
     // A tick is synchronous. Individual registered services may own workers.
@@ -291,13 +295,21 @@ public:
     // remaining commands and frame systems still run if admission remains valid.
     // A failed system is diagnosed and disabled until explicitly re-enabled.
     // Undrained events expire after a complete following frame (see EventBus).
+    // Shutdown aborts remaining systems and returns false. An already-started
+    // frame retains its tick/time but does not perform frame event retirement.
     bool tick(double delta_seconds);
+    // Stop admits no further ticks but lets the current frame finish. Commands
+    // and registrations remain available until shutdown is requested.
     void request_stop() noexcept { stop_requested_ = true; }
     [[nodiscard]] bool stop_requested() const noexcept { return stop_requested_; }
     bool add_shutdown(std::string name, std::function<void()> function);
-    // Reverse-order callbacks run once. Recursive shutdown is a no-op and no
-    // new shutdown callback can be registered after shutdown begins.
+    // Shutdown becomes terminal immediately. Reverse-order callbacks run once,
+    // after active ticks/drains/commands unwind so their callbacks retain usable
+    // services until they return. Idle shutdown completes before this call
+    // returns; recursive shutdown is a no-op. Failures are counted even if
+    // diagnostic allocation fails, and remaining shutdown callbacks still run.
     void shutdown() noexcept;
+    [[nodiscard]] std::size_t shutdown_failures() const noexcept { return shutdown_failures_; }
 
     void metric(std::string name, double value);
     [[nodiscard]] double metric_value(std::string_view name, double fallback = 0.0) const;
@@ -330,11 +342,14 @@ private:
     std::vector<std::pair<std::string, std::function<void()>>> shutdown_;
     std::map<std::string, double, std::less<>> metrics_;
     std::deque<Diagnostic> diagnostics_;
+    std::size_t shutdown_failures_{};
+    std::size_t command_depth_{};
     bool schedule_dirty_{true};
     bool tick_active_{};
     bool ticking_{};
     bool draining_commands_{};
     bool stop_requested_{};
+    bool shutdown_requested_{};
     bool shutting_down_{};
     bool shutdown_complete_{};
 };

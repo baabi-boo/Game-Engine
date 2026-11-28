@@ -50,6 +50,8 @@ struct DocumentResult {
 };
 
 struct SceneArchiveLimits {
+    // Includes the envelope, chunk table, section headers and checksums. An empty
+    // version-one document needs 168 bytes; section budgets include their headers.
     std::size_t max_archive_bytes{64U * 1024U * 1024U};
     std::size_t max_section_bytes{32U * 1024U * 1024U};
     std::size_t max_nodes{65536};
@@ -98,6 +100,7 @@ struct SceneDecodeOptions {
     std::span<const SceneSectionVersion> understood_sections{};
 };
 
+// Validation checks semantic fields and complete encoded section/archive budgets.
 [[nodiscard]] DocumentResult validate_scene_document(
     const SceneDocument& document, const SceneArchiveLimits& limits = {});
 [[nodiscard]] DocumentResult encode_scene_document(
@@ -173,7 +176,9 @@ struct SceneNodeChange {
 // The replacement is decoded and validated before publication. Changes are an
 // inspection summary; the complete documents retain opaque extension payloads.
 // Anonymous nodes are compared by ordinal, and moved indices are reported
-// conservatively. Applying drops transient source handles, as file loading does.
+// conservatively. Parent changes also compare persistent identity, falling back
+// to ordinal for anonymous parents. Applying drops transient source handles, as
+// file loading does.
 struct SceneDocumentPatch {
     std::vector<std::byte> expected;
     std::vector<std::byte> replacement;

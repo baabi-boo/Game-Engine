@@ -147,7 +147,7 @@ Kernel::Kernel(std::size_t service_capacity) : services_(service_capacity) {
 Kernel::~Kernel() { shutdown(); }
 
 bool Kernel::register_module(ModuleDescription module) {
-    if (ticking_ || module.name.empty() || module.name.size() > 128 ||
+    if (ticking_ || shutdown_requested_ || module.name.empty() || module.name.size() > 128 ||
         modules_.size() >= 512 || module.version == 0) {
         return false;
     }
@@ -163,7 +163,7 @@ bool Kernel::register_module(ModuleDescription module) {
 const std::vector<ModuleDescription>& Kernel::modules() const noexcept { return modules_; }
 
 bool Kernel::add_system(SystemSpec spec, SystemFunction function) {
-    if (ticking_ || shutdown_complete_ || !function || spec.name.empty() ||
+    if (ticking_ || shutdown_requested_ || !function || spec.name.empty() ||
         spec.name.size() > 128 || systems_.size() >= 2048 || spec.after.size() > 256) {
         return false;
     }
@@ -183,7 +183,7 @@ bool Kernel::add_system(SystemSpec spec, SystemFunction function) {
 }
 
 bool Kernel::order_after(std::string_view name, std::string_view prerequisite) {
-    if (ticking_ || name == prerequisite) {
+    if (ticking_ || shutdown_requested_ || name == prerequisite) {
         return false;
     }
     auto target = std::find_if(systems_.begin(), systems_.end(),
@@ -207,6 +207,9 @@ bool Kernel::order_after(std::string_view name, std::string_view prerequisite) {
 }
 
 bool Kernel::set_system_enabled(std::string_view name, bool enabled) {
+    if (shutdown_requested_) {
+        return false;
+    }
     for (auto& system : systems_) {
         if (system.spec.name == name) {
             system.statistics.enabled = enabled;
@@ -302,17 +305,31 @@ std::vector<std::string> Kernel::execution_order() {
 }
 
 bool Kernel::add_command(std::string name, CommandFunction function, std::string help) {
-    if (ticking_ || name.empty() || name.size() > 128 || !function || commands_.size() >= 8192) {
+    if (ticking_ || shutdown_requested_ || name.empty() || name.size() > 128 ||
+        !function || commands_.size() >= 8192) {
         return false;
     }
     return commands_.emplace(std::move(name), CommandEntry{std::move(function), std::move(help)}).second;
 }
 
 CommandResult Kernel::command(std::string_view name, CommandArgs args) {
+    if (shutdown_requested_) {
+        return {false, "kernel shutdown requested"};
+    }
     const auto it = commands_.find(name);
     if (it == commands_.end()) {
         return {false, "unknown command: " + std::string(name)};
     }
+    ++command_depth_;
+    struct CommandGuard {
+        Kernel& kernel;
+        ~CommandGuard() {
+            --kernel.command_depth_;
+            if (kernel.shutdown_requested_) {
+                kernel.shutdown();
+            }
+        }
+    } guard{*this};
     try {
         return it->second.function(*this, args);
     } catch (const std::exception& error) {
@@ -325,6 +342,9 @@ CommandResult Kernel::command(std::string_view name, CommandArgs args) {
 }
 
 CommandResult Kernel::execute(std::string_view line) {
+    if (shutdown_requested_) {
+        return {false, "kernel shutdown requested"};
+    }
     try {
         auto args = tokenize_command(line);
         if (args.empty()) {
@@ -346,7 +366,7 @@ std::vector<std::pair<std::string, std::string>> Kernel::commands() const {
 }
 
 bool Kernel::enqueue_command(std::string line) {
-    if (line.size() > 65536 || queued_commands_.size() >= 4096) {
+    if (shutdown_requested_ || line.size() > 65536 || queued_commands_.size() >= 4096) {
         return false;
     }
     queued_commands_.push_back(std::move(line));
@@ -354,14 +374,19 @@ bool Kernel::enqueue_command(std::string line) {
 }
 
 std::vector<CommandResult> Kernel::drain_commands(std::size_t limit) {
-    if (draining_commands_) {
+    if (draining_commands_ || shutdown_requested_) {
         return {};
     }
     draining_commands_ = true;
     struct DrainGuard {
-        bool& active;
-        ~DrainGuard() { active = false; }
-    } guard{draining_commands_};
+        Kernel& kernel;
+        ~DrainGuard() {
+            kernel.draining_commands_ = false;
+            if (kernel.shutdown_requested_) {
+                kernel.shutdown();
+            }
+        }
+    } guard{*this};
     std::vector<CommandResult> results;
     const auto count = std::min(limit, queued_commands_.size());
     results.reserve(count);
@@ -372,24 +397,31 @@ std::vector<CommandResult> Kernel::drain_commands(std::size_t limit) {
         queued_commands_.pop_front();
     }
     for (const auto& line : batch) {
+        if (shutdown_requested_) {
+            break;
+        }
         results.push_back(execute(line));
     }
     return results;
 }
 
 bool Kernel::tick(double delta_seconds) {
-    if (tick_active_ || ticking_ || draining_commands_ || shutting_down_ ||
-        shutdown_complete_ || stop_requested_ ||
+    if (tick_active_ || ticking_ || draining_commands_ || shutdown_requested_ || stop_requested_ ||
         !std::isfinite(delta_seconds) || delta_seconds < 0.0 || delta_seconds > 1.0 ||
         frame_.tick == std::numeric_limits<std::uint64_t>::max()) {
         return false;
     }
     tick_active_ = true;
     struct TickGuard {
-        bool& active;
-        bool& systems_active;
-        ~TickGuard() { systems_active = false; active = false; }
-    } guard{tick_active_, ticking_};
+        Kernel& kernel;
+        ~TickGuard() {
+            kernel.ticking_ = false;
+            kernel.tick_active_ = false;
+            if (kernel.shutdown_requested_) {
+                kernel.shutdown();
+            }
+        }
+    } guard{*this};
     const auto command_results = drain_commands();
     bool success = true;
     for (const auto& result : command_results) {
@@ -399,7 +431,7 @@ bool Kernel::tick(double delta_seconds) {
                      "queued command failed: " + result.message);
         }
     }
-    if (stop_requested_ || shutdown_complete_ || !rebuild_schedule()) {
+    if (stop_requested_ || !rebuild_schedule()) {
         return false;
     }
     frame_.delta_seconds = delta_seconds;
@@ -407,6 +439,9 @@ bool Kernel::tick(double delta_seconds) {
     ++frame_.tick;
     ticking_ = true;
     for (const auto index : schedule_) {
+        if (shutdown_requested_) {
+            break;
+        }
         auto& system = systems_[index];
         if (!system.statistics.enabled) {
             continue;
@@ -430,6 +465,9 @@ bool Kernel::tick(double delta_seconds) {
             std::chrono::steady_clock::now() - begin).count();
         system.statistics.total_seconds += system.statistics.last_seconds;
     }
+    if (shutdown_requested_) {
+        return false;
+    }
     events_.retire_frame_events();
     metric("kernel.events.pending", static_cast<double>(events_.pending()));
     metric("kernel.events.dropped", static_cast<double>(events_.dropped()));
@@ -439,7 +477,7 @@ bool Kernel::tick(double delta_seconds) {
 }
 
 bool Kernel::add_shutdown(std::string name, std::function<void()> function) {
-    if (ticking_ || shutting_down_ || shutdown_complete_ || name.empty() ||
+    if (ticking_ || shutdown_requested_ || name.empty() ||
         !function || shutdown_.size() >= 512) {
         return false;
     }
@@ -456,14 +494,29 @@ void Kernel::shutdown() noexcept {
     if (shutting_down_ || shutdown_complete_) {
         return;
     }
-    shutting_down_ = true;
+    shutdown_requested_ = true;
     stop_requested_ = true;
+    queued_commands_.clear();
+    if (tick_active_ || draining_commands_ || command_depth_ != 0) {
+        return;
+    }
+    shutting_down_ = true;
     auto callbacks = std::move(shutdown_);
+    const auto failed = [&](const std::string& name, const char* message) noexcept {
+        ++shutdown_failures_;
+        try {
+            diagnose(Diagnostic::Severity::Error, name, message);
+        } catch (...) {
+            // Shutdown must finish even if recording the failure cannot allocate.
+        }
+    };
     for (auto it = callbacks.rbegin(); it != callbacks.rend(); ++it) {
         try {
             it->second();
+        } catch (const std::exception& error) {
+            failed(it->first, error.what());
         } catch (...) {
-            // Destructors must still release the remaining services.
+            failed(it->first, "non-standard shutdown exception");
         }
     }
     shutdown_complete_ = true;
@@ -517,7 +570,9 @@ std::string Kernel::report_json() const {
     std::ostringstream out;
     out.imbue(std::locale::classic());
     out << std::setprecision(12) << "{\"tick\":" << frame_.tick
-        << ",\"elapsed_seconds\":" << frame_.elapsed_seconds << ",\"modules\":[";
+        << ",\"elapsed_seconds\":" << frame_.elapsed_seconds
+        << ",\"shutdown_complete\":" << (shutdown_complete_ ? "true" : "false")
+        << ",\"shutdown_failures\":" << shutdown_failures_ << ",\"modules\":[";
     bool first = true;
     for (const auto& module : modules_) {
         if (!first) { out << ','; }
@@ -549,6 +604,8 @@ std::string Kernel::report_json() const {
         if (!first) { out << ','; }
         first = false;
         out << "{\"subsystem\":\"" << json_escape(diagnostic.subsystem)
+            << "\",\"severity\":\"" << (diagnostic.severity == Diagnostic::Severity::Error ? "error" :
+                diagnostic.severity == Diagnostic::Severity::Warning ? "warning" : "info")
             << "\",\"message\":\"" << json_escape(diagnostic.message)
             << "\",\"tick\":" << diagnostic.tick << '}';
     }

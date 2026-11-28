@@ -34,7 +34,8 @@ bool valid_mode(BodyMode mode) noexcept {
 }
 
 bool same_pose(const math::Transform& first, const math::Transform& second) noexcept {
-    return math::almost_equal(first.position, second.position, 1.0e-8) &&
+    // Positional tolerance must not grow with distance from the world origin.
+    return math::length_squared(first.position - second.position) <= 1.0e-16 &&
            math::almost_equal(first.scale, second.scale, 1.0e-8) &&
            std::abs(math::dot(math::normalized(first.rotation),
                              math::normalized(second.rotation))) >= 1.0 - 1.0e-12;

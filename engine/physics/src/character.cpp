@@ -972,25 +972,42 @@ void CharacterSystem::control(double delta_seconds, std::uint64_t tick, input::I
         record.state.ceiling_blocked = false;
         record.state.movement_blocked = false;
         record.steep_normal = {};
-        const auto body = self.physics.state(record.body);
+        auto body = self.physics.state(record.body);
         if (!body) { continue; }
+        const auto scene_pose = self.physics.scene().world_transform(record.entity);
+        const bool valid_scene_pose = scene_pose && unit_scale(*scene_pose) &&
+            self.physics.scene().world_transform_exact(record.entity);
         record.previous_position = body->pose.position;
         record.state.position = body->pose.position;
         record.state.velocity = body->linear_velocity;
         record.state.vertical_speed = body->linear_velocity.y;
-        if (!record.state.enabled || !body->enabled || !body->scene_enabled || !self.registry.enabled(record.entity)) {
+        if (!valid_scene_pose || !record.state.enabled || !body->enabled || !body->scene_enabled ||
+            !self.registry.enabled(record.entity)) {
             record.state.motion = CharacterMotion::Disabled;
             record.state.grounded = false;
             record.state.support = {};
+            if (!valid_scene_pose) { record.state.last_error = CharacterError::InvalidEntity; }
             self.publish(record);
             continue;
         }
         if (delta == 0.0) { continue; }
+        // Control runs before PhysicsWorld imports Scene edits. Import them here
+        // before a turn, snap or assist can publish the previous body position.
+        const bool scene_edited = math::distance(body->pose.position, scene_pose->position) > 1.0e-8 ||
+            math::angular_distance(body->pose.rotation, scene_pose->rotation) > 1.0e-8;
+        if (scene_edited) {
+            if (!self.write_pose(record, *scene_pose)) { self.publish(record); continue; }
+            body = self.physics.state(record.body);
+            if (!body) { continue; }
+            record.previous_position = body->pose.position;
+            const auto facing = math::rotate(body->pose.rotation, forward);
+            record.upright = math::look_rotation(math::normalized(math::Vec3{facing.x, 0.0, facing.z}, forward));
+        }
         record.support_delay = std::max(0.0, record.support_delay - delta);
         record.state.coyote_remaining = std::max(0.0, record.state.coyote_remaining - delta);
         record.state.jump_buffer_remaining = std::max(0.0, record.state.jump_buffer_remaining - delta);
         record.state.motion = body->linear_velocity.y > 0.0 ? CharacterMotion::Rising : CharacterMotion::Falling;
-        self.grounding(record, self.detect_support(record, *body, true));
+        self.grounding(record, self.detect_support(record, *body, !scene_edited));
         const double gap = record.state.support.distance;
         if (record.state.grounded && gap > record.settings.skin) {
             auto snapped = body->pose;

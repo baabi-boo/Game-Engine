@@ -167,10 +167,17 @@ struct CameraStatistics {
                                                        math::Vec3 pixel_depth) noexcept;
 [[nodiscard]] std::optional<math::Vec3> camera_project(const CameraView& view,
                                                      math::Vec3 world) noexcept;
+// Atomically refresh matrices, frustum and world directions from an exact affine
+// pose and the view's projection/clip depth. Preserves other metadata, including
+// revision and stale. Invalid inputs leave the entire view unchanged.
+[[nodiscard]] bool refresh_camera_matrices(CameraView& view,
+                                           const math::Mat4& world) noexcept;
 
 // Single-writer service borrowing Scene and its Registry. Snapshot pointers and
-// spans expire on update, detach or view edits. Invalid updates retain the last valid view
-// with stale=true; disabled/dead cameras are removed from published views.
+// spans expire on update, detach or view edits. Service projection, viewport and
+// pose edits, or clearing effects, mark cached snapshots stale until refreshed.
+// Invalid updates retain the last valid view with stale=true; disabled/dead
+// cameras are removed from published views when the service synchronizes.
 class CameraService final {
 public:
     explicit CameraService(scene::Scene& scene, CameraLimits limits = {});
@@ -190,6 +197,8 @@ public:
     bool set_projection(ecs::Entity entity, const CameraProjection& projection);
     bool set_viewport(ecs::Entity entity, const CameraViewport& viewport);
     bool set_controller(ecs::Entity entity, const CameraController& controller);
+    // Immediately publishes this camera's last snapshot, if available, in the
+    // selected slot. A newly attached camera needs refresh_views() or update().
     bool set_active(ecs::Entity entity, std::size_t slot = 0);
     bool clear_view(std::size_t slot = 0) noexcept;
     [[nodiscard]] ecs::Entity active_entity(std::size_t slot = 0) const noexcept;

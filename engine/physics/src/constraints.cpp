@@ -709,6 +709,15 @@ struct JointService::Impl {
                 continue;
             }
             auto& record = *slot.record;
+            const auto& description = record.state.description;
+            // Another solver hook can remove an ECS entity or its body
+            // component after preparation. A lost endpoint is never a world
+            // anchor, even while the prepared rows are still cached.
+            if ((description.first && !world->get(description.first)) ||
+                (description.second && !world->get(description.second))) {
+                mark_removed(record, JointEventKind::BodyLost);
+                continue;
+            }
             for (std::size_t index = 0; index < record.row_count; ++index) {
                 auto& row = record.rows[index];
                 const double change = -row.mass * (velocity(record, row) + row.bias + row.gamma * row.impulse);

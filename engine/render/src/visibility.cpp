@@ -133,28 +133,6 @@ bool valid_camera(const CameraView& camera, bool allow_stale) noexcept {
          camera.projection_mode == ProjectionMode::Orthographic) && (allow_stale || !camera.stale);
 }
 
-bool refresh_camera(CameraView& camera, const math::Mat4& world) noexcept {
-    const auto inverse_world = math::inverse(world);
-    if (!inverse_world) { return false; }
-    const auto combined = camera.projection * *inverse_world;
-    const auto inverse_combined = math::inverse(combined);
-    const auto frustum = math::extract_frustum(combined, camera.clip_depth);
-    if (!inverse_combined || !frustum) { return false; }
-    const auto position = math::transform_point(world, {});
-    auto forward = math::transform_vector(world, {0.0, 0.0, -1.0});
-    auto up = math::transform_vector(world, {0.0, 1.0, 0.0});
-    if (!bounded(position) || !math::normalize(forward) || !math::normalize(up)) { return false; }
-    camera.inverse_view = world;
-    camera.view = *inverse_world;
-    camera.view_projection = combined;
-    camera.inverse_view_projection = *inverse_combined;
-    camera.frustum = *frustum;
-    camera.position = position;
-    camera.forward = forward;
-    camera.up = up;
-    return true;
-}
-
 } // namespace
 
 std::string_view describe(VisibilityError error) noexcept {
@@ -354,7 +332,7 @@ struct VisibilityService::Impl {
         }
         if (same_matrix(*current, found->matrix)) { return true; }
         const auto render_world = *current * found->inverse * camera.inverse_view;
-        if (!refresh_camera(camera, render_world)) { return false; }
+        if (!refresh_camera_matrices(camera, render_world)) { return false; }
         ++statistics.refreshed_cameras;
         return true;
     }
@@ -635,9 +613,8 @@ struct VisibilityService::Impl {
             if (!refresh_view(camera) || !valid_camera(camera, renderer.settings().allow_stale_views)) {
                 return result(VisibilityError::InvalidView);
             }
-            const auto frustum = math::extract_frustum(camera.view_projection, camera.clip_depth);
-            if (!frustum) { return result(VisibilityError::InvalidView); }
-            camera.frustum = *frustum;
+            // CameraService and the late refresh publish the matching world frustum.
+            // Extracting it again from the combined matrix rejects valid far-origin views.
             camera.visibility_mask = component->visibility_mask;
             VisibilityView selected;
             selected.camera = camera;
