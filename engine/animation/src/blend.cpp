@@ -837,7 +837,8 @@ const Pose& BlendPlayer::pose() const noexcept { return pose_; }
 bool blend_owns_pose(const ecs::Registry& registry, ecs::Entity entity) noexcept {
     const auto* blend = registry.get<BlendComponent>(entity);
     const auto* animated = registry.get<AnimatedComponent>(entity);
-    return blend && animated && blend->authority_owner == animated &&
+    return blend && animated && blend->authority_registry == &registry &&
+        blend->authority_owner == registry.component_instance<AnimatedComponent>(entity) &&
         blend->authority_skeleton == animated->skeleton && blend->player.machine();
 }
 
@@ -894,7 +895,8 @@ BlendResult BlendService::attach(ecs::Registry& registry, ecs::Entity entity,
     BlendComponent candidate;
     const auto bound = candidate.player.bind(find(name), *skeleton, animation.clips);
     if (!bound) { return bound; }
-    candidate.authority_owner = animated;
+    candidate.authority_owner = registry.component_instance<AnimatedComponent>(entity);
+    candidate.authority_registry = &registry;
     candidate.authority_skeleton = animated->skeleton;
     candidate.previous_animated_enabled = blend_owns_pose(registry, entity) ? previous->previous_animated_enabled : animated->enabled;
     if (previous) { candidate.write_scene = previous->write_scene; }

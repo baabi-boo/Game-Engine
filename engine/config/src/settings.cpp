@@ -815,6 +815,9 @@ struct Settings::Impl {
             if (document.size() > bounds.max_document_bytes) {
                 fail("document budget cannot contain the format header", std::string(path));
             }
+            if (document.size() - 1 > bounds.max_line_bytes) {
+                fail("line budget cannot contain the format header", std::string(path));
+            }
             for (const auto& [key, entry] : entries) {
                 const std::string line = key + " = " + format_setting(entry.value) + "\n";
                 if (line.size() - 1 > bounds.max_line_bytes || document.size() > bounds.max_document_bytes ||
@@ -976,7 +979,9 @@ SettingsResult Settings::import_configuration(std::string_view name,
             const auto schema = targets.find(key);
             const auto& setting_key = schema == targets.end() ? key : schema->second->key;
             charge(bytes, sizeof(Entry) + setting_key.size() + raw.size(), impl_->bounds.max_total_bytes);
-            layer.entries.emplace(setting_key, Entry{raw, "<kernel>", 0, true});
+            if (!layer.entries.emplace(setting_key, Entry{raw, "<kernel>", 0, true}).second) {
+                fail("Kernel import keys map to the same setting", "<kernel>", 0, setting_key);
+            }
         }
     });
 }

@@ -430,7 +430,9 @@ NavResult NavMesh::rebuild_impl(const NavMeshInput& input, NavBuildOptions optio
             return failure(NavStatus::InvalidPolygon, index);
         }
         if (area < 0.0) {
-            std::reverse(polygon.vertices.begin(), polygon.vertices.end());
+            // Preserve the authored fan anchor when normalizing winding; moving
+            // it changes the surface of a nonplanar convex polygon.
+            std::reverse(polygon.vertices.begin() + 1, polygon.vertices.end());
         }
         for (std::size_t edge = 0; edge < polygon.vertices.size(); ++edge) {
             const auto a = candidate->vertices[polygon.vertices[edge]];
@@ -998,13 +1000,15 @@ NavMoveResult NavMesh::move_along_surface(NavLocation start, math::Vec3 target,
         const bool has_neighbor = portal_index != no_nav_link;
         const auto neighbor = has_neighbor ? data_->portals[portal_index].to : NavPolygonRef{};
         const bool allowed = has_neighbor && options.filter.allows(data_->polygons[neighbor.index - 1].flags);
-        if (!allowed || (exit_fraction <= progress + geometric_epsilon && result.visited.size() > 1)) {
+        if (!allowed) {
             const auto a = data_->vertices[current_polygon_value.vertices[exit_edge]];
             const auto b = data_->vertices[current_polygon_value.vertices[(exit_edge + 1) % current_polygon_value.vertices.size()]];
             result.wall_normal = math::normalized(math::Vec3{a.z - b.z, 0.0, b.x - a.x});
             result.blocked = true;
             return finish(NavStatus::Success);
         }
+        // A segment can cross multiple shared edges at the same vertex.
+        // Polygon/work budgets bound traversal even when progress is unchanged.
         progress = exit_fraction;
         current_polygon = neighbor;
     }

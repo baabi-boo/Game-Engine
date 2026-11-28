@@ -48,7 +48,8 @@ AnimationResult SkinningService::bind(ecs::Registry& registry, const AnimationSe
                                        geometry::MeshHandle source,
                                        std::span<const VertexInfluences> influences) {
     if (registry.iterating() || (registry_ && registry_ != &registry) ||
-        (animation_ && animation_ != &animation) || (meshes_ && meshes_ != &meshes)) {
+        (animation_ && animation_ != &animation) ||
+        (mesh_lifetime_ && mesh_lifetime_ != meshes.lifetime_identity())) {
         return {AnimationError::InvalidEntity};
     }
     auto* animated = registry.get<AnimatedComponent>(entity);
@@ -85,7 +86,7 @@ AnimationResult SkinningService::bind(ecs::Registry& registry, const AnimationSe
     candidate.token = replacing ? existing->second.token : next_token_;
     candidate.skeleton = animated->skeleton;
     candidate.skeleton_signature = skeleton->signature();
-    candidate.owner = animated;
+    candidate.owner = registry.component_instance<AnimatedComponent>(entity);
     candidate.influences.assign(influences.begin(), influences.end());
     for (std::size_t index = 0; index < candidate.influences.size(); ++index) {
         const auto normalized = normalize_influences(candidate.influences[index], skeleton->size());
@@ -118,7 +119,7 @@ AnimationResult SkinningService::bind(ecs::Registry& registry, const AnimationSe
     vertices_ = vertices_ - old_vertices + influences.size();
     registry_ = &registry;
     animation_ = &animation;
-    meshes_ = &meshes;
+    mesh_lifetime_ = meshes.lifetime_identity();
     (void)registry.mark_changed<geometry::MeshComponent>(entity);
     return {};
 }
@@ -140,7 +141,8 @@ AnimationResult SkinningService::bind_rigid(ecs::Registry& registry, const Anima
 }
 
 bool SkinningService::detach(ecs::Registry& registry, geometry::MeshLibrary& meshes, ecs::Entity entity) {
-    if (registry.iterating() || registry_ != &registry || meshes_ != &meshes) { return false; }
+    if (registry.iterating() || registry_ != &registry ||
+        mesh_lifetime_ != meshes.lifetime_identity()) { return false; }
     const auto found = bindings_.find(entity);
     if (found == bindings_.end()) { return false; }
     const auto& binding = found->second;
@@ -160,12 +162,13 @@ bool SkinningService::detach(ecs::Registry& registry, geometry::MeshLibrary& mes
     (void)meshes.destroy(binding.info.output);
     vertices_ -= binding.influences.size();
     bindings_.erase(found);
-    if (bindings_.empty()) { registry_ = nullptr; animation_ = nullptr; meshes_ = nullptr; }
+    if (bindings_.empty()) { registry_ = nullptr; animation_ = nullptr; mesh_lifetime_.reset(); }
     return true;
 }
 
 bool SkinningService::clear(ecs::Registry& registry, geometry::MeshLibrary& meshes) {
-    if (registry.iterating() || (registry_ && registry_ != &registry) || (meshes_ && meshes_ != &meshes)) {
+    if (registry.iterating() || (registry_ && registry_ != &registry) ||
+        (mesh_lifetime_ && mesh_lifetime_ != meshes.lifetime_identity())) {
         return false;
     }
     while (!bindings_.empty()) { (void)detach(registry, meshes, bindings_.begin()->first); }
@@ -176,7 +179,8 @@ SkinningUpdate SkinningService::update(ecs::Registry& registry, const AnimationS
                                         geometry::MeshLibrary& meshes) {
     SkinningUpdate result;
     if (registry.iterating() || (registry_ && registry_ != &registry) ||
-        (animation_ && animation_ != &animation) || (meshes_ && meshes_ != &meshes)) {
+        (animation_ && animation_ != &animation) ||
+        (mesh_lifetime_ && mesh_lifetime_ != meshes.lifetime_identity())) {
         result.errors = 1;
         return result;
     }
@@ -189,7 +193,8 @@ SkinningUpdate SkinningService::update(ecs::Registry& registry, const AnimationS
         const auto* component = registry.get<geometry::MeshComponent>(entity);
         const auto* skeleton = animated ? animation.skeletons.get(animated->skeleton) : nullptr;
         const auto source = meshes.inspect(binding.info.source);
-        if (!animated || animated != binding.owner || !marker || marker->binding != binding.token ||
+        if (!animated || registry.component_instance<AnimatedComponent>(entity) != binding.owner ||
+            !marker || marker->binding != binding.token ||
             !component || component->mesh != binding.info.output || !source || !skeleton ||
             animated->skeleton != binding.skeleton || skeleton->signature() != binding.skeleton_signature ||
             !meshes.contains(binding.info.output)) {

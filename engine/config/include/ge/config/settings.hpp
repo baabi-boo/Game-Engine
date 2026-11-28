@@ -163,6 +163,7 @@ public:
     SettingsResult replace_layer(std::string_view layer, std::string_view document,
         UnknownKeyPolicy policy = UnknownKeyPolicy::Reject,
         std::string source = "<memory>");
+    // Rejects conflicting input keys that map to the same setting through aliases.
     SettingsResult import_configuration(std::string_view layer,
         const core::Configuration& configuration,
         UnknownKeyPolicy policy = UnknownKeyPolicy::Preserve);

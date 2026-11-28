@@ -3,6 +3,7 @@
 #include <ge/animation/skeleton.hpp>
 
 #include <map>
+#include <memory>
 
 namespace ge::animation {
 
@@ -42,12 +43,14 @@ struct SkinningUpdate {
 
 // Single-writer adapter for an existing AnimatedComponent and MeshComponent.
 // Source handles/revisions are immutable until an explicit successful rebind.
-// A changed source revision or failed deformation retains the last valid output;
-// a missing source/entity/component retires its owned output on the next update.
+// A changed source revision or failed deformation retains the last valid output.
+// A missing source/entity/component or replaced AnimatedComponent retires its
+// owned output on the next update, even if component storage reuses an address.
 // Invalid bindings never replace the current binding or rendered mesh. Mesh
 // allocations obey MeshLibrary budgets; allocation failures otherwise propagate.
 // One service uses one registry, animation service and mesh library while bound.
 // Call clear before destroying those owners; kernel registration does so at shutdown.
+// A replacement mesh library at a reused address is rejected without modifying it.
 class SkinningService final {
 public:
     explicit SkinningService(SkinningLimits limits = {});
@@ -74,7 +77,7 @@ private:
         std::uint64_t token{};
         SkeletonHandle skeleton{};
         std::uint64_t skeleton_signature{};
-        const AnimatedComponent* owner{};
+        std::uint64_t owner{};
         std::vector<VertexInfluences> influences;
     };
     SkinningLimits limits_;
@@ -83,7 +86,7 @@ private:
     std::uint64_t next_token_{1};
     const ecs::Registry* registry_{};
     const AnimationService* animation_{};
-    const geometry::MeshLibrary* meshes_{};
+    std::shared_ptr<const geometry::MeshLibrary::LifetimeIdentity> mesh_lifetime_;
 };
 
 void register_skinning(core::Kernel& kernel);

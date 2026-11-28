@@ -393,6 +393,8 @@ struct VegetationService::Patch {
     std::unique_ptr<VegetationSpeciesDesc> built_species;
     VegetationSpeciesHandle built_species_handle{};
     std::vector<VegetationInstance> instances;
+    const scene::Scene* scene_owner{};
+    std::shared_ptr<const geometry::MeshLibrary::LifetimeIdentity> mesh_owner;
     ge::RuntimeHandle root{};
     ge::RuntimeHandle terrain_entity{};
     math::Aabb bounds{};
@@ -558,7 +560,8 @@ bool VegetationService::replace_patch(VegetationPatchHandle handle, VegetationPa
 
 bool VegetationService::destroy_patch(VegetationPatchHandle handle, scene::Scene& scene) {
     auto* value = patch_record(handle);
-    if (!value || scene.registry().iterating()) {
+    if (!value || scene.registry().iterating() ||
+        (value->scene_owner && value->scene_owner != &scene)) {
         return false;
     }
     if (scene.contains(value->root) && !scene.destroy(value->root)) {
@@ -638,6 +641,12 @@ VegetationBuildResult VegetationService::rebuild(VegetationPatchHandle handle,
     if (!patch) {
         return {VegetationError::MissingPatch};
     }
+    if (patch->scene_owner && patch->scene_owner != &scene) {
+        return {VegetationError::SceneRejected};
+    }
+    if (patch->mesh_owner && patch->mesh_owner != meshes.lifetime_identity()) {
+        return {VegetationError::MissingResource};
+    }
     const auto* species_value = species_record(patch->description.species);
     if (!species_value) {
         return {VegetationError::MissingSpecies};
@@ -647,7 +656,8 @@ VegetationBuildResult VegetationService::rebuild(VegetationPatchHandle handle,
     if (!terrain_info || !field) {
         return {VegetationError::MissingTerrain};
     }
-    if (!terrain_info->entity || !scene.contains(terrain_info->entity)) {
+    if (!terrain.matches_render_scene(patch->description.terrain, scene) ||
+        !terrain_info->entity || !scene.contains(terrain_info->entity)) {
         return {VegetationError::MissingBinding};
     }
     if (scene.registry().iterating()) {
@@ -731,6 +741,8 @@ VegetationBuildResult VegetationService::rebuild(VegetationPatchHandle handle,
     patch->instances.swap(replacement);
     patch->built_species.swap(snapshot);
     patch->built_species_handle = patch->description.species;
+    patch->scene_owner = &scene;
+    patch->mesh_owner = meshes.lifetime_identity();
     patch->root = root;
     patch->terrain_entity = terrain_info->entity;
     patch->terrain_revision = terrain_info->revision;
@@ -761,7 +773,7 @@ std::size_t VegetationService::refresh(const TerrainService& terrain,
     for (std::size_t visited = 0; visited < patches_.size() && attempted < patch_budget; ++visited) {
         const auto index = refresh_cursor_++ % patches_.size();
         auto* patch = patches_[index].get();
-        if (!patch) {
+        if (!patch || (patch->scene_owner && patch->scene_owner != &scene)) {
             continue;
         }
         const auto terrain_info = terrain.inspect(patch->description.terrain);
@@ -824,9 +836,15 @@ void VegetationService::update(scene::Scene& scene, const geometry::MeshLibrary&
         if (!patch || !patch->built_species) {
             continue;
         }
+        if (patch->scene_owner != &scene) {
+            visible_ += static_cast<std::size_t>(std::count_if(patch->instances.begin(),
+                patch->instances.end(), [](const auto& instance) { return instance.visible; }));
+            continue;
+        }
         const auto& species_value = *patch->built_species;
         math::Aabb mesh_bounds;
-        const bool resources = resources_available(species_value, meshes, materials, mesh_bounds);
+        const bool resources = patch->mesh_owner == meshes.lifetime_identity() &&
+            resources_available(species_value, meshes, materials, mesh_bounds);
         const auto* parent_matrix = scene.cached_world_matrix(patch->root);
         const auto inverse_parent = parent_matrix ? math::inverse(*parent_matrix) : std::optional<math::Mat4>{};
         const bool attached = scene.contains(patch->terrain_entity) &&

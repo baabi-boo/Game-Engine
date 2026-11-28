@@ -252,6 +252,8 @@ struct ParticleService::Impl {
         EmitterDescription description;
         std::vector<ParticleHandle> particles;
         std::uint64_t random{};
+        std::uint64_t source_binding_instance{};
+        std::uint64_t render_binding_instance{};
         std::size_t admitted{};
         bool started{};
     };
@@ -298,7 +300,15 @@ struct ParticleService::Impl {
         add_count(emitter.state.dropped, count);
         add_count(statistics.dropped, count);
     }
+    bool owns_node(const Emitter& emitter, bool source) const noexcept {
+        const auto entity = source ? emitter.state.source : emitter.state.render_entity;
+        const auto instance = source ? emitter.source_binding_instance : emitter.render_binding_instance;
+        const auto* binding = scene.registry().get<ParticleBindingComponent>(entity);
+        return instance != 0 && binding != nullptr && binding->emitter == emitter.state.handle &&
+            binding->source == source && scene.registry().component_instance<ParticleBindingComponent>(entity) == instance;
+    }
     void hide(Emitter& emitter) {
+        if (!owns_node(emitter, false)) return;
         if (auto* binding = scene.registry().get<geometry::MeshComponent>(emitter.state.render_entity)) {
             binding->visible = false;
             (void)scene.registry().mark_changed<geometry::MeshComponent>(emitter.state.render_entity);
@@ -321,9 +331,9 @@ struct ParticleService::Impl {
         emitter.state.queued_particles = 0;
         hide(emitter);
     }
-    void erase_node(ecs::Entity entity, EmitterHandle owner) {
-        const auto* binding = scene.registry().get<ParticleBindingComponent>(entity);
-        if (binding == nullptr || binding->emitter != owner) return;
+    void erase_node(const Emitter& emitter, bool source) {
+        if (!owns_node(emitter, source)) return;
+        const auto entity = source ? emitter.state.source : emitter.state.render_entity;
         if (scene.contains(entity)) {
             (void)scene.destroy(entity, scene::DestroyPolicy::PromoteChildren, scene::ReparentMode::KeepLocal);
         } else {
@@ -334,8 +344,8 @@ struct ParticleService::Impl {
         auto* emitter = get(handle);
         if (emitter == nullptr) return;
         clear(*emitter);
-        erase_node(emitter->state.render_entity, handle);
-        if (emitter->state.owns_source) erase_node(emitter->state.source, handle);
+        erase_node(*emitter, false);
+        if (emitter->state.owns_source) erase_node(*emitter, true);
         (void)meshes.destroy(emitter->state.mesh);
         emitters[handle.index - 1].reset();
         (void)emitter_pool.release({handle.index, handle.generation});
@@ -356,9 +366,9 @@ struct ParticleService::Impl {
     }
     bool binding_valid(const Emitter& emitter) const noexcept {
         const auto& state = emitter.state;
-        const auto* binding = scene.registry().get<ParticleBindingComponent>(state.render_entity);
         return scene.contains(state.source) && scene.registry().alive(state.source) &&
-            scene.contains(state.render_entity) && binding != nullptr && binding->emitter == state.handle &&
+            (!state.owns_source || owns_node(emitter, true)) &&
+            scene.contains(state.render_entity) && owns_node(emitter, false) &&
             scene.parent(state.render_entity) == (state.space == ParticleSpace::Local ? state.source : ecs::Entity{});
     }
     bool enabled(ecs::Entity entity) const noexcept {
@@ -564,6 +574,10 @@ EmitterHandle ParticleService::create(std::string_view name, const EmitterDescri
         emitter->state.material = material;
         emitter->state.space = description.space;
         emitter->state.owns_source = owns_source;
+        if (owns_source) emitter->source_binding_instance =
+            data.scene.registry().component_instance<ParticleBindingComponent>(source);
+        emitter->render_binding_instance =
+            data.scene.registry().component_instance<ParticleBindingComponent>(binding);
         data.emitters[handle.index - 1] = std::move(emitter);
         return handle;
     } catch (const std::exception&) {
@@ -686,6 +700,7 @@ bool ParticleService::set_material(EmitterHandle handle, render::MaterialHandle 
     if (!impl_->writable()) return false;
     auto* emitter = impl_->get(handle);
     if (emitter == nullptr) { impl_->error = ParticleError::InvalidHandle; return false; }
+    if (!impl_->binding_valid(*emitter)) { impl_->error = ParticleError::SceneRejected; return false; }
     try {
         const auto selected = material ? material : impl_->default_material();
         if (!impl_->materials.materials().assign(impl_->scene.registry(), emitter->state.render_entity, selected)) {

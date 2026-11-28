@@ -452,14 +452,17 @@ RootMotionResult extract_clip_root_motion(const Skeleton& skeleton, const Animat
 struct RetargetService::Impl {
     struct Identity {
         ecs::Entity entity{};
-        const AnimatedComponent* component{};
+        const ecs::Registry* registry_identity{};
+        std::uint64_t component_instance{};
         SkeletonHandle skeleton{};
         std::uint64_t signature{};
         std::vector<ecs::Entity> bones;
         bool matches(const ecs::Registry& registry, const AnimationService& animation) const {
             const auto* current = registry.get<AnimatedComponent>(entity);
             const auto* resource = animation.skeletons.get(skeleton);
-            return current && current == component && current->skeleton == skeleton &&
+            return registry_identity == &registry && current &&
+                registry.component_instance<AnimatedComponent>(entity) == component_instance &&
+                current->skeleton == skeleton &&
                 current->bone_entities == bones && resource && resource->signature() == signature;
         }
     };
@@ -494,7 +497,8 @@ struct RetargetService::Impl {
             component->bone_entities.size() > limits.max_bones || !component->animator.pose().compatible(*skeleton)) {
             return std::nullopt;
         }
-        return Identity{entity, component, component->skeleton, skeleton->signature(), component->bone_entities};
+        return Identity{entity, &registry, registry.component_instance<AnimatedComponent>(entity),
+            component->skeleton, skeleton->signature(), component->bone_entities};
     }
     bool creates_cycle(ecs::Entity source, ecs::Entity target) const {
         for (std::size_t depth = 0; depth <= bindings.size(); ++depth) {
@@ -571,8 +575,9 @@ RetargetAttachResult RetargetService::attach(ecs::Registry& registry, AnimationS
     if (!map) { return {{RetargetError::MissingResource}, {}}; }
     const bool weighted = options.weight < 1.0 || std::any_of(map->links().begin(), map->links().end(),
         [](const RetargetLink& link) { return link.weight < 1.0; });
+    const auto& target_component = registry.require<AnimatedComponent>(target);
     if (weighted && !blend_owns_pose(registry, target) &&
-        (!target_identity->component->enabled || !target_identity->component->animator.state().playing)) {
+        (!target_component.enabled || !target_component.animator.state().playing)) {
         return {{RetargetError::InvalidPose}, {}};
     }
     const auto& source_skeleton = *animation.skeletons.get(source_identity->skeleton);
@@ -580,8 +585,8 @@ RetargetAttachResult RetargetService::attach(ecs::Registry& registry, AnimationS
     if (!map->compatible(source_skeleton, target_skeleton)) { return {{RetargetError::InvalidSkeleton}, {}}; }
     std::vector<scene::LocalTransformEdit> edits;
     if (options.write_scene) {
-        const auto result = bone_edits(registry, scene_graph, *target_identity->component, target_skeleton,
-            target_identity->component->animator.pose(), edits);
+        const auto result = bone_edits(registry, scene_graph, target_component, target_skeleton,
+            target_component.animator.pose(), edits);
         if (!result) { return {result, {}}; }
     }
     const RetargetHandle handle{target, impl_->generation};
@@ -637,8 +642,9 @@ RetargetAttachResult RetargetService::attach_root(ecs::Registry& registry, Anima
     }
     std::vector<scene::LocalTransformEdit> edits;
     if (options.write_scene) {
-        result = bone_edits(registry, scene_graph, *identity->component, skeleton,
-            identity->component->animator.pose(), edits, options.model_entity);
+        const auto& component = registry.require<AnimatedComponent>(entity);
+        result = bone_edits(registry, scene_graph, component, skeleton,
+            component.animator.pose(), edits, options.model_entity);
         if (!result) { return {result, {}}; }
     }
     const RetargetHandle handle{entity, impl_->generation};
@@ -731,8 +737,9 @@ RetargetUpdate RetargetService::update(ecs::Registry& registry, AnimationService
         const auto& target = *animation.skeletons.get(binding.target.skeleton);
         const bool weighted = binding.info.options.weight < 1.0 ||
             std::any_of(binding.map->links().begin(), binding.map->links().end(), [](const RetargetLink& link) { return link.weight < 1.0; });
+        const auto& target_component = registry.require<AnimatedComponent>(entity);
         if (weighted && !blend_owns_pose(registry, entity) &&
-            (!binding.target.component->enabled || !binding.target.component->animator.state().playing)) {
+            (!target_component.enabled || !target_component.animator.state().playing)) {
             status = {RetargetError::InvalidPose}; failed.insert(entity); ++output.errors; continue;
         }
         const auto work = source.size() + target.size();
@@ -748,7 +755,7 @@ RetargetUpdate RetargetService::update(ecs::Registry& registry, AnimationService
                 status = binding.map->apply(source, *source_pose, target, candidate, binding.info.options.weight);
                 std::vector<scene::LocalTransformEdit> edits;
                 if (status && binding.info.options.write_scene) {
-                    status = bone_edits(registry, scene_graph, *binding.target.component, target, candidate, edits);
+                    status = bone_edits(registry, scene_graph, target_component, target, candidate, edits);
                 }
                 if (status && !edits.empty() && !scene_graph->apply_local_transforms(edits)) {
                     status = {RetargetError::SceneRejected};

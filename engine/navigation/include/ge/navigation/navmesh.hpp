@@ -212,8 +212,9 @@ struct NavMeshStatistics {
     bool source_stale{};
 };
 
-// Single-writer, immutable between rebuilds. XZ footprints must be strictly convex;
-// heights use a vertex-zero triangle fan. Only complete welded edges connect.
+// Single-writer, immutable between rebuilds. XZ footprints must be strictly convex.
+// Heights use a triangle fan anchored at each input polygon's first vertex,
+// preserved for either winding. Only complete welded edges connect.
 // Overlapping interiors, T-junction splitting, obstacle carving and automatic
 // tile stitching are not implemented. Allocations may throw; rebuild is atomic.
 class NavMesh final {

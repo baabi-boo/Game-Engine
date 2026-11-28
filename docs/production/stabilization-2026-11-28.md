@@ -16,8 +16,8 @@ not create additional agents. Runtime capacity is three simultaneous workers.
 
 ## Status
 
-Work is in progress. 37 distinct workers have been launched and
-34 have completed their assigned reviews or repairs. Further subsystem
+Work is in progress. 48 distinct workers have been launched and
+45 have completed their assigned reviews or repairs. Further subsystem
 review, repairs and independent integration reviews remain. The active `AUDIT-20261128` task and its source-matching receipts
 are the authoritative acceptance record. A published intermediate checkpoint is
 not completion of the 100-worker request or production qualification.
@@ -69,9 +69,32 @@ cache lifetime defect; worker 023 supplied the integrated repair.
   delta while retaining the paused playback baseline.
 
 Mixer and spatial-audio source reviews found no definite defect in their assigned
-contracts. A newly identified component-address reuse issue is being repaired with
-one shared ECS instance identity and explicit adoption by animation bindings; this
-remains outstanding at this checkpoint.
+contracts. The component-address reuse issue identified during these reviews is now
+resolved by the shared ECS identity and consumer changes below.
+
+## Third checkpoint changes
+
+- ECS exposes a component instance identity distinct from entity generation and
+  change revision. It survives ordinary edits and changes on replacement, allowing
+  skinning, IK, blend, retarget and particles to reject stale ownership even when
+  an allocator reuses the same address. Skinning additionally checks mesh-library
+  lifetime before touching output meshes.
+- Navmesh movement can cross multiple connected edges at a shared vertex within
+  its existing work budget. Winding normalization retains the authored height-fan
+  anchor for nonplanar polygons.
+- Heightfield sampling accepts exact upper endpoints on fractional grids. Terrain
+  and vegetation enforce Scene and mesh-library ownership. A shared terrain Scene
+  predicate also validates vegetation's initial binding.
+- Particle cleanup and material operations preserve nodes after their binding is
+  removed or replaced.
+- Script scheduling gives a costly host call the first slice of the next frame
+  when it cannot fit the current frame's remaining budget, preventing starvation.
+- Settings imports reject aliases targeting the same setting atomically, and
+  exports check that the format header fits the configured line budget.
+
+The terrain review covers height queries and render bindings; the current physics
+module has no terrain heightfield collision consumer. That feature is not implied
+by passing terrain tests.
 
 ## Verification scope
 

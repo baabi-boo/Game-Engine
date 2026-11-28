@@ -190,8 +190,12 @@ std::optional<TerrainSample> Heightfield::sample(
     double gz = (world_z - desc.origin.z) / desc.spacing.y;
     const double maximum_x = static_cast<double>(desc.columns - 1);
     const double maximum_z = static_cast<double>(desc.rows - 1);
+    // Compare in authored space: normalizing an exact endpoint can round past
+    // the final grid index when the origin or spacing is fractional.
     if (boundary == SampleBoundary::Reject &&
-        (gx < 0.0 || gz < 0.0 || gx > maximum_x || gz > maximum_z)) {
+        (world_x < desc.origin.x || world_z < desc.origin.z ||
+         world_x > desc.origin.x + maximum_x * desc.spacing.x ||
+         world_z > desc.origin.z + maximum_z * desc.spacing.y)) {
         return std::nullopt;
     }
     gx = std::clamp(gx, 0.0, maximum_x);
@@ -596,7 +600,14 @@ struct TerrainService::Record {
     TerrainMeshOptions mesh_options{};
     geometry::MeshHandle mesh{};
     ge::RuntimeHandle entity{};
+    std::shared_ptr<const geometry::MeshLibrary::LifetimeIdentity> mesh_owner;
+    const scene::Scene* scene_owner{};
     bool dirty{true};
+
+    [[nodiscard]] bool accepts(const geometry::MeshLibrary* meshes, const scene::Scene* scene) const noexcept {
+        return (!mesh_owner || (meshes != nullptr && mesh_owner == meshes->lifetime_identity())) &&
+            (scene_owner == nullptr || scene_owner == scene);
+    }
 };
 
 TerrainService::TerrainService(TerrainServiceLimits limits, TileLayout layout)
@@ -660,6 +671,12 @@ std::optional<TerrainInfo> TerrainService::inspect(TerrainHandle handle) const n
     }
     return TerrainInfo{handle, value->name, value->tile, value->field->bounds(), value->field->revision(),
                        value->mesh, value->entity, value->dirty};
+}
+
+bool TerrainService::matches_render_scene(TerrainHandle handle,
+    const scene::Scene& scene) const noexcept {
+    const auto* value = record(handle);
+    return value && value->scene_owner == &scene;
 }
 
 std::vector<TerrainHandle> TerrainService::handles() const {
@@ -774,6 +791,7 @@ TerrainHandle TerrainService::create_tile(std::string_view name, TileCoordinate 
 bool TerrainService::destroy(TerrainHandle handle, geometry::MeshLibrary* meshes, scene::Scene* scene) {
     auto* value = record(handle);
     if (!value || (value->mesh && meshes == nullptr) || (value->entity && scene == nullptr) ||
+        !value->accepts(meshes, scene) ||
         revision_ == std::numeric_limits<std::uint64_t>::max()) {
         return false;
     }
@@ -892,7 +910,7 @@ std::optional<TerrainSample> TerrainService::sample(double x, double z) const no
 std::optional<TerrainSample> TerrainService::sample_world(
     scene::Scene& scene, TerrainHandle handle, double x, double z) const {
     const auto* value = record(handle);
-    if (!value || !value->entity || !std::isfinite(x) || !std::isfinite(z)) {
+    if (!value || value->scene_owner != &scene || !value->entity || !std::isfinite(x) || !std::isfinite(z)) {
         return std::nullopt;
     }
     const auto matrix = current_matrix(scene, value->entity);
@@ -930,7 +948,7 @@ std::optional<TerrainSample> TerrainService::sample_world(scene::Scene& scene, d
 
 std::optional<math::Aabb> TerrainService::world_bounds(scene::Scene& scene, TerrainHandle handle) const {
     const auto* value = record(handle);
-    const auto matrix = value ? current_matrix(scene, value->entity) : std::nullopt;
+    const auto matrix = value && value->scene_owner == &scene ? current_matrix(scene, value->entity) : std::nullopt;
     if (!matrix || !axis_aligned(*matrix)) {
         return std::nullopt;
     }
@@ -966,7 +984,7 @@ bool TerrainService::set_mesh_options(TerrainHandle handle, TerrainMeshOptions o
 bool TerrainService::rebuild(TerrainHandle handle, geometry::MeshLibrary& meshes, scene::Scene& scene,
                              math::Vec3 coordinate_origin) {
     auto* value = record(handle);
-    if (!value || scene.registry().iterating() || !math::finite(coordinate_origin)) {
+    if (!value || !value->accepts(&meshes, &scene) || scene.registry().iterating() || !math::finite(coordinate_origin)) {
         return false;
     }
     value->dirty = true;
@@ -1009,6 +1027,7 @@ bool TerrainService::rebuild(TerrainHandle handle, geometry::MeshLibrary& meshes
         value->mesh = meshes.create(std::move(mesh), "terrain/" + std::to_string(handle.index) + ":" +
                                    std::to_string(handle.generation));
     }
+    value->mesh_owner = meshes.lifetime_identity();
     if (!scene.contains(value->entity)) {
         if (scene.registry().alive(value->entity)) {
             if (!scene.adopt(value->entity)) {
@@ -1020,7 +1039,11 @@ bool TerrainService::rebuild(TerrainHandle handle, geometry::MeshLibrary& meshes
             value->entity = scene.create(value->name, {}, transform);
         }
     }
-    if (!value->entity || !meshes.assign(scene.registry(), value->entity, value->mesh)) {
+    if (!value->entity) {
+        return false;
+    }
+    value->scene_owner = &scene;
+    if (!meshes.assign(scene.registry(), value->entity, value->mesh)) {
         return false;
     }
     scene.registry().emplace_or_replace<TerrainComponent>(value->entity,
@@ -1046,7 +1069,8 @@ std::size_t TerrainService::rebuild_dirty(geometry::MeshLibrary& meshes, scene::
         rebuild_cursor_ = (rebuild_cursor_ + 1) % records_.size();
         ++examined;
         auto* value = records_[rebuild_cursor_].get();
-        if (value && (value->dirty || !meshes.contains(value->mesh) || !scene.contains(value->entity))) {
+        if (value && value->accepts(&meshes, &scene) &&
+            (value->dirty || !meshes.contains(value->mesh) || !scene.contains(value->entity))) {
             ++attempted;
             if (rebuild(value->handle, meshes, scene, coordinate_origin)) {
                 ++rebuilt;
@@ -1058,7 +1082,7 @@ std::size_t TerrainService::rebuild_dirty(geometry::MeshLibrary& meshes, scene::
 
 void TerrainService::release_render_resources(geometry::MeshLibrary& meshes, scene::Scene& scene) {
     for (const auto& value : records_) {
-        if (!value) {
+        if (!value || !value->accepts(&meshes, &scene)) {
             continue;
         }
         if (scene.contains(value->entity) &&
@@ -1071,6 +1095,8 @@ void TerrainService::release_render_resources(geometry::MeshLibrary& meshes, sce
         (void)meshes.destroy(value->mesh);
         value->entity = {};
         value->mesh = {};
+        value->scene_owner = nullptr;
+        value->mesh_owner.reset();
         value->dirty = true;
     }
 }

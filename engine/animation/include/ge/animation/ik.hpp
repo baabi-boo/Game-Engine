@@ -222,6 +222,7 @@ struct IKUpdate {
 // Resources remain pinned by attachments after erase/republication. Explicit
 // reattach adopts a new resource. Setters require the current binding revision;
 // detach cancels the exact handle without restoring an old animation pose.
+// Replacing an AnimatedComponent retires its binding; ordinary edits retain it.
 class IKService final {
 public:
     explicit IKService(IKLimits limits = {});
@@ -252,7 +253,7 @@ private:
         std::uint64_t rig_revision{};
         std::uint64_t skeleton_signature{};
         SkeletonHandle skeleton;
-        const AnimatedComponent* owner{};
+        std::uint64_t owner{};
         std::vector<ecs::Entity> bones;
         std::shared_ptr<const IKRig> rig;
         IKBindingOptions options;

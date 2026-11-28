@@ -610,7 +610,7 @@ IKAttachResult IKService::attach(ecs::Registry& registry, AnimationService& anim
     candidate.rig_revision = rig->revision();
     candidate.skeleton_signature = skeleton->signature();
     candidate.skeleton = animated->skeleton;
-    candidate.owner = animated;
+    candidate.owner = registry.component_instance<AnimatedComponent>(entity);
     candidate.bones = animated->bone_entities;
     candidate.rig = rig;
     candidate.options = options;
@@ -734,7 +734,8 @@ IKUpdate IKService::update(ecs::Registry& registry, AnimationService& animation,
         const auto* marker = registry.get<IKComponent>(entity);
         const auto* skeleton = animated ? animation.skeletons.get(animated->skeleton) : nullptr;
         const bool live = animated && marker && marker->binding == record.handle &&
-            animated == record.owner && animated->skeleton == record.skeleton && skeleton &&
+            registry.component_instance<AnimatedComponent>(entity) == record.owner &&
+            animated->skeleton == record.skeleton && skeleton &&
             skeleton->signature() == record.skeleton_signature && animated->bone_entities == record.bones &&
             record.rig->revision() == record.rig_revision;
         if (!live) {

@@ -210,8 +210,10 @@ struct VegetationStatistics {
 // binding entity and each instance beneath that root. Local authored placement
 // follows origin rebases automatically. Spacing applies within each patch.
 // Rebuild stages a complete replacement hierarchy and preserves the previous
-// hierarchy on failure. Explicit clear(scene) runs before Scene destruction;
-// this service's destructor never dereferences other services.
+// hierarchy on failure. A built patch remains bound to its original Scene and
+// MeshLibrary lifetime; destroy and recreate it to change owners. Explicit
+// clear(scene) runs before that Scene's destruction; this service's destructor
+// never dereferences other services.
 class VegetationService final {
 public:
     explicit VegetationService(VegetationLimits limits = {});

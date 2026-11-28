@@ -220,6 +220,8 @@ struct EmitterState {
 };
 
 // Present only on service-owned nodes; neither this nor snapshots transfer ownership.
+// Removing or replacing the installed component relinquishes the service's node
+// ownership, even if the replacement carries the same emitter handle.
 struct ParticleBindingComponent {
     EmitterHandle emitter{};
     bool source{};

@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 533
-- **Recorded update:** 2026\-11\-28T10:30:36.004824Z
+- **Ledger revision:** 536
+- **Recorded update:** 2026\-11\-28T10:46:27.319437Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** c79ae93cf1599ccb10289641360729a95b8f2abc97b7a0b1987fb4e23361977a
-- **Source files:** 272
+- **Source fingerprint:** 772f59b96579d6a1ca211f08ee3fb1092338260a4e42992dac7122d28b1beb35
+- **Source files:** 281
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -65,9 +65,9 @@ User explicitly authorizes validating and repairing all code delivered at 3dcb0d
 - Write scope: engine/, apps/, tests/, tools/, cmake/, CMakeLists.txt, CMakePresets.json, README.md, docs/architecture/, docs/development/, docs/production/, docs/quality\-gates.md, .github/workflows/ci.yml
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Integrated workers 023\-032 and documented 37 actual launches, 34 completed reports; added cache, render ownership and animation regressions.
+- Checkpoint: Integrated shared component ownership across animation and particles, navmesh and terrain ownership/sampling, VM fairness and config transactions. Forty\-eight workers launched; 45 completed.
 - Files: none recorded
-- Next action: Run frozen development gate for second checkpoint; continue shared component identity repair and remaining subsystem reviews toward 100.
+- Next action: Run frozen third development gate and publish checkpoint; continue localization and network repairs and remaining reviews to100.
 - Required checks: repository, dev, release, package
 
 Acceptance:
@@ -78,7 +78,7 @@ Acceptance:
 - Publish passing local development, release and package evidence; document platform and functional limitations without claiming exhaustive correctness.
 
 - repository: no receipt.
-- dev: RUN-000007 / passed / recorded source snapshot.
+- dev: RUN-000008 / passed / recorded source snapshot.
 - release: no receipt.
 - package: no receipt.
 

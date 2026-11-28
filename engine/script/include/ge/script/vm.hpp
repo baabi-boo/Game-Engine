@@ -240,6 +240,8 @@ public:
     bool release(InstanceHandle handle);
     void stop_all() noexcept;
     [[nodiscard]] std::uint64_t step(InstanceHandle handle, std::uint64_t gas = 1);
+    // Frame gas is shared in round-robin slices. An instruction that cannot fit
+    // the final partial slice receives the first slice of the next frame.
     void advance(const core::Frame& frame);
     [[nodiscard]] std::optional<InstanceInfo> inspect(InstanceHandle handle) const;
     [[nodiscard]] std::vector<InstanceInfo> instances() const;

@@ -280,13 +280,15 @@ private:
 
 // Attach/detach are the authority setters. The base AnimatedComponent remains
 // disabled even while this player is paused. Replace/remove that component only
-// after detach. A copied BlendComponent never acquires its source's authority.
+// after detach. Authority names the exact component instance in its registry;
+// a copied BlendComponent never acquires its source's authority on another owner.
 // Base play/seek calls also require detach first. External enabled=true writes
 // are detected and reset at the next graph update, before base animation runs.
 struct BlendComponent {
     BlendPlayer player;
     bool write_scene{true};
-    const AnimatedComponent* authority_owner{};
+    std::uint64_t authority_owner{};
+    const ecs::Registry* authority_registry{};
     SkeletonHandle authority_skeleton{};
     bool previous_animated_enabled{true};
 };

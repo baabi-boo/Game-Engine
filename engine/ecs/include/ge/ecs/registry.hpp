@@ -183,6 +183,21 @@ public:
         return storage ? storage->id : 0;
     }
 
+    // Identifies one installed component within this Registry lifetime and the
+    // unqualified component type; it is neither an entity generation nor a change
+    // revision. Zero means missing or stale. Edits and existing emplace() retain
+    // the ID; successful replacement, reinsertion and cloning issue fresh IDs.
+    // IDs are never reused, even after clear(); exhaustion rejects new instances
+    // with overflow_error. Compare IDs only within the same registry and type.
+    template<class T>
+    [[nodiscard]] std::uint64_t component_instance(Entity entity) const noexcept {
+        if (!alive(entity)) {
+            return 0;
+        }
+        const auto* storage = pool<T>();
+        return storage ? storage->instance(entity) : 0;
+    }
+
     template<class T>
     ComponentType register_component(std::string_view name = {}) {
         require_structural_access();
@@ -391,10 +406,12 @@ private:
         static_assert(std::is_nothrow_destructible_v<T>, "components must have nonthrowing destruction");
         struct Item {
             std::uint64_t generation;
+            std::uint64_t instance;
             std::unique_ptr<T> value;
         };
         std::unordered_map<std::uint32_t, Item> values;
         std::uint32_t capacity;
+        std::uint64_t last_instance{};
 
         Pool(ComponentType type, std::string label, std::uint32_t entity_capacity)
             : PoolBase(type, std::move(label), sizeof(T)), capacity(entity_capacity) {}
@@ -415,6 +432,19 @@ private:
             return get(entity) != nullptr;
         }
 
+        [[nodiscard]] std::uint64_t instance(Entity entity) const noexcept {
+            const auto it = values.find(entity.index);
+            return it != values.end() && it->second.generation == entity.generation
+                ? it->second.instance : 0;
+        }
+
+        [[nodiscard]] std::uint64_t next_instance() const {
+            if (last_instance == std::numeric_limits<std::uint64_t>::max()) {
+                throw std::overflow_error("component instance identity exhausted");
+            }
+            return last_instance + 1;
+        }
+
         template<class... Args>
         T& insert(Entity entity, Args&&... args) {
             if (auto* existing = get(entity)) {
@@ -424,11 +454,14 @@ private:
                 throw std::length_error("component storage capacity exhausted");
             }
             auto value = std::make_unique<T>(std::forward<Args>(args)...);
+            const auto identity = next_instance();
             auto* result = value.get();
-            const auto inserted = values.emplace(entity.index, Item{entity.generation, std::move(value)});
+            const auto inserted = values.emplace(entity.index,
+                Item{entity.generation, identity, std::move(value)});
             if (!inserted.second) {
                 throw std::logic_error("component generation ownership mismatch");
             }
+            last_instance = identity;
             return *result;
         }
 
@@ -442,7 +475,10 @@ private:
                 throw std::logic_error("component generation ownership mismatch");
             }
             auto replacement = std::make_unique<T>(std::forward<Args>(args)...);
+            const auto identity = next_instance();
             it->second.value.swap(replacement);
+            it->second.instance = identity;
+            last_instance = identity;
             return *it->second.value;
         }
 

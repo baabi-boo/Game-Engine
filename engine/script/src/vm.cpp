@@ -731,6 +731,10 @@ std::string_view state_name(ExecutionState state) noexcept {
 }
 
 struct ScriptService::Impl {
+    struct RunResult {
+        std::uint64_t gas{};
+        bool budget_blocked{};
+    };
     struct Activation {
         std::uint32_t function{};
         std::uint32_t pc{};
@@ -778,11 +782,12 @@ struct ScriptService::Impl {
         return {instance.handle, instance.owner, instance.name, instance.state, instance.last_pc,
             instance.stack.size(), instance.calls.size(), instance.gas_used, instance.wake_tick, instance.result, instance.error};
     }
-    std::uint64_t run(Instance& instance, const core::Frame& frame, std::uint64_t budget) {
+    RunResult run(Instance& instance, const core::Frame& frame, std::uint64_t budget) {
         if (terminal(instance.state) || instance.state == ExecutionState::Paused ||
-            ((instance.state == ExecutionState::Sleeping || instance.state == ExecutionState::Yielded) && instance.wake_tick > frame.tick)) return 0;
+            ((instance.state == ExecutionState::Sleeping || instance.state == ExecutionState::Yielded) && instance.wake_tick > frame.tick)) return {};
         std::uint64_t consumed = 0;
         std::uint32_t host_calls = 0;
+        bool budget_blocked = false;
         instance.state = ExecutionState::Running;
         const auto& data = instance.program->data();
         try {
@@ -793,7 +798,8 @@ struct ScriptService::Impl {
                 const auto operand = instruction.operand;
                 const auto cost = instruction.op == Op::Host ? instance.imports[operand]->gas_cost : 1;
                 if (cost > limits.max_total_gas - instance.gas_used) throw std::length_error("total instruction gas exhausted");
-                if (cost > budget - consumed || (instruction.op == Op::Host && host_calls >= limits.max_host_calls_per_slice)) break;
+                if (cost > budget - consumed) { budget_blocked = true; break; }
+                if (instruction.op == Op::Host && host_calls >= limits.max_host_calls_per_slice) break;
                 consumed += cost;
                 instance.gas_used += cost;
                 ++activation.pc;
@@ -904,7 +910,7 @@ struct ScriptService::Impl {
             }
         } catch (const std::exception& error) { fault(instance, error.what()); }
         catch (...) { fault(instance, "native callback raised an unknown exception"); }
-        return consumed;
+        return {consumed, budget_blocked};
     }
 };
 
@@ -1093,7 +1099,7 @@ std::uint64_t ScriptService::step(InstanceHandle handle, std::uint64_t gas) {
     if (paused) instance->state = instance->before_pause;
     if (instance->state == ExecutionState::Yielded) instance->state = ExecutionState::Ready;
     const BusyGuard guard(impl_->busy);
-    const auto used = impl_->run(*instance, impl_->kernel.frame(), std::min(gas, limits().slice_gas));
+    const auto used = impl_->run(*instance, impl_->kernel.frame(), std::min(gas, limits().slice_gas)).gas;
     if (paused && !terminal(instance->state)) {
         instance->before_pause = instance->state;
         instance->state = ExecutionState::Paused;
@@ -1143,7 +1149,14 @@ void ScriptService::advance(const core::Frame& frame) {
         impl_->cursor = (impl_->cursor + 1) % impl_->slots.size();
         if (auto& instance = impl_->slots[index]) {
             const auto budget = std::min(limits().slice_gas, limits().frame_gas - impl_->stats.frame_gas);
-            impl_->stats.frame_gas += impl_->run(*instance, frame, budget);
+            const auto result = impl_->run(*instance, frame, budget);
+            impl_->stats.frame_gas += result.gas;
+            if (result.budget_blocked && budget < limits().slice_gas && !terminal(instance->state)) {
+                // Give a call that cannot fit the final partial slice a full
+                // slice next frame instead of repeatedly starving it.
+                impl_->cursor = index;
+                break;
+            }
         }
     }
 }

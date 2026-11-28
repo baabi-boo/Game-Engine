@@ -222,8 +222,9 @@ struct RetargetUpdate {
     std::size_t bones{};
 };
 
-// Single writer. No borrowed service pointers survive a call. Exact component,
-// skeleton and entity identities are checked; replacement retires attachments.
+// Single writer. Stored registry addresses are identity guards only and are not
+// dereferenced. Exact component instance, skeleton and entity identities are
+// checked; component replacement retires attachments even at a reused address.
 // Source->target edges are topologically ordered with entity-order tie breaks.
 // Weighted bindings require an active base player or an owned blend producer;
 // a paused unrefreshed target cannot repeatedly blend against its prior result.

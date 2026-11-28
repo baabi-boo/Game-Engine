@@ -199,6 +199,9 @@ struct TileLayout {
 // Returned field pointers survive until replacement/destroy; do not retain them
 // across service edits. Render entities are owned root nodes initially translated
 // by minus authored_origin; their vertices contain authored positions.
+// Each render binding retains its MeshLibrary identity and borrows its Scene.
+// Keep those owners alive until destroy/release_render_resources, and pass the
+// same owners for that binding. Release it before rebuilding with different owners.
 // sample() queries authored coordinates;
 // sample_world() includes current Scene translation and positive axis-aligned scale,
 // including origin rebases. Unsupported rotation, shear or reflection returns null.
@@ -218,6 +221,10 @@ public:
     [[nodiscard]] TerrainHandle find(TileCoordinate coordinate) const noexcept;
     [[nodiscard]] const Heightfield* get(TerrainHandle handle) const noexcept;
     [[nodiscard]] std::optional<TerrainInfo> inspect(TerrainHandle handle) const noexcept;
+    // Checks the Scene owner of an existing render binding. Consumers must
+    // separately validate that the bound entity still exists before using it.
+    [[nodiscard]] bool matches_render_scene(TerrainHandle handle,
+        const scene::Scene& scene) const noexcept;
     [[nodiscard]] std::vector<TerrainHandle> handles() const;
     [[nodiscard]] std::optional<TerrainSample> sample(TerrainHandle handle,
                                                     double world_x, double world_z) const noexcept;
