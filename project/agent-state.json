@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 543,
-  "updated_at": "2026-11-28T11:15:56.077982Z",
+  "revision": 554,
+  "updated_at": "2026-11-28T12:27:44.442282Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "d61185706ba89a8cc776e18e021dd9edfedad4cd4d38702c9b417b26434f941d",
-    "file_count": 298
+    "sha256": "2de1a0370652b05bd43543fcbb541f7706f930a4af54ee85fe1174a67e1e30a8",
+    "file_count": 309
   },
   "milestones": [
     {
@@ -4479,8 +4479,8 @@
       "claim_revision": 525,
       "blocker": null,
       "checkpoint": {
-        "summary": "73 Debug suites passed. Package relocation ran installed binaries successfully but rejected the source-local Ninja dependency; copied build tools outside the checkout without weakening package checks.",
-        "next_action": "Reconfigure cached tool paths and rerun package gate on unchanged source, then integrate low-level repairs and complete remaining reviews.",
+        "summary": "Resolved final sanitizer preflight test-hook mismatch with matching scalar nothrow allocation/deallocation; retained failed72/73 run and isolated repaired6/6 evidence. All100 worker reports are complete.",
+        "next_action": "Rebuild the corrected regression, rerun full84-suite Debug and73-native ASan/UBSan checks, finish Release compilation, publish exact reviewed source, then record final acceptance gates.",
         "files": []
       },
       "evidence": [
@@ -4490,7 +4490,10 @@
         "RUN-000008",
         "RUN-000009",
         "RUN-000010",
-        "RUN-000011"
+        "RUN-000011",
+        "RUN-000012",
+        "RUN-000013",
+        "RUN-000014"
       ],
       "completion": null
     }
@@ -4912,6 +4915,123 @@
         "path": "out/agent-runs/RUN-000011-3d279e44095a4a3da987e17596b2d3b2.log",
         "sha256": "de61861f7c376f44b810e7b69a197424e51ed57def1b9cc894f52c5a2eb23d70",
         "bytes": 28417
+      },
+      "note": "Process exited successfully."
+    },
+    {
+      "id": "RUN-000012",
+      "task": "AUDIT-20261128",
+      "check": "dev",
+      "actor": "coordinator",
+      "argv": [
+        "python",
+        "tools/ge.py",
+        "check",
+        "--preset",
+        "dev",
+        "--jobs",
+        "2"
+      ],
+      "started_at": "2026-11-28T11:26:16.927763Z",
+      "finished_at": "2026-11-28T11:29:00.354439Z",
+      "result": "passed",
+      "exit_code": 0,
+      "source_before": {
+        "sha256": "6e0f73e381ad4f12ae9e7a728c738482878c73e0e02c1297fd8198856cd99332",
+        "file_count": 304
+      },
+      "source_after": {
+        "sha256": "6e0f73e381ad4f12ae9e7a728c738482878c73e0e02c1297fd8198856cd99332",
+        "file_count": 304
+      },
+      "git": {
+        "status": "git",
+        "commit": "ff256b419ec63bff002fe6ff8e410a31cf77e9e1",
+        "dirty": false
+      },
+      "platform": "Linux x86_64 / Python 3.12.14",
+      "log": {
+        "path": "out/agent-runs/RUN-000012-b226ec209421494fa7a58b2372f9f577.log",
+        "sha256": "42245d2f00e4ac677a45f4eb41d1f69ca4d0c501b221f09adb2ba5867afb45b7",
+        "bytes": 21547
+      },
+      "note": "Process exited successfully."
+    },
+    {
+      "id": "RUN-000013",
+      "task": "AUDIT-20261128",
+      "check": "dev",
+      "actor": "coordinator",
+      "argv": [
+        "python",
+        "tools/ge.py",
+        "check",
+        "--preset",
+        "dev",
+        "--jobs",
+        "2"
+      ],
+      "started_at": "2026-11-28T11:38:50.311372Z",
+      "finished_at": "2026-11-28T11:43:25.665180Z",
+      "result": "passed",
+      "exit_code": 0,
+      "source_before": {
+        "sha256": "d1e895369de783f962249ec2b9179bf4269573d2451f94698d88aa3e88aa8aac",
+        "file_count": 307
+      },
+      "source_after": {
+        "sha256": "d1e895369de783f962249ec2b9179bf4269573d2451f94698d88aa3e88aa8aac",
+        "file_count": 307
+      },
+      "git": {
+        "status": "git",
+        "commit": "b12abc4f44309d0d5efdc3fe50c229f29af8599a",
+        "dirty": true
+      },
+      "platform": "Linux x86_64 / Python 3.12.14",
+      "log": {
+        "path": "out/agent-runs/RUN-000013-7825b2b59ec44834a1ec2975df564e0a.log",
+        "sha256": "807d4b9c9cf61d31d5e922d5a7b6d63dd809a867282c67c60f9ca5174bf4d27c",
+        "bytes": 25750
+      },
+      "note": "Process exited successfully."
+    },
+    {
+      "id": "RUN-000014",
+      "task": "AUDIT-20261128",
+      "check": "release",
+      "actor": "coordinator",
+      "argv": [
+        "python",
+        "tools/ge.py",
+        "check",
+        "--preset",
+        "release",
+        "--jobs",
+        "2"
+      ],
+      "started_at": "2026-11-28T11:47:04.785225Z",
+      "finished_at": "2026-11-28T11:57:40.914707Z",
+      "result": "passed",
+      "exit_code": 0,
+      "source_before": {
+        "sha256": "b8c4a76abf625f58017a3f64782764ff4ad0718afb329790c4fcac4946d1ef8a",
+        "file_count": 309
+      },
+      "source_after": {
+        "sha256": "b8c4a76abf625f58017a3f64782764ff4ad0718afb329790c4fcac4946d1ef8a",
+        "file_count": 309
+      },
+      "git": {
+        "status": "git",
+        "commit": "3b0fab5f44e6208f0bb9134411801dd2dfb909cd",
+        "dirty": false
+      },
+      "platform": "Linux x86_64 / Python 3.12.14",
+      "log": {
+        "path": "out/agent-runs/RUN-000014-e881612fa5d4454f825aeb092548285e.log",
+        "sha256": "cc8a5ea4898284fb407ebb23c220cb1eed3193d84c817bf95f780c8f0609977b",
+        "bytes": 29894
       },
       "note": "Process exited successfully."
     }
@@ -9260,6 +9380,94 @@
       "action": "run-check",
       "task": "AUDIT-20261128",
       "summary": "package: passed; receipt RUN-000011; Process exited successfully."
+    },
+    {
+      "revision": 544,
+      "at": "2026-11-28T11:26:14.944601Z",
+      "actor": "coordinator",
+      "action": "checkpoint",
+      "task": "AUDIT-20261128",
+      "summary": "Published480dac1 with73 Debug suites and relocated SDK/package success. Integrated executor, IO, binary, signals, asset type retention and tool/policy repairs;77 actual workers launched."
+    },
+    {
+      "revision": 545,
+      "at": "2026-11-28T11:29:00.439508Z",
+      "actor": "coordinator",
+      "action": "run-check",
+      "task": "AUDIT-20261128",
+      "summary": "dev: passed; receipt RUN-000012; Process exited successfully."
+    },
+    {
+      "revision": 546,
+      "at": "2026-11-28T11:34:55.316415Z",
+      "actor": "coordinator",
+      "action": "checkpoint",
+      "task": "AUDIT-20261128",
+      "summary": "Core/tool checkpoint passed79 suites. Integrated CLI/report UTF-8, verified blend-to-skinning render bridge, and event-time persistent identities for interaction-to-mission history.81 workers launched."
+    },
+    {
+      "revision": 547,
+      "at": "2026-11-28T11:38:47.401396Z",
+      "actor": "coordinator",
+      "action": "checkpoint",
+      "task": "AUDIT-20261128",
+      "summary": "Integrated final-pose rendering, interaction provenance, CLI diagnostics, and network authority handoff regressions through worker 081."
+    },
+    {
+      "revision": 548,
+      "at": "2026-11-28T11:43:25.739116Z",
+      "actor": "coordinator",
+      "action": "run-check",
+      "task": "AUDIT-20261128",
+      "summary": "dev: passed; receipt RUN-000013; Process exited successfully."
+    },
+    {
+      "revision": 549,
+      "at": "2026-11-28T11:46:50.720575Z",
+      "actor": "coordinator",
+      "action": "checkpoint",
+      "task": "AUDIT-20261128",
+      "summary": "Debug passed 82 suites; integrated worker082 fresh animation publication and worker083 transformed terrain endpoint repairs with focused before/after regressions."
+    },
+    {
+      "revision": 550,
+      "at": "2026-11-28T11:57:41.060245Z",
+      "actor": "coordinator",
+      "action": "run-check",
+      "task": "AUDIT-20261128",
+      "summary": "release: passed; receipt RUN-000014; Process exited successfully."
+    },
+    {
+      "revision": 551,
+      "at": "2026-11-28T12:02:16.542110Z",
+      "actor": "coordinator",
+      "action": "checkpoint",
+      "task": "AUDIT-20261128",
+      "summary": "Release passed 84 suites at prior source. Integrated independent streaming fallback and executor shutdown-reporting fixes plus current developer and package documentation."
+    },
+    {
+      "revision": 552,
+      "at": "2026-11-28T12:02:33.235550Z",
+      "actor": "coordinator",
+      "action": "checkpoint",
+      "task": "AUDIT-20261128",
+      "summary": "Integrated worker096 portable optimized allocation-failure regression; all released production and test fixes are now present, with final independent reviews continuing."
+    },
+    {
+      "revision": 553,
+      "at": "2026-11-28T12:17:11.181475Z",
+      "actor": "coordinator",
+      "action": "checkpoint",
+      "task": "AUDIT-20261128",
+      "summary": "All 100 distinct delegated reviews and reports completed. Integrated final worker099 animation event-publication repair, independently reviewed by098, and finalized source/accounting documentation."
+    },
+    {
+      "revision": 554,
+      "at": "2026-11-28T12:27:44.442282Z",
+      "actor": "coordinator",
+      "action": "checkpoint",
+      "task": "AUDIT-20261128",
+      "summary": "Resolved final sanitizer preflight test-hook mismatch with matching scalar nothrow allocation/deallocation; retained failed72/73 run and isolated repaired6/6 evidence. All100 worker reports are complete."
     }
   ]
 }

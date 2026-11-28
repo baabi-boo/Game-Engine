@@ -2,8 +2,11 @@
 
 #include "test_support.hpp"
 
+#include <atomic>
 #include <chrono>
 #include <cstddef>
+#include <memory>
+#include <stdexcept>
 #include <string>
 #include <utility>
 #include <vector>
@@ -199,6 +202,114 @@ void shared_dependency_and_pending_job_keep_their_capacity_until_retirement() {
     CHECK(fixture.cache.statistics().pending_bytes == 0);
 }
 
+void external_type_change_retains_fallback_through_retry_and_release() {
+    Fixture fixture;
+    const auto asset = fixture.add("data");
+    const auto previous = fixture.catalog.load(asset, fixture.cache);
+    const auto previous_revision = fixture.catalog.inspect(asset)->last_good_revision;
+    CHECK(fixture.cache.set_budget(8));
+    struct DecoderState {
+        std::atomic_bool fail{true};
+        std::atomic_uint calls{};
+    };
+    const auto decoder = std::make_shared<DecoderState>();
+    AssetTypeDescriptor type;
+    type.id = 2;
+    type.name = "converted";
+    type.maximum_source_bytes = 64;
+    type.maximum_resource_bytes = 8;
+    type.decode = [decoder](const ImportContext& context) {
+        ++decoder->calls;
+        if (decoder->fail) {
+            throw std::runtime_error("replacement failed");
+        }
+        ResourcePayload payload;
+        payload.bytes.assign(context.source.begin(), context.source.end());
+        payload.format = "converted";
+        return payload;
+    };
+    fixture.catalog.register_type(std::move(type));
+    auto definition = fixture.catalog.inspect(asset)->definition;
+    definition.type = 2;
+    fixture.catalog.update(std::move(definition));
+
+    StreamRequestOptions options;
+    options.attempts = 1;
+    const auto ticket = fixture.streamer.request(asset, fixture.consumer, options);
+    const auto initial = fixture.streamer.inspect(ticket);
+    CHECK(initial && initial->available == previous);
+    CHECK(initial->available_revision == previous_revision && initial->last_good);
+    CHECK(!fixture.streamer.pin(ticket, false));
+    const auto pin = fixture.streamer.pin(ticket);
+    CHECK(pin && pin->resource.type == binary_asset_type);
+    CHECK(fixture.streamer.pump().submitted == 0);
+    CHECK(decoder->calls == 0);
+    CHECK(fixture.cache.inspect(previous));
+    CHECK(fixture.cache.statistics().pending_bytes == 0);
+
+    CHECK(fixture.cache.set_budget(12));
+    CHECK(fixture.streamer.retry(ticket));
+    CHECK(fixture.streamer.pump().submitted == 1);
+    CHECK(fixture.executor.wait_idle(2s));
+    CHECK(fixture.streamer.pump().completed == 1);
+    CHECK(fixture.streamer.inspect(ticket)->state == StreamState::failed);
+    CHECK(fixture.streamer.inspect(ticket)->available == previous);
+    CHECK(fixture.streamer.inspect(ticket)->last_good);
+    CHECK(decoder->calls == 1);
+    CHECK(fixture.streamer.statistics().inflight_reserved_bytes == 0);
+    CHECK(fixture.cache.statistics().pending_bytes == 0);
+
+    decoder->fail = false;
+    CHECK(fixture.streamer.retry(ticket));
+    const auto replacement = fixture.await_ready(ticket);
+    CHECK(replacement.available.type == 2 && replacement.available != previous);
+    CHECK(!replacement.last_good);
+    CHECK(replacement.available_revision == fixture.catalog.inspect(asset)->revision);
+    CHECK(decoder->calls == 2);
+    CHECK(fixture.streamer.bytes(*pin).front() == std::byte{'d'});
+    CHECK(fixture.streamer.release(ticket));
+    (void)fixture.streamer.trim(0);
+    CHECK(!fixture.cache.inspect(replacement.available));
+    CHECK(fixture.cache.inspect(previous));
+    CHECK(fixture.streamer.bytes(*pin).size() == 4);
+    CHECK(fixture.streamer.release(*pin));
+    (void)fixture.streamer.trim(0);
+    CHECK(!fixture.cache.inspect(previous));
+    CHECK(fixture.streamer.statistics().explicit_pins == 0);
+    CHECK(fixture.streamer.statistics().jobs == 0);
+}
+
+void external_changed_type_dependency_manifest_is_not_guessed() {
+    Fixture fixture;
+    const auto dependency = fixture.add("dependency");
+    const auto asset = fixture.add("parent", {dependency});
+    const auto previous = fixture.catalog.load(asset, fixture.cache);
+    AssetTypeDescriptor type;
+    type.id = 2;
+    type.name = "converted";
+    type.maximum_source_bytes = 64;
+    type.maximum_resource_bytes = 64;
+    fixture.catalog.register_type(std::move(type));
+    auto definition = fixture.catalog.inspect(asset)->definition;
+    definition.type = 2;
+    fixture.catalog.update(std::move(definition));
+
+    const auto ticket = fixture.streamer.request(asset, fixture.consumer);
+    const auto snapshot = fixture.streamer.inspect(ticket);
+    CHECK(snapshot && !snapshot->available && !snapshot->last_good);
+    CHECK(!fixture.streamer.pin(ticket));
+    CHECK(fixture.cache.inspect(previous)->pins == 0);
+    (void)fixture.streamer.trim(0);
+    CHECK(!fixture.cache.inspect(previous));
+    const auto retained_dependency = fixture.cache.find(
+        dependency, fixture.catalog.inspect(dependency)->revision, binary_asset_type);
+    CHECK(retained_dependency);
+    CHECK(fixture.cache.inspect(*retained_dependency)->pins != 0);
+    CHECK(fixture.streamer.release(ticket));
+    (void)fixture.streamer.trim(0);
+    CHECK(!fixture.cache.inspect(*retained_dependency));
+}
+
 } // namespace
 
 int main() {
@@ -211,5 +322,9 @@ int main() {
          shared_request_closures_replace_obsolete_nodes_at_capacity},
         {"shared_dependency_and_pending_job_keep_their_capacity_until_retirement",
          shared_dependency_and_pending_job_keep_their_capacity_until_retirement},
+        {"external_type_change_retains_fallback_through_retry_and_release",
+         external_type_change_retains_fallback_through_retry_and_release},
+        {"external_changed_type_dependency_manifest_is_not_guessed",
+         external_changed_type_dependency_manifest_is_not_guessed},
     });
 }

@@ -218,6 +218,25 @@ class RepositoryPolicyTests(unittest.TestCase):
         self.write("engine/core/src/negative.cpp", '#define HEADER "ge/world/state.hpp"\n#include HEADER\n')
         self.assert_rejected("use a literal #include")
 
+    def test_source_symlinks_cannot_alias_modules_or_loop_during_resolution(self) -> None:
+        alias = self.root / "engine/core/include/ge/core/alias.hpp"
+        self.write("engine/core/src/negative.cpp", "#include <ge/core/alias.hpp>\n")
+        for target in (
+            self.root / "engine/world/include/ge/world/state.hpp",
+            Path("missing.hpp"),
+            Path("alias.hpp"),
+        ):
+            with self.subTest(target=target.name):
+                try:
+                    alias.symlink_to(target)
+                except (OSError, NotImplementedError) as error:
+                    self.skipTest(f"source symlink fixture unavailable: {error}")
+                try:
+                    result = self.assert_rejected("cannot inspect a symlinked source file")
+                    self.assertNotIn("Traceback", result.stderr)
+                finally:
+                    alias.unlink()
+
     def test_reviewed_platform_adapter_does_not_leak_into_public_headers(self) -> None:
         self.write("engine/world/src/state.cpp", "#include <ge/world/state.hpp>\n#ifdef _WIN32\n#include <windows.h>\n#endif\n")
         self.assert_passes()

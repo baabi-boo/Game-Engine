@@ -147,7 +147,9 @@ struct ReplicationBindingOptions {
     ge::PersistentId prefab{};
     ReplicationAuthority authority{ReplicationAuthority::Server};
     bool destroy_on_despawn{};
-    // Prediction consumes received_since and owns pose/velocity reconciliation.
+    // Prediction consumes received_since and owns pose/velocity reconciliation
+    // for locally owned, server-authoritative snapshots. A change of owner or
+    // authority publishes the handoff pose and releases prediction ownership.
     // Enablement, ownership and lifecycle still follow the authoritative stream.
     bool prediction_owned_pose{};
 };

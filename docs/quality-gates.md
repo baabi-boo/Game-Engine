@@ -1,15 +1,18 @@
 # Quality gates and acceptance evidence
 
 This document specifies **what must be checked**, not which runs have passed.
-Record dated execution results, source revision, environment, failures, and retained
-artifacts in [production verification](production/verification.md). A test definition
-or CI workflow is not a passing result. Hosted jobs require observed execution before
-their platforms can be described as verified.
+The [foundation verification record](production/verification.md) retains historical
+execution results, source revisions, environments, failures and artifacts for that
+milestone. Current runtime stabilization is described in the
+[stabilization report](production/stabilization-2026-11-28.md), with source-specific
+check receipts and acceptance in the [canonical task ledger](../project/agent-state.json).
+A test definition or CI workflow is not a passing result. Hosted jobs require
+observed execution before their platforms can be described as verified.
 
 F01–F09 below refine the archived blueprint's
 [eight expansion gates](research/open-world-blueprint.md#eight-gates-before-expanding-scope)
 into a smaller headless foundation contract. They are repository acceptance IDs,
-not additional claims made by the research. The current scope is defined by
+not additional claims made by the research. Their foundation scope is defined by
 [ADR 0001](adr/0001-headless-foundation.md).
 
 ## Command contract
@@ -116,8 +119,12 @@ For each accepted gate, record the reviewer, source revision, exact commands,
 toolchain/OS, configuration, fixture and package hashes, exit status, and artifact
 locations. Preserve failure logs as well as the eventual passing run. Distinguish
 local execution from hosted CI and native correctness from platform qualification.
-Use [production verification](production/verification.md) as the single current
-result ledger; this document remains the acceptance contract.
+Preserve historical foundation results in
+[foundation verification](production/verification.md). Record current runtime checks
+and acceptance against source fingerprints in the
+[canonical task ledger](../project/agent-state.json), with scope and limitations in
+the [stabilization report](production/stabilization-2026-11-28.md). This document
+retains the foundation acceptance contract.
 
 For lifecycle evidence, retain raw JSON and save/package fixtures. Describe its
 counters as **modeled reservations**, including pending and retiring bytes.

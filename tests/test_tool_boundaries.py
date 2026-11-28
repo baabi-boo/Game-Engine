@@ -130,6 +130,56 @@ class ToolBoundaryTests(unittest.TestCase):
         self.assertIn(b"\\u8def\\u5f84\\U0001f697", result.stderr)
         self.assertNotIn(b"Traceback", result.stderr)
 
+    def test_driver_reports_invalid_cache_encoding_without_a_traceback(self) -> None:
+        cache = self.root / "out" / "build" / "dev" / "CMakeCache.txt"
+        cache.parent.mkdir(parents=True)
+        cache.write_bytes(b"CMAKE_HOME_DIRECTORY:INTERNAL=\xff\n")
+        diagnostics = io.StringIO()
+        with mock.patch.object(driver, "ROOT", self.root), \
+                mock.patch.object(sys, "stderr", diagnostics):
+            status = driver.main(["test"])
+        self.assertEqual(status, 1)
+        self.assertIn("ge: error:", diagnostics.getvalue())
+        self.assertIn("decode", diagnostics.getvalue())
+        self.assertNotIn("Traceback", diagnostics.getvalue())
+
+    def test_benchmark_overflow_retains_a_serializable_failure_report(self) -> None:
+        binary = self.root / "binary"
+        binary.write_bytes(b"mock executable")
+        package = self.root / "district.gepack"
+        package.write_bytes(self.fixture_bytes)
+        output = self.root / "measurements.json"
+        previous = b"last validated report"
+        output.write_bytes(previous)
+        arguments = ["benchmark.py", "--binary", str(binary), "--package", str(package),
+                     "--runs", "1", "--output", str(output)]
+        for number in ("1e999", "-1e999"):
+            raw = (f'{{"mode":"inspect","schema_version":1,"regions":[],\n'
+                   f'"region_count":{number}}}').encode("ascii")
+
+            def emit_output(command: list[str], **kwargs) -> subprocess.CompletedProcess:
+                kwargs["stdout"].write(raw)
+                return subprocess.CompletedProcess(command, 0)
+
+            stdout, stderr = io.StringIO(), io.StringIO()
+            with self.subTest(number=number), \
+                    mock.patch.object(sys, "argv", arguments), \
+                    mock.patch.object(sys, "stdout", stdout), \
+                    mock.patch.object(sys, "stderr", stderr), \
+                    mock.patch.object(benchmark.platform, "platform", return_value="test host"), \
+                    mock.patch.object(benchmark, "source_git", return_value={}), \
+                    mock.patch.object(benchmark.subprocess, "run", side_effect=emit_output):
+                self.assertEqual(benchmark.main(), 1)
+                report = json.loads(stdout.getvalue())
+                self.assertEqual(report["status"], "failed")
+                self.assertIsNone(report["summary"])
+                self.assertEqual(report["runs"][0]["status"], "failed")
+                self.assertIn("finite", report["runs"][0]["error"])
+                self.assertIn(number, report["runs"][0]["stdout_excerpt"])
+                self.assertEqual(output.read_bytes(), previous)
+                self.assertIn("output preserved", stderr.getvalue())
+                self.assertEqual(list(self.root.glob(".ge-measure-*")), [])
+
     def test_benchmark_unicode_success_and_failure_preserve_publication(self) -> None:
         package = self.unicode / "district \u96ea.gepack"
         package.write_bytes(self.fixture_bytes)

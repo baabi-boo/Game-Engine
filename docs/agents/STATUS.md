@@ -3,11 +3,11 @@
 # Agent project status
 
 - **Project:** Game Engine
-- **Ledger revision:** 543
-- **Recorded update:** 2026\-11\-28T11:15:56.077982Z
+- **Ledger revision:** 554
+- **Recorded update:** 2026\-11\-28T12:27:44.442282Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** d61185706ba89a8cc776e18e021dd9edfedad4cd4d38702c9b417b26434f941d
-- **Source files:** 298
+- **Source fingerprint:** 2de1a0370652b05bd43543fcbb541f7706f930a4af54ee85fe1174a67e1e30a8
+- **Source files:** 309
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -41,7 +41,7 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 | CODE\-INTEGRATION: Integrate source\-only 100\-agent engine expansion | 0 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
 | M0\-FOUNDATION: Published headless foundation | 0 | M0 | done | setup\-coordinator | none | Preserve historical evidence and continue through the first playable gates. |
 | OPS\-AGENT\-SYSTEM: Install agent coordination and automatic project\-state updates | 0 | OPS | done | coordinator | none | For the next authorized session, inspect the published branch and hosted CI, follow docs/agents/CONTINUE.md, and select M1\-010 only when first\-playable work is within the current user objective. |
-| AUDIT\-20261128: Compile, connect and review existing engine source with 100 actual workers | 1 | M1 | in\_progress | coordinator | none | Reconfigure cached tool paths and rerun package gate on unchanged source, then integrate low\-level repairs and complete remaining reviews. |
+| AUDIT\-20261128: Compile, connect and review existing engine source with 100 actual workers | 1 | M1 | in\_progress | coordinator | none | Rebuild the corrected regression, rerun full84\-suite Debug and73\-native ASan/UBSan checks, finish Release compilation, publish exact reviewed source, then record final acceptance gates. |
 | CODE\-001: Spatial mathematics | 1 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
 | CODE\-DEPENDENCIES: Declare runtime expansion dependency policy | 1 | OPS | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
 | CODE\-002: Bounded allocation and containers | 2 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
@@ -190,8 +190,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 525
 - Write scope: engine/, apps/, tests/, tools/, cmake/, CMakeLists.txt, CMakePresets.json, README.md, docs/architecture/, docs/development/, docs/production/, docs/quality\-gates.md, .github/workflows/ci.yml
 - Blocker: none
-- Preserved work: 73 Debug suites passed. Package relocation ran installed binaries successfully but rejected the source\-local Ninja dependency; copied build tools outside the checkout without weakening package checks.
-- Next action: Reconfigure cached tool paths and rerun package gate on unchanged source, then integrate low\-level repairs and complete remaining reviews.
+- Preserved work: Resolved final sanitizer preflight test\-hook mismatch with matching scalar nothrow allocation/deallocation; retained failed72/73 run and isolated repaired6/6 evidence. All100 worker reports are complete.
+- Next action: Rebuild the corrected regression, rerun full84\-suite Debug and73\-native ASan/UBSan checks, finish Release compilation, publish exact reviewed source, then record final acceptance gates.
 
 
 ## Evidence observations
@@ -209,8 +209,11 @@ These are historical observations. A pass neither completes a task nor remains c
 | RUN-000007 | AUDIT\-20261128 | dev | passed | c79ae93cf1599ccb (historical) | 2026\-11\-28T10:30:35.974048Z |
 | RUN-000008 | AUDIT\-20261128 | dev | passed | 772f59b96579d6a1 (historical) | 2026\-11\-28T10:46:27.279201Z |
 | RUN-000009 | AUDIT\-20261128 | release | passed | 55ce24797255ff00 (historical) | 2026\-11\-28T11:03:51.593246Z |
-| RUN-000010 | AUDIT\-20261128 | package | failed | d61185706ba89a8c (recorded snapshot) | 2026\-11\-28T11:11:31.978787Z |
-| RUN-000011 | AUDIT\-20261128 | package | passed | d61185706ba89a8c (recorded snapshot) | 2026\-11\-28T11:15:56.048018Z |
+| RUN-000010 | AUDIT\-20261128 | package | failed | d61185706ba89a8c (historical) | 2026\-11\-28T11:11:31.978787Z |
+| RUN-000011 | AUDIT\-20261128 | package | passed | d61185706ba89a8c (historical) | 2026\-11\-28T11:15:56.048018Z |
+| RUN-000012 | AUDIT\-20261128 | dev | passed | 6e0f73e381ad4f12 (historical) | 2026\-11\-28T11:29:00.354439Z |
+| RUN-000013 | AUDIT\-20261128 | dev | passed | d1e895369de783f9 (historical) | 2026\-11\-28T11:43:25.665180Z |
+| RUN-000014 | AUDIT\-20261128 | release | passed | b8c4a76abf625f58 (historical) | 2026\-11\-28T11:57:40.914707Z |
 
 ## Completion records
 
@@ -219,17 +222,6 @@ These are historical observations. A pass neither completes a task nor remains c
 
 ## Recent operations
 
-- Revision 524 — 2026\-11\-28T06:42:49.529861Z — coordinator: add AUDIT\-20261128. Added planned task AUDIT\-20261128: Compile, connect and review existing engine source with 100 actual workers.
-- Revision 525 — 2026\-11\-28T06:42:49.758845Z — coordinator: claim AUDIT\-20261128. Claimed AUDIT\-20261128 with its recorded write scope.
-- Revision 526 — 2026\-11\-28T07:09:40.508376Z — coordinator: checkpoint AUDIT\-20261128. Integrated first audit repairs and meaningful runtime coverage: strict build blockers, kernel/event lifecycle, executor cancellation, IO, CLI, math, codecs, allocator/ECS safety, CPU skinning bridge, module boundaries and packaging. Scene\-depth defect reproduced and repaired. Input disconnect and serialization findings remain queued for subsequent repair; audit remains in progress.
-- Revision 527 — 2026\-11\-28T07:13:06.930913Z — coordinator: run\-check AUDIT\-20261128. dev: passed; receipt RUN\-000005; Process exited successfully.
-- Revision 528 — 2026\-11\-28T09:35:53.799122Z — coordinator: checkpoint AUDIT\-20261128. Resumed the owner\-authorized existing\-code audit from published checkpoint 876ec25 in a clean checkout. Preserved prior 21\-worker register and unresolved input/serialization findings; beginning a separate 100\-worker stabilization pass with actual IDs. Toolchain doctor now passes; baseline strict GCC build is running.
-- Revision 529 — 2026\-11\-28T10:04:48.212380Z — coordinator: checkpoint AUDIT\-20261128. Completed 22 actual new worker runs and integrated input, serialization, streaming, kernel lifecycle, math, physics, character, vehicle, constraints, geometry and camera/visibility repairs. Preserved prior audit history. Baseline builds and exploratory targeted regressions passed; LSan unavailable under host tracing. Batching cache lifetime defect is queued for next isolated repair.
-- Revision 530 — 2026\-11\-28T10:09:36.233748Z — coordinator: run\-check AUDIT\-20261128. dev: passed; receipt RUN\-000006; Process exited successfully.
-- Revision 531 — 2026\-11\-28T10:22:11.119152Z — coordinator: checkpoint AUDIT\-20261128. Published verified checkpoint 96edced; integrated isolated workers 023\-028 for cache lifetimes, depth validation, callback ownership and transactional animation.
-- Revision 532 — 2026\-11\-28T10:29:41.588336Z — coordinator: checkpoint AUDIT\-20261128. Integrated workers 023\-032 and documented 37 actual launches, 34 completed reports; added cache, render ownership and animation regressions.
-- Revision 533 — 2026\-11\-28T10:30:36.004824Z — coordinator: run\-check AUDIT\-20261128. dev: passed; receipt RUN\-000007; Process exited successfully.
-- Revision 534 — 2026\-11\-28T10:33:33.217443Z — coordinator: checkpoint AUDIT\-20261128. Published second verified checkpoint 6019b32 with 47 passing suites; integrated skinning mesh lifetime and ECS component identity. Forty distinct workers launched.
 - Revision 535 — 2026\-11\-28T10:45:21.314208Z — coordinator: checkpoint AUDIT\-20261128. Integrated shared component ownership across animation and particles, navmesh and terrain ownership/sampling, VM fairness and config transactions. Forty\-eight workers launched; 45 completed.
 - Revision 536 — 2026\-11\-28T10:46:27.319437Z — coordinator: run\-check AUDIT\-20261128. dev: passed; receipt RUN\-000008; Process exited successfully.
 - Revision 537 — 2026\-11\-28T10:49:15.777850Z — coordinator: checkpoint AUDIT\-20261128. Published third verified checkpoint a8573fb with56 passing suites. Integrated Unicode offsets, retry ACK histories and raw datagram expiry from workers046\-048.
@@ -239,5 +231,16 @@ These are historical observations. A pass neither completes a task nor remains c
 - Revision 541 — 2026\-11\-28T11:11:32.010568Z — coordinator: run\-check AUDIT\-20261128. package: failed; receipt RUN\-000010; Process exited with status 1.
 - Revision 542 — 2026\-11\-28T11:15:31.458829Z — coordinator: checkpoint AUDIT\-20261128. 73 Debug suites passed. Package relocation ran installed binaries successfully but rejected the source\-local Ninja dependency; copied build tools outside the checkout without weakening package checks.
 - Revision 543 — 2026\-11\-28T11:15:56.077982Z — coordinator: run\-check AUDIT\-20261128. package: passed; receipt RUN\-000011; Process exited successfully.
+- Revision 544 — 2026\-11\-28T11:26:14.944601Z — coordinator: checkpoint AUDIT\-20261128. Published480dac1 with73 Debug suites and relocated SDK/package success. Integrated executor, IO, binary, signals, asset type retention and tool/policy repairs;77 actual workers launched.
+- Revision 545 — 2026\-11\-28T11:29:00.439508Z — coordinator: run\-check AUDIT\-20261128. dev: passed; receipt RUN\-000012; Process exited successfully.
+- Revision 546 — 2026\-11\-28T11:34:55.316415Z — coordinator: checkpoint AUDIT\-20261128. Core/tool checkpoint passed79 suites. Integrated CLI/report UTF\-8, verified blend\-to\-skinning render bridge, and event\-time persistent identities for interaction\-to\-mission history.81 workers launched.
+- Revision 547 — 2026\-11\-28T11:38:47.401396Z — coordinator: checkpoint AUDIT\-20261128. Integrated final\-pose rendering, interaction provenance, CLI diagnostics, and network authority handoff regressions through worker 081.
+- Revision 548 — 2026\-11\-28T11:43:25.739116Z — coordinator: run\-check AUDIT\-20261128. dev: passed; receipt RUN\-000013; Process exited successfully.
+- Revision 549 — 2026\-11\-28T11:46:50.720575Z — coordinator: checkpoint AUDIT\-20261128. Debug passed 82 suites; integrated worker082 fresh animation publication and worker083 transformed terrain endpoint repairs with focused before/after regressions.
+- Revision 550 — 2026\-11\-28T11:57:41.060245Z — coordinator: run\-check AUDIT\-20261128. release: passed; receipt RUN\-000014; Process exited successfully.
+- Revision 551 — 2026\-11\-28T12:02:16.542110Z — coordinator: checkpoint AUDIT\-20261128. Release passed 84 suites at prior source. Integrated independent streaming fallback and executor shutdown\-reporting fixes plus current developer and package documentation.
+- Revision 552 — 2026\-11\-28T12:02:33.235550Z — coordinator: checkpoint AUDIT\-20261128. Integrated worker096 portable optimized allocation\-failure regression; all released production and test fixes are now present, with final independent reviews continuing.
+- Revision 553 — 2026\-11\-28T12:17:11.181475Z — coordinator: checkpoint AUDIT\-20261128. All 100 distinct delegated reviews and reports completed. Integrated final worker099 animation event\-publication repair, independently reviewed by098, and finalized source/accounting documentation.
+- Revision 554 — 2026\-11\-28T12:27:44.442282Z — coordinator: checkpoint AUDIT\-20261128. Resolved final sanitizer preflight test\-hook mismatch with matching scalar nothrow allocation/deallocation; retained failed72/73 run and isolated repaired6/6 evidence. All100 worker reports are complete.
 
 The canonical ledger retains the complete operation history.

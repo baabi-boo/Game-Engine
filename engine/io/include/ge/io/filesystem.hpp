@@ -258,6 +258,8 @@ public:
     [[nodiscard]] WatchId watch(std::string_view path, WatchOptions options = {});
     bool unwatch(WatchId watch);
     [[nodiscard]] std::vector<WatchInfo> watches() const;
+    // Exceptions retain every watch snapshot. An overflow result advances only
+    // the watches whose complete change batches are included in that result.
     [[nodiscard]] PollResult poll_changes(std::size_t maximum_changes = 0);
     [[nodiscard]] IoStatistics statistics() const;
 

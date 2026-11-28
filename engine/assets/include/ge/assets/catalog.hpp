@@ -113,6 +113,9 @@ struct AssetRecord {
     AssetDefinition definition;
     AssetRevision revision{1};
     AssetRevision last_good_revision;
+    // Paired with last_good_revision even when update changes definition.type.
+    // Restoring a catalog clears both until a resource is imported again.
+    AssetTypeId last_good_type{};
     ImportStatus status{ImportStatus::registered};
     std::uint64_t request_generation{};
     std::uint64_t source_cache_key{};

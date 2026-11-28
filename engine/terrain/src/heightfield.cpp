@@ -917,8 +917,20 @@ std::optional<TerrainSample> TerrainService::sample_world(
     if (!matrix || !axis_aligned(*matrix)) {
         return std::nullopt;
     }
+    const auto& desc = value->field->description();
+    const double minimum_x = (*matrix)(0, 0) * desc.origin.x + (*matrix)(0, 3);
+    const double minimum_z = (*matrix)(2, 2) * desc.origin.z + (*matrix)(2, 3);
+    const double maximum_x = (*matrix)(0, 0) *
+        (desc.origin.x + static_cast<double>(desc.columns - 1) * desc.spacing.x) + (*matrix)(0, 3);
+    const double maximum_z = (*matrix)(2, 2) *
+        (desc.origin.z + static_cast<double>(desc.rows - 1) * desc.spacing.y) + (*matrix)(2, 3);
+    // Reject outside points in the query's coordinate space before the inverse
+    // transform can round an exact endpoint beyond the authored field boundary.
+    if (x < minimum_x || x > maximum_x || z < minimum_z || z > maximum_z) {
+        return std::nullopt;
+    }
     auto result = value->field->sample((x - (*matrix)(0, 3)) / (*matrix)(0, 0),
-                                       (z - (*matrix)(2, 3)) / (*matrix)(2, 2));
+        (z - (*matrix)(2, 3)) / (*matrix)(2, 2), SampleBoundary::Clamp);
     if (!result) {
         return std::nullopt;
     }
@@ -952,7 +964,11 @@ std::optional<math::Aabb> TerrainService::world_bounds(scene::Scene& scene, Terr
     if (!matrix || !axis_aligned(*matrix)) {
         return std::nullopt;
     }
-    const auto bounds = math::transform_bounds(*matrix, value->field->bounds());
+    const auto authored = value->field->bounds();
+    // The positive axis-aligned transform preserves corner order. Transforming
+    // the corners directly also matches the inclusive world sampling interval.
+    const math::Aabb bounds{math::transform_point(*matrix, authored.min),
+                            math::transform_point(*matrix, authored.max)};
     return math::valid(bounds) ? std::optional<math::Aabb>{bounds} : std::nullopt;
 }
 

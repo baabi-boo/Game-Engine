@@ -1,5 +1,7 @@
 #include <ge/core/runtime.hpp>
 
+#include <ge/core/binary.hpp>
+
 #include <charconv>
 #include <chrono>
 #include <cmath>
@@ -550,9 +552,21 @@ std::string json_escape(std::string_view text) {
     constexpr char hex[] = "0123456789abcdef";
     std::string result;
     result.reserve(text.size());
-    for (const char character : text) {
+    for (std::size_t cursor = 0; cursor < text.size(); ++cursor) {
+        const auto character = text[cursor];
         const auto byte = static_cast<unsigned char>(character);
-        if (character == '"' || character == '\\') {
+        if (byte >= 0x80U) {
+            const std::size_t length = byte >= 0xc2U && byte <= 0xdfU ? 2U
+                : byte >= 0xe0U && byte <= 0xefU ? 3U
+                : byte >= 0xf0U && byte <= 0xf4U ? 4U : 0U;
+            if (length != 0 && length <= text.size() - cursor &&
+                valid_utf8(text.substr(cursor, length))) {
+                result.append(text.substr(cursor, length));
+                cursor += length - 1U;
+            } else {
+                result += "\\ufffd";
+            }
+        } else if (character == '"' || character == '\\') {
             result += '\\';
             result += character;
         } else if (byte < 0x20) {

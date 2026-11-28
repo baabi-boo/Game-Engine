@@ -354,7 +354,7 @@ def main(argv: list[str] | None = None) -> int:
         status = error.returncode if error.returncode > 0 else 128 - error.returncode
         _message(f"command failed with exit code {status}: {_command_text(error.cmd)}")
         return status
-    except (DriverError, OSError) as error:
+    except (DriverError, OSError, UnicodeError) as error:
         _message(f"error: {error}")
         return 1
     except KeyboardInterrupt:

@@ -1,9 +1,12 @@
 # Developer setup
 
-This guide builds the headless foundation and its contract tests. Read the
+This guide builds the composed headless runtime, the retained lifecycle fixture,
+and their contract and integration tests. Read the
 [architecture overview](../architecture/overview.md) for the implemented scope.
-The host/toolchain combinations below are development targets; observed local
-and hosted results belong in [production verification](../production/verification.md).
+The host/toolchain combinations below are development targets. See
+[production verification](../production/verification.md) for historical results and
+the [stabilization review](../production/stabilization-2026-11-28.md) and
+[task ledger](../../project/agent-state.json) for source-specific review receipts.
 A CI job definition alone does not establish that its platform passed.
 
 ## Provision the tools
@@ -41,6 +44,7 @@ python3 tools/ge.py doctor
 python3 tools/ge.py check
 python3 tools/ge.py run --inspect
 python3 tools/ge.py run
+out/build/dev/bin/ge_runtime --ticks 3 --step 0.125
 ```
 
 `doctor` checks tool discovery and compiles/links a temporary C++20 probe under
@@ -48,9 +52,12 @@ python3 tools/ge.py run
 `CMAKE_TOOLCHAIN_FILE`; it does not rewrite your compiler choice or inspect an
 existing preset's compiler cache. `check` validates the actual repository build.
 
-The executable prints package metadata or lifecycle JSON. Its counters describe
-modeled reservations and synchronous policy transitions, not measured asset
-memory or graphics performance. The driver also prints build output and commands.
+`tools/ge.py run` launches `ge_headless`, which prints package metadata or lifecycle
+JSON. Its counters describe modeled reservations and synchronous policy transitions,
+not measured asset
+memory or graphics performance. `ge_runtime` runs the installed engine services
+and emits a separate JSON report. Use `ge_runtime.exe` on Windows. The driver
+also prints build output and commands.
 
 | CLI command | Behavior |
 | --- | --- |
@@ -75,6 +82,29 @@ python3 tools/ge.py package
 
 See [quality gates](../quality-gates.md) for required acceptance evidence and
 [packaging](packaging.md) for the installed runtime and SDK workflow.
+
+### Composed runtime commands
+
+After the normal build, inspect the commands registered by the actual modules:
+
+```sh
+out/build/dev/bin/ge_runtime --commands
+out/build/dev/bin/ge_runtime --help
+```
+
+Use `--script PATH` for a UTF-8 command file, `--interactive` for standard-input
+commands, and `--report PATH` to write the final JSON report. For example:
+
+```sh
+python3 -c "from pathlib import Path; Path('out/runtime.commands').write_text('mesh.create demo box 2\ntick\n', encoding='utf-8')"
+out/build/dev/bin/ge_runtime --script out/runtime.commands --ticks 2 --step 0.125 --report out/runtime.json
+```
+
+This creates a box mesh and advances three frames: one from the script's `tick`
+and two from `--ticks`. Runtime commands do not require the district `.gepack`.
+Creating a mesh alone does not create a camera or a renderable scene node; use
+the populated [runtime integration test](../../tests/runtime_integration_tests.cpp)
+as a composition example. The host is headless and does not open a graphical window.
 
 ## Presets, overrides, and cached settings
 
@@ -166,9 +196,10 @@ ctest --test-dir out/build/msvc -C Release --output-on-failure --no-tests=error
 ```
 
 This generator chooses Debug/Release at build, test, and install time; do not use
-`CMAKE_BUILD_TYPE` to choose its configuration. The Release host is
-`out/build/msvc/bin/Release/ge_headless.exe`. Keep this tree separate from the
-Ninja preset trees; `tools/ge.py` does not drive arbitrary raw build directories.
+`CMAKE_BUILD_TYPE` to choose its configuration. The Release executables are
+`out/build/msvc/bin/Release/ge_headless.exe` and `ge_runtime.exe` in the same
+directory. Keep this tree separate from the Ninja preset trees; `tools/ge.py` does
+not drive arbitrary raw build directories.
 
 ### Linux sanitizer diagnostics
 
@@ -198,6 +229,7 @@ leaks. The committed sanitizer CI configuration does not disable leak detection.
 | --- | --- |
 | `out/build/PRESET/` | CMake cache, build files, native libraries, tests, and `compile_commands.json`. |
 | `out/build/PRESET/bin/ge_headless` | Ninja-built host; filename ends in `.exe` on Windows. |
+| `out/build/PRESET/bin/ge_runtime` | Ninja-built composed runtime and command host; `.exe` on Windows. |
 | `out/build/PRESET/assets/district.gepack` | Cooked reference fixture. |
 | `out/build/PRESET/packages/` | ZIP/TGZ archives and SHA-256 sidecar files from CPack. |
 | `out/install/PRESET/` | Preset's default destination for an explicit CMake install. |
@@ -210,11 +242,13 @@ An explicit Release install is:
 cmake --install out/build/release --config Release --prefix out/install/release
 ```
 
-Build that configuration first. The installed tree contains the host in `bin/`,
+Build that configuration first. The installed tree contains both executables in `bin/`,
 the fixture in `share/game-engine/assets/`, public headers, static libraries, and
 CMake package exports under the configured library directory. Consumers use
 `find_package(GameEngine CONFIG REQUIRED)` and the targets `ge::core`,
-`ge::content`, and `ge::world`, with the install prefix on `CMAKE_PREFIX_PATH`.
+`ge::content`, `ge::world`, and `ge::engine`, with the install prefix on
+`CMAKE_PREFIX_PATH`. Link `ge::engine` for domain APIs; it brings the three
+foundation libraries and declared thread dependency transitively.
 Match compiler ABI, architecture, runtime, and configuration; an instrumented
 SDK also requires compatible sanitizer runtimes. A moved install tree is not
 automatically a portable binary SDK for another platform or toolchain.

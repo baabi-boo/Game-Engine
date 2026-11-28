@@ -582,7 +582,8 @@ struct ReplicationService::Impl {
                 value.authority != binding.options.authority || value.prefab != binding.options.prefab ||
                 value.acknowledged_input.has_value()))
                 return ReplicationError::Unauthorized;
-            const bool predicted = binding.options.prediction_owned_pose && value.owner == config.local_identity;
+            const bool predicted = binding.options.prediction_owned_pose && value.owner == config.local_identity &&
+                value.authority == ReplicationAuthority::Server;
             if (physics && !predicted) {
                 const auto* body = physics->get(binding.entity);
                 if (body && value.has_velocity) {
@@ -606,7 +607,8 @@ struct ReplicationService::Impl {
         runtime.position = runtime.position - *offset;
         if (!bounded(runtime.position, 1.0e12)) return ReplicationError::ApplyFailed;
         const auto body = physics ? physics->find(binding.entity) : physics::BodyHandle{};
-        const bool predicted = binding.options.prediction_owned_pose && value.owner == config.local_identity;
+        const bool predicted = binding.options.prediction_owned_pose && value.owner == config.local_identity &&
+            value.authority == ReplicationAuthority::Server;
         if (!predicted) {
             if (body) {
                 const auto* state = physics->get(body);
@@ -634,7 +636,8 @@ struct ReplicationService::Impl {
         binding.options.owner = value.owner;
         binding.options.authority = value.authority;
         binding.acknowledged_input = value.acknowledged_input;
-        if (value.owner != config.local_identity) binding.options.prediction_owned_pose = false;
+        if (value.owner != config.local_identity || value.authority != ReplicationAuthority::Server)
+            binding.options.prediction_owned_pose = false;
         return ReplicationError::None;
     }
     ReplicationError apply(PeerRecord& peer, const SnapshotFrame& frame) {
@@ -850,7 +853,8 @@ ReplicationResult ReplicationService::set_owner(NetworkEntityId id, ge::Persiste
     if (found->second.binding.options.owner != owner) found->second.binding.acknowledged_input.reset();
     found->second.binding.options.owner = owner;
     found->second.binding.options.authority = authority;
-    if (owner != impl_->config.local_identity) found->second.binding.options.prediction_owned_pose = false;
+    if (owner != impl_->config.local_identity || authority != ReplicationAuthority::Server)
+        found->second.binding.options.prediction_owned_pose = false;
     return {ReplicationError::None, 1};
 }
 ReplicationResult ReplicationService::set_prediction_owned(NetworkEntityId id, bool enabled) {

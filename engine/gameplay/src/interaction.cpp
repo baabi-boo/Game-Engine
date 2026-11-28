@@ -279,7 +279,8 @@ struct InteractionService::Impl {
         name.resize(std::min(name.size(), string_limit));
         message.resize(std::min(message.size(), string_limit));
         history.push_back({++sequence, tick, serial, kind, reason, actor, target,
-                           point(target), index, std::move(name), std::move(message)});
+                           point(target), index, std::move(name), std::move(message),
+                           registry.persistent_id(actor), registry.persistent_id(target)});
     }
     InteractionError filter(ecs::Entity actor, ecs::Entity target,
                             const InteractionActorComponent& a, const InteractableComponent& t) {

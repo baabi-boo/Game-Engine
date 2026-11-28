@@ -13,17 +13,38 @@
 
 namespace {
 
-// Fail the marker payload copy without depending on unrelated allocation order.
+// Fail the marker payload copy without depending on unrelated allocation order
+// or a standard library's string capacity/alignment policy.
 std::size_t rejected_allocation_size{};
+std::size_t observed_allocation_size{};
+bool observe_allocations{};
 
 struct RejectAllocation {
     explicit RejectAllocation(std::size_t size) { rejected_allocation_size = size; }
     ~RejectAllocation() { rejected_allocation_size = 0; }
 };
 
+struct ObserveAllocation {
+    ObserveAllocation() { observed_allocation_size = 0; observe_allocations = true; }
+    ~ObserveAllocation() { observe_allocations = false; }
+};
+
 } // namespace
 
-void* operator new(std::size_t size) {
+// Keep the test allocation boundary visible in optimized builds. In particular,
+// inlining only delete can make GCC diagnose this malloc/free pair as mismatched.
+#if defined(_MSC_VER)
+#define GE_TEST_NOINLINE __declspec(noinline)
+#elif defined(__GNUC__)
+#define GE_TEST_NOINLINE __attribute__((noinline))
+#else
+#define GE_TEST_NOINLINE
+#endif
+
+GE_TEST_NOINLINE void* operator new(std::size_t size) {
+    if (observe_allocations && size > observed_allocation_size) {
+        observed_allocation_size = size;
+    }
     if (rejected_allocation_size != 0 && size == rejected_allocation_size) {
         rejected_allocation_size = 0;
         throw std::bad_alloc{};
@@ -32,8 +53,10 @@ void* operator new(std::size_t size) {
     throw std::bad_alloc{};
 }
 
-void operator delete(void* memory) noexcept { std::free(memory); }
-void operator delete(void* memory, std::size_t) noexcept { std::free(memory); }
+GE_TEST_NOINLINE void operator delete(void* memory) noexcept { std::free(memory); }
+GE_TEST_NOINLINE void operator delete(void* memory, std::size_t) noexcept { std::free(memory); }
+
+#undef GE_TEST_NOINLINE
 
 namespace {
 
@@ -137,6 +160,7 @@ struct PlayerFixture {
     CurveService curves{4, 4};
     ge::ecs::Entity entity{};
     CurvePlayerHandle player{};
+    const std::string marker_payload = std::string(4093, 'x');
 
     PlayerFixture() {
         entity = scene.create("curve-target");
@@ -145,7 +169,7 @@ struct PlayerFixture {
         CHECK(position.assign({{0.0, {}}, {1.0, {10.0, 0.0, 0.0}}}));
         CurveTrackSet set;
         CHECK(set.assign("timeline", 1.0, {{"position", CurveProperty::Position, position, {}}},
-            {{0.5, "arrived", std::string(4093, 'x')}}));
+            {{0.5, "arrived", marker_payload}}));
         const auto resource = curves.create(std::move(set));
         CHECK(resource);
         player = curves.play(scene, nullptr, entity, resource, CurveBindingRoute::SceneLocal, WrapMode::Clamp);
@@ -157,8 +181,16 @@ struct PlayerFixture {
 void marker_allocation_precedes_transform_publication() {
     PlayerFixture fixture;
     const auto revision = fixture.curves.state(fixture.player)->applied_revision;
+    std::size_t payload_allocation{};
     {
-        const RejectAllocation reject_payload(4094);
+        const ObserveAllocation observe_copy;
+        const auto copy = fixture.marker_payload;
+        CHECK(copy == fixture.marker_payload);
+        payload_allocation = observed_allocation_size;
+    }
+    CHECK(payload_allocation >= fixture.marker_payload.size() + 1);
+    {
+        const RejectAllocation reject_payload(payload_allocation);
         CHECK_THROWS_AS(fixture.curves.update(fixture.scene, nullptr, 0.5), std::bad_alloc);
     }
     near(fixture.scene.local_transform(fixture.entity)->position.x, 0.0);

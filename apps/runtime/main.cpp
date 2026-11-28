@@ -80,10 +80,12 @@ Options parse_options(int argc, CommandCharacter* argv[]) {
             options.interactive = true;
         } else if (arg == "--commands") {
             options.list_commands = true;
-        } else if (arg == "--script") {
-            options.script = std::filesystem::path{value()};
-        } else if (arg == "--report") {
-            options.report = std::filesystem::path{value()};
+        } else if (arg == "--script" || arg == "--report") {
+            const auto path = value();
+            if (path.empty()) {
+                throw std::invalid_argument(arg + " requires a nonempty path");
+            }
+            (arg == "--script" ? options.script : options.report) = std::filesystem::path{path};
         } else if (arg == "--ticks") {
             const auto text = argument_text(value());
             const auto parsed = std::from_chars(text.data(), text.data() + text.size(), options.ticks);
@@ -135,6 +137,9 @@ ge::core::CommandResult advance_frame(ge::core::Kernel& kernel) {
 
 ge::core::CommandResult execute_command(ge::core::Kernel& kernel, std::string_view line) {
     try {
+        if (!ge::core::valid_utf8(line)) {
+            return {false, "command text must be valid UTF-8"};
+        }
         const auto args = ge::core::tokenize_command(line);
         if (args.empty()) {
             return {true, {}};
@@ -191,6 +196,13 @@ bool consume_commands(ge::core::Kernel& kernel, std::istream& input, bool intera
     return success;
 }
 
+void flush_output() {
+    std::cout.flush();
+    if (!std::cout) {
+        throw std::runtime_error("cannot write runtime output");
+    }
+}
+
 void install_core_services(ge::core::Kernel& kernel) {
     kernel.services().emplace<ge::core::LinearArena>(8U * 1024U * 1024U);
     kernel.services().emplace<ge::core::BudgetResource>(256U * 1024U * 1024U);
@@ -221,6 +233,7 @@ int main(int argc, char* argv[]) {
                          "           [--set key=value] [--interactive] [--commands] [--report path]\n"
                          "Commands operate on installed engine services. Type tick in a script\n"
                          "or console to advance one simulation frame.\n";
+            flush_output();
             return 0;
         }
         ge::core::Kernel kernel;
@@ -244,6 +257,7 @@ int main(int argc, char* argv[]) {
                           << " callback(s) failed\n";
                 return 1;
             }
+            flush_output();
             return 0;
         }
         bool success = true;
@@ -284,10 +298,7 @@ int main(int argc, char* argv[]) {
                 throw std::runtime_error("cannot write runtime report");
             }
         }
-        std::cout.flush();
-        if (!std::cout) {
-            throw std::runtime_error("cannot write runtime output");
-        }
+        flush_output();
         return success ? 0 : 1;
     } catch (const std::exception& error) {
         std::cerr << "ge_runtime: " << error.what() << '\n';

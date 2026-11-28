@@ -1037,6 +1037,7 @@ ResourceHandle AssetCatalog::publish_import(ImportProduct product, ResourceCache
     record.source_bytes = product.source.size;
     record.resource_bytes = static_cast<std::uint64_t>(resource_size);
     record.last_good_revision = record.revision;
+    record.last_good_type = record.definition.type;
     record.last_error.clear();
     record.status = ImportStatus::ready;
     impl_->emit(record.definition.id, record.revision, AssetChangeKind::imported);
@@ -1049,7 +1050,7 @@ ResourceHandle AssetCatalog::load(AssetId asset, ResourceCache& cache) {
     for (const auto id : order) {
         const auto& record = impl_->get(id);
         if (record.last_good_revision) {
-            const auto old = cache.find(id, record.last_good_revision, record.definition.type);
+            const auto old = cache.find(id, record.last_good_revision, record.last_good_type);
             if (old) {
                 retained.add(*old);
             }
@@ -1257,6 +1258,7 @@ void AssetCatalog::restore(std::span<const std::byte> bytes) {
         (void)id;
         record.revision = {take_counter(revision, "restored revisions")};
         record.last_good_revision = {};
+        record.last_good_type = 0;
         record.request_generation = 0;
         if (record.status != ImportStatus::failed && record.status != ImportStatus::missing) {
             record.status = ImportStatus::stale;

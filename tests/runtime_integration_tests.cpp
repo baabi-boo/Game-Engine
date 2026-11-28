@@ -1,6 +1,8 @@
 #include "test_support.hpp"
 #include "modules.hpp"
 
+#include <ge/animation/blend.hpp>
+#include <ge/animation/skinning.hpp>
 #include <ge/core/runtime.hpp>
 #include <ge/ecs/registry.hpp>
 #include <ge/geometry/mesh.hpp>
@@ -22,9 +24,11 @@
 #include <cmath>
 #include <cstddef>
 #include <cstdint>
+#include <memory>
 #include <set>
 #include <string>
 #include <string_view>
+#include <utility>
 #include <vector>
 
 namespace {
@@ -278,6 +282,124 @@ void scene_physics_material_and_graph_produce_pixels() {
     CHECK(kernel.events().dropped() == 0);
 }
 
+void blended_animation_reaches_mesh_bounds_and_pixels() {
+    ge::core::Kernel kernel;
+    install_runtime(kernel);
+    auto& scene = kernel.services().get<ge::scene::Scene>();
+    auto& registry = kernel.services().get<ge::ecs::Registry>();
+    auto& animation = kernel.services().get<ge::animation::AnimationService>();
+    auto& blends = kernel.services().get<ge::animation::BlendService>();
+    auto& skinning = kernel.services().get<ge::animation::SkinningService>();
+    auto& meshes = kernel.services().get<ge::geometry::MeshLibrary>();
+    auto& materials = kernel.services().get<ge::render::MaterialService>().materials();
+    auto& cameras = kernel.services().get<ge::render::CameraService>();
+    auto& images = kernel.services().get<ge::render::ImageService>();
+    const auto& spatial = kernel.services().get<ge::spatial::SpatialIndex>();
+
+    ge::math::Transform camera_pose;
+    camera_pose.position = {0.0, 0.0, 4.0};
+    const auto camera = cameras.create("BlendCamera", camera_pose);
+    CHECK(camera && cameras.set_active(camera));
+    const auto entity = scene.create("BlendedBox");
+    CHECK(entity);
+    const auto source = meshes.create(ge::geometry::make_box({1.0, 1.0, 1.0}));
+    CHECK(source && meshes.assign(registry, entity, source));
+    const auto source_vertices = meshes.get(source)->vertices;
+    ge::render::PbrMaterial appearance;
+    appearance.shading_model = ge::render::ShadingModel::Unlit;
+    appearance.albedo = {0.8, 0.03, 0.02, 1.0};
+    const auto material = materials.create("BlendMaterial", appearance);
+    CHECK(material && materials.assign(registry, entity, material));
+
+    ge::animation::Bone root;
+    root.name = "root";
+    ge::animation::Skeleton skeleton;
+    CHECK(skeleton.load({root}));
+    const auto skeleton_handle = animation.skeletons.create(std::move(skeleton), "BlendRig");
+    CHECK(skeleton_handle && animation.attach(registry, entity, skeleton_handle));
+    const auto& rig = *animation.skeletons.get(skeleton_handle);
+    const auto make_clip = [&](std::string name, double distance) {
+        ge::animation::BoneChannel channel;
+        channel.bone = 0;
+        channel.translations = {{0.0, {}}, {1.0, {distance, 0.0, 0.0}}};
+        ge::animation::AnimationClip clip;
+        CHECK(clip.load(name, 1.0, rig, {channel}));
+        const auto handle = animation.clips.create(std::move(clip), name);
+        CHECK(handle);
+        return handle;
+    };
+    ge::animation::BlendNode slow;
+    slow.name = "slow";
+    slow.kind = ge::animation::BlendNodeKind::Clip;
+    slow.clip = make_clip("SlowTranslation", 6.0);
+    ge::animation::BlendNode fast = slow;
+    fast.name = "fast";
+    fast.clip = make_clip("FastTranslation", 18.0);
+    ge::animation::BlendNode mixed;
+    mixed.name = "mixed";
+    mixed.kind = ge::animation::BlendNodeKind::Weighted;
+    mixed.inputs = {{0, 1.0, ge::animation::no_blend_parameter, {}, {}},
+                    {1, 1.0, ge::animation::no_blend_parameter, {}, {}}};
+    auto tree = std::make_shared<ge::animation::BlendTree>();
+    CHECK(tree->load(rig, {}, {slow, fast, mixed}, 2));
+    auto machine = std::make_shared<ge::animation::BlendStateMachine>();
+    CHECK(machine->load(tree, {{"move", 2}}, {}, 0));
+    CHECK(blends.publish("BlendedTranslation", machine));
+    CHECK(blends.attach(registry, entity, animation, "BlendedTranslation"));
+    CHECK(skinning.bind_rigid(registry, animation, meshes, entity, source, 0));
+    const auto output = skinning.inspect(entity)->output;
+    CHECK(output != source);
+
+    std::vector<std::byte> previous_image;
+    for (std::size_t frame = 1; frame <= 2; ++frame) {
+        const auto previous_revision = meshes.inspect(output)->revision;
+        tick(kernel);
+        const double expected_x = 12.0 * step_seconds * static_cast<double>(frame);
+        const auto& animated = registry.require<ge::animation::AnimatedComponent>(entity);
+        CHECK(ge::animation::blend_owns_pose(registry, entity));
+        CHECK(!animated.enabled); // Blend authority disables only the base player.
+        check_near(animated.animator.pose().local[0].position.x, expected_x);
+        CHECK(kernel.metric_value("animation.blend.animated") == 1.0);
+        CHECK(kernel.metric_value("animation.blend.errors") == 0.0);
+        CHECK(kernel.metric_value("animation.skinning.skinned") == 1.0);
+        CHECK(kernel.metric_value("animation.skinning.errors") == 0.0);
+        CHECK(meshes.inspect(output)->revision > previous_revision);
+        CHECK(meshes.get(source)->vertices == source_vertices);
+        const auto& vertices = meshes.get(output)->vertices;
+        CHECK(vertices.size() == source_vertices.size());
+        for (std::size_t vertex = 0; vertex < vertices.size(); ++vertex) {
+            check_near(vertices[vertex].position.x, source_vertices[vertex].position.x + expected_x);
+        }
+        const auto bounds = spatial.world_bounds(entity);
+        CHECK(bounds.has_value());
+        check_near(bounds->min.x, expected_x - 0.5);
+        check_near(bounds->max.x, expected_x + 0.5);
+        CHECK(dominant_pixels(images.framebuffer().color(), true) > 0);
+        auto rendered = export_image(images);
+        CHECK(rendered != previous_image);
+        previous_image = std::move(rendered);
+    }
+
+    // Entity disable still freezes deformation and removes the draw.
+    const auto output_revision = meshes.inspect(output)->revision;
+    CHECK(scene.set_enabled_recursive(entity, false));
+    tick(kernel);
+    CHECK(meshes.inspect(output)->revision == output_revision);
+    CHECK(!spatial.world_bounds(entity));
+    CHECK(dominant_pixels(images.framebuffer().color(), true) == 0);
+
+    // An ordinary disabled base player must not acquire blend's exception.
+    CHECK(scene.set_enabled_recursive(entity, true));
+    CHECK(blends.detach(registry, entity));
+    CHECK(animation.play(registry, entity, slow.clip));
+    registry.require<ge::animation::AnimatedComponent>(entity).enabled = false;
+    tick(kernel);
+    CHECK(!ge::animation::blend_owns_pose(registry, entity));
+    CHECK(kernel.metric_value("animation.skinning.skinned") == 0.0);
+    CHECK(meshes.inspect(output)->revision == output_revision);
+    CHECK(export_image(images) == previous_image);
+}
+
 void input_events_drive_camera_and_clear_edges() {
     ge::core::Kernel kernel;
     install_runtime(kernel);
@@ -341,6 +463,7 @@ int main() {
     return ge::test::run("runtime integration", {
         {"module registration and enabled schedules", all_modules_install_and_enabled_systems_run},
         {"scene physics material and rendered output", scene_physics_material_and_graph_produce_pixels},
+        {"blended animation reaches bounds and rendered output", blended_animation_reaches_mesh_bounds_and_pixels},
         {"input events drive camera and clear edges", input_events_drive_camera_and_clear_edges},
     });
 }

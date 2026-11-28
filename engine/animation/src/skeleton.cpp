@@ -538,6 +538,9 @@ AnimationResult Animator::play(const Skeleton& skeleton, const ClipLibrary& clip
         const auto source_result = fade->update(skeleton);
         if (!source_result) { return source_result; }
     }
+    if (!fade && pose_publication_ == std::numeric_limits<std::uint64_t>::max()) {
+        return {AnimationError::Capacity};
+    }
     state_.clip = handle;
     state_.time = start;
     state_.wrap = wrap;
@@ -545,7 +548,7 @@ AnimationResult Animator::play(const Skeleton& skeleton, const ClipLibrary& clip
     fade_source_ = std::move(fade);
     fade_duration_ = fade_source_ ? fade_seconds : 0.0;
     fade_elapsed_ = 0.0;
-    if (!fade_source_) { pose_ = std::move(target); }
+    if (!fade_source_) { pose_ = std::move(target); ++pose_publication_; }
     return {};
 }
 
@@ -555,8 +558,10 @@ AnimationResult Animator::seek(const Skeleton& skeleton, const ClipLibrary& clip
     Pose target;
     const auto result = clip->sample(skeleton, time, target, state_.wrap);
     if (!result) { return result; }
+    if (pose_publication_ == std::numeric_limits<std::uint64_t>::max()) { return {AnimationError::Capacity}; }
     state_.time = state_.wrap == WrapMode::Clamp ? math::clamp(time, 0.0, clip->duration()) : time;
     pose_ = std::move(target);
+    ++pose_publication_;
     fade_source_.reset();
     return {};
 }
@@ -571,6 +576,10 @@ PlaybackUpdate Animator::advance(const Skeleton& skeleton, const ClipLibrary& cl
     if (event_limit > hard_limits.max_events) { output.result = {AnimationError::Capacity}; return output; }
     if (!pose_.compatible(skeleton)) { output.result = {AnimationError::IncompatibleSkeleton}; return output; }
     if (!state_.playing) { return output; }
+    if (pose_publication_ == std::numeric_limits<std::uint64_t>::max()) {
+        output.result = {AnimationError::Capacity};
+        return output;
+    }
     const auto* clip = clips.get(state_.clip);
     if (!clip) { output.result = {AnimationError::InvalidHandle}; return output; }
     double next_time = state_.time + delta_seconds * state_.speed;
@@ -600,6 +609,7 @@ PlaybackUpdate Animator::advance(const Skeleton& skeleton, const ClipLibrary& cl
     state_.time = next_time;
     fade_elapsed_ = next_fade;
     pose_ = std::move(target);
+    ++pose_publication_;
     if (fade_source_ && next_fade >= fade_duration_) { fade_source_.reset(); }
     if (output.finished && !fade_source_) { state_.playing = false; }
     return output;
@@ -614,6 +624,7 @@ void Animator::pause() noexcept { state_.playing = false; }
 void Animator::resume() noexcept { state_.playing = static_cast<bool>(state_.clip); }
 void Animator::stop() noexcept { state_.playing = false; state_.time = 0.0; fade_source_.reset(); }
 const PlaybackState& Animator::state() const noexcept { return state_; }
+std::uint64_t Animator::pose_publication() const noexcept { return pose_publication_; }
 Pose& Animator::pose() noexcept { return pose_; }
 const Pose& Animator::pose() const noexcept { return pose_; }
 bool Animator::fading() const noexcept { return fade_source_.has_value(); }
@@ -733,6 +744,8 @@ AnimationResult AnimationService::play(ecs::Registry& registry, ecs::Entity enti
 
 AnimationUpdate AnimationService::update(ecs::Registry& registry, scene::Scene* scene_graph,
                                          double delta_seconds, std::size_t event_limit) {
+    static_assert(std::is_nothrow_move_assignable_v<Animator>);
+    static_assert(std::is_nothrow_move_constructible_v<AnimationEvent>);
     AnimationUpdate output;
     if (event_limit > hard_limits.max_events || !std::isfinite(delta_seconds) || delta_seconds < 0.0 ||
         delta_seconds > hard_limits.max_duration || (scene_graph && &scene_graph->registry() != &registry)) {
@@ -747,18 +760,16 @@ AnimationUpdate AnimationService::update(ecs::Registry& registry, scene::Scene* 
         }
         const auto* skeleton = skeletons.get(component.skeleton);
         if (!skeleton) { ++output.errors; continue; }
-        // A bound scene batch can reject even a valid pose. Keep its playback
-        // cursor, crossfade and events unpublished until that batch succeeds.
-        std::optional<Animator> candidate;
-        if (!component.bone_entities.empty()) { candidate = component.animator; }
-        auto& animator = candidate ? *candidate : component.animator;
+        // Sampling and event copies can allocate even without a Scene binding.
+        // Keep this entity's playback and pose unpublished until both are ready.
+        auto animator = component.animator;
         const auto update = animator.advance(*skeleton, clips, delta_seconds,
             std::min<std::size_t>(256, event_limit - output.events.size()));
         if (!update.result) { ++output.errors; continue; }
+        std::vector<scene::LocalTransformEdit> edits;
         if (!component.bone_entities.empty()) {
-            bool valid_binding = scene_graph && component.bone_entities.size() == skeleton->size() &&
-                animator.pose().compatible(*skeleton);
-            std::vector<scene::LocalTransformEdit> edits;
+            bool valid_binding = scene_graph && !registry.iterating() &&
+                component.bone_entities.size() == skeleton->size() && animator.pose().compatible(*skeleton);
             if (valid_binding) {
                 auto unique = component.bone_entities;
                 std::sort(unique.begin(), unique.end());
@@ -773,20 +784,32 @@ AnimationUpdate AnimationService::update(ecs::Registry& registry, scene::Scene* 
                     scene_graph->parent(bone_entity) == component.bone_entities[parent]);
                 if (valid_binding) { edits.push_back({bone_entity, animator.pose().local[index]}); }
             }
-            if (!valid_binding || !scene_graph->apply_local_transforms(edits)) {
+            if (!valid_binding) {
                 ++output.errors;
                 continue;
             }
         }
-        if (candidate) { component.animator = std::move(*candidate); }
-        if (update.events_truncated) { ++output.truncated_entities; }
-        const auto& state = component.animator.state();
+        std::vector<AnimationEvent> events;
+        events.reserve(update.events.size());
+        const auto& state = animator.state();
         if (const auto* clip = clips.get(state.clip)) {
             for (const auto& occurrence : update.events) {
                 const auto& event = clip->events()[occurrence.event_index];
-                output.events.push_back({entity, state.clip, event.name, event.payload, occurrence.clip_time, occurrence.reverse});
+                events.push_back({entity, state.clip, event.name, event.payload, occurrence.clip_time, occurrence.reverse});
             }
         }
+        const auto required_events = output.events.size() + events.size();
+        if (required_events > output.events.capacity()) {
+            const auto growth = output.events.size() > event_limit / 2 ? event_limit : 2 * output.events.size();
+            output.events.reserve(std::max(required_events, growth));
+        }
+        if (!edits.empty() && !scene_graph->apply_local_transforms(edits)) {
+            ++output.errors;
+            continue;
+        }
+        component.animator = std::move(animator);
+        if (update.events_truncated) { ++output.truncated_entities; }
+        for (auto& event : events) { output.events.push_back(std::move(event)); }
         (void)registry.mark_changed<AnimatedComponent>(entity);
         ++output.animated;
     }

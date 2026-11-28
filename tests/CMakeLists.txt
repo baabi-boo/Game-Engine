@@ -96,6 +96,11 @@ set_tests_properties(ge.tool_boundaries PROPERTIES
     TIMEOUT 120
 )
 
+add_test(NAME ge.package_contract_audit
+    COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/test_package_contract_audit.py"
+)
+set_tests_properties(ge.package_contract_audit PROPERTIES LABELS "python;package;contract" TIMEOUT 60)
+
 include("${PROJECT_SOURCE_DIR}/cmake/StateIoFaultTests.cmake")
 
 # Exercise the expanded engine through its public interfaces. The coordinator
@@ -145,6 +150,16 @@ ge_add_runtime_test(gameplay_combat_audit gameplay_combat_audit_tests.cpp)
 ge_add_runtime_test(gameplay_dialogue_audit gameplay_dialogue_audit_tests.cpp)
 ge_add_runtime_test(gameplay_quests_audit gameplay_quests_audit_tests.cpp)
 ge_add_runtime_test(editor_selection_audit editor_selection_audit_tests.cpp)
+ge_add_runtime_test(jobs_lifecycle_audit jobs_lifecycle_audit_tests.cpp)
+ge_add_runtime_test(io_lifecycle_audit io_lifecycle_audit_tests.cpp)
+ge_add_runtime_test(binary_limits_audit binary_limits_audit_tests.cpp)
+ge_add_runtime_test(signals_lifecycle_audit signals_lifecycle_audit_tests.cpp)
+ge_add_runtime_test(asset_catalog_audit asset_catalog_audit_tests.cpp)
+ge_add_runtime_test(json_diagnostics_audit json_diagnostics_audit_tests.cpp)
+ge_add_runtime_test(gameplay_integration_audit gameplay_integration_audit_tests.cpp)
+ge_add_runtime_test(network_integration_audit network_integration_audit_tests.cpp)
+ge_add_runtime_test(terrain_integration_audit terrain_integration_audit_tests.cpp)
+ge_add_runtime_test(animation_pipeline_audit animation_pipeline_audit_tests.cpp)
 ge_add_runtime_test(io_audit io_audit_tests.cpp)
 ge_add_runtime_test(input_audit input_audit_tests.cpp)
 ge_add_runtime_test(asset_streaming_audit asset_streaming_audit_tests.cpp)

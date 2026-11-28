@@ -272,6 +272,11 @@ public:
     void resume() noexcept;
     void stop() noexcept; // Pauses and resets the cursor while retaining the displayed pose.
     [[nodiscard]] const PlaybackState& state() const noexcept;
+    // Changes only when successful clip sampling publishes a fresh pose.
+    // Copies preserve the serial so staged scene rejection cannot publish it.
+    // Direct edits through pose() do not change this base-player serial.
+    // Replacing/restoring an Animator requires resetting consumer continuity.
+    [[nodiscard]] std::uint64_t pose_publication() const noexcept;
     [[nodiscard]] Pose& pose() noexcept;
     [[nodiscard]] const Pose& pose() const noexcept;
     [[nodiscard]] bool fading() const noexcept;
@@ -281,6 +286,7 @@ private:
     std::optional<Pose> fade_source_;
     double fade_duration_{};
     double fade_elapsed_{};
+    std::uint64_t pose_publication_{};
 };
 
 struct BoneInfluence {
@@ -340,8 +346,10 @@ public:
     [[nodiscard]] AnimationResult play(ecs::Registry& registry, ecs::Entity entity,
                                        ClipHandle clip, double fade_seconds = 0.0,
                                        WrapMode wrap = WrapMode::Loop);
-    // A rejected bone binding or scene batch preserves that entity's animator
-    // and emits no events; successful entities publish independently.
+    // Event allocations complete before each entity's Animator/Scene publication.
+    // Rejected bone bindings or scene batches preserve that entity's animator
+    // and emit no events. Allocation exceptions propagate; earlier successful
+    // entities remain published, and a throwing call returns no event batch.
     [[nodiscard]] AnimationUpdate update(ecs::Registry& registry, scene::Scene* scene_graph,
                                          double delta_seconds, std::size_t event_limit = 8192);
 };

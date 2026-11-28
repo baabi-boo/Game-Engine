@@ -1174,6 +1174,11 @@ PollResult VirtualFileSystem::poll_changes(std::size_t maximum_changes) {
     std::scoped_lock lock(impl_->mutex);
     const auto maximum = operation_limit(maximum_changes, impl_->limits.max_changes);
     PollResult result;
+    struct PendingSnapshot {
+        Watch* watch;
+        DirectorySnapshot snapshot;
+    };
+    std::vector<PendingSnapshot> pending;
     for (auto& [id, watch] : impl_->watches) {
         DirectorySnapshot next;
         const auto root = impl_->resolve(watch.info.root);
@@ -1196,9 +1201,14 @@ PollResult VirtualFileSystem::poll_changes(std::size_t maximum_changes) {
         }
         result.changes.insert(result.changes.end(),
             std::make_move_iterator(changes.begin()), std::make_move_iterator(changes.end()));
-        watch.snapshot = std::move(next);
-        watch.info.observed_entries = watch.snapshot.entries.size();
+        pending.push_back({&watch, std::move(next)});
         ++result.watches_polled;
+    }
+    // A later watch can fail while scanning or hashing. Publish only after the
+    // complete result is ready so an exception cannot discard earlier events.
+    for (auto& update : pending) {
+        update.watch->snapshot = std::move(update.snapshot);
+        update.watch->info.observed_entries = update.watch->snapshot.entries.size();
     }
     impl_->metrics->changes.fetch_add(static_cast<std::uint64_t>(result.changes.size()),
                                      std::memory_order_relaxed);

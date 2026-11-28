@@ -7,6 +7,7 @@ import argparse
 from datetime import datetime, timezone
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import platform
@@ -75,10 +76,19 @@ def invalid_constant(value: str) -> None:
     raise ValueError(f"non-JSON constant: {value}")
 
 
+def finite_float(value: str) -> float:
+    # Exponent overflow bypasses parse_constant and would break report encoding.
+    number = float(value)
+    if not math.isfinite(number):
+        raise ValueError("JSON number must be finite")
+    return number
+
+
 def validate(raw: bytes, mode: str) -> dict:
     if len(raw) > MAX_STDOUT:
         raise ValueError("stdout exceeds the 32 MiB validation limit")
-    payload = json.loads(raw.decode("utf-8"), parse_constant=invalid_constant)
+    payload = json.loads(raw.decode("utf-8"), parse_constant=invalid_constant,
+                         parse_float=finite_float)
     expected = "inspect" if mode == "inspect" else "headless-policy-fixture"
     if not isinstance(payload, dict) or payload.get("mode") != expected:
         raise ValueError(f"expected a JSON object with mode {expected!r}")

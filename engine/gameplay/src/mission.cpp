@@ -302,12 +302,14 @@ struct MissionService::Impl {
         }
         for (const auto& event : batch.events) {
             if (event.kind != InteractionEventKind::Activated || !registry.alive(event.actor) ||
-                !registry.persistent_id(event.actor)) { interaction_cursor = event.sequence; continue; }
+                !event.persistent_actor || registry.persistent_id(event.actor) != event.persistent_actor) {
+                interaction_cursor = event.sequence; continue;
+            }
             if (next_bridge == std::numeric_limits<std::uint64_t>::max()) { counters.input_backpressure = true; break; }
             MissionInput input;
             input.id = {interaction_producer, next_bridge}; input.actor = event.actor;
             input.kind = MissionObjectiveKind::Interaction; input.key = event.name;
-            input.target = registry.persistent_id(event.target);
+            input.target = event.persistent_target;
             const auto result = admit(input, true);
             if (result.error == MissionError::Capacity) { counters.input_backpressure = true; break; }
             if (result) { ++next_bridge; }

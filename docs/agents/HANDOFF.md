@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 543
-- **Recorded update:** 2026\-11\-28T11:15:56.077982Z
+- **Ledger revision:** 554
+- **Recorded update:** 2026\-11\-28T12:27:44.442282Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** d61185706ba89a8cc776e18e021dd9edfedad4cd4d38702c9b417b26434f941d
-- **Source files:** 298
+- **Source fingerprint:** 2de1a0370652b05bd43543fcbb541f7706f930a4af54ee85fe1174a67e1e30a8
+- **Source files:** 309
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -65,9 +65,9 @@ User explicitly authorizes validating and repairing all code delivered at 3dcb0d
 - Write scope: engine/, apps/, tests/, tools/, cmake/, CMakeLists.txt, CMakePresets.json, README.md, docs/architecture/, docs/development/, docs/production/, docs/quality\-gates.md, .github/workflows/ci.yml
 - Dependencies: none
 - Blocker: none
-- Checkpoint: 73 Debug suites passed. Package relocation ran installed binaries successfully but rejected the source\-local Ninja dependency; copied build tools outside the checkout without weakening package checks.
+- Checkpoint: Resolved final sanitizer preflight test\-hook mismatch with matching scalar nothrow allocation/deallocation; retained failed72/73 run and isolated repaired6/6 evidence. All100 worker reports are complete.
 - Files: none recorded
-- Next action: Reconfigure cached tool paths and rerun package gate on unchanged source, then integrate low\-level repairs and complete remaining reviews.
+- Next action: Rebuild the corrected regression, rerun full84\-suite Debug and73\-native ASan/UBSan checks, finish Release compilation, publish exact reviewed source, then record final acceptance gates.
 - Required checks: repository, dev, release, package
 
 Acceptance:
@@ -78,9 +78,9 @@ Acceptance:
 - Publish passing local development, release and package evidence; document platform and functional limitations without claiming exhaustive correctness.
 
 - repository: no receipt.
-- dev: RUN-000008 / passed / historical source snapshot.
-- release: RUN-000009 / passed / historical source snapshot.
-- package: RUN-000011 / passed / recorded source snapshot.
+- dev: RUN-000013 / passed / historical source snapshot.
+- release: RUN-000014 / passed / historical source snapshot.
+- package: RUN-000011 / passed / historical source snapshot.
 
 ### CODE\-001: Spatial mathematics
 

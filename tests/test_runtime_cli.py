@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -70,6 +71,19 @@ class RuntimeCliTests(unittest.TestCase):
         self.assertTrue({"engine.stop", "engine.set", "engine.report", "content.hash", "tick"}
                         .issubset(commands))
 
+    @unittest.skipUnless(os.name == "posix" and Path("/dev/full").is_char_device(),
+                         "requires POSIX /dev/full")
+    def test_output_write_errors_return_failure(self) -> None:
+        commands = (("--help",), ("--commands",), ("--ticks", "0"))
+        with Path("/dev/full").open("wb") as output:
+            for arguments in commands:
+                with self.subTest(arguments=arguments):
+                    result = subprocess.run([str(BINARY), *arguments], cwd=self.root,
+                                            stdout=output, stderr=subprocess.PIPE,
+                                            text=True, encoding="utf-8", timeout=15, check=False)
+                    self.assertEqual(result.returncode, 2, result.stderr)
+                    self.assertIn("cannot write runtime output", result.stderr)
+
     def test_ticks_produce_composed_report(self) -> None:
         path = self.root / "report.json"
         result = self.invoke("--ticks", "3", "--step", "0.125", "--report", path)
@@ -129,6 +143,18 @@ class RuntimeCliTests(unittest.TestCase):
         report = self.assert_failed_report(result, report_path)
         self.assertEqual(report["tick"], 2)
         self.assertTrue(any("unknown command" in item["message"] for item in report["diagnostics"]))
+
+    def test_invalid_utf8_commands_produce_valid_failure_reports(self) -> None:
+        script = self.root / "commands.txt"
+        report_path = self.root / "report.json"
+        for malformed in (b"\xff", b"\xc0\xaf", b"\xed\xa0\x80", b"\xf4\x90\x80\x80", b"\xe2\x82"):
+            with self.subTest(command=malformed):
+                script.write_bytes(malformed + b"\ntick\n")
+                result = self.invoke("--ticks", "0", "--script", script, "--report", report_path)
+                report = self.assert_failed_report(result, report_path)
+                self.assertEqual(result.returncode, 1)
+                self.assertEqual(report["tick"], 1)
+                self.assertIn("valid UTF-8", result.stderr)
 
     def test_invalid_steps_and_overrides_preserve_existing_report(self) -> None:
         report_path = self.root / "report.json"
@@ -194,6 +220,7 @@ class RuntimeCliTests(unittest.TestCase):
     def test_invalid_arguments_and_missing_script_fail(self) -> None:
         for arguments in (("--unknown-option",), ("--ticks",), ("--ticks", "-1"),
                           ("--set", "runtime.step"), ("--set", "=0.125"),
+                          ("--script", ""), ("--report", ""),
                           ("--script", self.root / "missing.txt")):
             with self.subTest(arguments=arguments):
                 result = self.invoke(*arguments)

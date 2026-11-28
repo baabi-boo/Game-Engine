@@ -355,6 +355,8 @@ private:
 };
 
 [[nodiscard]] std::vector<std::string> tokenize_command(std::string_view line);
+// Escape JSON string contents without adding quotes. Valid UTF-8 is preserved;
+// each malformed input byte is replaced with the JSON escape \ufffd (U+FFFD).
 [[nodiscard]] std::string json_escape(std::string_view text);
 
 } // namespace ge::core

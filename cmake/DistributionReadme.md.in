@@ -2,12 +2,14 @@
 
 **Version @PROJECT_VERSION@ · headless foundation / pre-alpha**
 
-This archive contains an independent C++20 headless contract prototype, its small
-original district fixture, and a static-library SDK. Its lifecycle demonstrates
-package validation, symbolic readiness, modeled reservation accounting, persistent
-identity, scalar mutation, retirement and restoration. It has no renderer, physical
-collision system, asynchronous asset I/O pipeline, or production save protocol.
-Counters are modeled reservations, not measured resource memory or performance.
+This archive contains the independent C++20 headless host `ge_headless`, its small
+original district fixture, the composed command runtime `ge_runtime`, and a
+static-library SDK. The headless fixture demonstrates package validation, symbolic
+readiness, modeled reservation accounting, persistent identity, scalar mutation,
+retirement and restoration. Its counters are modeled reservations, not measured
+resource memory or performance. The composed runtime connects engine services,
+commands and frame systems under ongoing integration verification; it is not a
+windowed native graphics application or a production-qualified engine.
 
 Source and development instructions:
 [github.com/baabi-boo/Game-Engine](https://github.com/baabi-boo/Game-Engine).
@@ -44,6 +46,24 @@ The host needs its compatible platform C++ runtime; runtimes and system librarie
 are not bundled. Python, Ninja and the source checkout are unnecessary to run this
 already built fixture. Build tools are required to compile an SDK consumer.
 
+## Run the composed runtime
+
+From the extracted prefix on a compatible POSIX host:
+
+```sh
+./bin/ge_runtime --ticks 3 --step 0.125
+./bin/ge_runtime --commands
+```
+
+For a Windows archive, use `.\bin\ge_runtime.exe` with the same options. The
+runtime runs its registered frame systems and emits a JSON report; `--commands`
+lists its installed commands. Use `--script path` to execute a command file and
+`--report path` to write the report to a file. A `tick` command advances one frame
+in addition to the frames selected by `--ticks`. Runtime commands do not require
+the headless district fixture. The relocation gate exercises a command-created
+box mesh and three frames from the moved installation; this does not qualify every
+subsystem or establish performance or platform support.
+
 ## Consume the SDK
 
 Use CMake 3.25+ with a C++20 compiler, architecture, standard library and runtime
@@ -58,9 +78,9 @@ For a project containing `main.cpp`, the consumer `CMakeLists.txt` can be:
 ```cmake
 cmake_minimum_required(VERSION 3.25)
 project(MyConsumer LANGUAGES CXX)
-find_package(GameEngine CONFIG REQUIRED COMPONENTS core content world)
+find_package(GameEngine CONFIG REQUIRED COMPONENTS engine)
 add_executable(my_consumer main.cpp)
-target_link_libraries(my_consumer PRIVATE ge::core ge::content ge::world)
+target_link_libraries(my_consumer PRIVATE ge::engine)
 ```
 
 Configure a Release consumer with the extracted prefix, substituting its actual
@@ -78,20 +98,25 @@ without requiring a Developer PowerShell. Ninja with MSVC needs the configured
 compiler/SDK environment. This example does not download or install build tools.
 
 The exported targets carry the installed include directory and C++20 requirement.
-`ge::core` provides `ge/core/clock.hpp` and `ge/core/identity.hpp`.
+`ge::engine` provides the compiled domain APIs, including `ge/geometry/mesh.hpp`,
+and carries its `ge::core`, `ge::content`, `ge::world` and thread dependencies.
+Foundation-only consumers can request the `core`, `content` and `world` components
+and link those targets individually. `ge::core` provides `ge/core/clock.hpp`,
+`ge/core/identity.hpp` and the compiled kernel API in `ge/core/runtime.hpp`.
 `ge::content` provides `ge/content/package.hpp`; `ge::world` provides
 `ge/world/state.hpp` and `ge/world/streaming.hpp`. Pass the fixture path to your
 consumer at runtime; there is no source-checkout asset path in the SDK interface.
 
 ## Contents and notices
 
-The default layout is `bin/` for the host, `include/ge/` for public headers,
+The default layout is `bin/` for both executables, `include/ge/` for public headers,
 `lib/` for static libraries and `lib/cmake/GameEngine/` for CMake exports.
 `share/game-engine/assets/` contains `district.gepack` and its authored JSON source.
 `share/game-engine/build-manifest.json` records the project version, observed local
 Git commit and dirty state, CMake system processor, toolchain/configuration, strict
 warning and sanitizer settings, package/state format versions, and SHA-256 plus
-byte size of the built host and cooked fixture. A build from a source archive
+byte size of both executables, the cooked fixture, and the `engine`, `core`,
+`content` and `world` static libraries. A build from a source archive
 without Git metadata, or on a host without Git, records source provenance as
 `unknown`, with null commit and dirty fields. A dirty
 flag includes tracked edits and untracked files that Git does not ignore.

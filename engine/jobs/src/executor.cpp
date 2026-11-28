@@ -1114,14 +1114,18 @@ std::size_t Executor::release_completed(std::uint64_t tag) {
 
 bool Executor::wait(JobHandle handle, std::chrono::milliseconds timeout) {
     std::unique_lock lock(impl_->mutex);
-    const auto initial = impl_->find(handle);
-    if (!initial || timeout.count() < 0) {
-        return false;
+    {
+        const auto initial = impl_->find(handle);
+        if (!initial || timeout.count() < 0) {
+            return false;
+        }
+        if (terminal(initial->state)) {
+            return true;
+        }
+        // Do not retain callable ownership across the wait. A concurrent release
+        // could otherwise leave this reference to destroy captures under mutex.
     }
-    if (terminal(initial->state)) {
-        return true;
-    }
-    if (executing_executor == impl_.get()) {
+    if (executing_executor == impl_.get() || CancellationDispatch::contains(impl_.get())) {
         return false;
     }
     const bool finished = impl_->changed.wait_for(lock, timeout, [&] {
@@ -1144,7 +1148,7 @@ bool Executor::wait(GraphHandle handle, std::chrono::milliseconds timeout) {
     if (finished()) {
         return true;
     }
-    if (executing_executor == impl_.get()) {
+    if (executing_executor == impl_.get() || CancellationDispatch::contains(impl_.get())) {
         return false;
     }
     const bool observed = impl_->changed.wait_for(lock, timeout, [&] {
@@ -1158,7 +1162,8 @@ bool Executor::wait_idle(std::chrono::milliseconds timeout) {
     if (impl_->unfinished == 0) {
         return true;
     }
-    if (executing_executor == impl_.get() || timeout.count() < 0) {
+    if (executing_executor == impl_.get() || CancellationDispatch::contains(impl_.get()) ||
+        timeout.count() < 0) {
         return false;
     }
     return impl_->changed.wait_for(lock, timeout, [&] { return impl_->unfinished == 0; });
@@ -1348,7 +1353,9 @@ void register_executor(ge::core::Kernel& kernel) {
         throw std::logic_error("jobs module registration conflict");
     }
     if (!kernel.add_shutdown("jobs.executor", [service = &executor] {
-            (void)service->shutdown(ShutdownMode::Cancel);
+            if (!service->shutdown(ShutdownMode::Cancel)) {
+                throw std::logic_error("jobs shutdown cannot join from the current callback");
+            }
         })) {
         (void)executor.shutdown();
         throw std::logic_error("jobs shutdown registration conflict");

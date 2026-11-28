@@ -395,73 +395,77 @@ SignalDispatchReport dispatch(SignalState& state, std::size_t events, std::size_
         report.remaining = state.totals.pending;
         return report;
     }
-    RunningGuard guard(state);
-    while (!state.closed && report.completed < events) {
-        if (!state.active) {
-            if (state.queue.empty()) {
+    // Deferred captures can enqueue from their destructors. Finish the guard's
+    // cleanup before sampling remaining work and exhaustion below.
+    {
+        RunningGuard guard(state);
+        while (!state.closed && report.completed < events) {
+            if (!state.active) {
+                if (state.queue.empty()) {
+                    break;
+                }
+                state.prepare_snapshot(state.queue.front().channel);
+                state.active.emplace(std::move(state.queue.front()));
+                state.queue.pop_front();
+                state.trace(SignalTraceKind::Started, *state.active);
+                ++report.started;
+            }
+            if (state.cursor == state.snapshot.size()) {
+                state.finish();
+                ++report.completed;
+                continue;
+            }
+            auto entry = state.listener({state.scope, state.snapshot[state.cursor]});
+            if (!entry || !entry->options.enabled) {
+                ++state.cursor;
+                continue;
+            }
+            if (report.callbacks == callbacks) {
                 break;
             }
-            state.prepare_snapshot(state.queue.front().channel);
-            state.active.emplace(std::move(state.queue.front()));
-            state.queue.pop_front();
-            state.trace(SignalTraceKind::Started, *state.active);
-            ++report.started;
-        }
-        if (state.cursor == state.snapshot.size()) {
-            state.finish();
-            ++report.completed;
-            continue;
-        }
-        auto entry = state.listener({state.scope, state.snapshot[state.cursor]});
-        if (!entry || !entry->options.enabled) {
             ++state.cursor;
-            continue;
-        }
-        if (report.callbacks == callbacks) {
-            break;
-        }
-        ++state.cursor;
-        const auto context = state.context(*state.active, entry.get());
-        const auto policy = entry->options.exceptions.value_or(state.policy);
-        if (entry->options.once) {
-            static_cast<void>(state.disconnect(entry->token));
-        }
-        ++report.callbacks;
-        increment(state.totals.callbacks);
-        state.trace(SignalTraceKind::Callback, *state.active, entry.get(), entry->options.label);
-        std::exception_ptr failure;
-        try {
-            entry->callback(state.active->payload, context);
-        } catch (const std::exception& exception) {
-            state.trace(SignalTraceKind::Exception, *state.active, entry.get(),
-                        exception_text(exception.what(), state.limits.max_diagnostic_bytes));
-            failure = std::current_exception();
-        } catch (...) {
-            state.trace(SignalTraceKind::Exception, *state.active, entry.get(), "non-standard exception");
-            failure = std::current_exception();
-        }
-        if (failure) {
-            ++report.exceptions;
-            increment(state.totals.exceptions);
-            if (policy == SignalExceptionPolicy::DisconnectListener) {
+            const auto context = state.context(*state.active, entry.get());
+            const auto policy = entry->options.exceptions.value_or(state.policy);
+            if (entry->options.once) {
                 static_cast<void>(state.disconnect(entry->token));
-            } else if (policy == SignalExceptionPolicy::StopEvent) {
-                state.cursor = state.snapshot.size();
-            } else if (policy == SignalExceptionPolicy::StopFlush) {
-                report.stopped = true;
-            } else if (policy == SignalExceptionPolicy::Rethrow) {
-                if (state.cursor == state.snapshot.size()) {
-                    state.finish();
-                }
-                std::rethrow_exception(failure);
             }
-        }
-        if (state.cursor == state.snapshot.size() || state.closed) {
-            state.finish(state.closed);
-            ++report.completed;
-        }
-        if (report.stopped) {
-            break;
+            ++report.callbacks;
+            increment(state.totals.callbacks);
+            state.trace(SignalTraceKind::Callback, *state.active, entry.get(), entry->options.label);
+            std::exception_ptr failure;
+            try {
+                entry->callback(state.active->payload, context);
+            } catch (const std::exception& exception) {
+                state.trace(SignalTraceKind::Exception, *state.active, entry.get(),
+                            exception_text(exception.what(), state.limits.max_diagnostic_bytes));
+                failure = std::current_exception();
+            } catch (...) {
+                state.trace(SignalTraceKind::Exception, *state.active, entry.get(), "non-standard exception");
+                failure = std::current_exception();
+            }
+            if (failure) {
+                ++report.exceptions;
+                increment(state.totals.exceptions);
+                if (policy == SignalExceptionPolicy::DisconnectListener) {
+                    static_cast<void>(state.disconnect(entry->token));
+                } else if (policy == SignalExceptionPolicy::StopEvent) {
+                    state.cursor = state.snapshot.size();
+                } else if (policy == SignalExceptionPolicy::StopFlush) {
+                    report.stopped = true;
+                } else if (policy == SignalExceptionPolicy::Rethrow) {
+                    if (state.cursor == state.snapshot.size()) {
+                        state.finish(state.closed);
+                    }
+                    std::rethrow_exception(failure);
+                }
+            }
+            if (state.cursor == state.snapshot.size() || state.closed) {
+                state.finish(state.closed);
+                ++report.completed;
+            }
+            if (report.stopped) {
+                break;
+            }
         }
     }
     report.remaining = state.totals.pending;

@@ -11,6 +11,8 @@ Public headers under `engine/<module>/include/` form an acyclic module graph.
 Runtime domains cannot include editor or application code. Editor code consumes
 runtime APIs. Core remains standard-library-only; content and world may consume
 core, and neither may consume the other or the expanded engine domains.
+Source file and directory symlinks are rejected before inspection so a declared
+module path cannot alias another module's implementation or public headers.
 
 ## Reviewed direct dependencies
 

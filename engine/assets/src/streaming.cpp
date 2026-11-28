@@ -427,8 +427,8 @@ struct AssetStreamer::Impl {
             }
             if (!node.active && record->last_good_revision &&
                 (!node.retained || node.retained->revision != record->last_good_revision ||
-                 node.retained->handle.type != record->definition.type)) {
-                const auto handle = cache.find(asset, record->last_good_revision, record->definition.type);
+                 node.retained->handle.type != record->last_good_type)) {
+                const auto handle = cache.find(asset, record->last_good_revision, record->last_good_type);
                 if (handle) {
                     const auto known = versions.find(*handle);
                     std::vector<std::shared_ptr<Version>> dependencies;

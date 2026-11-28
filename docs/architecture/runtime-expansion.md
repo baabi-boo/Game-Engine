@@ -3,9 +3,10 @@
 The original source campaign added C++20 engine implementation while preserving
 the previous headless fixture and its historical evidence. That campaign excluded
 builds and execution. The later owner-authorized
-[integration audit](../production/integration-audit-2026-11-28.md) now exercises
-and repairs those implementations. Its observed results qualify their recorded
-source and scope; historical foundation evidence does not qualify new domains.
+[integration audit](../production/integration-audit-2026-11-28.md) and
+[stabilization review](../production/stabilization-2026-11-28.md) exercise and
+repair those implementations. Their observed results qualify the recorded source,
+environment and scope; historical foundation evidence does not qualify new domains.
 
 ## Composition
 
@@ -50,9 +51,12 @@ the actual installed services. It is not a windowed native graphics backend.
 
 ## Development accounting
 
-The canonical task ledger retains unrun `dev` acceptance requirements. Source
-checkpoints do not close those gates. The separate source campaign register
-records actual delegated agent paths, assigned files and source delivery status;
-planned work does not count as an executed agent. Source line counts exclude
+The [canonical task ledger](../../project/agent-state.json) records source
+fingerprints, required checks, execution receipts and review status. Source
+checkpoints alone do not close those gates, and earlier passing runs do not qualify
+later edits. The historical source campaign register records implementation runs;
+the [stabilization register](../production/stabilization-register-2026-11-28.json)
+records the later actual review agents, scopes and reports. Planned work does not
+count as an executed agent. Source line counts exclude
 blank lines, comments, tests, documentation, tooling, assets and vendored code.
 Line totals measure size and do not demonstrate correctness or usefulness.

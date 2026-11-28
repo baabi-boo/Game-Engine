@@ -288,7 +288,8 @@ class BitWriter {
 public:
     explicit BitWriter(std::size_t maximum_bytes = 64U * 1024U * 1024U);
     BitWriter(const BitWriter&) = default;
-    BitWriter& operator=(const BitWriter&) = default;
+    // Failed copy allocation preserves the destination's bytes, bit count and limit.
+    BitWriter& operator=(const BitWriter& other);
     // A moved-from writer is empty and retains its capacity limit.
     BitWriter(BitWriter&& other) noexcept;
     BitWriter& operator=(BitWriter&& other) noexcept;

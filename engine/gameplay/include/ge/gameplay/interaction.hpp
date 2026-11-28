@@ -144,6 +144,10 @@ struct InteractionEvent {
     std::size_t action_index{};
     std::string name;
     std::string message;
+    // Event-time identities survive delayed history consumption and identity
+    // changes on otherwise live entity handles.
+    PersistentId persistent_actor{};
+    PersistentId persistent_target{};
 };
 
 struct InteractionHistory {
@@ -215,6 +219,8 @@ struct InteractionStatistics {
 // their later completion belongs to those services. Actions are not transactional.
 // No world coordinates are cached between updates: origin shifts are observed
 // through current Scene matrices. History positions describe their event frame.
+// History persistent identities describe publication time, not the entities'
+// current Registry bindings when a consumer later reads the event.
 class InteractionService final {
 public:
     explicit InteractionService(core::Kernel& kernel, scene::Scene& scene,

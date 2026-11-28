@@ -16,11 +16,18 @@ not create additional agents. Runtime capacity is three simultaneous workers.
 
 ## Status
 
-Work is in progress. 66 distinct workers have been launched and
-63 have completed their assigned reviews or repairs. Further subsystem
-review, repairs and independent integration reviews remain. The active `AUDIT-20261128` task and its source-matching receipts
-are the authoritative acceptance record. A published intermediate checkpoint is
-not completion of the 100-worker request or production qualification.
+The requested review has 100 completed workers out of 100 distinct
+canonical agent IDs. The actual-worker register contains every assigned scope and
+completed report. Acceptance of `AUDIT-20261128` is recorded in the canonical ledger. The canonical ledger records acceptance against a full source
+fingerprint; historical checks do not qualify later changes. Read the delivery
+commit together with that task's latest source-matching receipts and completion
+note. This review qualifies a maintainable headless engine foundation for further
+development within the observed environment, not a production or platform guarantee.
+
+Reviewers worked in batches of at most three, with one coordinator integrating
+released paths and running frozen-source checks. Read-only reviews count only when
+an actual agent inspected its assigned contract and delivered findings. Earlier
+campaign registers and repeated agent turns are not part of the 100-worker count.
 
 ## First checkpoint changes
 
@@ -132,11 +139,78 @@ by passing terrain tests.
 - Editor pick acceptance synchronizes permitted Registry edits before validating
   its cached Scene revision, preserving selection/history when results are stale.
 
+## Sixth checkpoint changes
+
+- Executor waits avoid destruction of user captures under the state mutex and
+  reject blocking waits from synchronous cancellation callbacks.
+- File-watch polling publishes snapshots after assembling the successful result,
+  preserving events if a later watch scan fails.
+- Bit-writer copy assignment preserves destination metadata when allocation fails.
+- Signal dispatch accounts for close during a throwing final callback and for
+  events queued by deferred listener cleanup.
+- Asset catalogs retain the type paired with their last good revision, protecting
+  fallback resources during failed imports after a type change.
+- Repository checks reject file symlinks that bypass module boundaries. Benchmark
+  JSON rejects non-finite exponent values, and malformed build-cache encoding uses
+  the driver's normal error boundary.
+- Package install directories reject anchored Windows paths and embedded NUL. The
+  installed README describes both executables, all SDK targets and the manifest.
+
+The package gate initially identified a checkout-local build-tool dependency. The
+build tools were relocated outside the source tree and the unchanged relocation
+check then passed, including a separate installed-SDK consumer. No gate was relaxed.
+
+## Integration and independent-review follow-up
+
+- CLI validation rejects empty script/report paths and malformed UTF-8 scripts,
+  reports output failures, and emits valid JSON for malformed diagnostic bytes.
+- Blended final poses now reach CPU skinning even when blending owns a disabled
+  base animator. The populated runtime regression checks deformed geometry,
+  spatial bounds and rendered pixels together.
+- Animator sampling publishes an explicit successful-pose serial. Root capture
+  strips fresh paused same-time seeks, resumed clamped endpoints and zero-duration
+  samples once; failed sampling and rejected Scene publication retain the prior
+  extraction baseline. Caller assignment/restoration of a different Animator
+  requires `reset_root()` as documented.
+- Skeletal animation stages each entity's sampled Animator and event payload
+  allocations before publishing its Scene pose or playback state. A failed entity
+  remains retryable. This is a per-entity guarantee: an allocation exception can
+  leave earlier entities committed and returns no event batch, as the API states.
+- Interaction history captures persistent actor and target identities when the
+  event occurs. Delayed mission consumption cannot credit a replacement identity.
+- Network authority and owner handoffs publish the accepted pose and velocity
+  before prediction suspends, then release prediction ownership.
+- Terrain checks translated/scaled bounds in world coordinates before inverse
+  sampling, preserving inclusive endpoints and strict rejection one representable
+  value outside. Populated vegetation tests cover rebasing and cleanup.
+- Asset streaming adopts external dependency-free fallback versions using the
+  type paired with their last-good revision, preserving the bytes across type
+  changes, insufficient replacement budgets and decoder failures. Historical
+  dependency graphs are not inferred.
+- A refused executor join from an external cancellation callback now reaches the
+  kernel cleanup-failure counter and diagnostics. The service remains alive for
+  an explicit owner-thread cleanup after that callback returns.
+- Allocation-failure regression instrumentation measures the standard library
+  allocation it intends to reject and remains active in optimized builds. It
+  retains the original transform-publication failure assertion.
+- Developer setup, architecture and packaging guides describe the implemented
+  engine and current SDK. They distinguish the lifecycle fixture from the composed
+  runtime and identify the automatic interaction-to-mission key limitation.
+
+Independent follow-up reviewers check repairs against consumers, resource ownership,
+transaction boundaries, frame scheduling, numerical limits, build manifests and
+platform-specific source paths. Their exact reviewed scopes and executed evidence
+are retained in the actual-worker register. No-defect findings are bounded reviews,
+not proofs that every possible bug has been eliminated.
+
 ## Verification scope
 
 The local toolchain is Linux x86-64, GCC 14.2, CMake 4.4.5, Ninja 1.13.2 and
 Python 3.12.14. The original checkout passed strict Debug compilation, standalone
-public-header compilation and all 25 existing CTest suites. A 600-frame empty
+public-header compilation and all 25 existing CTest suites. The final Linux test
+manifest registers 84 suites, including 73 native suites, and independent
+compilation of all 70 public headers. Every one of the 67 engine translation units
+is listed explicitly; all 61 runtime registrations are called by the real installer. A 600-frame empty
 runtime run installed 61 modules and 78 systems without reported system failures.
 The populated runtime integration suite separately exercised simulation and pixels.
 
@@ -146,12 +220,36 @@ read from the task receipts; earlier runs do not qualify later source changes.
 
 An intermediate ASan/UBSan native run passed 49 suites on the unchanged source
 recorded in the worker register. The associated Debug run passed all 59 suites.
-Later source changes require fresh qualification. LeakSanitizer aborts under
+Later source changes require fresh qualification. The final native sanitizer result,
+its exact options and source fingerprint are recorded in the accepted task
+completion note; the earlier midpoint result alone does not qualify delivery. LeakSanitizer aborts under
 this execution environment's process tracing. Local instrumented runs therefore
 use `ASAN_OPTIONS=halt_on_error=1:abort_on_error=1:detect_leaks=0` and
 `UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1` with raw CTest. Repository presets
 and hosted sanitizer settings are unchanged. Leak detection is not qualified here.
 
+A final sanitizer preflight caught mismatched allocation hooks in the new skeletal
+regression: standard-library scratch allocation used a nothrow path. The test now
+pairs that path with its replacement deallocator. The original failure log is
+retained, and allocation-mismatch diagnostics remain enabled. Delivery
+qualification uses the repaired test and the final source fingerprint.
+
 No Windows, macOS, native graphical window, GPU, performance or production
 qualification is inferred from these Linux checks. The runtime remains an engine
 foundation; byte streaming alone does not establish typed asset import adapters.
+
+
+## Development entry points
+
+```sh
+python3 tools/ge.py doctor
+python3 tools/ge.py check --preset dev --jobs 2
+out/build/dev/bin/ge_runtime --ticks 3 --step 0.125
+python3 tools/ge.py package --preset release --jobs 2
+```
+
+`tools/ge.py run` runs the retained lifecycle fixture. `ge_runtime` installs the
+composed engine. Public APIs remain under each domain's `include/ge/` root; the
+combined implementations export through `ge::engine`. See
+[developer setup](../development/setup.md), [runtime composition](../architecture/runtime-expansion.md)
+and [packaging](../development/packaging.md) for the contracts and commands.

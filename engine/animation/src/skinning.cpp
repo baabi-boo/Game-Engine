@@ -1,5 +1,6 @@
 #include <ge/animation/skinning.hpp>
 
+#include <ge/animation/blend.hpp>
 #include <ge/animation/ik.hpp>
 #include <ge/animation/retarget.hpp>
 #include <ge/core/runtime.hpp>
@@ -202,7 +203,11 @@ SkinningUpdate SkinningService::update(ecs::Registry& registry, const AnimationS
             ++result.retired;
             continue;
         }
-        if (!registry.enabled(entity) || !animated->enabled) { ++result.skipped; continue; }
+        if (!registry.enabled(entity) ||
+            (!animated->enabled && !blend_owns_pose(registry, entity))) {
+            ++result.skipped;
+            continue;
+        }
         binding.info.last_result = {};
         if (source->revision != binding.info.source_revision) {
             binding.info.last_result = {AnimationError::InvalidMesh};

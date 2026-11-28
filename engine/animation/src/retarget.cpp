@@ -480,6 +480,7 @@ struct RetargetService::Impl {
         RootMotionDelta pending;
         std::uint64_t pending_tick{};
         PlaybackState playback;
+        std::uint64_t pose_publication{};
         bool clock_valid{};
         std::optional<std::uint64_t> sample_tick;
     };
@@ -782,12 +783,11 @@ RetargetUpdate RetargetService::update(ecs::Registry& registry, AnimationService
         const auto& skeleton = *animation.skeletons.get(root.owner.skeleton);
         auto* component = registry.get<AnimatedComponent>(entity);
         const auto playback = component->animator.state();
+        const auto pose_publication = component->animator.pose_publication();
         const bool composed = impl_->bindings.contains(entity) || blend_owns_pose(registry, entity);
-        // Active playback republishes raw locals even at zero speed or zero
-        // delta time, so those samples still need their root motion stripped.
-        if (!composed && (!component->enabled || !playback.playing) &&
-            root.clock_valid && playback.clip == root.playback.clip &&
-            playback.wrap == root.playback.wrap && playback.time == root.playback.time) {
+        // A same-time seek or endpoint resample can publish raw locals while
+        // playback is paused. Only an unchanged publication retains our strip.
+        if (!composed && root.clock_valid && pose_publication == root.pose_publication) {
             ++output.skipped; continue;
         }
         if (!composed && root.clock_valid) {
@@ -856,6 +856,7 @@ RetargetUpdate RetargetService::update(ecs::Registry& registry, AnimationService
         if (!status) { root.tracker.reset(); root.info.pending = false; ++output.errors; continue; }
         *canonical = std::move(candidate);
         root.tracker = tracker;
+        root.pose_publication = pose_publication;
         root.sample_tick = tick;
         if (options.application == RootMotionApplication::KinematicTarget && !sample.primed) {
             root.pending = sample.delta;

@@ -231,6 +231,8 @@ public:
     bool release(JobHandle handle);
     bool release(GraphHandle handle);
     std::size_t release_completed(std::uint64_t tag);
+    // Incomplete waits from this executor's workers or synchronous cancellation
+    // callbacks return false: those callbacks must unwind before completion.
     [[nodiscard]] bool wait(JobHandle handle, std::chrono::milliseconds timeout);
     [[nodiscard]] bool wait(GraphHandle handle, std::chrono::milliseconds timeout);
     [[nodiscard]] bool wait_idle(std::chrono::milliseconds timeout);

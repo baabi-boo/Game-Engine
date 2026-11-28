@@ -42,6 +42,8 @@ struct SkinningUpdate {
 };
 
 // Single-writer adapter for an existing AnimatedComponent and MeshComponent.
+// Final blend-owned poses remain eligible while blend authority disables the
+// base player. Disabled entities and disabled unblended players retain output.
 // Source handles/revisions are immutable until an explicit successful rebind.
 // A changed source revision or failed deformation retains the last valid output.
 // A missing source/entity/component or replaced AnimatedComponent retires its

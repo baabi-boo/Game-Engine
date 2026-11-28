@@ -1170,6 +1170,15 @@ BitWriter::BitWriter(std::size_t maximum_bytes) : maximum_bytes_(maximum_bytes) 
     }
 }
 
+BitWriter& BitWriter::operator=(const BitWriter& other) {
+    if (this != &other) {
+        bytes_ = other.bytes_;
+        maximum_bytes_ = other.maximum_bytes_;
+        bit_size_ = other.bit_size_;
+    }
+    return *this;
+}
+
 BitWriter::BitWriter(BitWriter&& other) noexcept
     : maximum_bytes_(other.maximum_bytes_), bit_size_(other.bit_size_),
       bytes_(std::move(other.bytes_)) {

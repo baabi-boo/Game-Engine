@@ -1,11 +1,11 @@
 # Packaging and relocation
 
-The binary distribution contains the installed headless host, cooked and authored
-district fixtures, all five public headers, static content/world libraries, CMake
-package exports, a build manifest, and distribution documentation. This is a
-pre-alpha headless contract prototype. Packaging does not establish graphical
-capability, real asset streaming, performance, crash durability, a supported
-platform matrix, or a stable binary ABI. Read the
+The binary distribution contains `ge_headless` and `ge_runtime`, cooked and authored
+district fixtures, all 70 current public headers, the static core/content/world/engine
+libraries, CMake package exports, a build manifest, and distribution documentation.
+This is a pre-alpha headless engine foundation. Packaging checks delivery and
+relocation; it does not qualify every subsystem, native graphics, performance,
+crash durability, a supported platform matrix, or a stable binary ABI. Read the
 [architecture](../architecture/overview.md) for the scope and
 [project policy](../project-policy.md) for the pending owner license decision.
 
@@ -44,9 +44,10 @@ running it directly. `--config` accepts `Debug`, `Release`, `RelWithDebInfo`, an
 default `2`. A single-configuration cache must match the requested configuration.
 For a multi-configuration generator, that configuration must be available and built.
 
-The normal default/ALL build refreshes the manifest after the executable and cooked
-fixture are ready. Building only `ge_headless` can leave an old manifest behind;
-use the normal build command above before installing or packaging. The gate checks
+The normal default/ALL build refreshes the manifest after both executables, the
+four static libraries and the cooked fixture are ready. Building only one target
+can leave an old manifest behind; use the normal build command above before
+installing or packaging. The gate checks
 the installed manifest against the requested configuration, configured project
 version, and actual moved files. It does not regenerate metadata to repair a mismatch.
 
@@ -81,25 +82,34 @@ The standard-library script performs these checks in a private temporary directo
    prefix, and exported CMake files refer to no original stage, build or checkout.
 4. Read the moved `share/game-engine/build-manifest.json`. Require its schema,
    project name/version and requested configuration to match the configured build.
-   Recompute SHA-256 and byte sizes from the moved executable and cooked fixture,
-   and compare their filenames and content metadata with the manifest. Validate and
-   report its recorded Git commit/dirty state or explicit unknown source status.
+   Recompute SHA-256 and byte sizes for all seven moved artifacts: both executables,
+   the four static libraries and the cooked fixture. Compare their filenames and
+   content metadata with the manifest. Validate and report its recorded Git
+   commit/dirty state or explicit unknown source status.
 5. Run the installed `bin/ge_headless` (`.exe` on Windows) from an unrelated
    working directory with the moved `share/game-engine/assets/district.gepack`.
    Parse both `--inspect` and lifecycle JSON. Check matching package metadata,
    all required lifecycle checks, visits to every region, a bounded peak modeled
    reservation and `final_reserved_bytes == 0`.
-6. Create and build a fresh external CMake project that finds `GameEngine` only
-   under the moved prefix and links `ge::core`, `ge::content`, and `ge::world`.
-   It includes and uses every public header: clock and identity, package loading,
-   state encode/decode/restore, and readiness/retirement policy. Execute this newly
-   linked consumer with the installed fixture from the unrelated working directory.
-7. Verify that the original stage remains absent and remove only the script's own
+6. Run the installed `bin/ge_runtime` from that unrelated directory, with a command
+   file and report path containing spaces and Unicode. Create a box mesh and advance
+   three frames. Check its mesh metrics, frame-system execution, render graph and
+   diagnostics. This is a bounded runtime smoke check, not a populated-world test.
+7. Create and build a fresh external CMake project that finds `GameEngine` only
+   under the moved prefix and requests all four components: core, content, world
+   and engine. It links `ge::engine`, which supplies the foundation libraries
+   transitively. The consumer uses seven representative public headers: clock,
+   identity, runtime, package, mesh, state and streaming. It exercises fixture
+   loading/restoration, readiness policy, compiled geometry APIs and a kernel tick.
+   Execute this newly linked consumer with the installed fixture from the unrelated
+   working directory. The normal source build separately compiles every public
+   header in isolation; this consumer does not exercise every installed API.
+8. Verify that the original stage remains absent and remove only the script's own
    temporary directory, including its disposable consumer source and build.
 
 Commands use argument arrays without a shell. Spaces in the build, install and
-consumer paths remain individual arguments. On Windows, both the installed host
-and generated SDK consumer use `wmain` and construct `std::filesystem::path` directly
+consumer paths remain individual arguments. On Windows, both installed executables
+and the generated SDK consumer use `wmain` and construct `std::filesystem::path` directly
 from native UTF-16 arguments; MinGW builds select the Unicode CRT entry with
 `-municode`. On POSIX, they retain native `char` path arguments. The moved Unicode
 prefix exercises executable launch, fixture loading, CMake package discovery, and
@@ -126,9 +136,10 @@ removed after the run; retain command logs separately when recording evidence.
 
 The installed manifest records the producer's build-time source observation,
 project version, platform/processor, compiler, configuration, strict-warning and
-sanitizer settings, package/state format versions, and executable/fixture hashes
-and byte sizes. Its source record is either a complete Git commit with a boolean
-dirty flag, or `unknown` with null commit/dirty fields and a reason such as missing
+sanitizer settings, package/state format versions, and hashes and byte sizes for
+both executables, four static libraries and the cooked fixture. Its source record
+is either a complete Git commit with a boolean dirty flag, or `unknown` with null
+commit/dirty fields and a reason such as missing
 Git metadata or an unavailable Git executable. Unknown status is never reported as
 a clean checkout. The gate reports this record; it does not compare it with the
 checkout's later state or independently establish which source produced the binary.
@@ -229,8 +240,10 @@ public repository, so the package does not pretend to include developer test fil
 The relocation gate checks installed Markdown file destinations offline.
 
 Consumers use `find_package(GameEngine CONFIG REQUIRED)` and the exported
-`ge::core`, `ge::content`, and `ge::world` targets. Set `CMAKE_PREFIX_PATH` to the
-extracted prefix; the CMake files and include/library paths move with it. The
+`ge::core`, `ge::content`, `ge::world`, and `ge::engine` targets. Link `ge::engine`
+for domain APIs; its public dependencies supply the foundation libraries and thread
+runtime. Set `CMAKE_PREFIX_PATH` to the extracted prefix; the CMake files and
+include/library paths move with it. The
 consumer must match the producer's architecture, configuration, compiler/runtime,
 standard library, and ABI options. MSVC runtime selection and debug iterator ABI
 are particularly sensitive to Debug/Release mismatches. Build from source when

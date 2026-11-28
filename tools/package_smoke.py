@@ -225,7 +225,10 @@ def _json_run(command: Sequence[str], cwd: Path) -> dict[str, Any]:
 def _relative_install_dir(cache: dict[str, str], key: str, default: str) -> Path:
     value = cache.get(key) or default
     path = Path(value)
-    _require(not path.is_absolute() and ".." not in path.parts and ";" not in value,
+    # Windows root-relative and drive-relative paths are not absolute, but can
+    # still discard the private prefix when joined. Reject every anchor.
+    _require(not path.anchor and ".." not in path.parts and
+             not any(character in value for character in ";\0"),
              f"{key} must stay inside the installation prefix, found {value!r}")
     return path
 

@@ -221,8 +221,8 @@ class RepositoryCheck:
                 if parent == self.root and name in ROOT_GENERATED:
                     continue
                 path = parent / name
-                if path.is_symlink() and not path.resolve().is_relative_to(self.root):
-                    self.error(path, 1, "source symlink points outside the repository")
+                if path.is_symlink():
+                    self.error(path, 1, "cannot inspect a symlinked source file; use ordinary source files")
                     continue
                 yield path
 
