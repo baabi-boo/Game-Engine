@@ -237,7 +237,8 @@ public:
     [[nodiscard]] ExecutorStatistics statistics() const;
     bool pause();
     bool resume();
-    // Owner-thread operation. Calls from this executor's workers return false.
+    // Owner-thread operation. Calls from this executor's workers or its
+    // synchronous cancellation callbacks return false without starting shutdown.
     // Concurrent callers are serialized; no job/stop callback runs under a lock.
     bool shutdown(ShutdownMode mode = ShutdownMode::Cancel);
 

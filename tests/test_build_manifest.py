@@ -28,6 +28,12 @@ if _SPEC is None or _SPEC.loader is None:
     raise RuntimeError(f"cannot load build manifest producer: {TOOL}")
 producer = importlib.util.module_from_spec(_SPEC)
 _SPEC.loader.exec_module(producer)
+_SMOKE_SPEC = importlib.util.spec_from_file_location(
+    "ge_package_smoke_under_test", REPOSITORY / "tools/package_smoke.py")
+if _SMOKE_SPEC is None or _SMOKE_SPEC.loader is None:
+    raise RuntimeError("cannot load package manifest verifier")
+smoke = importlib.util.module_from_spec(_SMOKE_SPEC)
+_SMOKE_SPEC.loader.exec_module(smoke)
 
 
 class BuildManifestTests(unittest.TestCase):
@@ -56,6 +62,17 @@ class BuildManifestTests(unittest.TestCase):
         self.fixture = self.root / "district.gepack"
         self.fixture.write_bytes(self.fixture_bytes)
         self.output = self.root / "build-manifest.json"
+        self.library_dir = self.root / "lib"
+        self.library_dir.mkdir()
+        self.sdk_paths = {"runtime": self.root / "ge_runtime"}
+        self.sdk_paths.update({name: self.library_dir / f"libge_{name}.a"
+                               for name in ("engine", "core", "content", "world")})
+        for name, path in self.sdk_paths.items():
+            path.write_bytes(f"compiled {name} fixture bytes".encode("ascii"))
+        self.sdk_arguments = {
+            "runtime" if name == "runtime" else f"{name}_library": path
+            for name, path in self.sdk_paths.items()
+        }
 
     def arguments(self, **changes: object) -> list[str]:
         values = {
@@ -112,6 +129,7 @@ class BuildManifestTests(unittest.TestCase):
         self.assertEqual(manifest["project"], {"name": "GameEngine", "version": "7.8.9"})
         self.assertEqual(manifest["schema_version"], 1)
         self.assertEqual(manifest["format_versions"], {"package": 1, "state": 1})
+        self.assertEqual(set(manifest["artifacts"]), {"headless", "fixture"})
         for key, path in (("headless", self.binary), ("fixture", self.fixture)):
             record = manifest["artifacts"][key]
             self.assertEqual(record["filename"], path.name)
@@ -126,6 +144,97 @@ class BuildManifestTests(unittest.TestCase):
         self.assertIs(changed["build"]["sanitizers"], True)
         self.assertEqual(changed["build"]["configuration"], "Debug")
         self.assertEqual(self.generate(configuration="")["build"]["configuration"], "unspecified")
+
+    def test_expanded_sdk_preserves_v1_fields_and_hashes_every_shipped_artifact(self) -> None:
+        foundation = self.generate()
+        expanded = self.generate(**self.sdk_arguments)
+        self.assertEqual({key: value for key, value in expanded.items() if key != "artifacts"},
+                         {key: value for key, value in foundation.items() if key != "artifacts"})
+        self.assertEqual(set(expanded["artifacts"]), {"headless", "fixture", *self.sdk_paths})
+        for name, record in foundation["artifacts"].items():
+            self.assertEqual(expanded["artifacts"][name], record)
+        for name, path in self.sdk_paths.items():
+            with self.subTest(artifact=name):
+                self.assertEqual(expanded["artifacts"][name], {
+                    "filename": path.name, "size_bytes": path.stat().st_size,
+                    "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+                })
+        self.assertNotIn(str(self.root), self.output.read_text(encoding="utf-8"))
+
+    def test_every_sdk_artifact_is_rehashed_when_same_size_content_changes(self) -> None:
+        previous = self.generate(**self.sdk_arguments)
+        for name, path in self.sdk_paths.items():
+            with self.subTest(artifact=name):
+                raw = bytearray(path.read_bytes())
+                raw[-1] ^= 1
+                path.write_bytes(raw)
+                current = self.generate(**self.sdk_arguments)
+                for key, record in previous["artifacts"].items():
+                    if key == name:
+                        self.assertEqual(record["size_bytes"], current["artifacts"][key]["size_bytes"])
+                        self.assertNotEqual(record["sha256"], current["artifacts"][key]["sha256"])
+                    else:
+                        self.assertEqual(record, current["artifacts"][key])
+                previous = current
+
+    def test_partial_missing_and_aliased_sdk_inputs_preserve_existing_files(self) -> None:
+        self.generate(**self.sdk_arguments)
+        for option, path in self.sdk_arguments.items():
+            with self.subTest(artifact=option):
+                partial = {key: value for key, value in self.sdk_arguments.items() if key != option}
+                self.assert_previous_survives(**partial)
+                self.assert_previous_survives(**{**self.sdk_arguments, option: self.root / "missing"})
+                before = path.read_bytes()
+                result = self.run_tool(**self.sdk_arguments, output=path)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn("must not overwrite an input", result.stderr)
+                self.assertEqual(path.read_bytes(), before)
+
+    def verify_install(self, *, expanded: bool = True) -> None:
+        paths = {"runtime": self.sdk_paths["runtime"], "library_dir": self.library_dir} if expanded else {}
+        with mock.patch.object(smoke, "_message"):
+            smoke._check_manifest(self.output, self.binary, self.fixture,
+                                  {"CMAKE_PROJECT_NAME": "GameEngine", "CMAKE_PROJECT_VERSION": "7.8.9"},
+                                  "Release", **paths)
+
+    def test_foundation_verification_is_compatible_but_full_gate_requires_sdk_records(self) -> None:
+        self.generate()
+        self.verify_install(expanded=False)
+        with self.assertRaises(smoke.SmokeError):
+            self.verify_install()
+        self.generate(**self.sdk_arguments)
+        self.verify_install(expanded=False)
+        self.verify_install()
+
+    def test_install_verifier_rejects_each_missing_or_modified_shipped_artifact(self) -> None:
+        manifest = self.generate(**self.sdk_arguments)
+        self.verify_install()
+        for name, path in {"headless": self.binary, "fixture": self.fixture, **self.sdk_paths}.items():
+            with self.subTest(artifact=name):
+                original = path.read_bytes()
+                path.write_bytes(original[:-1] + bytes([original[-1] ^ 1]))
+                with self.assertRaisesRegex(smoke.SmokeError, f"SHA-256 mismatch for {name}"):
+                    self.verify_install()
+                path.unlink()
+                with self.assertRaisesRegex(smoke.SmokeError, f"installed {name} artifact is missing"):
+                    self.verify_install()
+                path.write_bytes(original)
+                record = manifest["artifacts"].pop(name)
+                self.output.write_text(json.dumps(manifest), encoding="utf-8")
+                with self.assertRaises(smoke.SmokeError):
+                    self.verify_install()
+                manifest["artifacts"][name] = record
+                self.output.write_text(json.dumps(manifest), encoding="utf-8")
+        self.verify_install()
+
+    def test_install_verifier_rejects_library_paths_outside_the_library_directory(self) -> None:
+        manifest = self.generate(**self.sdk_arguments)
+        for filename in ("../ge_runtime", "/ge_runtime", "..\\ge_runtime", "C:ge_runtime", "..", ""):
+            with self.subTest(filename=filename):
+                manifest["artifacts"]["engine"]["filename"] = filename
+                self.output.write_text(json.dumps(manifest), encoding="utf-8")
+                with self.assertRaisesRegex(smoke.SmokeError, "invalid engine library filename"):
+                    self.verify_install()
 
     def test_identical_content_is_stable_across_paths_mtimes_and_repeated_runs(self) -> None:
         self.generate()

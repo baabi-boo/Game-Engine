@@ -25,6 +25,15 @@ from typing import Any
 
 
 MANIFEST_SCHEMA_VERSION = 1
+# Version 1 retains the headless/fixture records. Expanded builds add these
+# records without changing the existing record shape or foundation-only CLI.
+SDK_ARTIFACT_ARGUMENTS = {
+    "runtime": "runtime",
+    "engine": "engine_library",
+    "core": "core_library",
+    "content": "content_library",
+    "world": "world_library",
+}
 PACKAGE_HEADER = Path("engine/content/include/ge/content/package.hpp")
 STATE_HEADER = Path("engine/world/include/ge/world/state.hpp")
 
@@ -122,7 +131,13 @@ def write_manifest(arguments: argparse.Namespace) -> dict[str, Any]:
     if not source.is_dir():
         raise ValueError("source directory must be a directory")
     output = arguments.output
-    inputs = (arguments.binary, arguments.fixture, source / PACKAGE_HEADER, source / STATE_HEADER)
+    artifacts = {"headless": arguments.binary, "fixture": arguments.fixture}
+    sdk_artifacts = {name: getattr(arguments, option) for name, option in SDK_ARTIFACT_ARGUMENTS.items()}
+    if any(path is not None for path in sdk_artifacts.values()):
+        if any(path is None for path in sdk_artifacts.values()):
+            raise ValueError("runtime and all four library paths must be supplied together")
+        artifacts.update(sdk_artifacts)
+    inputs = (*artifacts.values(), source / PACKAGE_HEADER, source / STATE_HEADER)
     _check_destination(output, inputs)
 
     package_version = _format_version(source / PACKAGE_HEADER, "package_schema_version")
@@ -151,7 +166,7 @@ def write_manifest(arguments: argparse.Namespace) -> dict[str, Any]:
             "sanitizers": arguments.sanitizers,
         },
         "format_versions": {"package": package_version, "state": state_version},
-        "artifacts": {"headless": _artifact(arguments.binary), "fixture": _artifact(arguments.fixture)},
+        "artifacts": {name: _artifact(path) for name, path in artifacts.items()},
     }
     content = (json.dumps(manifest, sort_keys=True, indent=2, ensure_ascii=True,
                           allow_nan=False) + "\n").encode("utf-8")
@@ -184,6 +199,9 @@ def parse_arguments(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ("source-dir", "binary", "fixture", "output"):
         parser.add_argument(f"--{name}", type=Path, required=True)
+    for name in SDK_ARTIFACT_ARGUMENTS.values():
+        parser.add_argument(f"--{name.replace('_', '-')}", type=Path,
+                            help="expanded SDK artifact; supply runtime and all four libraries together")
     for name in ("project-name", "project-version", "platform", "system-processor",
                  "compiler-id", "compiler-version", "configuration"):
         parser.add_argument(f"--{name}", required=True)

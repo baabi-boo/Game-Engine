@@ -117,9 +117,13 @@ std::string map_path(std::string_view root, std::string_view relative) {
     return std::string(root) + std::string(relative);
 }
 
+fs::path native_utf8(std::string_view text) {
+    return fs::path(std::u8string(text.begin(), text.end()));
+}
+
 fs::path native_relative(std::string_view relative) {
     const auto text = relative == "/" ? std::string_view{} : relative.substr(1);
-    return fs::u8path(text.begin(), text.end());
+    return native_utf8(text);
 }
 
 std::string generic_utf8(const fs::path& path) {
@@ -1107,8 +1111,12 @@ bool VirtualFileSystem::remove(std::string_view path) {
         mount.files.erase(it);
         mount.info.memory_files = mount.files.size();
     } else {
+        // Resolution validated containment; unlink the requested entry rather
+        // than the canonical target of an in-mount file symlink.
+        const auto relative = relative_path(mount.info.virtual_root, normalized);
+        const auto entry = mount.info.physical_root / native_relative(relative);
         std::error_code error;
-        const bool removed = fs::remove(resolved->physical, error);
+        const bool removed = fs::remove(entry, error);
         file_error(normalized, error);
         if (!removed) {
             return false;
@@ -1385,11 +1393,11 @@ void register_filesystem(core::Kernel& kernel) {
     (void)kernel.register_module({"io.filesystem", "Bounded virtual mounts, file access and change polling", 1});
     const auto read_root = kernel.config().text("io.root");
     if (!read_root.empty()) {
-        (void)filesystem.mount_directory(fs::u8path(read_root), {"/assets", 0, false});
+        (void)filesystem.mount_directory(native_utf8(read_root), {"/assets", 0, false});
     }
     const auto writable_root = kernel.config().text("io.writable_root");
     if (!writable_root.empty()) {
-        (void)filesystem.mount_directory(fs::u8path(writable_root), {"/user", 0, true});
+        (void)filesystem.mount_directory(native_utf8(writable_root), {"/user", 0, true});
     }
     (void)filesystem.mount_memory({"/memory", 0, true});
     (void)kernel.add_command("io.mount", [](core::Kernel& host, core::CommandArgs args) {
@@ -1398,7 +1406,7 @@ void register_filesystem(core::Kernel& kernel) {
         }
         const int priority = args.size() == 3 ? parse_integer<int>(args[2], "mount priority") : 0;
         const auto id = host.services().get<VirtualFileSystem>().mount_directory(
-            fs::u8path(args[0]), {args[1], priority, false});
+            native_utf8(args[0]), {args[1], priority, false});
         return core::CommandResult{true, "mounted read-only directory " + std::to_string(id)};
     }, "Mount an existing native directory read-only; writable roots are startup configuration");
     (void)kernel.add_command("io.memory", [](core::Kernel& host, core::CommandArgs args) {

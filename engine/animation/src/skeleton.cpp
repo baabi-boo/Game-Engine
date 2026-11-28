@@ -195,7 +195,10 @@ AnimationResult Skeleton::load(std::vector<Bone> bones, bool calculate_inverse_b
     }
     for (std::size_t cursor = 0; cursor < order.size(); ++cursor) {
         const auto& children = descendants[order[cursor]];
-        order.insert(order.end(), children.begin(), children.end());
+        // Each bone has one parent, so each reachable child is appended once.
+        for (const auto child : children) {
+            order.push_back(child);
+        }
     }
     if (order.size() != bones.size()) { return {AnimationError::Cycle}; }
     std::vector<math::Mat4> globals(bones.size());

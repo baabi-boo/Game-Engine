@@ -237,10 +237,15 @@ struct BinaryFrame {
 // Feed reports accepted bytes, so a transport can retain the unconsumed suffix.
 // next() emits complete frames in arrival order and latches malformed-input
 // failures until reset. has_complete_frame() is an observational header probe.
+// Moving preserves the destination stream and resets the source with its limits.
 // This class makes no peer authentication or sequence-order claim.
 class FrameDecoder {
 public:
     explicit FrameDecoder(BinaryLimits limits = {});
+    FrameDecoder(const FrameDecoder&) = default;
+    FrameDecoder& operator=(const FrameDecoder&) = default;
+    FrameDecoder(FrameDecoder&& other) noexcept;
+    FrameDecoder& operator=(FrameDecoder&& other) noexcept;
     [[nodiscard]] std::size_t feed(std::span<const std::byte> bytes);
     [[nodiscard]] std::optional<BinaryFrame> next();
     [[nodiscard]] std::size_t buffered_bytes() const noexcept;
@@ -282,6 +287,11 @@ private:
 class BitWriter {
 public:
     explicit BitWriter(std::size_t maximum_bytes = 64U * 1024U * 1024U);
+    BitWriter(const BitWriter&) = default;
+    BitWriter& operator=(const BitWriter&) = default;
+    // A moved-from writer is empty and retains its capacity limit.
+    BitWriter(BitWriter&& other) noexcept;
+    BitWriter& operator=(BitWriter&& other) noexcept;
     [[nodiscard]] std::size_t bit_size() const noexcept;
     [[nodiscard]] std::span<const std::byte> bytes() const noexcept;
     void write(std::uint64_t value, unsigned width);

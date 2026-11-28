@@ -668,9 +668,19 @@ public:
         if (empty()) {
             return std::nullopt;
         }
-        std::optional<T> result(std::in_place, std::move_if_noexcept(*slots_[head_]));
-        static_cast<void>(pop_front());
-        return result;
+        // Return directly into the caller's result: moving a named optional
+        // can throw even when the first construction safely copied T.
+        struct PopOnSuccess {
+            RingBuffer& queue;
+            int exceptions{std::uncaught_exceptions()};
+
+            ~PopOnSuccess() {
+                if (std::uncaught_exceptions() == exceptions) {
+                    static_cast<void>(queue.pop_front());
+                }
+            }
+        } consume{*this};
+        return std::optional<T>(std::in_place, std::move_if_noexcept(*slots_[head_]));
     }
 
     [[nodiscard]] T* front() noexcept {

@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 421
-- **Recorded update:** 2026\-11\-28T00:04:00.377753Z
+- **Ledger revision:** 527
+- **Recorded update:** 2026\-11\-28T07:13:06.930913Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** be30cb8a04270f128250777169c080c2589e98a91d4402c4b8411594e81e0cc5
-- **Source files:** 232
+- **Source fingerprint:** eeb75026bf9d5fd5feed769799a7ee1a6462a36a768d8089785f3ea7781af21f
+- **Source files:** 248
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -31,7 +31,7 @@ Source-of-truth documents:
 
 ## Ready work
 
-- M1\-010 (priority 100): Declare the reference platform and playable workload. Next: Read the first\-playable plan and inspect available target evidence; draft the reference\-platform record.
+No planned task currently has both completed dependencies and a clear write scope.
 
 Ready is derived from dependencies and active claims. A new claim also requires a current source fingerprint and the revision observed by the claimant.
 
@@ -41,13 +41,13 @@ Ready is derived from dependencies and active claims. A new claim also requires 
 
 User authorizes 100 actual workers and source\-only C\+\+20 growth to 100k connected source lines; no tests/build/runtime or CI waits. Preserve all existing evidence and do not claim acceptance.
 
-- State / owner: in\_progress / coordinator
+- State / owner: planned / unowned
 - Write scope: CMakeLists.txt, engine/core/CMakeLists.txt, engine/runtime/CMakeLists.txt, engine/runtime/modules.cmake, engine/core/include/ge/core/runtime.hpp, engine/core/src/runtime.cpp, apps/runtime, cmake/GameEngineConfig.cmake.in, README.md, docs/architecture/overview.md, docs/architecture/runtime\-expansion.md, docs/production/source\-campaign.json
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement kernel and compose completed worker modules; publish incremental source checkpoints without execution.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -57,17 +57,42 @@ Acceptance:
 
 - dev: no receipt.
 
+### AUDIT\-20261128: Compile, connect and review existing engine source with 100 actual workers
+
+User explicitly authorizes validating and repairing all code delivered at 3dcb0d0. Recover source\-only campaign claims without deleting work; run real builds, meaningful subsystem and runtime checks, repair integration and architecture failures.
+
+- State / owner: in\_progress / coordinator
+- Write scope: engine/, apps/, tests/, tools/, cmake/, CMakeLists.txt, CMakePresets.json, README.md, docs/architecture/, docs/development/, docs/production/, docs/quality\-gates.md, .github/workflows/ci.yml
+- Dependencies: none
+- Blocker: none
+- Checkpoint: Integrated first audit repairs and meaningful runtime coverage: strict build blockers, kernel/event lifecycle, executor cancellation, IO, CLI, math, codecs, allocator/ECS safety, CPU skinning bridge, module boundaries and packaging. Scene\-depth defect reproduced and repaired. Input disconnect and serialization findings remain queued for subsequent repair; audit remains in progress.
+- Files: engine/core/src/runtime.cpp, apps/runtime/modules.cpp, tests/CMakeLists.txt, docs/production/integration\-audit\-register.json
+- Next action: Run frozen development integration gate, publish a checkpoint, then continue the remaining actual worker assignments and repair queued findings.
+- Required checks: repository, dev, release, package
+
+Acceptance:
+
+- All existing C\+\+ translation units compile with strict warnings and public headers/install exports are usable.
+- All registered modules start, advance frames and shut down with exercised cross\-module integration and retained negative\-case checks.
+- 100 distinct delegated runs are recorded with actual canonical IDs and concrete findings or changes.
+- Publish passing local development, release and package evidence; document platform and functional limitations without claiming exhaustive correctness.
+
+- repository: no receipt.
+- dev: RUN-000005 / passed / recorded source snapshot.
+- release: no receipt.
+- package: no receipt.
+
 ### CODE\-001: Spatial mathematics
 
 Vectors, quaternions, matrices, transforms, bounds and numerical geometry shared by simulation and rendering. User requests source\-only development; no build, runtime, tests or CI waits in this campaign.
 
-- State / owner: in\_progress / worker001
+- State / owner: planned / unowned
 - Write scope: engine/math/include/ge/math/math.hpp, engine/math/src/math.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker001 delivered original source; 2193 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.
+- Checkpoint: Actual /root/worker001 delivered original source; 2193 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/math/include/ge/math/math.hpp, engine/math/src/math.cpp
-- Next action: Integrate real consumers; source delivered, runtime validation deferred by user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -81,13 +106,13 @@ Acceptance:
 
 Extend repository module declarations for the actual C\+\+ source expansion and standard thread runtime without disabling existing checks.
 
-- State / owner: in\_progress / coordinator
+- State / owner: planned / unowned
 - Write scope: tools/check\_repo.py
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Update policy declarations by source inspection; checks remain unrun under current user instruction.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: repository
 
 Acceptance:
@@ -100,13 +125,13 @@ Acceptance:
 
 Bounded arenas, object pools, sparse sets, ring buffers and allocation accounting for engine systems. User requests source\-only development; no build, runtime, tests or CI waits in this campaign.
 
-- State / owner: in\_progress / worker002
+- State / owner: planned / unowned
 - Write scope: engine/core/include/ge/core/memory.hpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker002 delivered original source; 1355 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.
+- Checkpoint: Actual /root/worker002 delivered original source; 1355 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/core/include/ge/core/memory.hpp
-- Next action: Integrate real consumers; source delivered, runtime validation deferred by user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -120,13 +145,13 @@ Acceptance:
 
 Endian codecs, bounded binary readers and writers, checksums, chunk containers and transactional parsing for runtime content. User requests source\-only development; no build, runtime, tests or CI waits in this campaign.
 
-- State / owner: in\_progress / worker003
+- State / owner: planned / unowned
 - Write scope: engine/core/include/ge/core/binary.hpp, engine/core/src/binary.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker003 delivered original source; 1527 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.
+- Checkpoint: Actual /root/worker003 delivered original source; 1527 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/core/include/ge/core/binary.hpp, engine/core/src/binary.cpp
-- Next action: Integrate real consumers; source delivered, runtime validation deferred by user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -140,13 +165,13 @@ Acceptance:
 
 Implement Entity component registry and deferred mutations. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker004
+- State / owner: planned / unowned
 - Write scope: engine/ecs/include/ge/ecs/registry.hpp, engine/ecs/src/registry.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker004 delivered Entity component registry and deferred mutations; 1354 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker004 delivered Entity component registry and deferred mutations; 1354 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/ecs/include/ge/ecs/registry.hpp, engine/ecs/src/registry.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -160,13 +185,13 @@ Acceptance:
 
 Implement Bounded task executor and dependency graph. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker005
+- State / owner: planned / unowned
 - Write scope: engine/jobs/include/ge/jobs/executor.hpp, engine/jobs/src/executor.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker005 delivered Bounded task executor and dependency graph; 1558 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker005 delivered Bounded task executor and dependency graph; 1558 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/jobs/include/ge/jobs/executor.hpp, engine/jobs/src/executor.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -180,13 +205,13 @@ Acceptance:
 
 Implement Virtual filesystem mounts and bounded file access. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker006
+- State / owner: planned / unowned
 - Write scope: engine/io/include/ge/io/filesystem.hpp, engine/io/src/filesystem.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker006 delivered Virtual filesystem mounts and bounded file access; 1684 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker006 delivered Virtual filesystem mounts and bounded file access; 1684 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/io/include/ge/io/filesystem.hpp, engine/io/src/filesystem.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -200,13 +225,13 @@ Acceptance:
 
 Implement Scene hierarchy and world transforms. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker007
+- State / owner: planned / unowned
 - Write scope: engine/scene/include/ge/scene/scene.hpp, engine/scene/src/scene.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker007 delivered Scene hierarchy and world transforms; 2075 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker007 delivered Scene hierarchy and world transforms; 2075 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/scene/include/ge/scene/scene.hpp, engine/scene/src/scene.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -220,13 +245,13 @@ Acceptance:
 
 Implement Input devices, action maps and rebinding. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker008
+- State / owner: planned / unowned
 - Write scope: engine/input/include/ge/input/actions.hpp, engine/input/src/actions.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker008 delivered Input devices, action maps and rebinding; 2007 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker008 delivered Input devices, action maps and rebinding; 2007 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/input/include/ge/input/actions.hpp, engine/input/src/actions.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -240,13 +265,13 @@ Acceptance:
 
 Implement Asset catalog, typed handles and cache. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker009
+- State / owner: planned / unowned
 - Write scope: engine/assets/include/ge/assets/catalog.hpp, engine/assets/src/catalog.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker009 delivered Asset catalog, typed handles and cache; 1634 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker009 delivered Asset catalog, typed handles and cache; 1634 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/assets/include/ge/assets/catalog.hpp, engine/assets/src/catalog.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -260,13 +285,13 @@ Acceptance:
 
 Implement Mesh topology, primitives and vertex processing. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker010
+- State / owner: planned / unowned
 - Write scope: engine/geometry/include/ge/geometry/mesh.hpp, engine/geometry/src/mesh.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker010 delivered Mesh topology, primitives and vertex processing; 1261 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker010 delivered Mesh topology, primitives and vertex processing; 1261 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/geometry/include/ge/geometry/mesh.hpp, engine/geometry/src/mesh.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -302,13 +327,13 @@ Acceptance:
 
 Implement Images, framebuffers and texture sampling. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker011
+- State / owner: planned / unowned
 - Write scope: engine/render/include/ge/render/image.hpp, engine/render/src/image.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker011 delivered Images, framebuffers and texture sampling; 1248 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker011 delivered Images, framebuffers and texture sampling; 1248 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/render/include/ge/render/image.hpp, engine/render/src/image.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -322,13 +347,13 @@ Acceptance:
 
 Implement Dynamic spatial index and visibility queries. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker012
+- State / owner: planned / unowned
 - Write scope: engine/spatial/include/ge/spatial/index.hpp, engine/spatial/src/index.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker012 delivered Dynamic spatial index and visibility queries; 1225 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker012 delivered Dynamic spatial index and visibility queries; 1225 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/spatial/include/ge/spatial/index.hpp, engine/spatial/src/index.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -342,13 +367,13 @@ Acceptance:
 
 Implement Collision shapes and narrowphase contacts. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker013
+- State / owner: planned / unowned
 - Write scope: engine/physics/include/ge/physics/collision.hpp, engine/physics/src/collision.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker013 delivered Collision shapes and narrowphase contacts; 1382 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker013 delivered Collision shapes and narrowphase contacts; 1382 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/physics/include/ge/physics/collision.hpp, engine/physics/src/collision.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -362,13 +387,13 @@ Acceptance:
 
 Implement Rigid body integration and contact solving. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker014
+- State / owner: planned / unowned
 - Write scope: engine/physics/include/ge/physics/dynamics.hpp, engine/physics/src/dynamics.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker014 delivered Rigid body integration and contact solving; 1480 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker014 delivered Rigid body integration and contact solving; 1480 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/physics/include/ge/physics/dynamics.hpp, engine/physics/src/dynamics.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -382,13 +407,13 @@ Acceptance:
 
 Implement Skeletons, poses and sampled animation. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker015
+- State / owner: planned / unowned
 - Write scope: engine/animation/include/ge/animation/skeleton.hpp, engine/animation/src/skeleton.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker015 delivered Skeletons, poses and sampled animation; 1123 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker015 delivered Skeletons, poses and sampled animation; 1123 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/animation/include/ge/animation/skeleton.hpp, engine/animation/src/skeleton.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -402,13 +427,13 @@ Acceptance:
 
 Implement Audio buffers, voices and mixing graph. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker016
+- State / owner: planned / unowned
 - Write scope: engine/audio/include/ge/audio/mixer.hpp, engine/audio/src/mixer.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker016 delivered Audio buffers, voices and mixing graph; 1252 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker016 delivered Audio buffers, voices and mixing graph; 1252 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/audio/include/ge/audio/mixer.hpp, engine/audio/src/mixer.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -422,13 +447,13 @@ Acceptance:
 
 Implement Graph and grid pathfinding. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker017
+- State / owner: planned / unowned
 - Write scope: engine/navigation/include/ge/navigation/pathfinding.hpp, engine/navigation/src/pathfinding.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker017 delivered Graph and grid pathfinding; 1544 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker017 delivered Graph and grid pathfinding; 1544 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/navigation/include/ge/navigation/pathfinding.hpp, engine/navigation/src/pathfinding.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -442,13 +467,13 @@ Acceptance:
 
 Implement Materials and CPU shading. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker018
+- State / owner: planned / unowned
 - Write scope: engine/render/include/ge/render/material.hpp, engine/render/src/material.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker018 delivered Materials and CPU shading; 1150 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker018 delivered Materials and CPU shading; 1150 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/render/include/ge/render/material.hpp, engine/render/src/material.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -462,13 +487,13 @@ Acceptance:
 
 Implement Camera rigs, projections and viewport mapping. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker019
+- State / owner: planned / unowned
 - Write scope: engine/render/include/ge/render/camera.hpp, engine/render/src/camera.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker019 delivered Camera rigs, projections and viewport mapping; 1231 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker019 delivered Camera rigs, projections and viewport mapping; 1231 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/render/include/ge/render/camera.hpp, engine/render/src/camera.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -482,13 +507,13 @@ Acceptance:
 
 Implement Asynchronous resource loading and residency. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker020
+- State / owner: planned / unowned
 - Write scope: engine/assets/include/ge/assets/streaming.hpp, engine/assets/src/streaming.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker020 delivered Asynchronous resource loading and residency; 1358 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker020 delivered Asynchronous resource loading and residency; 1358 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/assets/include/ge/assets/streaming.hpp, engine/assets/src/streaming.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -502,13 +527,13 @@ Acceptance:
 
 Implement Software triangle rasterization. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker021
+- State / owner: planned / unowned
 - Write scope: engine/render/include/ge/render/rasterizer.hpp, engine/render/src/rasterizer.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker021 delivered Software triangle rasterization; 1375 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker021 delivered Software triangle rasterization; 1375 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/render/include/ge/render/rasterizer.hpp, engine/render/src/rasterizer.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -522,13 +547,13 @@ Acceptance:
 
 Implement Character movement and grounding. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker022
+- State / owner: planned / unowned
 - Write scope: engine/physics/include/ge/physics/character.hpp, engine/physics/src/character.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker022 delivered Character movement and grounding; 1306 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker022 delivered Character movement and grounding; 1306 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/physics/include/ge/physics/character.hpp, engine/physics/src/character.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -542,13 +567,13 @@ Acceptance:
 
 Implement Vehicle suspension and tire forces. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker023
+- State / owner: planned / unowned
 - Write scope: engine/physics/include/ge/physics/vehicle.hpp, engine/physics/src/vehicle.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker023 delivered Vehicle suspension and tire forces; 1330 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker023 delivered Vehicle suspension and tire forces; 1330 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/physics/include/ge/physics/vehicle.hpp, engine/physics/src/vehicle.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -562,13 +587,13 @@ Acceptance:
 
 Implement Animation blending and state machines. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker024
+- State / owner: planned / unowned
 - Write scope: engine/animation/include/ge/animation/blend.hpp, engine/animation/src/blend.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker024 delivered Animation blending and state machines; 1312 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker024 delivered Animation blending and state machines; 1312 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/animation/include/ge/animation/blend.hpp, engine/animation/src/blend.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -582,13 +607,13 @@ Acceptance:
 
 Implement Spatial audio and acoustic attenuation. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker025
+- State / owner: planned / unowned
 - Write scope: engine/audio/include/ge/audio/spatial.hpp, engine/audio/src/spatial.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker025 delivered Spatial audio and acoustic attenuation; 1223 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker025 delivered Spatial audio and acoustic attenuation; 1223 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/audio/include/ge/audio/spatial.hpp, engine/audio/src/spatial.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -602,13 +627,13 @@ Acceptance:
 
 Implement Polygon navigation mesh queries and funnels. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker026
+- State / owner: planned / unowned
 - Write scope: engine/navigation/include/ge/navigation/navmesh.hpp, engine/navigation/src/navmesh.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker026 delivered Polygon navigation mesh queries and funnels; 1340 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker026 delivered Polygon navigation mesh queries and funnels; 1340 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/navigation/include/ge/navigation/navmesh.hpp, engine/navigation/src/navmesh.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -622,13 +647,13 @@ Acceptance:
 
 Implement World partition activation and origin shifts. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker027
+- State / owner: planned / unowned
 - Write scope: engine/scene/include/ge/scene/partition.hpp, engine/scene/src/partition.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker027 delivered World partition activation and origin shifts; 1235 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker027 delivered World partition activation and origin shifts; 1235 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/scene/include/ge/scene/partition.hpp, engine/scene/src/partition.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -642,13 +667,13 @@ Acceptance:
 
 Implement Terrain tiles, sampling and erosion. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker028
+- State / owner: planned / unowned
 - Write scope: engine/terrain/include/ge/terrain/heightfield.hpp, engine/terrain/src/heightfield.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker028 delivered Terrain tiles, sampling and erosion; 1353 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker028 delivered Terrain tiles, sampling and erosion; 1353 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/terrain/include/ge/terrain/heightfield.hpp, engine/terrain/src/heightfield.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -662,13 +687,13 @@ Acceptance:
 
 Implement Vegetation distribution and instancing. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker029
+- State / owner: planned / unowned
 - Write scope: engine/terrain/include/ge/terrain/vegetation.hpp, engine/terrain/src/vegetation.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker029 delivered Vegetation distribution and instancing; 1317 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker029 delivered Vegetation distribution and instancing; 1317 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/terrain/include/ge/terrain/vegetation.hpp, engine/terrain/src/vegetation.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -682,13 +707,13 @@ Acceptance:
 
 Implement Light collection, shadows and illumination. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker030
+- State / owner: planned / unowned
 - Write scope: engine/render/include/ge/render/lighting.hpp, engine/render/src/lighting.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker030 delivered Light collection, shadows and illumination; 1302 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker030 delivered Light collection, shadows and illumination; 1302 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/render/include/ge/render/lighting.hpp, engine/render/src/lighting.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -702,13 +727,13 @@ Acceptance:
 
 Implement Render pass graph and transient resources. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker031
+- State / owner: planned / unowned
 - Write scope: engine/render/include/ge/render/graph.hpp, engine/render/src/graph.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker031 delivered Render pass graph and transient resources; 1583 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker031 delivered Render pass graph and transient resources; 1583 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/render/include/ge/render/graph.hpp, engine/render/src/graph.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -722,13 +747,13 @@ Acceptance:
 
 Implement Particle emission, simulation and trails. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker032
+- State / owner: planned / unowned
 - Write scope: engine/effects/include/ge/effects/particles.hpp, engine/effects/src/particles.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker032 delivered Particle emission, simulation and trails; 1436 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker032 delivered Particle emission, simulation and trails; 1436 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/effects/include/ge/effects/particles.hpp, engine/effects/src/particles.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -742,13 +767,13 @@ Acceptance:
 
 Implement Rigid body constraints and joints. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker033
+- State / owner: planned / unowned
 - Write scope: engine/physics/include/ge/physics/constraints.hpp, engine/physics/src/constraints.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker033 delivered Rigid body constraints and joints; 1537 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker033 delivered Rigid body constraints and joints; 1537 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/physics/include/ge/physics/constraints.hpp, engine/physics/src/constraints.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -762,13 +787,13 @@ Acceptance:
 
 Implement Versioned scene serialization and transactions. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker034
+- State / owner: planned / unowned
 - Write scope: engine/scene/include/ge/scene/serialization.hpp, engine/scene/src/serialization.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker034 delivered Versioned scene serialization and transactions; 1315 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker034 delivered Versioned scene serialization and transactions; 1315 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/scene/include/ge/scene/serialization.hpp, engine/scene/src/serialization.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -782,13 +807,13 @@ Acceptance:
 
 Implement Bounded bytecode virtual machine. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker035
+- State / owner: planned / unowned
 - Write scope: engine/script/include/ge/script/vm.hpp, engine/script/src/vm.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker035 delivered Bounded bytecode virtual machine; 1557 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker035 delivered Bounded bytecode virtual machine; 1557 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/script/include/ge/script/vm.hpp, engine/script/src/vm.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -802,13 +827,13 @@ Acceptance:
 
 Implement Interaction targeting, triggers and actions. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker036
+- State / owner: planned / unowned
 - Write scope: engine/gameplay/include/ge/gameplay/interaction.hpp, engine/gameplay/src/interaction.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker036 delivered Interaction targeting, triggers and actions; 1407 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker036 delivered Interaction targeting, triggers and actions; 1407 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/gameplay/include/ge/gameplay/interaction.hpp, engine/gameplay/src/interaction.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -822,13 +847,13 @@ Acceptance:
 
 Implement Typed signal subscriptions and transactional event dispatch. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker037
+- State / owner: planned / unowned
 - Write scope: engine/core/include/ge/core/signals.hpp, engine/core/src/signals.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker037 delivered Typed signal subscriptions and transactional event dispatch; 1328 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker037 delivered Typed signal subscriptions and transactional event dispatch; 1328 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/core/include/ge/core/signals.hpp, engine/core/src/signals.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -842,13 +867,13 @@ Acceptance:
 
 Implement Curves, tracks and time mapping. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker038
+- State / owner: planned / unowned
 - Write scope: engine/animation/include/ge/animation/curves.hpp, engine/animation/src/curves.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker038 delivered Curves, tracks and time mapping; 1377 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker038 delivered Curves, tracks and time mapping; 1377 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/animation/include/ge/animation/curves.hpp, engine/animation/src/curves.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -862,13 +887,13 @@ Acceptance:
 
 Implement Layered configuration parsing and persistence. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker039
+- State / owner: planned / unowned
 - Write scope: engine/config/include/ge/config/settings.hpp, engine/config/src/settings.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker039 delivered Layered configuration parsing and persistence; 1459 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker039 delivered Layered configuration parsing and persistence; 1459 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/config/include/ge/config/settings.hpp, engine/config/src/settings.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -882,13 +907,13 @@ Acceptance:
 
 Implement Localization catalogs, Unicode and formatting. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker040
+- State / owner: planned / unowned
 - Write scope: engine/text/include/ge/text/localization.hpp, engine/text/src/localization.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker040 delivered Localization catalogs, Unicode and formatting; 1424 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker040 delivered Localization catalogs, Unicode and formatting; 1424 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/text/include/ge/text/localization.hpp, engine/text/src/localization.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -902,13 +927,13 @@ Acceptance:
 
 Implement Packet encoding and reliable channel protocol. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker041
+- State / owner: planned / unowned
 - Write scope: engine/network/include/ge/network/protocol.hpp, engine/network/src/protocol.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker041 delivered Packet encoding and reliable channel protocol; 1300 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker041 delivered Packet encoding and reliable channel protocol; 1300 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/network/include/ge/network/protocol.hpp, engine/network/src/protocol.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -922,13 +947,13 @@ Acceptance:
 
 Implement Native datagram transport and bounded network pump. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker042
+- State / owner: planned / unowned
 - Write scope: engine/network/include/ge/network/transport.hpp, engine/network/src/transport.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker042 delivered Native datagram transport and bounded network pump; 1411 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker042 delivered Native datagram transport and bounded network pump; 1411 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/network/include/ge/network/transport.hpp, engine/network/src/transport.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -942,13 +967,13 @@ Acceptance:
 
 Implement Entity snapshots and delta replication. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker043
+- State / owner: planned / unowned
 - Write scope: engine/network/include/ge/network/replication.hpp, engine/network/src/replication.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker043 delivered Entity snapshots and delta replication; 1578 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker043 delivered Entity snapshots and delta replication; 1578 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/network/include/ge/network/replication.hpp, engine/network/src/replication.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -962,13 +987,13 @@ Acceptance:
 
 Implement Input prediction and rollback state. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker044
+- State / owner: planned / unowned
 - Write scope: engine/network/include/ge/network/prediction.hpp, engine/network/src/prediction.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker044 delivered Input prediction and rollback state; 1365 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker044 delivered Input prediction and rollback state; 1365 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/network/include/ge/network/prediction.hpp, engine/network/src/prediction.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -982,13 +1007,13 @@ Acceptance:
 
 Implement Transactional save journal and recovery. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker045
+- State / owner: planned / unowned
 - Write scope: engine/persistence/include/ge/persistence/journal.hpp, engine/persistence/src/journal.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker045 delivered Transactional save journal and recovery; 1570 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker045 delivered Transactional save journal and recovery; 1570 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/persistence/include/ge/persistence/journal.hpp, engine/persistence/src/journal.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1002,13 +1027,13 @@ Acceptance:
 
 Implement Behavior tree execution and blackboards. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker046
+- State / owner: planned / unowned
 - Write scope: engine/ai/include/ge/ai/behavior.hpp, engine/ai/src/behavior.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker046 delivered Behavior tree execution and blackboards; 1274 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker046 delivered Behavior tree execution and blackboards; 1274 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/ai/include/ge/ai/behavior.hpp, engine/ai/src/behavior.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1022,13 +1047,13 @@ Acceptance:
 
 Implement Perception, memory and utility decisions. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker047
+- State / owner: planned / unowned
 - Write scope: engine/ai/include/ge/ai/perception.hpp, engine/ai/src/perception.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker047 delivered Perception, memory and utility decisions; 1165 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker047 delivered Perception, memory and utility decisions; 1165 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/ai/include/ge/ai/perception.hpp, engine/ai/src/perception.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1042,13 +1067,13 @@ Acceptance:
 
 Implement Road geometry and lane graph routing. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker048
+- State / owner: planned / unowned
 - Write scope: engine/traffic/include/ge/traffic/roads.hpp, engine/traffic/src/roads.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker048 delivered Road geometry and lane graph routing; 1755 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker048 delivered Road geometry and lane graph routing; 1755 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/traffic/include/ge/traffic/roads.hpp, engine/traffic/src/roads.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1062,13 +1087,13 @@ Acceptance:
 
 Implement Traffic agents, intersections and signals. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker049
+- State / owner: planned / unowned
 - Write scope: engine/traffic/include/ge/traffic/simulation.hpp, engine/traffic/src/simulation.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker049 delivered Traffic agents, intersections and signals; 1247 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker049 delivered Traffic agents, intersections and signals; 1247 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/traffic/include/ge/traffic/simulation.hpp, engine/traffic/src/simulation.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1082,13 +1107,13 @@ Acceptance:
 
 Implement Mission objectives and idempotent rewards. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker050
+- State / owner: planned / unowned
 - Write scope: engine/gameplay/include/ge/gameplay/mission.hpp, engine/gameplay/src/mission.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker050 delivered Mission objectives and idempotent rewards; 1265 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker050 delivered Mission objectives and idempotent rewards; 1265 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/gameplay/include/ge/gameplay/mission.hpp, engine/gameplay/src/mission.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1102,13 +1127,13 @@ Acceptance:
 
 Implement Inventory stacks, containers and transactions. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker051
+- State / owner: planned / unowned
 - Write scope: engine/gameplay/include/ge/gameplay/inventory.hpp, engine/gameplay/src/inventory.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker051 delivered Inventory stacks, containers and transactions; 1541 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker051 delivered Inventory stacks, containers and transactions; 1541 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/gameplay/include/ge/gameplay/inventory.hpp, engine/gameplay/src/inventory.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1122,13 +1147,13 @@ Acceptance:
 
 Implement Equipment slots, crafting and resource costs. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker052
+- State / owner: planned / unowned
 - Write scope: engine/gameplay/include/ge/gameplay/equipment.hpp, engine/gameplay/src/equipment.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker052 delivered Equipment slots, crafting and resource costs; 1372 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker052 delivered Equipment slots, crafting and resource costs; 1372 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/gameplay/include/ge/gameplay/equipment.hpp, engine/gameplay/src/equipment.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1142,13 +1167,13 @@ Acceptance:
 
 Implement Damage, hit resolution and status effects. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker053
+- State / owner: planned / unowned
 - Write scope: engine/gameplay/include/ge/gameplay/combat.hpp, engine/gameplay/src/combat.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker053 delivered Damage, hit resolution and status effects; 1283 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker053 delivered Damage, hit resolution and status effects; 1283 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/gameplay/include/ge/gameplay/combat.hpp, engine/gameplay/src/combat.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1162,13 +1187,13 @@ Acceptance:
 
 Implement Dialogue graph execution and conditions. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker054
+- State / owner: planned / unowned
 - Write scope: engine/gameplay/include/ge/gameplay/dialogue.hpp, engine/gameplay/src/dialogue.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker054 delivered Dialogue graph execution and conditions; 1464 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker054 delivered Dialogue graph execution and conditions; 1464 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/gameplay/include/ge/gameplay/dialogue.hpp, engine/gameplay/src/dialogue.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1182,13 +1207,13 @@ Acceptance:
 
 Implement Quest dependencies, progression and journal. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker055
+- State / owner: planned / unowned
 - Write scope: engine/gameplay/include/ge/gameplay/quests.hpp, engine/gameplay/src/quests.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker055 delivered Quest dependencies, progression and journal; 1210 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker055 delivered Quest dependencies, progression and journal; 1210 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/gameplay/include/ge/gameplay/quests.hpp, engine/gameplay/src/quests.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1202,13 +1227,13 @@ Acceptance:
 
 Implement Image postprocessing and tone mapping. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker056
+- State / owner: planned / unowned
 - Write scope: engine/render/include/ge/render/postprocess.hpp, engine/render/src/postprocess.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker056 delivered Image postprocessing and tone mapping; 1226 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker056 delivered Image postprocessing and tone mapping; 1226 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/render/include/ge/render/postprocess.hpp, engine/render/src/postprocess.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1222,13 +1247,13 @@ Acceptance:
 
 Implement Scene culling and level of detail. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker057
+- State / owner: planned / unowned
 - Write scope: engine/render/include/ge/render/visibility.hpp, engine/render/src/visibility.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker057 delivered Scene culling and level of detail; 1244 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker057 delivered Scene culling and level of detail; 1244 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/render/include/ge/render/visibility.hpp, engine/render/src/visibility.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1242,13 +1267,13 @@ Acceptance:
 
 Implement Draw batching and instance submission. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker058
+- State / owner: planned / unowned
 - Write scope: engine/render/include/ge/render/batching.hpp, engine/render/src/batching.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker058 delivered Draw batching and instance submission; 1133 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker058 delivered Draw batching and instance submission; 1133 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/render/include/ge/render/batching.hpp, engine/render/src/batching.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1262,13 +1287,13 @@ Acceptance:
 
 Implement Decal projection and surface blending. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker059
+- State / owner: planned / unowned
 - Write scope: engine/render/include/ge/render/decals.hpp, engine/render/src/decals.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker059 delivered Decal projection and surface blending; 1239 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker059 delivered Decal projection and surface blending; 1239 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/render/include/ge/render/decals.hpp, engine/render/src/decals.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1282,13 +1307,13 @@ Acceptance:
 
 Implement Scene picking and selection models. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker060
+- State / owner: planned / unowned
 - Write scope: engine/editor/include/ge/editor/selection.hpp, engine/editor/src/selection.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker060 delivered Scene picking and selection models; 1224 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker060 delivered Scene picking and selection models; 1224 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/editor/include/ge/editor/selection.hpp, engine/editor/src/selection.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1302,13 +1327,13 @@ Acceptance:
 
 Implement Inverse kinematics and pose constraints. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker061
+- State / owner: planned / unowned
 - Write scope: engine/animation/include/ge/animation/ik.hpp, engine/animation/src/ik.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker061 delivered Inverse kinematics and pose constraints; 1169 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker061 delivered Inverse kinematics and pose constraints; 1169 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/animation/include/ge/animation/ik.hpp, engine/animation/src/ik.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1322,13 +1347,13 @@ Acceptance:
 
 Implement Skeleton retargeting and root motion. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker062
+- State / owner: planned / unowned
 - Write scope: engine/animation/include/ge/animation/retarget.hpp, engine/animation/src/retarget.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker062 delivered Skeleton retargeting and root motion; 1183 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker062 delivered Skeleton retargeting and root motion; 1183 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/animation/include/ge/animation/retarget.hpp, engine/animation/src/retarget.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1342,13 +1367,13 @@ Acceptance:
 
 Implement DSP filters, reverberation and effects. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker063
+- State / owner: planned / unowned
 - Write scope: engine/audio/include/ge/audio/dsp.hpp, engine/audio/src/dsp.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Actual /root/worker063 delivered DSP filters, reverberation and effects; 1167 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Checkpoint: Actual /root/worker063 delivered DSP filters, reverberation and effects; 1167 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: engine/audio/include/ge/audio/dsp.hpp, engine/audio/src/dsp.cpp
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1362,13 +1387,13 @@ Acceptance:
 
 Implement Bounded WAV decoding and audio conversion. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker064
+- State / owner: planned / unowned
 - Write scope: engine/audio/include/ge/audio/wave.hpp, engine/audio/src/wave.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1382,13 +1407,13 @@ Acceptance:
 
 Implement OBJ and PLY model import. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker065
+- State / owner: planned / unowned
 - Write scope: engine/assets/include/ge/assets/model.hpp, engine/assets/src/model.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1402,13 +1427,13 @@ Acceptance:
 
 Implement BMP, TGA and PPM texture import. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker066
+- State / owner: planned / unowned
 - Write scope: engine/assets/include/ge/assets/textures.hpp, engine/assets/src/textures.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1422,13 +1447,13 @@ Acceptance:
 
 Implement Mesh simplification and LOD generation. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker067
+- State / owner: planned / unowned
 - Write scope: engine/geometry/include/ge/geometry/simplify.hpp, engine/geometry/src/simplify.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1442,13 +1467,13 @@ Acceptance:
 
 Implement Splines, swept meshes and route sampling. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker068
+- State / owner: planned / unowned
 - Write scope: engine/geometry/include/ge/geometry/splines.hpp, engine/geometry/src/splines.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1462,13 +1487,13 @@ Acceptance:
 
 Implement Swept collision and time of impact. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker069
+- State / owner: planned / unowned
 - Write scope: engine/physics/include/ge/physics/continuous.hpp, engine/physics/src/continuous.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1482,13 +1507,13 @@ Acceptance:
 
 Implement Scene raycasts, overlaps and shape casts. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker070
+- State / owner: planned / unowned
 - Write scope: engine/physics/include/ge/physics/queries.hpp, engine/physics/src/queries.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1502,13 +1527,13 @@ Acceptance:
 
 Implement Crowd avoidance and local steering. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker071
+- State / owner: planned / unowned
 - Write scope: engine/navigation/include/ge/navigation/crowd.hpp, engine/navigation/src/crowd.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1522,13 +1547,13 @@ Acceptance:
 
 Implement Cover analysis and tactical position scoring. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker072
+- State / owner: planned / unowned
 - Write scope: engine/ai/include/ge/ai/tactical.hpp, engine/ai/src/tactical.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1542,13 +1567,13 @@ Acceptance:
 
 Implement World clock, weather and sun state. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker073
+- State / owner: planned / unowned
 - Write scope: engine/environment/include/ge/environment/weather.hpp, engine/environment/src/weather.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1562,13 +1587,13 @@ Acceptance:
 
 Implement Environment volumes and spatial blending. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker074
+- State / owner: planned / unowned
 - Write scope: engine/environment/include/ge/environment/volumes.hpp, engine/environment/src/volumes.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1582,13 +1607,13 @@ Acceptance:
 
 Implement Water surfaces, buoyancy and drag. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker075
+- State / owner: planned / unowned
 - Write scope: engine/physics/include/ge/physics/water.hpp, engine/physics/src/water.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1602,13 +1627,13 @@ Acceptance:
 
 Implement Drivetrain, differential and wheel controls. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker076
+- State / owner: planned / unowned
 - Write scope: engine/physics/include/ge/physics/drivetrain.hpp, engine/physics/src/drivetrain.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1622,13 +1647,13 @@ Acceptance:
 
 Implement Procedural district blocks and construction. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker077
+- State / owner: planned / unowned
 - Write scope: engine/procedural/include/ge/procedural/district.hpp, engine/procedural/src/district.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1642,13 +1667,13 @@ Acceptance:
 
 Implement Undoable editing transactions. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker078
+- State / owner: planned / unowned
 - Write scope: engine/editor/include/ge/editor/commands.hpp, engine/editor/src/commands.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1662,13 +1687,13 @@ Acceptance:
 
 Implement Scene hierarchy and property inspection. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker079
+- State / owner: planned / unowned
 - Write scope: engine/editor/include/ge/editor/inspector.hpp, engine/editor/src/inspector.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1682,13 +1707,13 @@ Acceptance:
 
 Implement Transform gizmos and manipulation. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker080
+- State / owner: planned / unowned
 - Write scope: engine/editor/include/ge/editor/gizmo.hpp, engine/editor/src/gizmo.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1702,13 +1727,13 @@ Acceptance:
 
 Implement Asset browsing, filtering and import queue. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker081
+- State / owner: planned / unowned
 - Write scope: engine/editor/include/ge/editor/asset\_browser.hpp, engine/editor/src/asset\_browser.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1722,13 +1747,13 @@ Acceptance:
 
 Implement Prefab instantiation and property overrides. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker082
+- State / owner: planned / unowned
 - Write scope: engine/scene/include/ge/scene/prefab.hpp, engine/scene/src/prefab.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1742,13 +1767,13 @@ Acceptance:
 
 Implement Cinematic tracks and scene binding. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker083
+- State / owner: planned / unowned
 - Write scope: engine/cinematic/include/ge/cinematic/sequencer.hpp, engine/cinematic/src/sequencer.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1762,13 +1787,13 @@ Acceptance:
 
 Implement Debug geometry and scene diagnostics. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker084
+- State / owner: planned / unowned
 - Write scope: engine/diagnostics/include/ge/diagnostics/debug\_draw.hpp, engine/diagnostics/src/debug\_draw.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1782,13 +1807,13 @@ Acceptance:
 
 Implement Bounded tracing and performance telemetry. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker085
+- State / owner: planned / unowned
 - Write scope: engine/diagnostics/include/ge/diagnostics/telemetry.hpp, engine/diagnostics/src/telemetry.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1802,13 +1827,13 @@ Acceptance:
 
 Implement Runtime console command scripts and variables. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker086
+- State / owner: planned / unowned
 - Write scope: engine/script/include/ge/script/console.hpp, engine/script/src/console.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1822,13 +1847,13 @@ Acceptance:
 
 Implement Platform events, clocks and application lifecycle. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker087
+- State / owner: planned / unowned
 - Write scope: engine/platform/include/ge/platform/events.hpp, engine/platform/src/events.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1842,13 +1867,13 @@ Acceptance:
 
 Implement Retained layout tree and flex/grid sizing. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker088
+- State / owner: planned / unowned
 - Write scope: engine/ui/include/ge/ui/layout.hpp, engine/ui/src/layout.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1862,13 +1887,13 @@ Acceptance:
 
 Implement Widget models and text layout. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker089
+- State / owner: planned / unowned
 - Write scope: engine/ui/include/ge/ui/widgets.hpp, engine/ui/src/widgets.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1882,13 +1907,13 @@ Acceptance:
 
 Implement UI focus, pointer capture and accessibility. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker090
+- State / owner: planned / unowned
 - Write scope: engine/ui/include/ge/ui/interaction.hpp, engine/ui/src/interaction.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1902,13 +1927,13 @@ Acceptance:
 
 Implement Vector paths, tessellation and coverage. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker091
+- State / owner: planned / unowned
 - Write scope: engine/render/include/ge/render/vector.hpp, engine/render/src/vector.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1922,13 +1947,13 @@ Acceptance:
 
 Implement Material expression graph and interpreter. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker092
+- State / owner: planned / unowned
 - Write scope: engine/render/include/ge/render/shader.hpp, engine/render/src/shader.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1942,13 +1967,13 @@ Acceptance:
 
 Implement Network sessions, peers and replay streams. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker093
+- State / owner: planned / unowned
 - Write scope: engine/network/include/ge/network/session.hpp, engine/network/src/session.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1962,13 +1987,13 @@ Acceptance:
 
 Implement Native asset bundle writer and reader. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker094
+- State / owner: planned / unowned
 - Write scope: engine/assets/include/ge/assets/bundle.hpp, engine/assets/src/bundle.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -1982,13 +2007,13 @@ Acceptance:
 
 Implement Runtime startup profiles and settings application. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker095
+- State / owner: planned / unowned
 - Write scope: engine/runtime/include/ge/runtime/configuration.hpp, engine/runtime/src/configuration.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -2002,13 +2027,13 @@ Acceptance:
 
 Implement Integrated district actors and interaction loop. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker096
+- State / owner: planned / unowned
 - Write scope: engine/gameplay/include/ge/gameplay/district.hpp, engine/gameplay/src/district.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -2022,13 +2047,13 @@ Acceptance:
 
 Implement Software presentation and frame export. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker097
+- State / owner: planned / unowned
 - Write scope: engine/render/include/ge/render/presentation.hpp, engine/render/src/presentation.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -2042,13 +2067,13 @@ Acceptance:
 
 Implement Scene, physics, animation and rendering bridges. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker098
+- State / owner: planned / unowned
 - Write scope: engine/runtime/include/ge/runtime/simulation.hpp, engine/runtime/src/simulation.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -2062,13 +2087,13 @@ Acceptance:
 
 Implement Scene asset ingestion and resource binding. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker099
+- State / owner: planned / unowned
 - Write scope: engine/assets/include/ge/assets/scene\_pipeline.hpp, engine/assets/src/scene\_pipeline.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:
@@ -2082,13 +2107,13 @@ Acceptance:
 
 Implement Integrated runtime editing and authoring commands. User\-authorized source\-only campaign: no tests, builds, engine execution or CI waits.
 
-- State / owner: in\_progress / worker100
+- State / owner: planned / unowned
 - Write scope: engine/runtime/include/ge/runtime/editor\_host.hpp, engine/runtime/src/editor\_host.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
+- Checkpoint: Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Next action: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
 - Required checks: dev
 
 Acceptance:

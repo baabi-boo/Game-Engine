@@ -47,6 +47,22 @@ class RepositoryPolicyTests(unittest.TestCase):
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(text, encoding="utf-8")
 
+    def engine_fixture(self, *modules: str) -> None:
+        """Declare a small fixed runtime build; later additions must be listed."""
+        for module in modules:
+            self.write(f"engine/{module}/include/ge/{module}/api.hpp", "#pragma once\n")
+            self.write(f"engine/{module}/src/impl.cpp", f"#include <ge/{module}/api.hpp>\n")
+        lists = {
+            "GE_ENGINE_MODULES": list(modules),
+            "GE_ENGINE_INCLUDE_ROOTS": [f"${{PROJECT_SOURCE_DIR}}/engine/{name}/include" for name in modules],
+            "GE_ENGINE_SOURCES": [f"${{PROJECT_SOURCE_DIR}}/engine/{name}/src/impl.cpp" for name in modules],
+            "GE_ENGINE_HEADERS": [f"${{PROJECT_SOURCE_DIR}}/engine/{name}/include/ge/{name}/api.hpp" for name in modules],
+        }
+        self.write("engine/runtime/modules.cmake", "".join(
+            f"set({name}\n" + "".join(f'    "{value}"\n' for value in values) + ")\n"
+            for name, values in lists.items()
+        ))
+
     def run_check(self) -> subprocess.CompletedProcess[str]:
         return subprocess.run(
             [sys.executable, str(CHECKER), "--root", str(self.root)],
@@ -88,6 +104,108 @@ class RepositoryPolicyTests(unittest.TestCase):
                 self.write(relative, f"#include <ge/{dependency}/{header}>\n")
                 self.assert_rejected(f"{module} cannot include")
                 (self.root / relative).unlink()
+
+    def test_private_integration_does_not_authorize_public_reverse_dependency(self) -> None:
+        self.engine_fixture("scene", "physics")
+        self.write("engine/scene/src/impl.cpp", "#include <ge/physics/api.hpp>\n")
+        self.assert_passes()
+        self.write("engine/scene/include/ge/scene/api.hpp", "#include <ge/physics/api.hpp>\n")
+        result = self.assert_rejected("scene cannot include 'ge/physics/api.hpp'")
+        self.assertIn("allowed public module roots", result.stderr)
+
+    def test_public_dependency_cycle_reports_the_cross_module_chain(self) -> None:
+        self.engine_fixture("assets", "jobs", "scene")
+        self.write("engine/assets/include/ge/assets/api.hpp", "#include <ge/jobs/api.hpp>\n")
+        self.write("engine/scene/include/ge/scene/api.hpp", "#include <ge/assets/api.hpp>\n")
+        self.assert_passes()
+        self.write("engine/jobs/include/ge/jobs/api.hpp", "#include <ge/scene/api.hpp>\n")
+        result = self.assert_rejected("public module dependency cycle: assets -> jobs -> scene -> assets")
+        self.assertIn("jobs cannot include", result.stderr)
+
+    def test_unreviewed_private_engine_dependency_is_rejected(self) -> None:
+        self.engine_fixture("config", "physics")
+        self.write("engine/config/src/impl.cpp", "#include <ge/physics/api.hpp>\n")
+        result = self.assert_rejected("config cannot include 'ge/physics/api.hpp'")
+        self.assertIn("allowed private module roots", result.stderr)
+
+    def test_runtime_cannot_import_editor_from_public_or_private_code(self) -> None:
+        self.engine_fixture("render", "editor")
+        for relative in ("engine/render/include/ge/render/api.hpp", "engine/render/src/impl.cpp"):
+            with self.subTest(relative=relative):
+                self.write(relative, "#include <ge/editor/api.hpp>\n")
+                self.assert_rejected("render cannot include 'ge/editor/api.hpp'")
+                self.write(relative, "// Restored fixture.\n")
+
+    def test_core_cannot_import_engine_domains(self) -> None:
+        self.engine_fixture("math")
+        self.write("engine/core/src/negative.cpp", "#include <ge/math/api.hpp>\n")
+        self.assert_rejected("core cannot include 'ge/math/api.hpp'")
+
+    def test_comment_and_continuation_handling_preserves_dependency_checks(self) -> None:
+        self.engine_fixture("math", "ecs")
+        self.write("engine/math/include/ge/math/api.hpp", "/* #include <ge/ecs/api.hpp> */\n")
+        self.assert_passes()
+        self.write("engine/math/include/ge/math/api.hpp", "#include \\\n<ge/ecs/api.hpp> // Reverse edge.\n")
+        self.assert_rejected("math cannot include 'ge/ecs/api.hpp'")
+
+    def test_new_engine_source_and_header_must_be_in_explicit_manifest(self) -> None:
+        self.engine_fixture("math")
+        for relative, variable in (
+            ("engine/math/src/new.cpp", "GE_ENGINE_SOURCES"),
+            ("engine/math/include/ge/math/new.hpp", "GE_ENGINE_HEADERS"),
+        ):
+            with self.subTest(relative=relative):
+                self.write(relative, "// New source input.\n")
+                self.assert_rejected(f"{variable} omits '${{PROJECT_SOURCE_DIR}}/{relative}'")
+                (self.root / relative).unlink()
+
+    def test_engine_manifest_comments_do_not_declare_sources(self) -> None:
+        self.engine_fixture("math")
+        path = self.root / "engine/runtime/modules.cmake"
+        text = path.read_text(encoding="utf-8")
+        source = '"${PROJECT_SOURCE_DIR}/engine/math/src/impl.cpp"'
+        for replacement in ("# " + source, "#[=[ " + source + " ]=]"):
+            with self.subTest(replacement=replacement):
+                self.write("engine/runtime/modules.cmake", text.replace(source, replacement))
+                self.assert_rejected("GE_ENGINE_SOURCES omits")
+
+    def test_engine_manifest_accepts_literal_formatting_and_comments(self) -> None:
+        self.engine_fixture("math")
+        path = self.root / "engine/runtime/modules.cmake"
+        text = path.read_text(encoding="utf-8").replace("set(", "SET ( ")
+        text = text.replace('"math"', "math # Module name\n")
+        self.write("engine/runtime/modules.cmake", "#[=[ Manifest comment. ]=]\n" + text)
+        self.assert_passes()
+
+    def test_engine_manifest_rejects_missing_duplicate_and_stale_entries(self) -> None:
+        self.engine_fixture("math")
+        path = self.root / "engine/runtime/modules.cmake"
+        text = path.read_text(encoding="utf-8")
+        source = '"${PROJECT_SOURCE_DIR}/engine/math/src/impl.cpp"'
+        for changed, expected in (
+            (text.replace(source, source + "\n    " + source), "GE_ENGINE_SOURCES duplicates"),
+            (text.replace(source, '"${PROJECT_SOURCE_DIR}/engine/math/src/missing.cpp"'), "nonexistent or misplaced entry"),
+            (text.replace('    "math"\n', ""), "GE_ENGINE_MODULES omits 'math'"),
+            (text.replace('    "${PROJECT_SOURCE_DIR}/engine/math/include"\n', ""), "GE_ENGINE_INCLUDE_ROOTS omits"),
+        ):
+            with self.subTest(expected=expected):
+                self.write("engine/runtime/modules.cmake", changed)
+                self.assert_rejected(expected)
+        path.unlink()
+        self.assert_rejected("cannot read explicit engine manifest")
+
+    def test_engine_manifest_rejects_dynamic_or_unrelated_declarations(self) -> None:
+        self.engine_fixture("math")
+        path = self.root / "engine/runtime/modules.cmake"
+        text = path.read_text(encoding="utf-8")
+        for changed in (
+            text.replace("set(GE_ENGINE_SOURCES", "set(OTHER_SOURCES"),
+            text + "list(APPEND GE_ENGINE_SOURCES ${OTHER_SOURCES})\n",
+            text + "set(GE_ENGINE_SOURCES)\n",
+        ):
+            with self.subTest(changed=changed):
+                self.write("engine/runtime/modules.cmake", changed)
+                self.assert_rejected("engine manifest")
 
     def test_application_headers_and_parent_path_bypasses_are_rejected(self) -> None:
         self.write("apps/headless/application.hpp", "#pragma once\n")

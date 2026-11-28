@@ -137,6 +137,7 @@ struct RegistryStatistics {
 
 // A registry is a single-writer owner. Handles belong to this registry lifetime.
 // Component addresses remain stable until that component is replaced or removed.
+// CV-qualified component access shares storage with the unqualified value type.
 // Structural edits during each() are rejected; use deferred commands instead.
 class Registry final {
 public:
@@ -495,32 +496,35 @@ private:
     };
 
     template<class T>
-    [[nodiscard]] Pool<T>* pool() noexcept {
-        const auto it = pools_.find(std::type_index(typeid(T)));
-        return it == pools_.end() ? nullptr : static_cast<Pool<T>*>(it->second.get());
+    [[nodiscard]] Pool<std::remove_cv_t<T>>* pool() noexcept {
+        using Value = std::remove_cv_t<T>;
+        const auto it = pools_.find(std::type_index(typeid(Value)));
+        return it == pools_.end() ? nullptr : static_cast<Pool<Value>*>(it->second.get());
     }
 
     template<class T>
-    [[nodiscard]] const Pool<T>* pool() const noexcept {
-        const auto it = pools_.find(std::type_index(typeid(T)));
-        return it == pools_.end() ? nullptr : static_cast<const Pool<T>*>(it->second.get());
+    [[nodiscard]] const Pool<std::remove_cv_t<T>>* pool() const noexcept {
+        using Value = std::remove_cv_t<T>;
+        const auto it = pools_.find(std::type_index(typeid(Value)));
+        return it == pools_.end() ? nullptr : static_cast<const Pool<Value>*>(it->second.get());
     }
 
     template<class T>
-    Pool<T>& ensure_pool(std::string_view label = {}) {
+    Pool<std::remove_cv_t<T>>& ensure_pool(std::string_view label = {}) {
+        using Value = std::remove_cv_t<T>;
         if (auto* existing = pool<T>()) {
             return *existing;
         }
         if (pools_.size() >= component_type_limit_ || next_type_ == 0) {
             throw std::length_error("component type capacity exhausted");
         }
-        const auto name = label.empty() ? std::string(typeid(T).name()) : std::string(label);
+        const auto name = label.empty() ? std::string(typeid(Value).name()) : std::string(label);
         if (name.size() > 1024) {
             throw std::length_error("component name exceeds 1024 bytes");
         }
-        auto storage = std::make_unique<Pool<T>>(next_type_, name, handles_.capacity());
+        auto storage = std::make_unique<Pool<Value>>(next_type_, name, handles_.capacity());
         auto* result = storage.get();
-        pools_.emplace(std::type_index(typeid(T)), std::move(storage));
+        pools_.emplace(std::type_index(typeid(Value)), std::move(storage));
         ++next_type_;
         return *result;
     }

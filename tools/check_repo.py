@@ -20,24 +20,69 @@ from urllib.parse import unquote
 
 
 ROOT = Path(__file__).resolve().parents[1]
-MODULES = {"core": {"core"}, "content": {"content", "core"}, "world": {"world", "core"}}
-# These domains are compiled together in ge_engine. The base utility domains
-# retain narrower boundaries, and no core/content/world reverse edge is added.
-ENGINE_DOMAINS = {
-    "math", "ecs", "jobs", "io", "scene", "input", "assets", "geometry",
-    "render", "spatial", "physics", "animation", "audio", "navigation",
-    "terrain", "effects", "script", "gameplay", "config", "text", "network",
-    "persistence", "ai", "traffic", "editor", "environment", "procedural",
-    "cinematic", "diagnostics", "platform", "ui", "runtime",
+# Direct dependencies, excluding a module's own headers. Public contracts form
+# a DAG; sharing the ge_engine target does not permit arbitrary reverse edges.
+PUBLIC_DEPENDENCIES = {
+    "core": set(),
+    "content": {"core"},
+    "world": {"core"},
+    "math": set(),
+    "ecs": {"core", "math"},
+    "jobs": {"core"},
+    "io": set(),
+    "scene": {"assets", "ecs", "math", "world"},
+    "input": {"math"},
+    "assets": {"io", "jobs"},
+    "geometry": {"core", "math"},
+    "render": {"core", "ecs", "geometry", "math"},
+    "spatial": {"ecs", "math"},
+    "physics": {"ecs", "math", "scene", "spatial"},
+    "animation": {"core", "ecs", "geometry", "math"},
+    "audio": {"ecs", "math"},
+    "navigation": {"core", "ecs", "geometry", "math"},
+    "terrain": {"core", "geometry", "math", "render"},
+    "effects": {"ecs", "geometry", "render"},
+    "script": {"ecs", "math"},
+    "gameplay": {"core", "ecs", "math", "physics", "text"},
+    "config": {"core"},
+    "text": {"core"},
+    "network": {"core", "ecs", "math"},
+    "persistence": {"scene"},
+    "ai": {"ecs", "math"},
+    "traffic": {"animation", "geometry", "navigation", "physics", "render"},
+    "editor": {"ecs", "geometry", "math", "render"},
 }
-MODULES.update({name: ENGINE_DOMAINS | {"core", "content", "world"}
-                for name in ENGINE_DOMAINS})
-MODULES.update({
-    "math": {"math", "core"},
-    "ecs": {"ecs", "math", "core"},
-    "jobs": {"jobs", "core"},
-    "io": {"io", "jobs", "core"},
-})
+# Additional dependencies used by current implementations. These include some
+# mutual service integration; they must not leak into public headers. Neither
+# table grants engine code permission to import editor or application code.
+PRIVATE_DEPENDENCIES = {
+    "core": set(), "content": set(), "world": set(), "math": set(),
+    "ecs": set(), "jobs": set(),
+    "io": {"core"},
+    "scene": {"core", "io", "physics"},
+    "input": {"core"},
+    "assets": {"core"},
+    "geometry": {"ecs", "scene"},
+    "render": {"input", "physics", "scene", "spatial"},
+    "spatial": {"core", "scene"},
+    "physics": {"core", "input", "navigation", "render"},
+    "animation": {"physics", "scene"},
+    "audio": {"core", "physics", "render", "scene"},
+    "navigation": {"physics", "scene"},
+    "terrain": {"ecs", "scene"},
+    "effects": {"core", "scene"},
+    "script": {"core", "io", "physics", "scene"},
+    "gameplay": {"ai", "input", "persistence", "render", "scene", "script", "spatial"},
+    "config": {"io"},
+    "text": {"config", "io"},
+    "network": {"input", "physics", "scene"},
+    "persistence": {"core", "io", "world"},
+    "ai": {"core", "navigation", "physics", "scene", "script", "spatial"},
+    "traffic": {"core", "scene"},
+    "editor": {"core", "scene", "spatial"},
+}
+FOUNDATION_MODULES = {"core", "content", "world"}
+ENGINE_MANIFEST = "engine/runtime/modules.cmake"
 IGNORED_DIRS = {
     ".git", ".venv", "venv", "__pycache__", ".pytest_cache", ".mypy_cache",
     ".ruff_cache", ".cache", ".idea", ".vscode", "node_modules", "CMakeFiles",
@@ -54,6 +99,7 @@ TEXT_SUFFIXES = {
 }
 TEXT_NAMES = {"CODEOWNERS", ".gitignore", ".gitattributes", ".editorconfig", ".clang-format"}
 CPP_SUFFIXES = {".c", ".cc", ".cpp", ".cxx", ".h", ".hh", ".hpp", ".hxx", ".inl", ".ipp", ".inc", ".tpp"}
+CPP_SOURCE_SUFFIXES = {".c", ".cc", ".cpp", ".cxx"}
 STANDARD_HEADERS = set("""
 algorithm any array atomic barrier bit bitset cassert ccomplex cctype cerrno cfenv
 cfloat charconv chrono cinttypes ciso646 climits clocale cmath codecvt compare complex
@@ -148,6 +194,9 @@ class RepositoryCheck:
         self.errors: list[str] = []
         self.text_count = 0
         self.workflow_count = 0
+        self.public_edges: dict[str, dict[str, tuple[Path, int]]] = {}
+        self.engine_sources: set[str] = set()
+        self.engine_headers: set[str] = set()
 
     def error(self, path: Path, line: int, message: str) -> None:
         relative = path.relative_to(self.root).as_posix()
@@ -192,6 +241,10 @@ class RepositoryCheck:
                            f"possible {category}; remove private data from public source")
 
     def check_includes(self, path: Path, text: str, module: str) -> None:
+        public = path.relative_to(self.root).parts[2] == "include"
+        dependencies = PUBLIC_DEPENDENCIES[module] | {module}
+        if not public:
+            dependencies |= PRIVATE_DEPENDENCIES[module]
         # Join preprocessor continuation lines before stripping comments.
         logical, line_numbers = [], []
         pending = ""
@@ -224,9 +277,12 @@ class RepositoryCheck:
                 continue
             if parts[0] == "ge":
                 dependency = parts[1] if len(parts) > 1 else ""
-                if dependency not in MODULES[module]:
-                    allowed = ", ".join(f"ge/{name}" for name in sorted(MODULES[module]))
-                    self.error(path, number, f"{module} cannot include '{header}'; allowed module roots: {allowed}")
+                if public and dependency in PUBLIC_DEPENDENCIES and dependency != module:
+                    self.public_edges.setdefault(module, {}).setdefault(dependency, (path, number))
+                if dependency not in dependencies:
+                    allowed = ", ".join(f"ge/{name}" for name in sorted(dependencies))
+                    visibility = "public" if public else "private"
+                    self.error(path, number, f"{module} cannot include '{header}'; allowed {visibility} module roots: {allowed}")
                 elif not (self.root / "engine" / dependency / "include" / header).is_file():
                     self.error(path, number, f"declared public header does not exist: '{header}'")
                 continue
@@ -237,7 +293,85 @@ class RepositoryCheck:
             local = (path.parent / header).resolve()
             if literal[1] == '"' and local.is_relative_to(self.root / "engine" / module) and local.is_file():
                 continue
-            self.error(path, number, f"undeclared header '{header}' in {module}; use its own/core public headers or the standard library")
+            self.error(path, number, f"undeclared header '{header}' in {module}; use declared public headers or the standard library")
+
+    def check_public_cycles(self) -> None:
+        """Check observed cross-module includes, including conditional directives."""
+        visited: set[str] = set()
+        active: list[str] = []
+
+        def visit(module: str) -> None:
+            visited.add(module)
+            active.append(module)
+            for dependency, (path, line) in sorted(self.public_edges.get(module, {}).items()):
+                if dependency in active:
+                    cycle = active[active.index(dependency):] + [dependency]
+                    self.error(path, line, "public module dependency cycle: " + " -> ".join(cycle))
+                elif dependency not in visited:
+                    visit(dependency)
+            active.pop()
+
+        for module in sorted(self.public_edges):
+            if module not in visited:
+                visit(module)
+
+    def check_engine_manifest(self) -> None:
+        """Require the manifest's small literal set-list format; do not evaluate CMake."""
+        path = self.root / ENGINE_MANIFEST
+        if not path.is_file() and not (self.engine_sources or self.engine_headers):
+            return  # Foundation-only policy fixtures have no ge_engine target.
+        try:
+            clean = without_comments(path.read_text(encoding="utf-8"), "cmake")
+        except (OSError, UnicodeError) as error:
+            self.error(path, 1, f"cannot read explicit engine manifest: {error}")
+            return
+        files = self.engine_sources | self.engine_headers
+        modules = {Path(name).parts[1] for name in files}
+        expected = {
+            "GE_ENGINE_MODULES": modules,
+            "GE_ENGINE_INCLUDE_ROOTS": {"${PROJECT_SOURCE_DIR}/engine/" + name + "/include" for name in modules},
+            "GE_ENGINE_SOURCES": {"${PROJECT_SOURCE_DIR}/" + name for name in self.engine_sources},
+            "GE_ENGINE_HEADERS": {"${PROJECT_SOURCE_DIR}/" + name for name in self.engine_headers},
+        }
+        # Tokenize quotes and parentheses so comments, strings, alternate lists,
+        # and dynamic expressions cannot masquerade as declared source entries.
+        tokens = re.findall(r'"(?:\\.|[^"\\])*"|[()]|[^\s()"]+|"', clean)
+        declared: dict[str, set[str]] = {}
+        index = 0
+        while index < len(tokens):
+            if (index + 3 >= len(tokens) or tokens[index].lower() != "set"
+                    or tokens[index + 1] != "(" or tokens[index + 2] not in expected):
+                self.error(path, 1, "engine manifest must contain only literal set(GE_ENGINE_... ...) lists")
+                return
+            name = tokens[index + 2]
+            if name in declared:
+                self.error(path, 1, f"engine manifest declares {name} more than once")
+                return
+            entries: set[str] = set()
+            index += 3
+            while index < len(tokens) and tokens[index] != ")":
+                token = tokens[index]
+                if token in {"(", '"'}:
+                    self.error(path, 1, "engine manifest requires literal list entries without nested commands")
+                    return
+                value = token[1:-1] if token.startswith('"') else token
+                if value in entries:
+                    self.error(path, 1, f"{name} duplicates '{value}'")
+                entries.add(value)
+                index += 1
+            if index == len(tokens):
+                self.error(path, 1, "unterminated set list in engine manifest")
+                return
+            declared[name] = entries
+            index += 1
+        for name, required in expected.items():
+            if name not in declared:
+                self.error(path, 1, f"engine manifest is missing explicit {name} list")
+            entries = declared.get(name, set())
+            for missing in sorted(required - entries):
+                self.error(path, 1, f"{name} omits '{missing}'")
+            for extra in sorted(entries - required):
+                self.error(path, 1, f"{name} declares nonexistent or misplaced entry '{extra}'")
 
     def check_cmake(self, path: Path, text: str) -> None:
         clean = without_comments(text, "cmake")
@@ -251,8 +385,8 @@ class RepositoryCheck:
             if module == "core":
                 # CMake's platform support for the C++ standard thread library.
                 allowed.add("Threads::Threads")
-            allowed.update(f"ge_{name}" for name in MODULES[module] if name != module)
-            allowed.update(f"ge::{name}" for name in MODULES[module] if name != module)
+            allowed.update(f"ge_{name}" for name in PUBLIC_DEPENDENCIES[module])
+            allowed.update(f"ge::{name}" for name in PUBLIC_DEPENDENCIES[module])
             for dependency in re.findall(r'"[^"]*"|\S+', match[2]):
                 if dependency.strip('"') not in allowed:
                     self.error(path, clean.count("\n", 0, match.start()) + 1,
@@ -382,10 +516,15 @@ class RepositoryCheck:
                     self.error(path, getattr(error, "lineno", 1), f"invalid JSON: {error}")
             if path.suffix.lower() in CPP_SUFFIXES and len(relative.parts) >= 3 and relative.parts[0] == "engine":
                 module = relative.parts[1]
-                if module not in MODULES:
+                if module not in PUBLIC_DEPENDENCIES:
                     self.error(path, 1, f"module '{module}' has no declared dependency policy")
                 else:
                     self.check_includes(path, text, module)
+                if module not in FOUNDATION_MODULES:
+                    if path.suffix.lower() in CPP_SOURCE_SUFFIXES:
+                        self.engine_sources.add(relative.as_posix())
+                    elif relative.parts[2] == "include":
+                        self.engine_headers.add(relative.as_posix())
             if path.name == "CMakeLists.txt" or ".cmake" in path.suffixes:
                 self.check_cmake(path, text)
             workflow = relative.parts[:2] == (".github", "workflows") and path.suffix.lower() in {".yaml", ".yml"}
@@ -393,6 +532,8 @@ class RepositoryCheck:
                 self.check_workflow(path, text, workflow)
             if path.suffix.lower() == ".md":
                 self.check_markdown(path, text)
+        self.check_public_cycles()
+        self.check_engine_manifest()
         if self.workflow_count == 0:
             self.error(self.root / ".github/workflows", 1, "no workflow found; required CI policy checks cannot run")
         return self.errors

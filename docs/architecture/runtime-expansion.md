@@ -1,10 +1,11 @@
 # Runtime source expansion
 
-This owner-requested campaign adds original C++20 engine implementation while
-preserving the previous headless fixture and its historical evidence. The owner
-explicitly requested no builds, tests, engine execution or CI waits. New code is
-therefore source implementation awaiting execution and qualification. Existing
-quality gates have not been relaxed or reported passed.
+The original source campaign added C++20 engine implementation while preserving
+the previous headless fixture and its historical evidence. That campaign excluded
+builds and execution. The later owner-authorized
+[integration audit](../production/integration-audit-2026-11-28.md) now exercises
+and repairs those implementations. Its observed results qualify their recorded
+source and scope; historical foundation evidence does not qualify new domains.
 
 ## Composition
 
@@ -15,14 +16,25 @@ runtime kernel. It depends only on the standard library and its thread runtime.
 libraries. Public headers remain under each domain's `include/ge/` directory.
 `ge_runtime` composes every installed domain through explicit registration calls
 in `apps/runtime/modules.cpp`. Every source appears explicitly in CMake manifests.
+The [module boundary policy](module-boundaries.md) declares public and private
+imports separately. Public module dependencies are acyclic; existing private
+integration dependencies remain explicit inside the combined engine target.
+The repository checker rejects missing source/header manifest entries and
+undeclared imports. The build compiles each public header independently.
 
 The kernel owns stable typed services. Modules register commands and scheduled
 frame functions that use those services. Phases order input, simulation,
 animation, visibility, rendering, audio and frame retirement. Explicit system
 dependencies are checked when scheduling. The bounded event bus is a consuming
 queue per event type; independent consumers must use shared state or distinct
-event channels. Shutdown callbacks execute in reverse registration order before
-service destruction so worker threads can join while dependent services live.
+event channels. Kernel frame maintenance retains new events throughout the
+following frame, then retires the old undrained prefix. Retirement and capacity
+drops have separate counters. Durable backlogs belong in their owning services;
+standalone event buses retain events until drained or explicitly maintained.
+This prevents unused notifications from permanently starving input and filesystem
+changes. Shutdown callbacks execute once in reverse registration order before
+service destruction so worker threads can join while dependent services live;
+recursive shutdown is harmless and new handlers are rejected after it starts.
 
 The command host supports startup settings, command scripts, interactive commands,
 bounded frame advancement and JSON diagnostics. The command listing comes from

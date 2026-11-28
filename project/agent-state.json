@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 421,
-  "updated_at": "2026-11-28T00:04:00.377753Z",
+  "revision": 527,
+  "updated_at": "2026-11-28T07:13:06.930913Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "be30cb8a04270f128250777169c080c2589e98a91d4402c4b8411594e81e0cc5",
-    "file_count": 232
+    "sha256": "eeb75026bf9d5fd5feed769799a7ee1a6462a36a768d8089785f3ea7781af21f",
+    "file_count": 248
   },
   "milestones": [
     {
@@ -1203,13 +1203,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker001",
-      "claim_revision": 12,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker001 delivered original source; 2193 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.",
-        "next_action": "Integrate real consumers; source delivered, runtime validation deferred by user request.",
+        "summary": "Actual /root/worker001 delivered original source; 2193 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/math/include/ge/math/math.hpp",
           "engine/math/src/math.cpp"
@@ -1235,13 +1235,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker002",
-      "claim_revision": 14,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker002 delivered original source; 1355 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.",
-        "next_action": "Integrate real consumers; source delivered, runtime validation deferred by user request.",
+        "summary": "Actual /root/worker002 delivered original source; 1355 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/core/include/ge/core/memory.hpp"
         ]
@@ -1267,13 +1267,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker003",
-      "claim_revision": 16,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker003 delivered original source; 1527 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.",
-        "next_action": "Integrate real consumers; source delivered, runtime validation deferred by user request.",
+        "summary": "Actual /root/worker003 delivered original source; 1527 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/core/include/ge/core/binary.hpp",
           "engine/core/src/binary.cpp"
@@ -1310,13 +1310,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "coordinator",
-      "claim_revision": 18,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement kernel and compose completed worker modules; publish incremental source checkpoints without execution.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -1340,13 +1340,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker004",
-      "claim_revision": 21,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker004 delivered Entity component registry and deferred mutations; 1354 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker004 delivered Entity component registry and deferred mutations; 1354 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/ecs/include/ge/ecs/registry.hpp",
           "engine/ecs/src/registry.cpp"
@@ -1373,13 +1373,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker005",
-      "claim_revision": 24,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker005 delivered Bounded task executor and dependency graph; 1558 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker005 delivered Bounded task executor and dependency graph; 1558 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/jobs/include/ge/jobs/executor.hpp",
           "engine/jobs/src/executor.cpp"
@@ -1406,13 +1406,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker006",
-      "claim_revision": 27,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker006 delivered Virtual filesystem mounts and bounded file access; 1684 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker006 delivered Virtual filesystem mounts and bounded file access; 1684 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/io/include/ge/io/filesystem.hpp",
           "engine/io/src/filesystem.cpp"
@@ -1439,13 +1439,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker007",
-      "claim_revision": 34,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker007 delivered Scene hierarchy and world transforms; 2075 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker007 delivered Scene hierarchy and world transforms; 2075 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/scene/include/ge/scene/scene.hpp",
           "engine/scene/src/scene.cpp"
@@ -1472,13 +1472,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker008",
-      "claim_revision": 37,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker008 delivered Input devices, action maps and rebinding; 2007 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker008 delivered Input devices, action maps and rebinding; 2007 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/input/include/ge/input/actions.hpp",
           "engine/input/src/actions.cpp"
@@ -1505,13 +1505,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker009",
-      "claim_revision": 40,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker009 delivered Asset catalog, typed handles and cache; 1634 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker009 delivered Asset catalog, typed handles and cache; 1634 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/assets/include/ge/assets/catalog.hpp",
           "engine/assets/src/catalog.cpp"
@@ -1536,13 +1536,13 @@
       "required_checks": [
         "repository"
       ],
-      "status": "in_progress",
-      "owner": "coordinator",
-      "claim_revision": 44,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Update policy declarations by source inspection; checks remain unrun under current user instruction.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -1566,13 +1566,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker010",
-      "claim_revision": 50,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker010 delivered Mesh topology, primitives and vertex processing; 1261 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker010 delivered Mesh topology, primitives and vertex processing; 1261 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/geometry/include/ge/geometry/mesh.hpp",
           "engine/geometry/src/mesh.cpp"
@@ -1599,13 +1599,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker011",
-      "claim_revision": 53,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker011 delivered Images, framebuffers and texture sampling; 1248 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker011 delivered Images, framebuffers and texture sampling; 1248 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/render/include/ge/render/image.hpp",
           "engine/render/src/image.cpp"
@@ -1632,13 +1632,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker012",
-      "claim_revision": 56,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker012 delivered Dynamic spatial index and visibility queries; 1225 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker012 delivered Dynamic spatial index and visibility queries; 1225 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/spatial/include/ge/spatial/index.hpp",
           "engine/spatial/src/index.cpp"
@@ -1665,13 +1665,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker013",
-      "claim_revision": 62,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker013 delivered Collision shapes and narrowphase contacts; 1382 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker013 delivered Collision shapes and narrowphase contacts; 1382 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/physics/include/ge/physics/collision.hpp",
           "engine/physics/src/collision.cpp"
@@ -1698,13 +1698,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker014",
-      "claim_revision": 65,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker014 delivered Rigid body integration and contact solving; 1480 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker014 delivered Rigid body integration and contact solving; 1480 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/physics/include/ge/physics/dynamics.hpp",
           "engine/physics/src/dynamics.cpp"
@@ -1731,13 +1731,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker015",
-      "claim_revision": 68,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker015 delivered Skeletons, poses and sampled animation; 1123 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker015 delivered Skeletons, poses and sampled animation; 1123 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/animation/include/ge/animation/skeleton.hpp",
           "engine/animation/src/skeleton.cpp"
@@ -1764,13 +1764,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker016",
-      "claim_revision": 74,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker016 delivered Audio buffers, voices and mixing graph; 1252 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker016 delivered Audio buffers, voices and mixing graph; 1252 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/audio/include/ge/audio/mixer.hpp",
           "engine/audio/src/mixer.cpp"
@@ -1797,13 +1797,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker017",
-      "claim_revision": 77,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker017 delivered Graph and grid pathfinding; 1544 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker017 delivered Graph and grid pathfinding; 1544 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/navigation/include/ge/navigation/pathfinding.hpp",
           "engine/navigation/src/pathfinding.cpp"
@@ -1830,13 +1830,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker018",
-      "claim_revision": 80,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker018 delivered Materials and CPU shading; 1150 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker018 delivered Materials and CPU shading; 1150 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/render/include/ge/render/material.hpp",
           "engine/render/src/material.cpp"
@@ -1863,13 +1863,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker019",
-      "claim_revision": 89,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker019 delivered Camera rigs, projections and viewport mapping; 1231 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker019 delivered Camera rigs, projections and viewport mapping; 1231 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/render/include/ge/render/camera.hpp",
           "engine/render/src/camera.cpp"
@@ -1896,13 +1896,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker020",
-      "claim_revision": 92,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker020 delivered Asynchronous resource loading and residency; 1358 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker020 delivered Asynchronous resource loading and residency; 1358 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/assets/include/ge/assets/streaming.hpp",
           "engine/assets/src/streaming.cpp"
@@ -1929,13 +1929,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker021",
-      "claim_revision": 95,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker021 delivered Software triangle rasterization; 1375 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker021 delivered Software triangle rasterization; 1375 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/render/include/ge/render/rasterizer.hpp",
           "engine/render/src/rasterizer.cpp"
@@ -1962,13 +1962,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker022",
-      "claim_revision": 99,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker022 delivered Character movement and grounding; 1306 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker022 delivered Character movement and grounding; 1306 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/physics/include/ge/physics/character.hpp",
           "engine/physics/src/character.cpp"
@@ -1995,13 +1995,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker023",
-      "claim_revision": 102,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker023 delivered Vehicle suspension and tire forces; 1330 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker023 delivered Vehicle suspension and tire forces; 1330 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/physics/include/ge/physics/vehicle.hpp",
           "engine/physics/src/vehicle.cpp"
@@ -2028,13 +2028,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker024",
-      "claim_revision": 105,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker024 delivered Animation blending and state machines; 1312 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker024 delivered Animation blending and state machines; 1312 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/animation/include/ge/animation/blend.hpp",
           "engine/animation/src/blend.cpp"
@@ -2061,13 +2061,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker025",
-      "claim_revision": 111,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker025 delivered Spatial audio and acoustic attenuation; 1223 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker025 delivered Spatial audio and acoustic attenuation; 1223 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/audio/include/ge/audio/spatial.hpp",
           "engine/audio/src/spatial.cpp"
@@ -2094,13 +2094,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker026",
-      "claim_revision": 114,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker026 delivered Polygon navigation mesh queries and funnels; 1340 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker026 delivered Polygon navigation mesh queries and funnels; 1340 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/navigation/include/ge/navigation/navmesh.hpp",
           "engine/navigation/src/navmesh.cpp"
@@ -2127,13 +2127,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker027",
-      "claim_revision": 117,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker027 delivered World partition activation and origin shifts; 1235 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker027 delivered World partition activation and origin shifts; 1235 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/scene/include/ge/scene/partition.hpp",
           "engine/scene/src/partition.cpp"
@@ -2160,13 +2160,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker028",
-      "claim_revision": 124,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker028 delivered Terrain tiles, sampling and erosion; 1353 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker028 delivered Terrain tiles, sampling and erosion; 1353 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/terrain/include/ge/terrain/heightfield.hpp",
           "engine/terrain/src/heightfield.cpp"
@@ -2193,13 +2193,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker029",
-      "claim_revision": 127,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker029 delivered Vegetation distribution and instancing; 1317 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker029 delivered Vegetation distribution and instancing; 1317 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/terrain/include/ge/terrain/vegetation.hpp",
           "engine/terrain/src/vegetation.cpp"
@@ -2226,13 +2226,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker030",
-      "claim_revision": 130,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker030 delivered Light collection, shadows and illumination; 1302 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker030 delivered Light collection, shadows and illumination; 1302 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/render/include/ge/render/lighting.hpp",
           "engine/render/src/lighting.cpp"
@@ -2259,13 +2259,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker031",
-      "claim_revision": 134,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker031 delivered Render pass graph and transient resources; 1583 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker031 delivered Render pass graph and transient resources; 1583 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/render/include/ge/render/graph.hpp",
           "engine/render/src/graph.cpp"
@@ -2292,13 +2292,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker032",
-      "claim_revision": 137,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker032 delivered Particle emission, simulation and trails; 1436 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker032 delivered Particle emission, simulation and trails; 1436 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/effects/include/ge/effects/particles.hpp",
           "engine/effects/src/particles.cpp"
@@ -2325,13 +2325,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker033",
-      "claim_revision": 140,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker033 delivered Rigid body constraints and joints; 1537 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker033 delivered Rigid body constraints and joints; 1537 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/physics/include/ge/physics/constraints.hpp",
           "engine/physics/src/constraints.cpp"
@@ -2358,13 +2358,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker034",
-      "claim_revision": 145,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker034 delivered Versioned scene serialization and transactions; 1315 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker034 delivered Versioned scene serialization and transactions; 1315 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/scene/include/ge/scene/serialization.hpp",
           "engine/scene/src/serialization.cpp"
@@ -2391,13 +2391,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker035",
-      "claim_revision": 148,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker035 delivered Bounded bytecode virtual machine; 1557 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker035 delivered Bounded bytecode virtual machine; 1557 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/script/include/ge/script/vm.hpp",
           "engine/script/src/vm.cpp"
@@ -2424,13 +2424,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker036",
-      "claim_revision": 151,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker036 delivered Interaction targeting, triggers and actions; 1407 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker036 delivered Interaction targeting, triggers and actions; 1407 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/gameplay/include/ge/gameplay/interaction.hpp",
           "engine/gameplay/src/interaction.cpp"
@@ -2457,13 +2457,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker037",
-      "claim_revision": 157,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker037 delivered Typed signal subscriptions and transactional event dispatch; 1328 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker037 delivered Typed signal subscriptions and transactional event dispatch; 1328 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/core/include/ge/core/signals.hpp",
           "engine/core/src/signals.cpp"
@@ -2490,13 +2490,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker038",
-      "claim_revision": 160,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker038 delivered Curves, tracks and time mapping; 1377 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker038 delivered Curves, tracks and time mapping; 1377 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/animation/include/ge/animation/curves.hpp",
           "engine/animation/src/curves.cpp"
@@ -2523,13 +2523,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker039",
-      "claim_revision": 163,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker039 delivered Layered configuration parsing and persistence; 1459 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker039 delivered Layered configuration parsing and persistence; 1459 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/config/include/ge/config/settings.hpp",
           "engine/config/src/settings.cpp"
@@ -2556,13 +2556,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker040",
-      "claim_revision": 166,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker040 delivered Localization catalogs, Unicode and formatting; 1424 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker040 delivered Localization catalogs, Unicode and formatting; 1424 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/text/include/ge/text/localization.hpp",
           "engine/text/src/localization.cpp"
@@ -2589,13 +2589,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker041",
-      "claim_revision": 169,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker041 delivered Packet encoding and reliable channel protocol; 1300 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker041 delivered Packet encoding and reliable channel protocol; 1300 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/network/include/ge/network/protocol.hpp",
           "engine/network/src/protocol.cpp"
@@ -2622,13 +2622,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker042",
-      "claim_revision": 172,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker042 delivered Native datagram transport and bounded network pump; 1411 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker042 delivered Native datagram transport and bounded network pump; 1411 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/network/include/ge/network/transport.hpp",
           "engine/network/src/transport.cpp"
@@ -2655,13 +2655,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker043",
-      "claim_revision": 180,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker043 delivered Entity snapshots and delta replication; 1578 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker043 delivered Entity snapshots and delta replication; 1578 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/network/include/ge/network/replication.hpp",
           "engine/network/src/replication.cpp"
@@ -2688,13 +2688,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker044",
-      "claim_revision": 183,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker044 delivered Input prediction and rollback state; 1365 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker044 delivered Input prediction and rollback state; 1365 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/network/include/ge/network/prediction.hpp",
           "engine/network/src/prediction.cpp"
@@ -2721,13 +2721,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker045",
-      "claim_revision": 186,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker045 delivered Transactional save journal and recovery; 1570 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker045 delivered Transactional save journal and recovery; 1570 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/persistence/include/ge/persistence/journal.hpp",
           "engine/persistence/src/journal.cpp"
@@ -2754,13 +2754,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker046",
-      "claim_revision": 195,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker046 delivered Behavior tree execution and blackboards; 1274 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker046 delivered Behavior tree execution and blackboards; 1274 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/ai/include/ge/ai/behavior.hpp",
           "engine/ai/src/behavior.cpp"
@@ -2787,13 +2787,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker047",
-      "claim_revision": 198,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker047 delivered Perception, memory and utility decisions; 1165 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker047 delivered Perception, memory and utility decisions; 1165 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/ai/include/ge/ai/perception.hpp",
           "engine/ai/src/perception.cpp"
@@ -2820,13 +2820,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker048",
-      "claim_revision": 201,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker048 delivered Road geometry and lane graph routing; 1755 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker048 delivered Road geometry and lane graph routing; 1755 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/traffic/include/ge/traffic/roads.hpp",
           "engine/traffic/src/roads.cpp"
@@ -2853,13 +2853,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker049",
-      "claim_revision": 212,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker049 delivered Traffic agents, intersections and signals; 1247 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker049 delivered Traffic agents, intersections and signals; 1247 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/traffic/include/ge/traffic/simulation.hpp",
           "engine/traffic/src/simulation.cpp"
@@ -2886,13 +2886,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker050",
-      "claim_revision": 215,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker050 delivered Mission objectives and idempotent rewards; 1265 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker050 delivered Mission objectives and idempotent rewards; 1265 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/gameplay/include/ge/gameplay/mission.hpp",
           "engine/gameplay/src/mission.cpp"
@@ -2919,13 +2919,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker051",
-      "claim_revision": 218,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker051 delivered Inventory stacks, containers and transactions; 1541 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker051 delivered Inventory stacks, containers and transactions; 1541 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/gameplay/include/ge/gameplay/inventory.hpp",
           "engine/gameplay/src/inventory.cpp"
@@ -2952,13 +2952,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker052",
-      "claim_revision": 225,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker052 delivered Equipment slots, crafting and resource costs; 1372 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker052 delivered Equipment slots, crafting and resource costs; 1372 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/gameplay/include/ge/gameplay/equipment.hpp",
           "engine/gameplay/src/equipment.cpp"
@@ -2985,13 +2985,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker053",
-      "claim_revision": 228,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker053 delivered Damage, hit resolution and status effects; 1283 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker053 delivered Damage, hit resolution and status effects; 1283 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/gameplay/include/ge/gameplay/combat.hpp",
           "engine/gameplay/src/combat.cpp"
@@ -3018,13 +3018,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker054",
-      "claim_revision": 231,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker054 delivered Dialogue graph execution and conditions; 1464 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker054 delivered Dialogue graph execution and conditions; 1464 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/gameplay/include/ge/gameplay/dialogue.hpp",
           "engine/gameplay/src/dialogue.cpp"
@@ -3051,13 +3051,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker055",
-      "claim_revision": 243,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker055 delivered Quest dependencies, progression and journal; 1210 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker055 delivered Quest dependencies, progression and journal; 1210 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/gameplay/include/ge/gameplay/quests.hpp",
           "engine/gameplay/src/quests.cpp"
@@ -3084,13 +3084,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker056",
-      "claim_revision": 246,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker056 delivered Image postprocessing and tone mapping; 1226 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker056 delivered Image postprocessing and tone mapping; 1226 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/render/include/ge/render/postprocess.hpp",
           "engine/render/src/postprocess.cpp"
@@ -3117,13 +3117,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker057",
-      "claim_revision": 250,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker057 delivered Scene culling and level of detail; 1244 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker057 delivered Scene culling and level of detail; 1244 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/render/include/ge/render/visibility.hpp",
           "engine/render/src/visibility.cpp"
@@ -3150,13 +3150,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker058",
-      "claim_revision": 256,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker058 delivered Draw batching and instance submission; 1133 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker058 delivered Draw batching and instance submission; 1133 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/render/include/ge/render/batching.hpp",
           "engine/render/src/batching.cpp"
@@ -3183,13 +3183,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker059",
-      "claim_revision": 259,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker059 delivered Decal projection and surface blending; 1239 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker059 delivered Decal projection and surface blending; 1239 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/render/include/ge/render/decals.hpp",
           "engine/render/src/decals.cpp"
@@ -3216,13 +3216,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker060",
-      "claim_revision": 262,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker060 delivered Scene picking and selection models; 1224 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker060 delivered Scene picking and selection models; 1224 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/editor/include/ge/editor/selection.hpp",
           "engine/editor/src/selection.cpp"
@@ -3249,13 +3249,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker061",
-      "claim_revision": 265,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker061 delivered Inverse kinematics and pose constraints; 1169 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker061 delivered Inverse kinematics and pose constraints; 1169 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/animation/include/ge/animation/ik.hpp",
           "engine/animation/src/ik.cpp"
@@ -3282,13 +3282,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker062",
-      "claim_revision": 268,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker062 delivered Skeleton retargeting and root motion; 1183 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker062 delivered Skeleton retargeting and root motion; 1183 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/animation/include/ge/animation/retarget.hpp",
           "engine/animation/src/retarget.cpp"
@@ -3315,13 +3315,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker063",
-      "claim_revision": 271,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Actual /root/worker063 delivered DSP filters, reverberation and effects; 1167 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
-        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "summary": "Actual /root/worker063 delivered DSP filters, reverberation and effects; 1167 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": [
           "engine/audio/include/ge/audio/dsp.hpp",
           "engine/audio/src/dsp.cpp"
@@ -3348,13 +3348,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker064",
-      "claim_revision": 276,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -3378,13 +3378,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker065",
-      "claim_revision": 279,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -3408,13 +3408,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker066",
-      "claim_revision": 282,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -3438,13 +3438,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker067",
-      "claim_revision": 289,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -3468,13 +3468,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker068",
-      "claim_revision": 292,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -3498,13 +3498,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker069",
-      "claim_revision": 295,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -3528,13 +3528,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker070",
-      "claim_revision": 298,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -3558,13 +3558,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker071",
-      "claim_revision": 301,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -3588,13 +3588,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker072",
-      "claim_revision": 305,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -3618,13 +3618,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker073",
-      "claim_revision": 317,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -3648,13 +3648,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker074",
-      "claim_revision": 320,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -3678,13 +3678,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker075",
-      "claim_revision": 323,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -3708,13 +3708,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker076",
-      "claim_revision": 330,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -3738,13 +3738,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker077",
-      "claim_revision": 333,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -3768,13 +3768,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker078",
-      "claim_revision": 336,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -3798,13 +3798,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker079",
-      "claim_revision": 346,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -3828,13 +3828,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker080",
-      "claim_revision": 349,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -3858,13 +3858,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker081",
-      "claim_revision": 352,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -3888,13 +3888,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker082",
-      "claim_revision": 357,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -3918,13 +3918,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker083",
-      "claim_revision": 360,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -3948,13 +3948,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker084",
-      "claim_revision": 363,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -3978,13 +3978,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker085",
-      "claim_revision": 366,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -4008,13 +4008,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker086",
-      "claim_revision": 369,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -4038,13 +4038,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker087",
-      "claim_revision": 372,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -4068,13 +4068,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker088",
-      "claim_revision": 377,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -4098,13 +4098,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker089",
-      "claim_revision": 380,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -4128,13 +4128,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker090",
-      "claim_revision": 383,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -4158,13 +4158,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker091",
-      "claim_revision": 386,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -4188,13 +4188,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker092",
-      "claim_revision": 389,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -4218,13 +4218,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker093",
-      "claim_revision": 392,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -4248,13 +4248,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker094",
-      "claim_revision": 395,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -4278,13 +4278,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker095",
-      "claim_revision": 398,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -4308,13 +4308,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker096",
-      "claim_revision": 401,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -4338,13 +4338,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker097",
-      "claim_revision": 404,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -4368,13 +4368,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker098",
-      "claim_revision": 407,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -4398,13 +4398,13 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker099",
-      "claim_revision": 410,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
@@ -4428,16 +4428,69 @@
       "required_checks": [
         "dev"
       ],
-      "status": "in_progress",
-      "owner": "worker100",
-      "claim_revision": 413,
+      "status": "planned",
+      "owner": null,
+      "claim_revision": null,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
+        "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.",
+        "next_action": "Review and repair delivered source under AUDIT-20261128; original acceptance remains unproven.",
         "files": []
       },
       "evidence": [],
+      "completion": null
+    },
+    {
+      "id": "AUDIT-20261128",
+      "title": "Compile, connect and review existing engine source with 100 actual workers",
+      "milestone": "M1",
+      "priority": 1,
+      "description": "User explicitly authorizes validating and repairing all code delivered at 3dcb0d0. Recover source-only campaign claims without deleting work; run real builds, meaningful subsystem and runtime checks, repair integration and architecture failures.",
+      "depends_on": [],
+      "write_paths": [
+        "engine/",
+        "apps/",
+        "tests/",
+        "tools/",
+        "cmake/",
+        "CMakeLists.txt",
+        "CMakePresets.json",
+        "README.md",
+        "docs/architecture/",
+        "docs/development/",
+        "docs/production/",
+        "docs/quality-gates.md",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance": [
+        "All existing C++ translation units compile with strict warnings and public headers/install exports are usable.",
+        "All registered modules start, advance frames and shut down with exercised cross-module integration and retained negative-case checks.",
+        "100 distinct delegated runs are recorded with actual canonical IDs and concrete findings or changes.",
+        "Publish passing local development, release and package evidence; document platform and functional limitations without claiming exhaustive correctness."
+      ],
+      "required_checks": [
+        "repository",
+        "dev",
+        "release",
+        "package"
+      ],
+      "status": "in_progress",
+      "owner": "coordinator",
+      "claim_revision": 525,
+      "blocker": null,
+      "checkpoint": {
+        "summary": "Integrated first audit repairs and meaningful runtime coverage: strict build blockers, kernel/event lifecycle, executor cancellation, IO, CLI, math, codecs, allocator/ECS safety, CPU skinning bridge, module boundaries and packaging. Scene-depth defect reproduced and repaired. Input disconnect and serialization findings remain queued for subsequent repair; audit remains in progress.",
+        "next_action": "Run frozen development integration gate, publish a checkpoint, then continue the remaining actual worker assignments and repair queued findings.",
+        "files": [
+          "engine/core/src/runtime.cpp",
+          "apps/runtime/modules.cpp",
+          "tests/CMakeLists.txt",
+          "docs/production/integration-audit-register.json"
+        ]
+      },
+      "evidence": [
+        "RUN-000005"
+      ],
       "completion": null
     }
   ],
@@ -4585,6 +4638,45 @@
         "path": "out/agent-runs/RUN-000004-9bc1ca3890454c4da1f8e41ebe515335.log",
         "sha256": "f417acfbd5cb10a26d0ce0f4ea0773e2228e1a9e845b97b3856085a973d6b106",
         "bytes": 9654
+      },
+      "note": "Process exited successfully."
+    },
+    {
+      "id": "RUN-000005",
+      "task": "AUDIT-20261128",
+      "check": "dev",
+      "actor": "coordinator",
+      "argv": [
+        "python",
+        "tools/ge.py",
+        "check",
+        "--preset",
+        "dev",
+        "--jobs",
+        "2"
+      ],
+      "started_at": "2026-11-28T07:09:51.251819Z",
+      "finished_at": "2026-11-28T07:13:06.896504Z",
+      "result": "passed",
+      "exit_code": 0,
+      "source_before": {
+        "sha256": "eeb75026bf9d5fd5feed769799a7ee1a6462a36a768d8089785f3ea7781af21f",
+        "file_count": 248
+      },
+      "source_after": {
+        "sha256": "eeb75026bf9d5fd5feed769799a7ee1a6462a36a768d8089785f3ea7781af21f",
+        "file_count": 248
+      },
+      "git": {
+        "status": "git",
+        "commit": "3dcb0d0f8ec389019693538ff362e09ee1993901",
+        "dirty": true
+      },
+      "platform": "Linux x86_64 / Python 3.12.14",
+      "log": {
+        "path": "out/agent-runs/RUN-000005-555f092f120442c3a087c3a44011859e.log",
+        "sha256": "df9a5995b036597b78b94cf17aeb3505c8f68e26b72f3b63cd36e2a0de20149b",
+        "bytes": 18683
       },
       "note": "Process exited successfully."
     }
@@ -7957,6 +8049,854 @@
       "action": "reconcile",
       "task": null,
       "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 422,
+      "at": "2026-11-28T06:40:46.309456Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-001",
+      "summary": "Actual /root/worker001 delivered original source; 2193 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 423,
+      "at": "2026-11-28T06:40:50.163061Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-002",
+      "summary": "Actual /root/worker002 delivered original source; 1355 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 424,
+      "at": "2026-11-28T06:40:53.783241Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-003",
+      "summary": "Actual /root/worker003 delivered original source; 1527 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 425,
+      "at": "2026-11-28T06:40:56.785850Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-INTEGRATION",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 426,
+      "at": "2026-11-28T06:40:59.338229Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-004",
+      "summary": "Actual /root/worker004 delivered Entity component registry and deferred mutations; 1354 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 427,
+      "at": "2026-11-28T06:41:02.518383Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-005",
+      "summary": "Actual /root/worker005 delivered Bounded task executor and dependency graph; 1558 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 428,
+      "at": "2026-11-28T06:41:05.843339Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-006",
+      "summary": "Actual /root/worker006 delivered Virtual filesystem mounts and bounded file access; 1684 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 429,
+      "at": "2026-11-28T06:41:08.222268Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-007",
+      "summary": "Actual /root/worker007 delivered Scene hierarchy and world transforms; 2075 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 430,
+      "at": "2026-11-28T06:41:10.483117Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-008",
+      "summary": "Actual /root/worker008 delivered Input devices, action maps and rebinding; 2007 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 431,
+      "at": "2026-11-28T06:41:12.521074Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-009",
+      "summary": "Actual /root/worker009 delivered Asset catalog, typed handles and cache; 1634 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 432,
+      "at": "2026-11-28T06:41:15.179877Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-DEPENDENCIES",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 433,
+      "at": "2026-11-28T06:41:17.274321Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-010",
+      "summary": "Actual /root/worker010 delivered Mesh topology, primitives and vertex processing; 1261 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 434,
+      "at": "2026-11-28T06:41:19.659236Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-011",
+      "summary": "Actual /root/worker011 delivered Images, framebuffers and texture sampling; 1248 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 435,
+      "at": "2026-11-28T06:41:21.635165Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-012",
+      "summary": "Actual /root/worker012 delivered Dynamic spatial index and visibility queries; 1225 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 436,
+      "at": "2026-11-28T06:41:23.619968Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-013",
+      "summary": "Actual /root/worker013 delivered Collision shapes and narrowphase contacts; 1382 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 437,
+      "at": "2026-11-28T06:41:25.623794Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-014",
+      "summary": "Actual /root/worker014 delivered Rigid body integration and contact solving; 1480 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 438,
+      "at": "2026-11-28T06:41:27.811350Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-015",
+      "summary": "Actual /root/worker015 delivered Skeletons, poses and sampled animation; 1123 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 439,
+      "at": "2026-11-28T06:41:29.887123Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-016",
+      "summary": "Actual /root/worker016 delivered Audio buffers, voices and mixing graph; 1252 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 440,
+      "at": "2026-11-28T06:41:32.347994Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-017",
+      "summary": "Actual /root/worker017 delivered Graph and grid pathfinding; 1544 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 441,
+      "at": "2026-11-28T06:41:33.895473Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-018",
+      "summary": "Actual /root/worker018 delivered Materials and CPU shading; 1150 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 442,
+      "at": "2026-11-28T06:41:35.443115Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-019",
+      "summary": "Actual /root/worker019 delivered Camera rigs, projections and viewport mapping; 1231 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 443,
+      "at": "2026-11-28T06:41:37.035088Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-020",
+      "summary": "Actual /root/worker020 delivered Asynchronous resource loading and residency; 1358 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 444,
+      "at": "2026-11-28T06:41:38.730026Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-021",
+      "summary": "Actual /root/worker021 delivered Software triangle rasterization; 1375 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 445,
+      "at": "2026-11-28T06:41:40.338406Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-022",
+      "summary": "Actual /root/worker022 delivered Character movement and grounding; 1306 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 446,
+      "at": "2026-11-28T06:41:41.849212Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-023",
+      "summary": "Actual /root/worker023 delivered Vehicle suspension and tire forces; 1330 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 447,
+      "at": "2026-11-28T06:41:43.495168Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-024",
+      "summary": "Actual /root/worker024 delivered Animation blending and state machines; 1312 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 448,
+      "at": "2026-11-28T06:41:44.979165Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-025",
+      "summary": "Actual /root/worker025 delivered Spatial audio and acoustic attenuation; 1223 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 449,
+      "at": "2026-11-28T06:41:46.359050Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-026",
+      "summary": "Actual /root/worker026 delivered Polygon navigation mesh queries and funnels; 1340 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 450,
+      "at": "2026-11-28T06:41:47.668964Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-027",
+      "summary": "Actual /root/worker027 delivered World partition activation and origin shifts; 1235 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 451,
+      "at": "2026-11-28T06:41:48.988064Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-028",
+      "summary": "Actual /root/worker028 delivered Terrain tiles, sampling and erosion; 1353 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 452,
+      "at": "2026-11-28T06:41:50.374796Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-029",
+      "summary": "Actual /root/worker029 delivered Vegetation distribution and instancing; 1317 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 453,
+      "at": "2026-11-28T06:41:51.647572Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-030",
+      "summary": "Actual /root/worker030 delivered Light collection, shadows and illumination; 1302 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 454,
+      "at": "2026-11-28T06:41:52.932179Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-031",
+      "summary": "Actual /root/worker031 delivered Render pass graph and transient resources; 1583 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 455,
+      "at": "2026-11-28T06:41:54.229813Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-032",
+      "summary": "Actual /root/worker032 delivered Particle emission, simulation and trails; 1436 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 456,
+      "at": "2026-11-28T06:41:55.915698Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-033",
+      "summary": "Actual /root/worker033 delivered Rigid body constraints and joints; 1537 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 457,
+      "at": "2026-11-28T06:41:57.987838Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-034",
+      "summary": "Actual /root/worker034 delivered Versioned scene serialization and transactions; 1315 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 458,
+      "at": "2026-11-28T06:41:59.237333Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-035",
+      "summary": "Actual /root/worker035 delivered Bounded bytecode virtual machine; 1557 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 459,
+      "at": "2026-11-28T06:42:00.572887Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-036",
+      "summary": "Actual /root/worker036 delivered Interaction targeting, triggers and actions; 1407 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 460,
+      "at": "2026-11-28T06:42:01.876144Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-037",
+      "summary": "Actual /root/worker037 delivered Typed signal subscriptions and transactional event dispatch; 1328 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 461,
+      "at": "2026-11-28T06:42:03.382760Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-038",
+      "summary": "Actual /root/worker038 delivered Curves, tracks and time mapping; 1377 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 462,
+      "at": "2026-11-28T06:42:04.773647Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-039",
+      "summary": "Actual /root/worker039 delivered Layered configuration parsing and persistence; 1459 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 463,
+      "at": "2026-11-28T06:42:06.961655Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-040",
+      "summary": "Actual /root/worker040 delivered Localization catalogs, Unicode and formatting; 1424 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 464,
+      "at": "2026-11-28T06:42:08.339126Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-041",
+      "summary": "Actual /root/worker041 delivered Packet encoding and reliable channel protocol; 1300 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 465,
+      "at": "2026-11-28T06:42:09.579586Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-042",
+      "summary": "Actual /root/worker042 delivered Native datagram transport and bounded network pump; 1411 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 466,
+      "at": "2026-11-28T06:42:10.942027Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-043",
+      "summary": "Actual /root/worker043 delivered Entity snapshots and delta replication; 1578 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 467,
+      "at": "2026-11-28T06:42:12.058868Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-044",
+      "summary": "Actual /root/worker044 delivered Input prediction and rollback state; 1365 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 468,
+      "at": "2026-11-28T06:42:13.501483Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-045",
+      "summary": "Actual /root/worker045 delivered Transactional save journal and recovery; 1570 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 469,
+      "at": "2026-11-28T06:42:15.293097Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-046",
+      "summary": "Actual /root/worker046 delivered Behavior tree execution and blackboards; 1274 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 470,
+      "at": "2026-11-28T06:42:16.922780Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-047",
+      "summary": "Actual /root/worker047 delivered Perception, memory and utility decisions; 1165 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 471,
+      "at": "2026-11-28T06:42:17.973382Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-048",
+      "summary": "Actual /root/worker048 delivered Road geometry and lane graph routing; 1755 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 472,
+      "at": "2026-11-28T06:42:19.000480Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-049",
+      "summary": "Actual /root/worker049 delivered Traffic agents, intersections and signals; 1247 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 473,
+      "at": "2026-11-28T06:42:20.194563Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-050",
+      "summary": "Actual /root/worker050 delivered Mission objectives and idempotent rewards; 1265 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 474,
+      "at": "2026-11-28T06:42:21.210928Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-051",
+      "summary": "Actual /root/worker051 delivered Inventory stacks, containers and transactions; 1541 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 475,
+      "at": "2026-11-28T06:42:22.052854Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-052",
+      "summary": "Actual /root/worker052 delivered Equipment slots, crafting and resource costs; 1372 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 476,
+      "at": "2026-11-28T06:42:22.937199Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-053",
+      "summary": "Actual /root/worker053 delivered Damage, hit resolution and status effects; 1283 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 477,
+      "at": "2026-11-28T06:42:23.786823Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-054",
+      "summary": "Actual /root/worker054 delivered Dialogue graph execution and conditions; 1464 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 478,
+      "at": "2026-11-28T06:42:24.721288Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-055",
+      "summary": "Actual /root/worker055 delivered Quest dependencies, progression and journal; 1210 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 479,
+      "at": "2026-11-28T06:42:25.917077Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-056",
+      "summary": "Actual /root/worker056 delivered Image postprocessing and tone mapping; 1226 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 480,
+      "at": "2026-11-28T06:42:26.622295Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-057",
+      "summary": "Actual /root/worker057 delivered Scene culling and level of detail; 1244 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 481,
+      "at": "2026-11-28T06:42:27.492821Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-058",
+      "summary": "Actual /root/worker058 delivered Draw batching and instance submission; 1133 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 482,
+      "at": "2026-11-28T06:42:28.733126Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-059",
+      "summary": "Actual /root/worker059 delivered Decal projection and surface blending; 1239 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 483,
+      "at": "2026-11-28T06:42:29.420811Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-060",
+      "summary": "Actual /root/worker060 delivered Scene picking and selection models; 1224 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 484,
+      "at": "2026-11-28T06:42:30.106017Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-061",
+      "summary": "Actual /root/worker061 delivered Inverse kinematics and pose constraints; 1169 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 485,
+      "at": "2026-11-28T06:42:30.761497Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-062",
+      "summary": "Actual /root/worker062 delivered Skeleton retargeting and root motion; 1183 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 486,
+      "at": "2026-11-28T06:42:31.523383Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-063",
+      "summary": "Actual /root/worker063 delivered DSP filters, reverberation and effects; 1167 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 487,
+      "at": "2026-11-28T06:42:32.425246Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-064",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 488,
+      "at": "2026-11-28T06:42:33.167525Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-065",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 489,
+      "at": "2026-11-28T06:42:34.269314Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-066",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 490,
+      "at": "2026-11-28T06:42:34.834245Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-067",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 491,
+      "at": "2026-11-28T06:42:35.388430Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-068",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 492,
+      "at": "2026-11-28T06:42:35.925734Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-069",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 493,
+      "at": "2026-11-28T06:42:36.423053Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-070",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 494,
+      "at": "2026-11-28T06:42:37.047192Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-071",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 495,
+      "at": "2026-11-28T06:42:37.671756Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-072",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 496,
+      "at": "2026-11-28T06:42:38.202005Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-073",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 497,
+      "at": "2026-11-28T06:42:38.811484Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-074",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 498,
+      "at": "2026-11-28T06:42:39.490466Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-075",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 499,
+      "at": "2026-11-28T06:42:40.115767Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-076",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 500,
+      "at": "2026-11-28T06:42:40.772061Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-077",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 501,
+      "at": "2026-11-28T06:42:41.349074Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-078",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 502,
+      "at": "2026-11-28T06:42:41.847131Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-079",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 503,
+      "at": "2026-11-28T06:42:42.610491Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-080",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 504,
+      "at": "2026-11-28T06:42:43.062980Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-081",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 505,
+      "at": "2026-11-28T06:42:43.526426Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-082",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 506,
+      "at": "2026-11-28T06:42:44.003864Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-083",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 507,
+      "at": "2026-11-28T06:42:44.405280Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-084",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 508,
+      "at": "2026-11-28T06:42:44.928484Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-085",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 509,
+      "at": "2026-11-28T06:42:45.319680Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-086",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 510,
+      "at": "2026-11-28T06:42:45.644294Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-087",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 511,
+      "at": "2026-11-28T06:42:45.981999Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-088",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 512,
+      "at": "2026-11-28T06:42:46.290993Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-089",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 513,
+      "at": "2026-11-28T06:42:46.578898Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-090",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 514,
+      "at": "2026-11-28T06:42:46.974898Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-091",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 515,
+      "at": "2026-11-28T06:42:47.260497Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-092",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 516,
+      "at": "2026-11-28T06:42:47.547372Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-093",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 517,
+      "at": "2026-11-28T06:42:47.797361Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-094",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 518,
+      "at": "2026-11-28T06:42:48.067384Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-095",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 519,
+      "at": "2026-11-28T06:42:48.297229Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-096",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 520,
+      "at": "2026-11-28T06:42:48.539284Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-097",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 521,
+      "at": "2026-11-28T06:42:48.782474Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-098",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 522,
+      "at": "2026-11-28T06:42:49.128592Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-099",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 523,
+      "at": "2026-11-28T06:42:49.345317Z",
+      "actor": "coordinator",
+      "action": "handoff",
+      "task": "CODE-100",
+      "summary": "Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained."
+    },
+    {
+      "revision": 524,
+      "at": "2026-11-28T06:42:49.529861Z",
+      "actor": "coordinator",
+      "action": "add",
+      "task": "AUDIT-20261128",
+      "summary": "Added planned task AUDIT-20261128: Compile, connect and review existing engine source with 100 actual workers."
+    },
+    {
+      "revision": 525,
+      "at": "2026-11-28T06:42:49.758845Z",
+      "actor": "coordinator",
+      "action": "claim",
+      "task": "AUDIT-20261128",
+      "summary": "Claimed AUDIT-20261128 with its recorded write scope."
+    },
+    {
+      "revision": 526,
+      "at": "2026-11-28T07:09:40.508376Z",
+      "actor": "coordinator",
+      "action": "checkpoint",
+      "task": "AUDIT-20261128",
+      "summary": "Integrated first audit repairs and meaningful runtime coverage: strict build blockers, kernel/event lifecycle, executor cancellation, IO, CLI, math, codecs, allocator/ECS safety, CPU skinning bridge, module boundaries and packaging. Scene-depth defect reproduced and repaired. Input disconnect and serialization findings remain queued for subsequent repair; audit remains in progress."
+    },
+    {
+      "revision": 527,
+      "at": "2026-11-28T07:13:06.930913Z",
+      "actor": "coordinator",
+      "action": "run-check",
+      "task": "AUDIT-20261128",
+      "summary": "dev: passed; receipt RUN-000005; Process exited successfully."
     }
   ]
 }

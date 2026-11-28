@@ -97,3 +97,53 @@ set_tests_properties(ge.tool_boundaries PROPERTIES
 )
 
 include("${PROJECT_SOURCE_DIR}/cmake/StateIoFaultTests.cmake")
+
+# Exercise the expanded engine through its public interfaces. The coordinator
+# keeps this manifest explicit so a new test cannot silently miss the build.
+function(ge_add_runtime_test name source)
+    add_executable("ge_${name}_tests" "${source}" ${ARGN})
+    target_link_libraries("ge_${name}_tests" PRIVATE ge_engine)
+    ge_target_defaults("ge_${name}_tests")
+    add_test(NAME "ge.${name}" COMMAND "ge_${name}_tests")
+    set_tests_properties("ge.${name}" PROPERTIES LABELS "native;runtime;contract" TIMEOUT 60)
+endfunction()
+
+ge_add_runtime_test(io_audit io_audit_tests.cpp)
+ge_add_runtime_test(runtime_kernel runtime_kernel_tests.cpp)
+ge_add_runtime_test(jobs_audit jobs_audit_tests.cpp)
+ge_add_runtime_test(math_audit math_audit_tests.cpp)
+ge_add_runtime_test(binary_audit binary_audit_tests.cpp)
+ge_add_runtime_test(skinning_audit skinning_audit_tests.cpp)
+ge_add_runtime_test(ecs_audit ecs_audit_tests.cpp)
+ge_add_runtime_test(scene_audit scene_audit_tests.cpp)
+ge_add_runtime_test(memory_audit memory_audit_tests.cpp)
+if(CMAKE_CXX_COMPILER_ID MATCHES "^(GNU|Clang|AppleClang)$")
+    target_compile_options(ge_memory_audit_tests PRIVATE -fno-elide-constructors)
+endif()
+ge_add_runtime_test(runtime_integration runtime_integration_tests.cpp
+    "${PROJECT_SOURCE_DIR}/apps/runtime/modules.cpp")
+target_include_directories(ge_runtime_integration_tests PRIVATE
+    "${PROJECT_SOURCE_DIR}/apps/runtime")
+
+add_test(NAME ge.runtime_cli
+    COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/test_runtime_cli.py"
+        --binary "$<TARGET_FILE:ge_runtime>"
+)
+set_tests_properties(ge.runtime_cli PROPERTIES LABELS "python;runtime;integration" TIMEOUT 120)
+
+# One translation unit per installed public header verifies that consumers do
+# not need undocumented include ordering or application precompiled headers.
+set(GE_HEADER_CHECK_SOURCES)
+foreach(module_target IN ITEMS ge_core ge_content ge_world ge_engine)
+    get_target_property(module_headers "${module_target}" HEADER_SET)
+    foreach(header IN LISTS module_headers)
+        string(REGEX REPLACE "^.*[/]include[/]" "" include_name "${header}")
+        string(MAKE_C_IDENTIFIER "${include_name}" header_id)
+        set(check_source "${CMAKE_CURRENT_BINARY_DIR}/public-headers/${header_id}.cpp")
+        file(GENERATE OUTPUT "${check_source}" CONTENT "#include <${include_name}>\n")
+        list(APPEND GE_HEADER_CHECK_SOURCES "${check_source}")
+    endforeach()
+endforeach()
+add_library(ge_public_headers OBJECT ${GE_HEADER_CHECK_SOURCES})
+target_link_libraries(ge_public_headers PRIVATE ge_engine)
+ge_target_defaults(ge_public_headers)

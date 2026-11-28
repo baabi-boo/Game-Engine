@@ -6,16 +6,19 @@
 
 ## Source development campaign
 
-The current branch also contains an **untested C++20 runtime expansion** in
+The current branch contains a **C++20 runtime expansion undergoing integration verification** in
 `engine/` and the `ge_runtime` application. It connects new subsystems through
 a shared service registry, ordered frame systems, bounded event queues and
 runtime commands. The existing `ge_headless` lifecycle fixture is retained.
 
-This campaign follows the owner's explicit request for implementation without
-builds, test execution or CI monitoring. New source is not accepted platform,
-performance or production evidence. The foundation claims below refer to the
-previously verified scope. See [runtime composition](docs/architecture/runtime-expansion.md)
-and the [actual worker register](docs/production/source-campaign.json).
+The original source campaign followed the owner's request for implementation
+without builds or test execution. A subsequent authorized
+[integration audit](docs/production/integration-audit-2026-11-28.md) now compiles,
+exercises and repairs that source. Passing checks qualify their recorded scope;
+they do not establish production readiness or performance. The foundation claims
+below refer to the earlier verified scope. See
+[runtime composition](docs/architecture/runtime-expansion.md) and the historical
+[source worker register](docs/production/source-campaign.json).
 
 A C++20 engine foundation built around explicit ownership, stable identity, bounded
 resource admission and reproducible content tools. The first executable demonstrates

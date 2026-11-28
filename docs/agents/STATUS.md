@@ -3,11 +3,11 @@
 # Agent project status
 
 - **Project:** Game Engine
-- **Ledger revision:** 421
-- **Recorded update:** 2026\-11\-28T00:04:00.377753Z
+- **Ledger revision:** 527
+- **Recorded update:** 2026\-11\-28T07:13:06.930913Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** be30cb8a04270f128250777169c080c2589e98a91d4402c4b8411594e81e0cc5
-- **Source files:** 232
+- **Source fingerprint:** eeb75026bf9d5fd5feed769799a7ee1a6462a36a768d8089785f3ea7781af21f
+- **Source files:** 248
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -38,112 +38,113 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 
 | Task | Priority | Milestone | Status | Owner | Dependencies | Next action |
 | --- | --- | --- | --- | --- | --- | --- |
-| CODE\-INTEGRATION: Integrate source\-only 100\-agent engine expansion | 0 | M1 | in\_progress | coordinator | none | Implement kernel and compose completed worker modules; publish incremental source checkpoints without execution. |
+| CODE\-INTEGRATION: Integrate source\-only 100\-agent engine expansion | 0 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
 | M0\-FOUNDATION: Published headless foundation | 0 | M0 | done | setup\-coordinator | none | Preserve historical evidence and continue through the first playable gates. |
 | OPS\-AGENT\-SYSTEM: Install agent coordination and automatic project\-state updates | 0 | OPS | done | coordinator | none | For the next authorized session, inspect the published branch and hosted CI, follow docs/agents/CONTINUE.md, and select M1\-010 only when first\-playable work is within the current user objective. |
-| CODE\-001: Spatial mathematics | 1 | M1 | in\_progress | worker001 | none | Integrate real consumers; source delivered, runtime validation deferred by user request. |
-| CODE\-DEPENDENCIES: Declare runtime expansion dependency policy | 1 | OPS | in\_progress | coordinator | none | Update policy declarations by source inspection; checks remain unrun under current user instruction. |
-| CODE\-002: Bounded allocation and containers | 2 | M1 | in\_progress | worker002 | none | Integrate real consumers; source delivered, runtime validation deferred by user request. |
-| CODE\-003: Bounded binary serialization | 3 | M1 | in\_progress | worker003 | none | Integrate real consumers; source delivered, runtime validation deferred by user request. |
-| CODE\-004: Entity component registry and deferred mutations | 4 | M1 | in\_progress | worker004 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-005: Bounded task executor and dependency graph | 5 | M1 | in\_progress | worker005 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-006: Virtual filesystem mounts and bounded file access | 6 | M1 | in\_progress | worker006 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-007: Scene hierarchy and world transforms | 7 | M1 | in\_progress | worker007 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-008: Input devices, action maps and rebinding | 8 | M1 | in\_progress | worker008 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-009: Asset catalog, typed handles and cache | 9 | M1 | in\_progress | worker009 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-010: Mesh topology, primitives and vertex processing | 10 | M1 | in\_progress | worker010 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
+| AUDIT\-20261128: Compile, connect and review existing engine source with 100 actual workers | 1 | M1 | in\_progress | coordinator | none | Run frozen development integration gate, publish a checkpoint, then continue the remaining actual worker assignments and repair queued findings. |
+| CODE\-001: Spatial mathematics | 1 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-DEPENDENCIES: Declare runtime expansion dependency policy | 1 | OPS | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-002: Bounded allocation and containers | 2 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-003: Bounded binary serialization | 3 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-004: Entity component registry and deferred mutations | 4 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-005: Bounded task executor and dependency graph | 5 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-006: Virtual filesystem mounts and bounded file access | 6 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-007: Scene hierarchy and world transforms | 7 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-008: Input devices, action maps and rebinding | 8 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-009: Asset catalog, typed handles and cache | 9 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-010: Mesh topology, primitives and vertex processing | 10 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
 | OPS\-MACOS: Establish observed macOS foundation qualification | 10 | OPS | blocked | unowned | M0\-FOUNDATION | Inspect the latest macOS job and its logs; identify whether execution is available before changing platform code. |
-| CODE\-011: Images, framebuffers and texture sampling | 11 | M1 | in\_progress | worker011 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-012: Dynamic spatial index and visibility queries | 12 | M1 | in\_progress | worker012 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-013: Collision shapes and narrowphase contacts | 13 | M1 | in\_progress | worker013 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-014: Rigid body integration and contact solving | 14 | M1 | in\_progress | worker014 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-015: Skeletons, poses and sampled animation | 15 | M1 | in\_progress | worker015 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-016: Audio buffers, voices and mixing graph | 16 | M1 | in\_progress | worker016 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-017: Graph and grid pathfinding | 17 | M1 | in\_progress | worker017 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-018: Materials and CPU shading | 18 | M1 | in\_progress | worker018 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-019: Camera rigs, projections and viewport mapping | 19 | M1 | in\_progress | worker019 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-020: Asynchronous resource loading and residency | 20 | M1 | in\_progress | worker020 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-021: Software triangle rasterization | 21 | M1 | in\_progress | worker021 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-022: Character movement and grounding | 22 | M1 | in\_progress | worker022 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-023: Vehicle suspension and tire forces | 23 | M1 | in\_progress | worker023 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-024: Animation blending and state machines | 24 | M1 | in\_progress | worker024 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-025: Spatial audio and acoustic attenuation | 25 | M1 | in\_progress | worker025 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-026: Polygon navigation mesh queries and funnels | 26 | M1 | in\_progress | worker026 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-027: World partition activation and origin shifts | 27 | M1 | in\_progress | worker027 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-028: Terrain tiles, sampling and erosion | 28 | M1 | in\_progress | worker028 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-029: Vegetation distribution and instancing | 29 | M1 | in\_progress | worker029 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-030: Light collection, shadows and illumination | 30 | M1 | in\_progress | worker030 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-031: Render pass graph and transient resources | 31 | M1 | in\_progress | worker031 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-032: Particle emission, simulation and trails | 32 | M1 | in\_progress | worker032 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-033: Rigid body constraints and joints | 33 | M1 | in\_progress | worker033 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-034: Versioned scene serialization and transactions | 34 | M1 | in\_progress | worker034 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-035: Bounded bytecode virtual machine | 35 | M1 | in\_progress | worker035 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-036: Interaction targeting, triggers and actions | 36 | M1 | in\_progress | worker036 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-037: Typed signal subscriptions and transactional event dispatch | 37 | M1 | in\_progress | worker037 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-038: Curves, tracks and time mapping | 38 | M1 | in\_progress | worker038 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-039: Layered configuration parsing and persistence | 39 | M1 | in\_progress | worker039 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-040: Localization catalogs, Unicode and formatting | 40 | M1 | in\_progress | worker040 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-041: Packet encoding and reliable channel protocol | 41 | M1 | in\_progress | worker041 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-042: Native datagram transport and bounded network pump | 42 | M1 | in\_progress | worker042 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-043: Entity snapshots and delta replication | 43 | M1 | in\_progress | worker043 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-044: Input prediction and rollback state | 44 | M1 | in\_progress | worker044 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-045: Transactional save journal and recovery | 45 | M1 | in\_progress | worker045 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-046: Behavior tree execution and blackboards | 46 | M1 | in\_progress | worker046 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-047: Perception, memory and utility decisions | 47 | M1 | in\_progress | worker047 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-048: Road geometry and lane graph routing | 48 | M1 | in\_progress | worker048 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-049: Traffic agents, intersections and signals | 49 | M1 | in\_progress | worker049 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-050: Mission objectives and idempotent rewards | 50 | M1 | in\_progress | worker050 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-051: Inventory stacks, containers and transactions | 51 | M1 | in\_progress | worker051 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-052: Equipment slots, crafting and resource costs | 52 | M1 | in\_progress | worker052 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-053: Damage, hit resolution and status effects | 53 | M1 | in\_progress | worker053 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-054: Dialogue graph execution and conditions | 54 | M1 | in\_progress | worker054 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-055: Quest dependencies, progression and journal | 55 | M1 | in\_progress | worker055 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-056: Image postprocessing and tone mapping | 56 | M1 | in\_progress | worker056 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-057: Scene culling and level of detail | 57 | M1 | in\_progress | worker057 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-058: Draw batching and instance submission | 58 | M1 | in\_progress | worker058 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-059: Decal projection and surface blending | 59 | M1 | in\_progress | worker059 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-060: Scene picking and selection models | 60 | M1 | in\_progress | worker060 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-061: Inverse kinematics and pose constraints | 61 | M1 | in\_progress | worker061 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-062: Skeleton retargeting and root motion | 62 | M1 | in\_progress | worker062 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-063: DSP filters, reverberation and effects | 63 | M1 | in\_progress | worker063 | none | Source integrated for publication; dev acceptance is unrun by explicit user request. |
-| CODE\-064: Bounded WAV decoding and audio conversion | 64 | M1 | in\_progress | worker064 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-065: OBJ and PLY model import | 65 | M1 | in\_progress | worker065 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-066: BMP, TGA and PPM texture import | 66 | M1 | in\_progress | worker066 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-067: Mesh simplification and LOD generation | 67 | M1 | in\_progress | worker067 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-068: Splines, swept meshes and route sampling | 68 | M1 | in\_progress | worker068 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-069: Swept collision and time of impact | 69 | M1 | in\_progress | worker069 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-070: Scene raycasts, overlaps and shape casts | 70 | M1 | in\_progress | worker070 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-071: Crowd avoidance and local steering | 71 | M1 | in\_progress | worker071 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-072: Cover analysis and tactical position scoring | 72 | M1 | in\_progress | worker072 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-073: World clock, weather and sun state | 73 | M1 | in\_progress | worker073 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-074: Environment volumes and spatial blending | 74 | M1 | in\_progress | worker074 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-075: Water surfaces, buoyancy and drag | 75 | M1 | in\_progress | worker075 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-076: Drivetrain, differential and wheel controls | 76 | M1 | in\_progress | worker076 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-077: Procedural district blocks and construction | 77 | M1 | in\_progress | worker077 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-078: Undoable editing transactions | 78 | M1 | in\_progress | worker078 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-079: Scene hierarchy and property inspection | 79 | M1 | in\_progress | worker079 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-080: Transform gizmos and manipulation | 80 | M1 | in\_progress | worker080 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-081: Asset browsing, filtering and import queue | 81 | M1 | in\_progress | worker081 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-082: Prefab instantiation and property overrides | 82 | M1 | in\_progress | worker082 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-083: Cinematic tracks and scene binding | 83 | M1 | in\_progress | worker083 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-084: Debug geometry and scene diagnostics | 84 | M1 | in\_progress | worker084 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-085: Bounded tracing and performance telemetry | 85 | M1 | in\_progress | worker085 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-086: Runtime console command scripts and variables | 86 | M1 | in\_progress | worker086 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-087: Platform events, clocks and application lifecycle | 87 | M1 | in\_progress | worker087 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-088: Retained layout tree and flex/grid sizing | 88 | M1 | in\_progress | worker088 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-089: Widget models and text layout | 89 | M1 | in\_progress | worker089 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-090: UI focus, pointer capture and accessibility | 90 | M1 | in\_progress | worker090 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-091: Vector paths, tessellation and coverage | 91 | M1 | in\_progress | worker091 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-092: Material expression graph and interpreter | 92 | M1 | in\_progress | worker092 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-093: Network sessions, peers and replay streams | 93 | M1 | in\_progress | worker093 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-094: Native asset bundle writer and reader | 94 | M1 | in\_progress | worker094 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-095: Runtime startup profiles and settings application | 95 | M1 | in\_progress | worker095 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-096: Integrated district actors and interaction loop | 96 | M1 | in\_progress | worker096 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-097: Software presentation and frame export | 97 | M1 | in\_progress | worker097 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-098: Scene, physics, animation and rendering bridges | 98 | M1 | in\_progress | worker098 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-099: Scene asset ingestion and resource binding | 99 | M1 | in\_progress | worker099 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| CODE\-100: Integrated runtime editing and authoring commands | 100 | M1 | in\_progress | worker100 | none | Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint. |
-| M1\-010: Declare the reference platform and playable workload | 100 | M1 | planned \(ready\) | unowned | M0\-FOUNDATION | Read the first\-playable plan and inspect available target evidence; draft the reference\-platform record. |
+| CODE\-011: Images, framebuffers and texture sampling | 11 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-012: Dynamic spatial index and visibility queries | 12 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-013: Collision shapes and narrowphase contacts | 13 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-014: Rigid body integration and contact solving | 14 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-015: Skeletons, poses and sampled animation | 15 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-016: Audio buffers, voices and mixing graph | 16 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-017: Graph and grid pathfinding | 17 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-018: Materials and CPU shading | 18 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-019: Camera rigs, projections and viewport mapping | 19 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-020: Asynchronous resource loading and residency | 20 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-021: Software triangle rasterization | 21 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-022: Character movement and grounding | 22 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-023: Vehicle suspension and tire forces | 23 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-024: Animation blending and state machines | 24 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-025: Spatial audio and acoustic attenuation | 25 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-026: Polygon navigation mesh queries and funnels | 26 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-027: World partition activation and origin shifts | 27 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-028: Terrain tiles, sampling and erosion | 28 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-029: Vegetation distribution and instancing | 29 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-030: Light collection, shadows and illumination | 30 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-031: Render pass graph and transient resources | 31 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-032: Particle emission, simulation and trails | 32 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-033: Rigid body constraints and joints | 33 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-034: Versioned scene serialization and transactions | 34 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-035: Bounded bytecode virtual machine | 35 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-036: Interaction targeting, triggers and actions | 36 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-037: Typed signal subscriptions and transactional event dispatch | 37 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-038: Curves, tracks and time mapping | 38 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-039: Layered configuration parsing and persistence | 39 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-040: Localization catalogs, Unicode and formatting | 40 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-041: Packet encoding and reliable channel protocol | 41 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-042: Native datagram transport and bounded network pump | 42 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-043: Entity snapshots and delta replication | 43 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-044: Input prediction and rollback state | 44 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-045: Transactional save journal and recovery | 45 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-046: Behavior tree execution and blackboards | 46 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-047: Perception, memory and utility decisions | 47 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-048: Road geometry and lane graph routing | 48 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-049: Traffic agents, intersections and signals | 49 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-050: Mission objectives and idempotent rewards | 50 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-051: Inventory stacks, containers and transactions | 51 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-052: Equipment slots, crafting and resource costs | 52 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-053: Damage, hit resolution and status effects | 53 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-054: Dialogue graph execution and conditions | 54 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-055: Quest dependencies, progression and journal | 55 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-056: Image postprocessing and tone mapping | 56 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-057: Scene culling and level of detail | 57 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-058: Draw batching and instance submission | 58 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-059: Decal projection and surface blending | 59 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-060: Scene picking and selection models | 60 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-061: Inverse kinematics and pose constraints | 61 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-062: Skeleton retargeting and root motion | 62 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-063: DSP filters, reverberation and effects | 63 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-064: Bounded WAV decoding and audio conversion | 64 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-065: OBJ and PLY model import | 65 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-066: BMP, TGA and PPM texture import | 66 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-067: Mesh simplification and LOD generation | 67 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-068: Splines, swept meshes and route sampling | 68 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-069: Swept collision and time of impact | 69 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-070: Scene raycasts, overlaps and shape casts | 70 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-071: Crowd avoidance and local steering | 71 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-072: Cover analysis and tactical position scoring | 72 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-073: World clock, weather and sun state | 73 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-074: Environment volumes and spatial blending | 74 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-075: Water surfaces, buoyancy and drag | 75 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-076: Drivetrain, differential and wheel controls | 76 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-077: Procedural district blocks and construction | 77 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-078: Undoable editing transactions | 78 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-079: Scene hierarchy and property inspection | 79 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-080: Transform gizmos and manipulation | 80 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-081: Asset browsing, filtering and import queue | 81 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-082: Prefab instantiation and property overrides | 82 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-083: Cinematic tracks and scene binding | 83 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-084: Debug geometry and scene diagnostics | 84 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-085: Bounded tracing and performance telemetry | 85 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-086: Runtime console command scripts and variables | 86 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-087: Platform events, clocks and application lifecycle | 87 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-088: Retained layout tree and flex/grid sizing | 88 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-089: Widget models and text layout | 89 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-090: UI focus, pointer capture and accessibility | 90 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-091: Vector paths, tessellation and coverage | 91 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-092: Material expression graph and interpreter | 92 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-093: Network sessions, peers and replay streams | 93 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-094: Native asset bundle writer and reader | 94 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-095: Runtime startup profiles and settings application | 95 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-096: Integrated district actors and interaction loop | 96 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-097: Software presentation and frame export | 97 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-098: Scene, physics, animation and rendering bridges | 98 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-099: Scene asset ingestion and resource binding | 99 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-100: Integrated runtime editing and authoring commands | 100 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| M1\-010: Declare the reference platform and playable workload | 100 | M1 | planned | unowned | M0\-FOUNDATION | Read the first\-playable plan and inspect available target evidence; draft the reference\-platform record. |
 | M1\-020: Select one native backend and dependency strategy | 110 | M1 | planned | unowned | M1\-010 | Review ADR0006 and the candidate register; produce an evidence\-backed backend decision and dependency records. |
 | M1\-030: Implement native window and input lifecycle | 120 | M1 | planned | unowned | M1\-020 | Define the minimal platform interface, then wire and test window/input lifecycle on the chosen target. |
 | M1\-040: Cook a small original mesh scene | 130 | M1 | planned | unowned | M1\-020 | Specify the smallest supported mesh\-source subset and compatibility change before editing the cooker. |
@@ -182,1025 +183,15 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Preserved work: Planned work; no implementation or passing evidence is inferred.
 - Next action: Inspect the latest macOS job and its logs; identify whether execution is available before changing platform code.
 
-### CODE\-001
-
-- Status: in\_progress
-- Owner: worker001
-- Claim revision: 12
-- Write scope: engine/math/include/ge/math/math.hpp, engine/math/src/math.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker001 delivered original source; 2193 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.
-- Next action: Integrate real consumers; source delivered, runtime validation deferred by user request.
-
-### CODE\-002
-
-- Status: in\_progress
-- Owner: worker002
-- Claim revision: 14
-- Write scope: engine/core/include/ge/core/memory.hpp
-- Blocker: none
-- Preserved work: Actual /root/worker002 delivered original source; 1355 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.
-- Next action: Integrate real consumers; source delivered, runtime validation deferred by user request.
-
-### CODE\-003
-
-- Status: in\_progress
-- Owner: worker003
-- Claim revision: 16
-- Write scope: engine/core/include/ge/core/binary.hpp, engine/core/src/binary.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker003 delivered original source; 1527 nonblank noncomment code lines. No compilation or tests executed; dev acceptance remains unrun.
-- Next action: Integrate real consumers; source delivered, runtime validation deferred by user request.
-
-### CODE\-INTEGRATION
+### AUDIT\-20261128
 
 - Status: in\_progress
 - Owner: coordinator
-- Claim revision: 18
-- Write scope: CMakeLists.txt, engine/core/CMakeLists.txt, engine/runtime/CMakeLists.txt, engine/runtime/modules.cmake, engine/core/include/ge/core/runtime.hpp, engine/core/src/runtime.cpp, apps/runtime, cmake/GameEngineConfig.cmake.in, README.md, docs/architecture/overview.md, docs/architecture/runtime\-expansion.md, docs/production/source\-campaign.json
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement kernel and compose completed worker modules; publish incremental source checkpoints without execution.
-
-### CODE\-004
-
-- Status: in\_progress
-- Owner: worker004
-- Claim revision: 21
-- Write scope: engine/ecs/include/ge/ecs/registry.hpp, engine/ecs/src/registry.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker004 delivered Entity component registry and deferred mutations; 1354 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-005
-
-- Status: in\_progress
-- Owner: worker005
-- Claim revision: 24
-- Write scope: engine/jobs/include/ge/jobs/executor.hpp, engine/jobs/src/executor.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker005 delivered Bounded task executor and dependency graph; 1558 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-006
-
-- Status: in\_progress
-- Owner: worker006
-- Claim revision: 27
-- Write scope: engine/io/include/ge/io/filesystem.hpp, engine/io/src/filesystem.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker006 delivered Virtual filesystem mounts and bounded file access; 1684 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-007
-
-- Status: in\_progress
-- Owner: worker007
-- Claim revision: 34
-- Write scope: engine/scene/include/ge/scene/scene.hpp, engine/scene/src/scene.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker007 delivered Scene hierarchy and world transforms; 2075 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-008
-
-- Status: in\_progress
-- Owner: worker008
-- Claim revision: 37
-- Write scope: engine/input/include/ge/input/actions.hpp, engine/input/src/actions.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker008 delivered Input devices, action maps and rebinding; 2007 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-009
-
-- Status: in\_progress
-- Owner: worker009
-- Claim revision: 40
-- Write scope: engine/assets/include/ge/assets/catalog.hpp, engine/assets/src/catalog.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker009 delivered Asset catalog, typed handles and cache; 1634 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-DEPENDENCIES
-
-- Status: in\_progress
-- Owner: coordinator
-- Claim revision: 44
-- Write scope: tools/check\_repo.py
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Update policy declarations by source inspection; checks remain unrun under current user instruction.
-
-### CODE\-010
-
-- Status: in\_progress
-- Owner: worker010
-- Claim revision: 50
-- Write scope: engine/geometry/include/ge/geometry/mesh.hpp, engine/geometry/src/mesh.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker010 delivered Mesh topology, primitives and vertex processing; 1261 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-011
-
-- Status: in\_progress
-- Owner: worker011
-- Claim revision: 53
-- Write scope: engine/render/include/ge/render/image.hpp, engine/render/src/image.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker011 delivered Images, framebuffers and texture sampling; 1248 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-012
-
-- Status: in\_progress
-- Owner: worker012
-- Claim revision: 56
-- Write scope: engine/spatial/include/ge/spatial/index.hpp, engine/spatial/src/index.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker012 delivered Dynamic spatial index and visibility queries; 1225 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-013
-
-- Status: in\_progress
-- Owner: worker013
-- Claim revision: 62
-- Write scope: engine/physics/include/ge/physics/collision.hpp, engine/physics/src/collision.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker013 delivered Collision shapes and narrowphase contacts; 1382 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-014
-
-- Status: in\_progress
-- Owner: worker014
-- Claim revision: 65
-- Write scope: engine/physics/include/ge/physics/dynamics.hpp, engine/physics/src/dynamics.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker014 delivered Rigid body integration and contact solving; 1480 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-015
-
-- Status: in\_progress
-- Owner: worker015
-- Claim revision: 68
-- Write scope: engine/animation/include/ge/animation/skeleton.hpp, engine/animation/src/skeleton.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker015 delivered Skeletons, poses and sampled animation; 1123 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-016
-
-- Status: in\_progress
-- Owner: worker016
-- Claim revision: 74
-- Write scope: engine/audio/include/ge/audio/mixer.hpp, engine/audio/src/mixer.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker016 delivered Audio buffers, voices and mixing graph; 1252 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-017
-
-- Status: in\_progress
-- Owner: worker017
-- Claim revision: 77
-- Write scope: engine/navigation/include/ge/navigation/pathfinding.hpp, engine/navigation/src/pathfinding.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker017 delivered Graph and grid pathfinding; 1544 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-018
-
-- Status: in\_progress
-- Owner: worker018
-- Claim revision: 80
-- Write scope: engine/render/include/ge/render/material.hpp, engine/render/src/material.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker018 delivered Materials and CPU shading; 1150 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-019
-
-- Status: in\_progress
-- Owner: worker019
-- Claim revision: 89
-- Write scope: engine/render/include/ge/render/camera.hpp, engine/render/src/camera.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker019 delivered Camera rigs, projections and viewport mapping; 1231 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-020
-
-- Status: in\_progress
-- Owner: worker020
-- Claim revision: 92
-- Write scope: engine/assets/include/ge/assets/streaming.hpp, engine/assets/src/streaming.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker020 delivered Asynchronous resource loading and residency; 1358 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-021
-
-- Status: in\_progress
-- Owner: worker021
-- Claim revision: 95
-- Write scope: engine/render/include/ge/render/rasterizer.hpp, engine/render/src/rasterizer.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker021 delivered Software triangle rasterization; 1375 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-022
-
-- Status: in\_progress
-- Owner: worker022
-- Claim revision: 99
-- Write scope: engine/physics/include/ge/physics/character.hpp, engine/physics/src/character.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker022 delivered Character movement and grounding; 1306 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-023
-
-- Status: in\_progress
-- Owner: worker023
-- Claim revision: 102
-- Write scope: engine/physics/include/ge/physics/vehicle.hpp, engine/physics/src/vehicle.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker023 delivered Vehicle suspension and tire forces; 1330 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-024
-
-- Status: in\_progress
-- Owner: worker024
-- Claim revision: 105
-- Write scope: engine/animation/include/ge/animation/blend.hpp, engine/animation/src/blend.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker024 delivered Animation blending and state machines; 1312 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-025
-
-- Status: in\_progress
-- Owner: worker025
-- Claim revision: 111
-- Write scope: engine/audio/include/ge/audio/spatial.hpp, engine/audio/src/spatial.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker025 delivered Spatial audio and acoustic attenuation; 1223 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-026
-
-- Status: in\_progress
-- Owner: worker026
-- Claim revision: 114
-- Write scope: engine/navigation/include/ge/navigation/navmesh.hpp, engine/navigation/src/navmesh.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker026 delivered Polygon navigation mesh queries and funnels; 1340 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-027
-
-- Status: in\_progress
-- Owner: worker027
-- Claim revision: 117
-- Write scope: engine/scene/include/ge/scene/partition.hpp, engine/scene/src/partition.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker027 delivered World partition activation and origin shifts; 1235 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-028
-
-- Status: in\_progress
-- Owner: worker028
-- Claim revision: 124
-- Write scope: engine/terrain/include/ge/terrain/heightfield.hpp, engine/terrain/src/heightfield.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker028 delivered Terrain tiles, sampling and erosion; 1353 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-029
-
-- Status: in\_progress
-- Owner: worker029
-- Claim revision: 127
-- Write scope: engine/terrain/include/ge/terrain/vegetation.hpp, engine/terrain/src/vegetation.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker029 delivered Vegetation distribution and instancing; 1317 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-030
-
-- Status: in\_progress
-- Owner: worker030
-- Claim revision: 130
-- Write scope: engine/render/include/ge/render/lighting.hpp, engine/render/src/lighting.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker030 delivered Light collection, shadows and illumination; 1302 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-031
-
-- Status: in\_progress
-- Owner: worker031
-- Claim revision: 134
-- Write scope: engine/render/include/ge/render/graph.hpp, engine/render/src/graph.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker031 delivered Render pass graph and transient resources; 1583 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-032
-
-- Status: in\_progress
-- Owner: worker032
-- Claim revision: 137
-- Write scope: engine/effects/include/ge/effects/particles.hpp, engine/effects/src/particles.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker032 delivered Particle emission, simulation and trails; 1436 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-033
-
-- Status: in\_progress
-- Owner: worker033
-- Claim revision: 140
-- Write scope: engine/physics/include/ge/physics/constraints.hpp, engine/physics/src/constraints.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker033 delivered Rigid body constraints and joints; 1537 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-034
-
-- Status: in\_progress
-- Owner: worker034
-- Claim revision: 145
-- Write scope: engine/scene/include/ge/scene/serialization.hpp, engine/scene/src/serialization.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker034 delivered Versioned scene serialization and transactions; 1315 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-035
-
-- Status: in\_progress
-- Owner: worker035
-- Claim revision: 148
-- Write scope: engine/script/include/ge/script/vm.hpp, engine/script/src/vm.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker035 delivered Bounded bytecode virtual machine; 1557 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-036
-
-- Status: in\_progress
-- Owner: worker036
-- Claim revision: 151
-- Write scope: engine/gameplay/include/ge/gameplay/interaction.hpp, engine/gameplay/src/interaction.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker036 delivered Interaction targeting, triggers and actions; 1407 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-037
-
-- Status: in\_progress
-- Owner: worker037
-- Claim revision: 157
-- Write scope: engine/core/include/ge/core/signals.hpp, engine/core/src/signals.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker037 delivered Typed signal subscriptions and transactional event dispatch; 1328 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-038
-
-- Status: in\_progress
-- Owner: worker038
-- Claim revision: 160
-- Write scope: engine/animation/include/ge/animation/curves.hpp, engine/animation/src/curves.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker038 delivered Curves, tracks and time mapping; 1377 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-039
-
-- Status: in\_progress
-- Owner: worker039
-- Claim revision: 163
-- Write scope: engine/config/include/ge/config/settings.hpp, engine/config/src/settings.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker039 delivered Layered configuration parsing and persistence; 1459 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-040
-
-- Status: in\_progress
-- Owner: worker040
-- Claim revision: 166
-- Write scope: engine/text/include/ge/text/localization.hpp, engine/text/src/localization.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker040 delivered Localization catalogs, Unicode and formatting; 1424 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-041
-
-- Status: in\_progress
-- Owner: worker041
-- Claim revision: 169
-- Write scope: engine/network/include/ge/network/protocol.hpp, engine/network/src/protocol.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker041 delivered Packet encoding and reliable channel protocol; 1300 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-042
-
-- Status: in\_progress
-- Owner: worker042
-- Claim revision: 172
-- Write scope: engine/network/include/ge/network/transport.hpp, engine/network/src/transport.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker042 delivered Native datagram transport and bounded network pump; 1411 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-043
-
-- Status: in\_progress
-- Owner: worker043
-- Claim revision: 180
-- Write scope: engine/network/include/ge/network/replication.hpp, engine/network/src/replication.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker043 delivered Entity snapshots and delta replication; 1578 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-044
-
-- Status: in\_progress
-- Owner: worker044
-- Claim revision: 183
-- Write scope: engine/network/include/ge/network/prediction.hpp, engine/network/src/prediction.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker044 delivered Input prediction and rollback state; 1365 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-045
-
-- Status: in\_progress
-- Owner: worker045
-- Claim revision: 186
-- Write scope: engine/persistence/include/ge/persistence/journal.hpp, engine/persistence/src/journal.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker045 delivered Transactional save journal and recovery; 1570 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-046
-
-- Status: in\_progress
-- Owner: worker046
-- Claim revision: 195
-- Write scope: engine/ai/include/ge/ai/behavior.hpp, engine/ai/src/behavior.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker046 delivered Behavior tree execution and blackboards; 1274 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-047
-
-- Status: in\_progress
-- Owner: worker047
-- Claim revision: 198
-- Write scope: engine/ai/include/ge/ai/perception.hpp, engine/ai/src/perception.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker047 delivered Perception, memory and utility decisions; 1165 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-048
-
-- Status: in\_progress
-- Owner: worker048
-- Claim revision: 201
-- Write scope: engine/traffic/include/ge/traffic/roads.hpp, engine/traffic/src/roads.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker048 delivered Road geometry and lane graph routing; 1755 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-049
-
-- Status: in\_progress
-- Owner: worker049
-- Claim revision: 212
-- Write scope: engine/traffic/include/ge/traffic/simulation.hpp, engine/traffic/src/simulation.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker049 delivered Traffic agents, intersections and signals; 1247 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-050
-
-- Status: in\_progress
-- Owner: worker050
-- Claim revision: 215
-- Write scope: engine/gameplay/include/ge/gameplay/mission.hpp, engine/gameplay/src/mission.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker050 delivered Mission objectives and idempotent rewards; 1265 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-051
-
-- Status: in\_progress
-- Owner: worker051
-- Claim revision: 218
-- Write scope: engine/gameplay/include/ge/gameplay/inventory.hpp, engine/gameplay/src/inventory.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker051 delivered Inventory stacks, containers and transactions; 1541 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-052
-
-- Status: in\_progress
-- Owner: worker052
-- Claim revision: 225
-- Write scope: engine/gameplay/include/ge/gameplay/equipment.hpp, engine/gameplay/src/equipment.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker052 delivered Equipment slots, crafting and resource costs; 1372 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-053
-
-- Status: in\_progress
-- Owner: worker053
-- Claim revision: 228
-- Write scope: engine/gameplay/include/ge/gameplay/combat.hpp, engine/gameplay/src/combat.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker053 delivered Damage, hit resolution and status effects; 1283 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-054
-
-- Status: in\_progress
-- Owner: worker054
-- Claim revision: 231
-- Write scope: engine/gameplay/include/ge/gameplay/dialogue.hpp, engine/gameplay/src/dialogue.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker054 delivered Dialogue graph execution and conditions; 1464 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-055
-
-- Status: in\_progress
-- Owner: worker055
-- Claim revision: 243
-- Write scope: engine/gameplay/include/ge/gameplay/quests.hpp, engine/gameplay/src/quests.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker055 delivered Quest dependencies, progression and journal; 1210 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-056
-
-- Status: in\_progress
-- Owner: worker056
-- Claim revision: 246
-- Write scope: engine/render/include/ge/render/postprocess.hpp, engine/render/src/postprocess.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker056 delivered Image postprocessing and tone mapping; 1226 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-057
-
-- Status: in\_progress
-- Owner: worker057
-- Claim revision: 250
-- Write scope: engine/render/include/ge/render/visibility.hpp, engine/render/src/visibility.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker057 delivered Scene culling and level of detail; 1244 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-058
-
-- Status: in\_progress
-- Owner: worker058
-- Claim revision: 256
-- Write scope: engine/render/include/ge/render/batching.hpp, engine/render/src/batching.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker058 delivered Draw batching and instance submission; 1133 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-059
-
-- Status: in\_progress
-- Owner: worker059
-- Claim revision: 259
-- Write scope: engine/render/include/ge/render/decals.hpp, engine/render/src/decals.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker059 delivered Decal projection and surface blending; 1239 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-060
-
-- Status: in\_progress
-- Owner: worker060
-- Claim revision: 262
-- Write scope: engine/editor/include/ge/editor/selection.hpp, engine/editor/src/selection.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker060 delivered Scene picking and selection models; 1224 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-061
-
-- Status: in\_progress
-- Owner: worker061
-- Claim revision: 265
-- Write scope: engine/animation/include/ge/animation/ik.hpp, engine/animation/src/ik.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker061 delivered Inverse kinematics and pose constraints; 1169 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-062
-
-- Status: in\_progress
-- Owner: worker062
-- Claim revision: 268
-- Write scope: engine/animation/include/ge/animation/retarget.hpp, engine/animation/src/retarget.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker062 delivered Skeleton retargeting and root motion; 1183 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-063
-
-- Status: in\_progress
-- Owner: worker063
-- Claim revision: 271
-- Write scope: engine/audio/include/ge/audio/dsp.hpp, engine/audio/src/dsp.cpp
-- Blocker: none
-- Preserved work: Actual /root/worker063 delivered DSP filters, reverberation and effects; 1167 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
-
-### CODE\-064
-
-- Status: in\_progress
-- Owner: worker064
-- Claim revision: 276
-- Write scope: engine/audio/include/ge/audio/wave.hpp, engine/audio/src/wave.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-065
-
-- Status: in\_progress
-- Owner: worker065
-- Claim revision: 279
-- Write scope: engine/assets/include/ge/assets/model.hpp, engine/assets/src/model.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-066
-
-- Status: in\_progress
-- Owner: worker066
-- Claim revision: 282
-- Write scope: engine/assets/include/ge/assets/textures.hpp, engine/assets/src/textures.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-067
-
-- Status: in\_progress
-- Owner: worker067
-- Claim revision: 289
-- Write scope: engine/geometry/include/ge/geometry/simplify.hpp, engine/geometry/src/simplify.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-068
-
-- Status: in\_progress
-- Owner: worker068
-- Claim revision: 292
-- Write scope: engine/geometry/include/ge/geometry/splines.hpp, engine/geometry/src/splines.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-069
-
-- Status: in\_progress
-- Owner: worker069
-- Claim revision: 295
-- Write scope: engine/physics/include/ge/physics/continuous.hpp, engine/physics/src/continuous.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-070
-
-- Status: in\_progress
-- Owner: worker070
-- Claim revision: 298
-- Write scope: engine/physics/include/ge/physics/queries.hpp, engine/physics/src/queries.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-071
-
-- Status: in\_progress
-- Owner: worker071
-- Claim revision: 301
-- Write scope: engine/navigation/include/ge/navigation/crowd.hpp, engine/navigation/src/crowd.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-072
-
-- Status: in\_progress
-- Owner: worker072
-- Claim revision: 305
-- Write scope: engine/ai/include/ge/ai/tactical.hpp, engine/ai/src/tactical.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-073
-
-- Status: in\_progress
-- Owner: worker073
-- Claim revision: 317
-- Write scope: engine/environment/include/ge/environment/weather.hpp, engine/environment/src/weather.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-074
-
-- Status: in\_progress
-- Owner: worker074
-- Claim revision: 320
-- Write scope: engine/environment/include/ge/environment/volumes.hpp, engine/environment/src/volumes.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-075
-
-- Status: in\_progress
-- Owner: worker075
-- Claim revision: 323
-- Write scope: engine/physics/include/ge/physics/water.hpp, engine/physics/src/water.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-076
-
-- Status: in\_progress
-- Owner: worker076
-- Claim revision: 330
-- Write scope: engine/physics/include/ge/physics/drivetrain.hpp, engine/physics/src/drivetrain.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-077
-
-- Status: in\_progress
-- Owner: worker077
-- Claim revision: 333
-- Write scope: engine/procedural/include/ge/procedural/district.hpp, engine/procedural/src/district.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-078
-
-- Status: in\_progress
-- Owner: worker078
-- Claim revision: 336
-- Write scope: engine/editor/include/ge/editor/commands.hpp, engine/editor/src/commands.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-079
-
-- Status: in\_progress
-- Owner: worker079
-- Claim revision: 346
-- Write scope: engine/editor/include/ge/editor/inspector.hpp, engine/editor/src/inspector.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-080
-
-- Status: in\_progress
-- Owner: worker080
-- Claim revision: 349
-- Write scope: engine/editor/include/ge/editor/gizmo.hpp, engine/editor/src/gizmo.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-081
-
-- Status: in\_progress
-- Owner: worker081
-- Claim revision: 352
-- Write scope: engine/editor/include/ge/editor/asset\_browser.hpp, engine/editor/src/asset\_browser.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-082
-
-- Status: in\_progress
-- Owner: worker082
-- Claim revision: 357
-- Write scope: engine/scene/include/ge/scene/prefab.hpp, engine/scene/src/prefab.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-083
-
-- Status: in\_progress
-- Owner: worker083
-- Claim revision: 360
-- Write scope: engine/cinematic/include/ge/cinematic/sequencer.hpp, engine/cinematic/src/sequencer.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-084
-
-- Status: in\_progress
-- Owner: worker084
-- Claim revision: 363
-- Write scope: engine/diagnostics/include/ge/diagnostics/debug\_draw.hpp, engine/diagnostics/src/debug\_draw.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-085
-
-- Status: in\_progress
-- Owner: worker085
-- Claim revision: 366
-- Write scope: engine/diagnostics/include/ge/diagnostics/telemetry.hpp, engine/diagnostics/src/telemetry.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-086
-
-- Status: in\_progress
-- Owner: worker086
-- Claim revision: 369
-- Write scope: engine/script/include/ge/script/console.hpp, engine/script/src/console.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-087
-
-- Status: in\_progress
-- Owner: worker087
-- Claim revision: 372
-- Write scope: engine/platform/include/ge/platform/events.hpp, engine/platform/src/events.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-088
-
-- Status: in\_progress
-- Owner: worker088
-- Claim revision: 377
-- Write scope: engine/ui/include/ge/ui/layout.hpp, engine/ui/src/layout.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-089
-
-- Status: in\_progress
-- Owner: worker089
-- Claim revision: 380
-- Write scope: engine/ui/include/ge/ui/widgets.hpp, engine/ui/src/widgets.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-090
-
-- Status: in\_progress
-- Owner: worker090
-- Claim revision: 383
-- Write scope: engine/ui/include/ge/ui/interaction.hpp, engine/ui/src/interaction.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-091
-
-- Status: in\_progress
-- Owner: worker091
-- Claim revision: 386
-- Write scope: engine/render/include/ge/render/vector.hpp, engine/render/src/vector.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-092
-
-- Status: in\_progress
-- Owner: worker092
-- Claim revision: 389
-- Write scope: engine/render/include/ge/render/shader.hpp, engine/render/src/shader.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-093
-
-- Status: in\_progress
-- Owner: worker093
-- Claim revision: 392
-- Write scope: engine/network/include/ge/network/session.hpp, engine/network/src/session.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-094
-
-- Status: in\_progress
-- Owner: worker094
-- Claim revision: 395
-- Write scope: engine/assets/include/ge/assets/bundle.hpp, engine/assets/src/bundle.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-095
-
-- Status: in\_progress
-- Owner: worker095
-- Claim revision: 398
-- Write scope: engine/runtime/include/ge/runtime/configuration.hpp, engine/runtime/src/configuration.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-096
-
-- Status: in\_progress
-- Owner: worker096
-- Claim revision: 401
-- Write scope: engine/gameplay/include/ge/gameplay/district.hpp, engine/gameplay/src/district.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-097
-
-- Status: in\_progress
-- Owner: worker097
-- Claim revision: 404
-- Write scope: engine/render/include/ge/render/presentation.hpp, engine/render/src/presentation.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-098
-
-- Status: in\_progress
-- Owner: worker098
-- Claim revision: 407
-- Write scope: engine/runtime/include/ge/runtime/simulation.hpp, engine/runtime/src/simulation.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-099
-
-- Status: in\_progress
-- Owner: worker099
-- Claim revision: 410
-- Write scope: engine/assets/include/ge/assets/scene\_pipeline.hpp, engine/assets/src/scene\_pipeline.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
-
-### CODE\-100
-
-- Status: in\_progress
-- Owner: worker100
-- Claim revision: 413
-- Write scope: engine/runtime/include/ge/runtime/editor\_host.hpp, engine/runtime/src/editor\_host.cpp
-- Blocker: none
-- Preserved work: Not started.
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Claim revision: 525
+- Write scope: engine/, apps/, tests/, tools/, cmake/, CMakeLists.txt, CMakePresets.json, README.md, docs/architecture/, docs/development/, docs/production/, docs/quality\-gates.md, .github/workflows/ci.yml
+- Blocker: none
+- Preserved work: Integrated first audit repairs and meaningful runtime coverage: strict build blockers, kernel/event lifecycle, executor cancellation, IO, CLI, math, codecs, allocator/ECS safety, CPU skinning bridge, module boundaries and packaging. Scene\-depth defect reproduced and repaired. Input disconnect and serialization findings remain queued for subsequent repair; audit remains in progress.
+- Next action: Run frozen development integration gate, publish a checkpoint, then continue the remaining actual worker assignments and repair queued findings.
 
 
 ## Evidence observations
@@ -1213,6 +204,7 @@ These are historical observations. A pass neither completes a task nor remains c
 | RUN-000002 | OPS\-AGENT\-SYSTEM | workflow\-tests | passed | 1ade509f95561c6c (historical) | 2026\-11\-23T13:15:43.783975Z |
 | RUN-000003 | OPS\-AGENT\-SYSTEM | dev | passed | 1ade509f95561c6c (historical) | 2026\-11\-23T13:16:05.911866Z |
 | RUN-000004 | OPS\-AGENT\-SYSTEM | package | passed | 1ade509f95561c6c (historical) | 2026\-11\-23T13:16:34.781251Z |
+| RUN-000005 | AUDIT\-20261128 | dev | passed | eeb75026bf9d5fd5 (recorded snapshot) | 2026\-11\-28T07:13:06.896504Z |
 
 ## Completion records
 
@@ -1221,25 +213,25 @@ These are historical observations. A pass neither completes a task nor remains c
 
 ## Recent operations
 
-- Revision 402 — 2026\-11\-27T23:52:58.643608Z — coordinator: add CODE\-097. Added planned task CODE\-097: Software presentation and frame export.
-- Revision 403 — 2026\-11\-27T23:53:03.813039Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 404 — 2026\-11\-27T23:53:10.444022Z — worker097: claim CODE\-097. Claimed CODE\-097 with its recorded write scope.
-- Revision 405 — 2026\-11\-27T23:53:17.963583Z — coordinator: add CODE\-098. Added planned task CODE\-098: Scene, physics, animation and rendering bridges.
-- Revision 406 — 2026\-11\-27T23:53:20.336392Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 407 — 2026\-11\-27T23:53:23.217280Z — worker098: claim CODE\-098. Claimed CODE\-098 with its recorded write scope.
-- Revision 408 — 2026\-11\-27T23:53:28.345362Z — coordinator: add CODE\-099. Added planned task CODE\-099: Scene asset ingestion and resource binding.
-- Revision 409 — 2026\-11\-27T23:53:33.343446Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 410 — 2026\-11\-27T23:53:36.477853Z — worker099: claim CODE\-099. Claimed CODE\-099 with its recorded write scope.
-- Revision 411 — 2026\-11\-27T23:53:40.522603Z — coordinator: add CODE\-100. Added planned task CODE\-100: Integrated runtime editing and authoring commands.
-- Revision 412 — 2026\-11\-27T23:53:44.965179Z — coordinator: reconcile. Acknowledge known source campaign edits by active assigned workers and coordinator integration; no correctness claim or executed checks.
-- Revision 413 — 2026\-11\-27T23:53:47.358538Z — worker100: claim CODE\-100. Claimed CODE\-100 with its recorded write scope.
-- Revision 414 — 2026\-11\-27T23:53:57.491684Z — worker061: checkpoint CODE\-061. Actual /root/worker061 delivered Inverse kinematics and pose constraints; 1169 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Revision 415 — 2026\-11\-27T23:54:07.788473Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
-- Revision 416 — 2026\-11\-27T23:56:28.925924Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
-- Revision 417 — 2026\-11\-27T23:59:14.917169Z — worker062: checkpoint CODE\-062. Actual /root/worker062 delivered Skeleton retargeting and root motion; 1183 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Revision 418 — 2026\-11\-27T23:59:26.398647Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
-- Revision 419 — 2026\-11\-28T00:01:59.660181Z — worker063: checkpoint CODE\-063. Actual /root/worker063 delivered DSP filters, reverberation and effects; 1167 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
-- Revision 420 — 2026\-11\-28T00:02:12.404746Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
-- Revision 421 — 2026\-11\-28T00:04:00.377753Z — coordinator: reconcile. Record the exact staged publication source snapshot. This is untested source\-only development at user request; no builds, tests, runtime validation or CI observations occurred.
+- Revision 508 — 2026\-11\-28T06:42:44.928484Z — coordinator: handoff CODE\-085. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
+- Revision 509 — 2026\-11\-28T06:42:45.319680Z — coordinator: handoff CODE\-086. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
+- Revision 510 — 2026\-11\-28T06:42:45.644294Z — coordinator: handoff CODE\-087. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
+- Revision 511 — 2026\-11\-28T06:42:45.981999Z — coordinator: handoff CODE\-088. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
+- Revision 512 — 2026\-11\-28T06:42:46.290993Z — coordinator: handoff CODE\-089. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
+- Revision 513 — 2026\-11\-28T06:42:46.578898Z — coordinator: handoff CODE\-090. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
+- Revision 514 — 2026\-11\-28T06:42:46.974898Z — coordinator: handoff CODE\-091. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
+- Revision 515 — 2026\-11\-28T06:42:47.260497Z — coordinator: handoff CODE\-092. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
+- Revision 516 — 2026\-11\-28T06:42:47.547372Z — coordinator: handoff CODE\-093. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
+- Revision 517 — 2026\-11\-28T06:42:47.797361Z — coordinator: handoff CODE\-094. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
+- Revision 518 — 2026\-11\-28T06:42:48.067384Z — coordinator: handoff CODE\-095. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
+- Revision 519 — 2026\-11\-28T06:42:48.297229Z — coordinator: handoff CODE\-096. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
+- Revision 520 — 2026\-11\-28T06:42:48.539284Z — coordinator: handoff CODE\-097. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
+- Revision 521 — 2026\-11\-28T06:42:48.782474Z — coordinator: handoff CODE\-098. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
+- Revision 522 — 2026\-11\-28T06:42:49.128592Z — coordinator: handoff CODE\-099. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
+- Revision 523 — 2026\-11\-28T06:42:49.345317Z — coordinator: handoff CODE\-100. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
+- Revision 524 — 2026\-11\-28T06:42:49.529861Z — coordinator: add AUDIT\-20261128. Added planned task AUDIT\-20261128: Compile, connect and review existing engine source with 100 actual workers.
+- Revision 525 — 2026\-11\-28T06:42:49.758845Z — coordinator: claim AUDIT\-20261128. Claimed AUDIT\-20261128 with its recorded write scope.
+- Revision 526 — 2026\-11\-28T07:09:40.508376Z — coordinator: checkpoint AUDIT\-20261128. Integrated first audit repairs and meaningful runtime coverage: strict build blockers, kernel/event lifecycle, executor cancellation, IO, CLI, math, codecs, allocator/ECS safety, CPU skinning bridge, module boundaries and packaging. Scene\-depth defect reproduced and repaired. Input disconnect and serialization findings remain queued for subsequent repair; audit remains in progress.
+- Revision 527 — 2026\-11\-28T07:13:06.930913Z — coordinator: run\-check AUDIT\-20261128. dev: passed; receipt RUN\-000005; Process exited successfully.
 
 The canonical ledger retains the complete operation history.

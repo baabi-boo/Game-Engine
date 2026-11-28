@@ -251,6 +251,7 @@ struct Mat4 {
 [[nodiscard]] double determinant(const Mat3& m) noexcept;
 [[nodiscard]] double determinant(const Mat4& m) noexcept;
 [[nodiscard]] std::optional<Mat3> inverse(const Mat3& m, double tolerance = epsilon) noexcept;
+// Affine inversion checks the linear part independently of translation size.
 [[nodiscard]] std::optional<Mat4> inverse(const Mat4& m, double tolerance = epsilon) noexcept;
 [[nodiscard]] Mat3 upper3x3(const Mat4& m) noexcept;
 [[nodiscard]] Mat4 embed(const Mat3& m) noexcept;

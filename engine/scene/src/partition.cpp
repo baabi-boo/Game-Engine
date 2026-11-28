@@ -355,7 +355,7 @@ struct WorldPartition::Impl {
     }
 
     void release_consumer(Record& record) {
-        for (const auto pin : record.pins) {
+        for (const auto& pin : record.pins) {
             (void)streamer.release(pin);
         }
         record.pins.clear();

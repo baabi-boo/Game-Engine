@@ -86,7 +86,9 @@ private:
 };
 
 // Queue limits are global as well as per event type. Producers may be worker
-// threads; events are copied out before consumers run any callbacks.
+// threads; events are copied out before consumers run any callbacks. Standalone
+// buses retain events until drained or cleared. Kernel invokes explicit frame
+// maintenance, giving its events a transient lifetime (see retire_frame_events).
 class EventBus final {
 public:
     explicit EventBus(std::size_t capacity = 65536,
@@ -99,14 +101,14 @@ public:
         const auto key = std::type_index(typeid(T));
         auto it = queues_.find(key);
         if (count_ >= capacity_ || channel_capacity_ == 0 ||
-            (it != queues_.end() && it->second.size() >= channel_capacity_)) {
+            (it != queues_.end() && it->second.events.size() >= channel_capacity_)) {
             ++dropped_;
             return false;
         }
         if (it == queues_.end()) {
-            it = queues_.emplace(key, std::deque<std::any>{}).first;
+            it = queues_.emplace(key, Channel{}).first;
         }
-        it->second.emplace_back(std::move(value));
+        it->second.events.emplace_back(std::move(value));
         ++count_;
         return true;
     }
@@ -118,13 +120,17 @@ public:
         if (it == queues_.end()) {
             return {};
         }
-        auto& queue = it->second;
+        auto& channel = it->second;
+        auto& queue = channel.events;
         const auto size = std::min(limit, queue.size());
         std::vector<T> result;
         result.reserve(size);
         for (std::size_t i = 0; i < size; ++i) {
             result.push_back(std::any_cast<T>(std::move(queue.front())));
             queue.pop_front();
+            if (channel.retained != 0) {
+                --channel.retained;
+            }
             --count_;
         }
         if (queue.empty()) {
@@ -137,20 +143,34 @@ public:
     [[nodiscard]] std::size_t pending() const {
         std::scoped_lock lock(mutex_);
         const auto it = queues_.find(std::type_index(typeid(T)));
-        return it == queues_.end() ? 0 : it->second.size();
+        return it == queues_.end() ? 0 : it->second.events.size();
     }
 
     [[nodiscard]] std::size_t pending() const;
     [[nodiscard]] std::uint64_t dropped() const;
+    [[nodiscard]] std::uint64_t retired() const;
     void clear();
 
+    // Call once at the end of a frame to opt into transient event retention.
+    // Events published since the previous call survive this call and remain
+    // available throughout the next frame; older undrained events are retired.
+    // Partial drains do not extend that lifetime. Durable work queues must be
+    // retained separately. Retirement is counted separately from capacity drops.
+    void retire_frame_events();
+
 private:
+    struct Channel {
+        std::deque<std::any> events;
+        // Surviving prefix observed at the previous frame boundary.
+        std::size_t retained{};
+    };
     mutable std::mutex mutex_;
     std::size_t capacity_;
     std::size_t channel_capacity_;
     std::size_t count_{};
     std::uint64_t dropped_{};
-    std::unordered_map<std::type_index, std::deque<std::any>> queues_;
+    std::uint64_t retired_{};
+    std::unordered_map<std::type_index, Channel> queues_;
 };
 
 class Configuration final {
@@ -260,14 +280,23 @@ public:
     [[nodiscard]] CommandResult execute(std::string_view line);
     [[nodiscard]] std::vector<std::pair<std::string, std::string>> commands() const;
     bool enqueue_command(std::string line);
+    // Execute a bounded snapshot in FIFO order. Recursive drains do no work;
+    // commands enqueued by callbacks remain queued for a later drain.
     [[nodiscard]] std::vector<CommandResult> drain_commands(std::size_t limit = 256);
 
     // A tick is synchronous. Individual registered services may own workers.
+    // Recursive tick entry, including from queued commands, is rejected. Queued
+    // commands may change systems before the current frame's schedule is checked.
+    // Command failures are diagnosed and make the tick return false, while the
+    // remaining commands and frame systems still run if admission remains valid.
     // A failed system is diagnosed and disabled until explicitly re-enabled.
+    // Undrained events expire after a complete following frame (see EventBus).
     bool tick(double delta_seconds);
     void request_stop() noexcept { stop_requested_ = true; }
     [[nodiscard]] bool stop_requested() const noexcept { return stop_requested_; }
     bool add_shutdown(std::string name, std::function<void()> function);
+    // Reverse-order callbacks run once. Recursive shutdown is a no-op and no
+    // new shutdown callback can be registered after shutdown begins.
     void shutdown() noexcept;
 
     void metric(std::string name, double value);
@@ -302,8 +331,11 @@ private:
     std::map<std::string, double, std::less<>> metrics_;
     std::deque<Diagnostic> diagnostics_;
     bool schedule_dirty_{true};
+    bool tick_active_{};
     bool ticking_{};
+    bool draining_commands_{};
     bool stop_requested_{};
+    bool shutting_down_{};
     bool shutdown_complete_{};
 };
 

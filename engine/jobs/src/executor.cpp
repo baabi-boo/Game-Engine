@@ -20,6 +20,37 @@ namespace {
 using Clock = std::chrono::steady_clock;
 thread_local const void* executing_executor{};
 
+// request_stop invokes user callbacks on the caller's thread. Keep every
+// nested dispatch visible: a callback may cancel a job on another executor
+// before attempting to shut down the original executor.
+class CancellationDispatch final {
+public:
+    explicit CancellationDispatch(const void* executor) noexcept
+        : executor_(executor), previous_(active_) {
+        active_ = this;
+    }
+
+    ~CancellationDispatch() { active_ = previous_; }
+    CancellationDispatch(const CancellationDispatch&) = delete;
+    CancellationDispatch& operator=(const CancellationDispatch&) = delete;
+
+    [[nodiscard]] static bool contains(const void* executor) noexcept {
+        for (auto* dispatch = active_; dispatch; dispatch = dispatch->previous_) {
+            if (dispatch->executor_ == executor) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+private:
+    static thread_local const CancellationDispatch* active_;
+    const void* executor_;
+    const CancellationDispatch* previous_;
+};
+
+thread_local const CancellationDispatch* CancellationDispatch::active_{};
+
 bool valid_priority(Priority priority) noexcept {
     return static_cast<unsigned>(priority) <= static_cast<unsigned>(Priority::High);
 }
@@ -928,8 +959,12 @@ bool Executor::cancel(JobHandle handle) {
             impl_->finish(job, JobState::Cancelled);
         }
     }
-    // request_stop may invoke caller-installed callbacks synchronously.
-    (void)job->stop.request_stop();
+    // A stop callback must not join a worker whose stop_callback destructor
+    // is waiting for this callback to return. Restore the dispatch afterward.
+    {
+        const CancellationDispatch dispatch(impl_.get());
+        (void)job->stop.request_stop();
+    }
     impl_->changed.notify_all();
     return true;
 }
@@ -1178,7 +1213,7 @@ bool Executor::shutdown(ShutdownMode mode) {
     if (!impl_) {
         return true;
     }
-    if (executing_executor == impl_.get()) {
+    if (executing_executor == impl_.get() || CancellationDispatch::contains(impl_.get())) {
         return false;
     }
     {
@@ -1213,6 +1248,7 @@ bool Executor::shutdown(ShutdownMode mode) {
     if (mode == ShutdownMode::Cancel) {
         // Take one shared owner at a time so shutdown needs no allocation and
         // caller stop callbacks execute without either state or join locks held.
+        const CancellationDispatch dispatch(impl_.get());
         for (std::size_t i = 0; i < impl_->slots.size(); ++i) {
             std::shared_ptr<detail::JobControl> job;
             {

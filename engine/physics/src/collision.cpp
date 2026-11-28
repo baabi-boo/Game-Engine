@@ -377,6 +377,7 @@ ContactManifold capsule_capsule(const math::Capsule& a, const math::Capsule& b,
 SegmentClosestPoints segment_box(math::Segment segment, const BoxFrame& box) noexcept {
     const auto start = local_point(box, segment.a);
     const auto direction = local_point(box, segment.b) - start;
+    // Two endpoints plus at most two boundary crossings for each of three axes.
     std::array<double, 8> breaks{0.0, 1.0};
     std::size_t count = 2;
     for (std::size_t axis = 0; axis < 3; ++axis) {
@@ -389,7 +390,16 @@ SegmentClosestPoints segment_box(math::Segment segment, const BoxFrame& box) noe
             }
         }
     }
-    std::sort(breaks.begin(), breaks.begin() + static_cast<std::ptrdiff_t>(count));
+    // Insertion sort keeps the bounds explicit for this tiny, fixed-capacity range.
+    for (std::size_t index = 1; index < count; ++index) {
+        const double parameter = breaks[index];
+        std::size_t position = index;
+        while (position > 0 && parameter < breaks[position - 1]) {
+            breaks[position] = breaks[position - 1];
+            --position;
+        }
+        breaks[position] = parameter;
+    }
     double best_distance = math::infinity;
     double best_parameter = 0.0;
     const auto consider = [&](double parameter) {

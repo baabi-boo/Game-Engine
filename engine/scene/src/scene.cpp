@@ -501,11 +501,19 @@ Entity Scene::common_ancestor(Entity first, Entity second) const noexcept {
 }
 
 std::size_t Scene::subtree_height(Entity entity) const {
-    const auto base = depth(entity).value_or(0);
     std::size_t height{};
-    for (const auto descendant : descendants(entity)) {
-        const auto level = depth(descendant).value_or(base);
-        height = std::max(height, level - base);
+    std::vector<std::pair<Entity, std::size_t>> pending{{entity, 0}};
+    while (!pending.empty()) {
+        const auto [current, level] = pending.back();
+        pending.pop_back();
+        const auto* entry = node(current);
+        if (!entry || !contains(current)) {
+            continue;
+        }
+        height = std::max(height, level);
+        for (const auto child : entry->children) {
+            pending.emplace_back(child, level + 1);
+        }
     }
     return height;
 }

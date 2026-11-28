@@ -26,10 +26,10 @@ MIN_CMAKE = (3, 25, 0)
 
 CONSUMER_CMAKE = """cmake_minimum_required(VERSION 3.25)
 project(GameEnginePackageConsumer LANGUAGES CXX)
-find_package(GameEngine CONFIG REQUIRED COMPONENTS core content world
+find_package(GameEngine CONFIG REQUIRED COMPONENTS core content world engine
     PATHS "${GE_PACKAGE_PREFIX}" NO_DEFAULT_PATH)
 add_executable(ge_package_consumer main.cpp)
-target_link_libraries(ge_package_consumer PRIVATE ge::core ge::content ge::world)
+target_link_libraries(ge_package_consumer PRIVATE ge::engine)
 if(MINGW)
     target_link_options(ge_package_consumer PRIVATE -municode)
 endif()
@@ -40,7 +40,9 @@ set_target_properties(ge_package_consumer PROPERTIES
 
 CONSUMER_CPP = r"""#include <ge/core/clock.hpp>
 #include <ge/core/identity.hpp>
+#include <ge/core/runtime.hpp>
 #include <ge/content/package.hpp>
+#include <ge/geometry/mesh.hpp>
 #include <ge/world/state.hpp>
 #include <ge/world/streaming.hpp>
 
@@ -120,10 +122,28 @@ int main(int argc, char* argv[]) {
                     policy.memory_usage().reserved_bytes == 0 && policy.live_regions() == 0,
                 "retirement acknowledgement failed");
 
+        // Exercise compiled ge_engine and ge_core symbols through the installed
+        // engine target, including its transitive foundation/Threads dependencies.
+        ge::core::Kernel kernel;
+        ge::geometry::register_mesh(kernel);
+        auto& meshes = kernel.services().get<ge::geometry::MeshLibrary>();
+        const auto mesh = meshes.create(ge::geometry::make_box({2.0, 4.0, 6.0}), "sdk-box");
+        const auto info = meshes.inspect(mesh);
+        require(info.has_value() && info->triangles == 12 &&
+                    info->bounds.min == ge::math::Vec3{-1.0, -2.0, -3.0} &&
+                    info->bounds.max == ge::math::Vec3{1.0, 2.0, 3.0},
+                "installed compiled geometry API failed");
+        require(kernel.tick(0.125) && kernel.frame().tick == 1,
+                "installed kernel/domain frame failed");
+        require(meshes.destroy(mesh) && !meshes.contains(mesh),
+                "installed mesh retirement failed");
+
         std::cout << "{\"status\":\"ok\",\"baseline_id\":" << package.baseline_id
                   << ",\"region_count\":" << package.regions.size()
                   << ",\"entity_count\":" << package.entities.size()
-                  << ",\"headers_used\":5,\"components\":[\"core\",\"content\",\"world\"]"
+                  << ",\"headers_used\":7,\"components\":[\"core\",\"content\",\"world\",\"engine\"]"
+                  << ",\"compiled_mesh_triangles\":" << info->triangles
+                  << ",\"runtime_ticks\":" << kernel.frame().tick
                   << ",\"final_reserved_bytes\":0}\n";
         return 0;
     } catch (const std::exception& error) {
@@ -313,7 +333,8 @@ def _check_install(prefix: Path, stage: Path, build: Path, cache: dict[str, str]
 
 
 def _check_manifest(path: Path, host: Path, fixture: Path,
-                    cache: dict[str, str], config: str) -> None:
+                    cache: dict[str, str], config: str, *,
+                    runtime: Path | None = None, library_dir: Path | None = None) -> None:
     try:
         manifest = json.loads(_file(path, "installed build manifest").read_text(encoding="utf-8"))
     except json.JSONDecodeError as error:
@@ -330,7 +351,21 @@ def _check_manifest(path: Path, host: Path, fixture: Path,
 
     artifacts = manifest.get("artifacts")
     _require(isinstance(artifacts, dict), "installed manifest has no artifact records")
-    for name, artifact in (("headless", host), ("fixture", fixture)):
+    installed = {"headless": host, "fixture": fixture}
+    # Retain foundation-only v1 verification for its original callers. The full
+    # relocation gate always supplies both paths and requires every SDK record.
+    if runtime is not None or library_dir is not None:
+        _require(runtime is not None and library_dir is not None,
+                 "expanded manifest verification requires the runtime and library directory")
+        installed["runtime"] = runtime
+        for name in ("engine", "core", "content", "world"):
+            record = artifacts.get(name)
+            filename = record.get("filename") if isinstance(record, dict) else None
+            _require(isinstance(filename, str) and filename not in ("", ".", "..") and
+                     not any(character in filename for character in "/\\:\0"),
+                     f"installed manifest has an invalid {name} library filename")
+            installed[name] = library_dir / filename
+    for name, artifact in installed.items():
         record = artifacts.get(name)
         _require(isinstance(record, dict) and record.get("filename") == artifact.name,
                  f"installed manifest has an invalid {name} filename")
@@ -340,7 +375,7 @@ def _check_manifest(path: Path, host: Path, fixture: Path,
                  f"installed manifest has invalid {name} size/SHA-256 metadata")
         digest = hashlib.sha256()
         size = 0
-        with artifact.open("rb") as stream:
+        with _file(artifact, f"installed {name} artifact").open("rb") as stream:
             for block in iter(lambda: stream.read(1024 * 1024), b""):
                 digest.update(block)
                 size += len(block)
@@ -350,7 +385,7 @@ def _check_manifest(path: Path, host: Path, fixture: Path,
                  f"installed manifest SHA-256 mismatch for {name}; run a normal build before installing")
 
     # This is the producer's build-time observation, not a claim about the current
-    # checkout or authentication of the source or either hashed artifact.
+    # checkout or authentication of the source or hashed artifacts.
     source = manifest.get("source")
     _require(isinstance(source, dict), "installed manifest has no source status")
     if source.get("status") == "git":
@@ -368,7 +403,7 @@ def _check_manifest(path: Path, host: Path, fixture: Path,
                  "installed manifest has invalid unknown source status")
         source_status = f"unknown ({source['reason']})"
     _message(f"installed manifest matches {project['name']} {project['version']} / {config}; "
-             "moved executable and fixture SHA-256/byte sizes verified")
+             f"all {len(installed)} moved artifact SHA-256/byte sizes verified")
     _message(f"manifest source record: {source_status}; build-time metadata, not authenticated provenance")
 
 
@@ -409,6 +444,47 @@ def _check_host(inspect: dict[str, Any], lifecycle: dict[str, Any]) -> None:
              f"checks={len(checks)}, final_reserved_bytes=0")
 
 
+def _check_runtime(runtime: Path, cwd: Path) -> None:
+    script = cwd / "runtime commands \u03b4 \u8857\u533a.txt"
+    report_path = cwd / "runtime report \u03b4 \u8857\u533a.json"
+    script.write_bytes(b"mesh.create relocated-box box 2\r\n\t tick \r\n")
+    _run([str(runtime), "--ticks", "2", "--step", "0.125",
+          "--script", str(script), "--report", str(report_path)], cwd)
+    try:
+        report = json.loads(_file(report_path, "installed runtime report").read_text(encoding="utf-8"))
+    except json.JSONDecodeError as error:
+        raise SmokeError("installed runtime report is invalid JSON") from error
+    _require(isinstance(report, dict) and report.get("success") is True and
+             type(report.get("tick")) is int and report["tick"] == 3 and
+             report.get("elapsed_seconds") == 0.375,
+             "installed runtime did not complete its three-frame scenario")
+    modules = report.get("modules")
+    _require(isinstance(modules, list) and
+             any(isinstance(module, dict) and module.get("name") == "geometry.mesh" for module in modules),
+             "installed runtime did not register its compiled geometry module")
+    systems = report.get("systems")
+    _require(isinstance(systems, list) and systems and
+             all(isinstance(system, dict) and isinstance(system.get("name"), str) and
+                 system.get("failures") == 0 and
+                 ((system.get("enabled") is True and system.get("calls") == 3) or
+                  (system.get("name") == "render.rasterizer" and
+                   system.get("enabled") is False and system.get("calls") == 0))
+                 for system in systems),
+             "installed runtime systems did not complete every frame")
+    # The graph owns rendering and intentionally disables its standalone driver.
+    _require({"core.scratch", "geometry.mesh.bounds", "render.graph.frame"}.issubset(
+                 system["name"] for system in systems),
+             "installed runtime omitted core or geometry frame systems")
+    metrics = report.get("metrics")
+    _require(isinstance(metrics, dict) and metrics.get("mesh.count") == 1 and
+             metrics.get("mesh.triangles") == 12,
+             "installed runtime did not process its command-created mesh")
+    _require(metrics.get("render.graph.enabled") == 1 and metrics.get("render.graph.error") == 0,
+             "installed runtime did not execute its render graph")
+    _require(report.get("diagnostics") == [], "installed runtime reported unexpected diagnostics")
+    _message("installed runtime passed a command-created mesh and three frames from the moved prefix")
+
+
 def _smoke(build: Path, config: str, jobs: int) -> None:
     cache, cmake = _cache(build, config)
     with tempfile.TemporaryDirectory(prefix="ge-package-smoke-") as temporary:
@@ -431,12 +507,16 @@ def _smoke(build: Path, config: str, jobs: int) -> None:
 
         suffix = ".exe" if os.name == "nt" else ""
         host = _file(prefix / "bin" / f"ge_headless{suffix}", "installed headless executable")
+        runtime = _file(prefix / "bin" / f"ge_runtime{suffix}", "installed runtime executable")
         fixture = _file(prefix / "share/game-engine/assets/district.gepack", "installed cooked fixture")
-        _check_manifest(prefix / "share/game-engine/build-manifest.json", host, fixture, cache, config)
+        library_dir = prefix / _relative_install_dir(cache, "CMAKE_INSTALL_LIBDIR", "lib")
+        _check_manifest(prefix / "share/game-engine/build-manifest.json", host, fixture, cache, config,
+                        runtime=runtime, library_dir=library_dir)
         command = [str(host), "--package", str(fixture)]
         inspect = _json_run([*command, "--inspect"], cwd)
         lifecycle = _json_run(command, cwd)
         _check_host(inspect, lifecycle)
+        _check_runtime(runtime, cwd)
 
         (source / "CMakeLists.txt").write_text(CONSUMER_CMAKE, encoding="utf-8")
         (source / "main.cpp").write_text(CONSUMER_CPP, encoding="utf-8")
@@ -452,13 +532,14 @@ def _smoke(build: Path, config: str, jobs: int) -> None:
         consumer = _file(consumer_build / "bin" / config / f"ge_package_consumer{suffix}",
                          "newly built SDK consumer")
         result = _json_run([str(consumer), str(fixture)], cwd)
-        _require(result.get("status") == "ok" and result.get("headers_used") == 5 and
-                 result.get("components") == ["core", "content", "world"] and
+        _require(result.get("status") == "ok" and result.get("headers_used") == 7 and
+                 result.get("components") == ["core", "content", "world", "engine"] and
+                 result.get("compiled_mesh_triangles") == 12 and result.get("runtime_ticks") == 1 and
                  result.get("final_reserved_bytes") == 0, "installed SDK consumer failed its contracts")
         for key in ("baseline_id", "region_count", "entity_count"):
             _require(result.get(key) == inspect[key], f"SDK consumer used a different fixture: {key}")
         _require(not stage.exists() and not stage.is_symlink(), "original stage reappeared during the gate")
-        _message(f"new {config} consumer passed with all five public headers and ge::core/content/world")
+        _message(f"new {config} consumer passed seven public headers and compiled ge::engine APIs")
     _message(f"relocation gate passed for {config}; private temporary files removed")
 
 

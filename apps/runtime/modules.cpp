@@ -59,6 +59,7 @@
 #include <ge/editor/selection.hpp>
 #include <ge/animation/ik.hpp>
 #include <ge/animation/retarget.hpp>
+#include <ge/animation/skinning.hpp>
 #include <ge/audio/dsp.hpp>
 
 namespace ge::application {
@@ -123,6 +124,7 @@ void install_modules(core::Kernel& kernel) {
     ge::animation::register_ik(kernel);
     ge::animation::register_retarget(kernel);
     ge::audio::register_dsp(kernel);
+    ge::animation::register_skinning(kernel);
     (void)kernel.order_after("spatial.sync", "geometry.mesh.bounds");
     (void)kernel.order_after("geometry.mesh.bounds", "camera.update");
     (void)kernel.order_after("geometry.mesh.bounds", "terrain.vegetation");

@@ -249,6 +249,7 @@ public:
                WriteOptions options = {});
     void write_text(std::string_view path, std::string_view text,
                     WriteOptions options = {});
+    // Removing an in-mount file symlink unlinks the entry and preserves its target.
     bool remove(std::string_view path);
     void copy(std::string_view source, std::string_view destination,
               WriteOptions options = {});

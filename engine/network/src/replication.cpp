@@ -688,7 +688,7 @@ struct ReplicationService::Impl {
         }
         return ReplicationError::None;
     }
-    ReplicationError control(NetworkTransport& transport, PeerRecord& peer, double now) {
+    ReplicationError control(NetworkTransport& channel_transport, PeerRecord& peer, double now) {
         ReplicationPacket packet;
         packet.world = config.world;
         packet.sender = config.local_identity;
@@ -700,7 +700,7 @@ struct ReplicationService::Impl {
         std::vector<std::byte> wire;
         const auto encoded = encode_replication(packet, wire, config);
         if (!encoded) return encoded.error;
-        if (!transport.send(peer.state.peer, config.channel, MessageKind::Replication, wire, DeliveryMode::ReliableOrdered)) {
+        if (!channel_transport.send(peer.state.peer, config.channel, MessageKind::Replication, wire, DeliveryMode::ReliableOrdered)) {
             ++statistics.send_failures;
             return ReplicationError::TransportFailure;
         }

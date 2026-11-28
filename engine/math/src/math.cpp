@@ -732,6 +732,23 @@ std::optional<Mat3> inverse(const Mat3& m, double tolerance) noexcept {
 }
 
 std::optional<Mat4> inverse(const Mat4& m, double tolerance) noexcept {
+    if (m(3,0) == 0.0 && m(3,1) == 0.0 && m(3,2) == 0.0 && m(3,3) == 1.0) {
+        if (!finite(m)) {
+            return std::nullopt;
+        }
+        // Translation must not dominate the pivot scales of the linear part:
+        // an otherwise invertible world transform stays invertible far from origin.
+        const auto linear = inverse(upper3x3(m),tolerance);
+        if (!linear) {
+            return std::nullopt;
+        }
+        Mat4 result = embed(*linear);
+        const Vec3 offset = -(*linear*Vec3{m(0,3),m(1,3),m(2,3)});
+        for (std::size_t axis = 0; axis < 3; ++axis) {
+            result(axis,3) = offset[axis];
+        }
+        return finite(result) ? std::optional<Mat4>{result} : std::nullopt;
+    }
     return inverse_matrix<4>(m,tolerance);
 }
 

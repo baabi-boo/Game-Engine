@@ -951,6 +951,24 @@ FrameDecoder::FrameDecoder(BinaryLimits limits) : limits_(limits) {
                                        limits_.max_total_bytes - frame_header_size);
 }
 
+FrameDecoder::FrameDecoder(FrameDecoder&& other) noexcept
+    : limits_(other.limits_), buffer_(std::move(other.buffer_)), begin_(other.begin_),
+      frames_decoded_(other.frames_decoded_), failed_(other.failed_) {
+    other.reset();
+}
+
+FrameDecoder& FrameDecoder::operator=(FrameDecoder&& other) noexcept {
+    if (this != &other) {
+        limits_ = other.limits_;
+        buffer_ = std::move(other.buffer_);
+        begin_ = other.begin_;
+        frames_decoded_ = other.frames_decoded_;
+        failed_ = other.failed_;
+        other.reset();
+    }
+    return *this;
+}
+
 std::size_t FrameDecoder::buffered_bytes() const noexcept {
     return buffer_.size() - begin_;
 }
@@ -1150,6 +1168,22 @@ BitWriter::BitWriter(std::size_t maximum_bytes) : maximum_bytes_(maximum_bytes) 
     if (maximum_bytes_ > std::numeric_limits<std::size_t>::max() / 8) {
         throw std::invalid_argument("bit writer capacity overflows bit count");
     }
+}
+
+BitWriter::BitWriter(BitWriter&& other) noexcept
+    : maximum_bytes_(other.maximum_bytes_), bit_size_(other.bit_size_),
+      bytes_(std::move(other.bytes_)) {
+    other.clear();
+}
+
+BitWriter& BitWriter::operator=(BitWriter&& other) noexcept {
+    if (this != &other) {
+        maximum_bytes_ = other.maximum_bytes_;
+        bit_size_ = other.bit_size_;
+        bytes_ = std::move(other.bytes_);
+        other.clear();
+    }
+    return *this;
 }
 
 std::size_t BitWriter::bit_size() const noexcept { return bit_size_; }

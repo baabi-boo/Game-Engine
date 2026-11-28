@@ -19,6 +19,19 @@
 
 namespace {
 
+using CommandCharacter = std::filesystem::path::value_type;
+using CommandArgument = std::basic_string_view<CommandCharacter>;
+
+std::string argument_text(CommandArgument argument) {
+#ifdef _WIN32
+    // Native paths stay UTF-16; only option text is converted to UTF-8.
+    const auto utf8 = std::filesystem::path{argument}.u8string();
+    return std::string{utf8.begin(), utf8.end()};
+#else
+    return std::string{argument};
+#endif
+}
+
 struct Options {
     std::uint64_t ticks{1};
     double step{1.0 / 60.0};
@@ -29,6 +42,16 @@ struct Options {
     bool help{};
     bool list_commands{};
 };
+
+double parse_step(std::string_view text) {
+    double step{};
+    const auto parsed = std::from_chars(text.data(), text.data() + text.size(), step);
+    if (parsed.ec != std::errc{} || parsed.ptr != text.data() + text.size() ||
+        !std::isfinite(step) || step <= 0.0 || step > 1.0) {
+        throw std::invalid_argument("runtime.step must be finite and in (0,1] seconds");
+    }
+    return step;
+}
 
 std::string format_step(double step) {
     std::array<char, 64> buffer{};
@@ -41,11 +64,11 @@ std::string format_step(double step) {
     return std::string(buffer.data(), result.ptr);
 }
 
-Options parse_options(int argc, char** argv) {
+Options parse_options(int argc, CommandCharacter* argv[]) {
     Options options;
     for (int i = 1; i < argc; ++i) {
-        const std::string_view arg(argv[i]);
-        auto value = [&]() -> std::string_view {
+        const auto arg = argument_text(argv[i]);
+        auto value = [&]() -> CommandArgument {
             if (++i >= argc) {
                 throw std::invalid_argument("missing value for " + std::string(arg));
             }
@@ -58,24 +81,19 @@ Options parse_options(int argc, char** argv) {
         } else if (arg == "--commands") {
             options.list_commands = true;
         } else if (arg == "--script") {
-            options.script = value();
+            options.script = std::filesystem::path{value()};
         } else if (arg == "--report") {
-            options.report = value();
+            options.report = std::filesystem::path{value()};
         } else if (arg == "--ticks") {
-            const auto text = value();
+            const auto text = argument_text(value());
             const auto parsed = std::from_chars(text.data(), text.data() + text.size(), options.ticks);
             if (parsed.ec != std::errc{} || parsed.ptr != text.data() + text.size() || options.ticks > 10000000) {
                 throw std::invalid_argument("ticks must be an integer between zero and 10000000");
             }
         } else if (arg == "--step") {
-            const auto text = value();
-            const auto parsed = std::from_chars(text.data(), text.data() + text.size(), options.step);
-            if (parsed.ec != std::errc{} || parsed.ptr != text.data() + text.size() ||
-                !std::isfinite(options.step) || options.step <= 0.0 || options.step > 1.0) {
-                throw std::invalid_argument("step must be finite and in (0,1] seconds");
-            }
+            options.step = parse_step(argument_text(value()));
         } else if (arg == "--set") {
-            const auto text = value();
+            const auto text = argument_text(value());
             const auto separator = text.find('=');
             if (separator == std::string_view::npos || separator == 0 || options.settings.size() >= 256) {
                 throw std::invalid_argument("settings require key=value; maximum 256 overrides");
@@ -106,6 +124,54 @@ bool read_command_line(std::istream& input, std::string& line) {
     return !line.empty();
 }
 
+ge::core::CommandResult advance_frame(ge::core::Kernel& kernel) {
+    try {
+        const bool success = kernel.tick(parse_step(kernel.config().text("runtime.step")));
+        return {success, success ? "" : "runtime tick failed"};
+    } catch (const std::exception& error) {
+        return {false, error.what()};
+    }
+}
+
+ge::core::CommandResult execute_command(ge::core::Kernel& kernel, std::string_view line) {
+    try {
+        const auto args = ge::core::tokenize_command(line);
+        if (args.empty()) {
+            return {true, {}};
+        }
+        if (args.front() == "tick") {
+            if (args.size() != 1) {
+                return {false, "usage: tick"};
+            }
+            return advance_frame(kernel);
+        }
+        if (args.front() == "engine.set" && args.size() == 3 && args[1] == "runtime.step") {
+            // Reject invalid updates before replacing the last valid timestep.
+            (void)parse_step(args[2]);
+        }
+        return kernel.command(args.front(), ge::core::CommandArgs(args).subspan(1));
+    } catch (const std::exception& error) {
+        return {false, error.what()};
+    }
+}
+
+bool record_result(ge::core::Kernel& kernel, const ge::core::CommandResult& result) {
+    if (result.success) {
+        if (!result.message.empty()) {
+            std::cout << result.message << '\n';
+        }
+        return true;
+    }
+    const auto message = result.message.empty() ? "runtime command failed" : result.message;
+    std::cerr << message << '\n';
+    const auto& diagnostics = kernel.diagnostics();
+    if (diagnostics.empty() || diagnostics.back().severity != ge::core::Diagnostic::Severity::Error ||
+        diagnostics.back().tick != kernel.frame().tick || diagnostics.back().message != message) {
+        kernel.diagnose(ge::core::Diagnostic::Severity::Error, "runtime.command", message);
+    }
+    return false;
+}
+
 bool consume_commands(ge::core::Kernel& kernel, std::istream& input, bool interactive) {
     bool success = true;
     std::string line;
@@ -120,15 +186,7 @@ bool consume_commands(ge::core::Kernel& kernel, std::istream& input, bool intera
         if (++lines > 1000000) {
             throw std::length_error("command stream exceeds one million lines");
         }
-        if (line == "tick") {
-            success = kernel.tick(kernel.config().number("runtime.step", 1.0 / 60.0)) && success;
-            continue;
-        }
-        const auto result = kernel.execute(line);
-        if (!result.message.empty()) {
-            (result.success ? std::cout : std::cerr) << result.message << '\n';
-        }
-        success = result.success && success;
+        success = record_result(kernel, execute_command(kernel, line)) && success;
     }
     return success;
 }
@@ -151,7 +209,11 @@ void install_core_services(ge::core::Kernel& kernel) {
 
 } // namespace
 
-int main(int argc, char** argv) {
+#ifdef _WIN32
+int wmain(int argc, wchar_t* argv[]) {
+#else
+int main(int argc, char* argv[]) {
+#endif
     try {
         const auto options = parse_options(argc, argv);
         if (options.help) {
@@ -168,12 +230,14 @@ int main(int argc, char** argv) {
                 throw std::invalid_argument("configuration bounds exceeded");
             }
         }
+        (void)parse_step(kernel.config().text("runtime.step"));
         install_core_services(kernel);
         ge::application::install_modules(kernel);
         if (options.list_commands) {
             for (const auto& [name, help] : kernel.commands()) {
                 std::cout << name << "\t" << help << '\n';
             }
+            std::cout << "tick\tAdvance one simulation frame\n";
             return 0;
         }
         bool success = true;
@@ -185,12 +249,21 @@ int main(int argc, char** argv) {
             success = consume_commands(kernel, input, false);
         }
         for (std::uint64_t i = 0; i < options.ticks && !kernel.stop_requested(); ++i) {
-            success = kernel.tick(kernel.config().number("runtime.step", options.step)) && success;
+            if (!record_result(kernel, advance_frame(kernel))) {
+                success = false;
+                break;
+            }
         }
         if (options.interactive) {
             success = consume_commands(kernel, std::cin, true) && success;
         }
-        const auto report = kernel.report_json();
+        for (const auto& diagnostic : kernel.diagnostics()) {
+            if (diagnostic.severity == ge::core::Diagnostic::Severity::Error) {
+                success = false;
+            }
+        }
+        auto report = kernel.report_json();
+        report.insert(1, success ? "\"success\":true," : "\"success\":false,");
         if (options.report.empty()) {
             std::cout << report << '\n';
         } else {
@@ -200,6 +273,10 @@ int main(int argc, char** argv) {
             if (!output) {
                 throw std::runtime_error("cannot write runtime report");
             }
+        }
+        std::cout.flush();
+        if (!std::cout) {
+            throw std::runtime_error("cannot write runtime output");
         }
         kernel.shutdown();
         return success ? 0 : 1;
