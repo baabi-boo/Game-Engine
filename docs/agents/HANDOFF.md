@@ -3,8 +3,8 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 554
-- **Recorded update:** 2026\-11\-28T12:27:44.442282Z
+- **Ledger revision:** 560
+- **Recorded update:** 2026\-11\-28T12:35:33.737300Z
 - **Coordinator:** coordinator
 - **Source fingerprint:** 2de1a0370652b05bd43543fcbb541f7706f930a4af54ee85fe1174a67e1e30a8
 - **Source files:** 309
@@ -31,7 +31,109 @@ Source-of-truth documents:
 
 ## Ready work
 
-No planned task currently has both completed dependencies and a clear write scope.
+- CODE\-INTEGRATION (priority 0): Integrate source\-only 100\-agent engine expansion. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-001 (priority 1): Spatial mathematics. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-DEPENDENCIES (priority 1): Declare runtime expansion dependency policy. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-002 (priority 2): Bounded allocation and containers. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-003 (priority 3): Bounded binary serialization. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-004 (priority 4): Entity component registry and deferred mutations. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-005 (priority 5): Bounded task executor and dependency graph. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-006 (priority 6): Virtual filesystem mounts and bounded file access. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-007 (priority 7): Scene hierarchy and world transforms. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-008 (priority 8): Input devices, action maps and rebinding. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-009 (priority 9): Asset catalog, typed handles and cache. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-010 (priority 10): Mesh topology, primitives and vertex processing. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-011 (priority 11): Images, framebuffers and texture sampling. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-012 (priority 12): Dynamic spatial index and visibility queries. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-013 (priority 13): Collision shapes and narrowphase contacts. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-014 (priority 14): Rigid body integration and contact solving. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-015 (priority 15): Skeletons, poses and sampled animation. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-016 (priority 16): Audio buffers, voices and mixing graph. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-017 (priority 17): Graph and grid pathfinding. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-018 (priority 18): Materials and CPU shading. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-019 (priority 19): Camera rigs, projections and viewport mapping. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-020 (priority 20): Asynchronous resource loading and residency. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-021 (priority 21): Software triangle rasterization. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-022 (priority 22): Character movement and grounding. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-023 (priority 23): Vehicle suspension and tire forces. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-024 (priority 24): Animation blending and state machines. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-025 (priority 25): Spatial audio and acoustic attenuation. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-026 (priority 26): Polygon navigation mesh queries and funnels. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-027 (priority 27): World partition activation and origin shifts. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-028 (priority 28): Terrain tiles, sampling and erosion. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-029 (priority 29): Vegetation distribution and instancing. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-030 (priority 30): Light collection, shadows and illumination. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-031 (priority 31): Render pass graph and transient resources. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-032 (priority 32): Particle emission, simulation and trails. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-033 (priority 33): Rigid body constraints and joints. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-034 (priority 34): Versioned scene serialization and transactions. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-035 (priority 35): Bounded bytecode virtual machine. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-036 (priority 36): Interaction targeting, triggers and actions. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-037 (priority 37): Typed signal subscriptions and transactional event dispatch. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-038 (priority 38): Curves, tracks and time mapping. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-039 (priority 39): Layered configuration parsing and persistence. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-040 (priority 40): Localization catalogs, Unicode and formatting. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-041 (priority 41): Packet encoding and reliable channel protocol. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-042 (priority 42): Native datagram transport and bounded network pump. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-043 (priority 43): Entity snapshots and delta replication. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-044 (priority 44): Input prediction and rollback state. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-045 (priority 45): Transactional save journal and recovery. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-046 (priority 46): Behavior tree execution and blackboards. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-047 (priority 47): Perception, memory and utility decisions. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-048 (priority 48): Road geometry and lane graph routing. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-049 (priority 49): Traffic agents, intersections and signals. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-050 (priority 50): Mission objectives and idempotent rewards. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-051 (priority 51): Inventory stacks, containers and transactions. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-052 (priority 52): Equipment slots, crafting and resource costs. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-053 (priority 53): Damage, hit resolution and status effects. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-054 (priority 54): Dialogue graph execution and conditions. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-055 (priority 55): Quest dependencies, progression and journal. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-056 (priority 56): Image postprocessing and tone mapping. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-057 (priority 57): Scene culling and level of detail. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-058 (priority 58): Draw batching and instance submission. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-059 (priority 59): Decal projection and surface blending. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-060 (priority 60): Scene picking and selection models. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-061 (priority 61): Inverse kinematics and pose constraints. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-062 (priority 62): Skeleton retargeting and root motion. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-063 (priority 63): DSP filters, reverberation and effects. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-064 (priority 64): Bounded WAV decoding and audio conversion. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-065 (priority 65): OBJ and PLY model import. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-066 (priority 66): BMP, TGA and PPM texture import. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-067 (priority 67): Mesh simplification and LOD generation. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-068 (priority 68): Splines, swept meshes and route sampling. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-069 (priority 69): Swept collision and time of impact. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-070 (priority 70): Scene raycasts, overlaps and shape casts. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-071 (priority 71): Crowd avoidance and local steering. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-072 (priority 72): Cover analysis and tactical position scoring. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-073 (priority 73): World clock, weather and sun state. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-074 (priority 74): Environment volumes and spatial blending. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-075 (priority 75): Water surfaces, buoyancy and drag. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-076 (priority 76): Drivetrain, differential and wheel controls. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-077 (priority 77): Procedural district blocks and construction. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-078 (priority 78): Undoable editing transactions. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-079 (priority 79): Scene hierarchy and property inspection. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-080 (priority 80): Transform gizmos and manipulation. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-081 (priority 81): Asset browsing, filtering and import queue. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-082 (priority 82): Prefab instantiation and property overrides. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-083 (priority 83): Cinematic tracks and scene binding. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-084 (priority 84): Debug geometry and scene diagnostics. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-085 (priority 85): Bounded tracing and performance telemetry. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-086 (priority 86): Runtime console command scripts and variables. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-087 (priority 87): Platform events, clocks and application lifecycle. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-088 (priority 88): Retained layout tree and flex/grid sizing. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-089 (priority 89): Widget models and text layout. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-090 (priority 90): UI focus, pointer capture and accessibility. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-091 (priority 91): Vector paths, tessellation and coverage. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-092 (priority 92): Material expression graph and interpreter. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-093 (priority 93): Network sessions, peers and replay streams. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-094 (priority 94): Native asset bundle writer and reader. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-095 (priority 95): Runtime startup profiles and settings application. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-096 (priority 96): Integrated district actors and interaction loop. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-097 (priority 97): Software presentation and frame export. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-098 (priority 98): Scene, physics, animation and rendering bridges. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-099 (priority 99): Scene asset ingestion and resource binding. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- CODE\-100 (priority 100): Integrated runtime editing and authoring commands. Next: Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven.
+- M1\-010 (priority 100): Declare the reference platform and playable workload. Next: Read the first\-playable plan and inspect available target evidence; draft the reference\-platform record.
 
 Ready is derived from dependencies and active claims. A new claim also requires a current source fingerprint and the revision observed by the claimant.
 
@@ -56,31 +158,6 @@ Acceptance:
 - Record real workers, source counts, publication commits and untested status without replacing historical acceptance evidence.
 
 - dev: no receipt.
-
-### AUDIT\-20261128: Compile, connect and review existing engine source with 100 actual workers
-
-User explicitly authorizes validating and repairing all code delivered at 3dcb0d0. Recover source\-only campaign claims without deleting work; run real builds, meaningful subsystem and runtime checks, repair integration and architecture failures.
-
-- State / owner: in\_progress / coordinator
-- Write scope: engine/, apps/, tests/, tools/, cmake/, CMakeLists.txt, CMakePresets.json, README.md, docs/architecture/, docs/development/, docs/production/, docs/quality\-gates.md, .github/workflows/ci.yml
-- Dependencies: none
-- Blocker: none
-- Checkpoint: Resolved final sanitizer preflight test\-hook mismatch with matching scalar nothrow allocation/deallocation; retained failed72/73 run and isolated repaired6/6 evidence. All100 worker reports are complete.
-- Files: none recorded
-- Next action: Rebuild the corrected regression, rerun full84\-suite Debug and73\-native ASan/UBSan checks, finish Release compilation, publish exact reviewed source, then record final acceptance gates.
-- Required checks: repository, dev, release, package
-
-Acceptance:
-
-- All existing C\+\+ translation units compile with strict warnings and public headers/install exports are usable.
-- All registered modules start, advance frames and shut down with exercised cross\-module integration and retained negative\-case checks.
-- 100 distinct delegated runs are recorded with actual canonical IDs and concrete findings or changes.
-- Publish passing local development, release and package evidence; document platform and functional limitations without claiming exhaustive correctness.
-
-- repository: no receipt.
-- dev: RUN-000013 / passed / historical source snapshot.
-- release: RUN-000014 / passed / historical source snapshot.
-- package: RUN-000011 / passed / historical source snapshot.
 
 ### CODE\-001: Spatial mathematics
 

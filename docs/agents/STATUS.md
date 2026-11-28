@@ -3,8 +3,8 @@
 # Agent project status
 
 - **Project:** Game Engine
-- **Ledger revision:** 554
-- **Recorded update:** 2026\-11\-28T12:27:44.442282Z
+- **Ledger revision:** 560
+- **Recorded update:** 2026\-11\-28T12:35:33.737300Z
 - **Coordinator:** coordinator
 - **Source fingerprint:** 2de1a0370652b05bd43543fcbb541f7706f930a4af54ee85fe1174a67e1e30a8
 - **Source files:** 309
@@ -38,113 +38,113 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 
 | Task | Priority | Milestone | Status | Owner | Dependencies | Next action |
 | --- | --- | --- | --- | --- | --- | --- |
-| CODE\-INTEGRATION: Integrate source\-only 100\-agent engine expansion | 0 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-INTEGRATION: Integrate source\-only 100\-agent engine expansion | 0 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
 | M0\-FOUNDATION: Published headless foundation | 0 | M0 | done | setup\-coordinator | none | Preserve historical evidence and continue through the first playable gates. |
 | OPS\-AGENT\-SYSTEM: Install agent coordination and automatic project\-state updates | 0 | OPS | done | coordinator | none | For the next authorized session, inspect the published branch and hosted CI, follow docs/agents/CONTINUE.md, and select M1\-010 only when first\-playable work is within the current user objective. |
-| AUDIT\-20261128: Compile, connect and review existing engine source with 100 actual workers | 1 | M1 | in\_progress | coordinator | none | Rebuild the corrected regression, rerun full84\-suite Debug and73\-native ASan/UBSan checks, finish Release compilation, publish exact reviewed source, then record final acceptance gates. |
-| CODE\-001: Spatial mathematics | 1 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-DEPENDENCIES: Declare runtime expansion dependency policy | 1 | OPS | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-002: Bounded allocation and containers | 2 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-003: Bounded binary serialization | 3 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-004: Entity component registry and deferred mutations | 4 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-005: Bounded task executor and dependency graph | 5 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-006: Virtual filesystem mounts and bounded file access | 6 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-007: Scene hierarchy and world transforms | 7 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-008: Input devices, action maps and rebinding | 8 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-009: Asset catalog, typed handles and cache | 9 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-010: Mesh topology, primitives and vertex processing | 10 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| AUDIT\-20261128: Compile, connect and review existing engine source with 100 actual workers | 1 | M1 | done | coordinator | none | Rebuild the corrected regression, rerun full84\-suite Debug and73\-native ASan/UBSan checks, finish Release compilation, publish exact reviewed source, then record final acceptance gates. |
+| CODE\-001: Spatial mathematics | 1 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-DEPENDENCIES: Declare runtime expansion dependency policy | 1 | OPS | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-002: Bounded allocation and containers | 2 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-003: Bounded binary serialization | 3 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-004: Entity component registry and deferred mutations | 4 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-005: Bounded task executor and dependency graph | 5 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-006: Virtual filesystem mounts and bounded file access | 6 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-007: Scene hierarchy and world transforms | 7 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-008: Input devices, action maps and rebinding | 8 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-009: Asset catalog, typed handles and cache | 9 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-010: Mesh topology, primitives and vertex processing | 10 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
 | OPS\-MACOS: Establish observed macOS foundation qualification | 10 | OPS | blocked | unowned | M0\-FOUNDATION | Inspect the latest macOS job and its logs; identify whether execution is available before changing platform code. |
-| CODE\-011: Images, framebuffers and texture sampling | 11 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-012: Dynamic spatial index and visibility queries | 12 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-013: Collision shapes and narrowphase contacts | 13 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-014: Rigid body integration and contact solving | 14 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-015: Skeletons, poses and sampled animation | 15 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-016: Audio buffers, voices and mixing graph | 16 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-017: Graph and grid pathfinding | 17 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-018: Materials and CPU shading | 18 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-019: Camera rigs, projections and viewport mapping | 19 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-020: Asynchronous resource loading and residency | 20 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-021: Software triangle rasterization | 21 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-022: Character movement and grounding | 22 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-023: Vehicle suspension and tire forces | 23 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-024: Animation blending and state machines | 24 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-025: Spatial audio and acoustic attenuation | 25 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-026: Polygon navigation mesh queries and funnels | 26 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-027: World partition activation and origin shifts | 27 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-028: Terrain tiles, sampling and erosion | 28 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-029: Vegetation distribution and instancing | 29 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-030: Light collection, shadows and illumination | 30 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-031: Render pass graph and transient resources | 31 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-032: Particle emission, simulation and trails | 32 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-033: Rigid body constraints and joints | 33 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-034: Versioned scene serialization and transactions | 34 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-035: Bounded bytecode virtual machine | 35 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-036: Interaction targeting, triggers and actions | 36 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-037: Typed signal subscriptions and transactional event dispatch | 37 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-038: Curves, tracks and time mapping | 38 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-039: Layered configuration parsing and persistence | 39 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-040: Localization catalogs, Unicode and formatting | 40 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-041: Packet encoding and reliable channel protocol | 41 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-042: Native datagram transport and bounded network pump | 42 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-043: Entity snapshots and delta replication | 43 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-044: Input prediction and rollback state | 44 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-045: Transactional save journal and recovery | 45 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-046: Behavior tree execution and blackboards | 46 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-047: Perception, memory and utility decisions | 47 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-048: Road geometry and lane graph routing | 48 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-049: Traffic agents, intersections and signals | 49 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-050: Mission objectives and idempotent rewards | 50 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-051: Inventory stacks, containers and transactions | 51 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-052: Equipment slots, crafting and resource costs | 52 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-053: Damage, hit resolution and status effects | 53 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-054: Dialogue graph execution and conditions | 54 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-055: Quest dependencies, progression and journal | 55 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-056: Image postprocessing and tone mapping | 56 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-057: Scene culling and level of detail | 57 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-058: Draw batching and instance submission | 58 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-059: Decal projection and surface blending | 59 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-060: Scene picking and selection models | 60 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-061: Inverse kinematics and pose constraints | 61 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-062: Skeleton retargeting and root motion | 62 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-063: DSP filters, reverberation and effects | 63 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-064: Bounded WAV decoding and audio conversion | 64 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-065: OBJ and PLY model import | 65 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-066: BMP, TGA and PPM texture import | 66 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-067: Mesh simplification and LOD generation | 67 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-068: Splines, swept meshes and route sampling | 68 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-069: Swept collision and time of impact | 69 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-070: Scene raycasts, overlaps and shape casts | 70 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-071: Crowd avoidance and local steering | 71 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-072: Cover analysis and tactical position scoring | 72 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-073: World clock, weather and sun state | 73 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-074: Environment volumes and spatial blending | 74 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-075: Water surfaces, buoyancy and drag | 75 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-076: Drivetrain, differential and wheel controls | 76 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-077: Procedural district blocks and construction | 77 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-078: Undoable editing transactions | 78 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-079: Scene hierarchy and property inspection | 79 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-080: Transform gizmos and manipulation | 80 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-081: Asset browsing, filtering and import queue | 81 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-082: Prefab instantiation and property overrides | 82 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-083: Cinematic tracks and scene binding | 83 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-084: Debug geometry and scene diagnostics | 84 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-085: Bounded tracing and performance telemetry | 85 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-086: Runtime console command scripts and variables | 86 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-087: Platform events, clocks and application lifecycle | 87 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-088: Retained layout tree and flex/grid sizing | 88 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-089: Widget models and text layout | 89 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-090: UI focus, pointer capture and accessibility | 90 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-091: Vector paths, tessellation and coverage | 91 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-092: Material expression graph and interpreter | 92 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-093: Network sessions, peers and replay streams | 93 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-094: Native asset bundle writer and reader | 94 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-095: Runtime startup profiles and settings application | 95 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-096: Integrated district actors and interaction loop | 96 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-097: Software presentation and frame export | 97 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-098: Scene, physics, animation and rendering bridges | 98 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-099: Scene asset ingestion and resource binding | 99 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| CODE\-100: Integrated runtime editing and authoring commands | 100 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
-| M1\-010: Declare the reference platform and playable workload | 100 | M1 | planned | unowned | M0\-FOUNDATION | Read the first\-playable plan and inspect available target evidence; draft the reference\-platform record. |
+| CODE\-011: Images, framebuffers and texture sampling | 11 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-012: Dynamic spatial index and visibility queries | 12 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-013: Collision shapes and narrowphase contacts | 13 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-014: Rigid body integration and contact solving | 14 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-015: Skeletons, poses and sampled animation | 15 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-016: Audio buffers, voices and mixing graph | 16 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-017: Graph and grid pathfinding | 17 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-018: Materials and CPU shading | 18 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-019: Camera rigs, projections and viewport mapping | 19 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-020: Asynchronous resource loading and residency | 20 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-021: Software triangle rasterization | 21 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-022: Character movement and grounding | 22 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-023: Vehicle suspension and tire forces | 23 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-024: Animation blending and state machines | 24 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-025: Spatial audio and acoustic attenuation | 25 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-026: Polygon navigation mesh queries and funnels | 26 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-027: World partition activation and origin shifts | 27 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-028: Terrain tiles, sampling and erosion | 28 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-029: Vegetation distribution and instancing | 29 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-030: Light collection, shadows and illumination | 30 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-031: Render pass graph and transient resources | 31 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-032: Particle emission, simulation and trails | 32 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-033: Rigid body constraints and joints | 33 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-034: Versioned scene serialization and transactions | 34 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-035: Bounded bytecode virtual machine | 35 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-036: Interaction targeting, triggers and actions | 36 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-037: Typed signal subscriptions and transactional event dispatch | 37 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-038: Curves, tracks and time mapping | 38 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-039: Layered configuration parsing and persistence | 39 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-040: Localization catalogs, Unicode and formatting | 40 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-041: Packet encoding and reliable channel protocol | 41 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-042: Native datagram transport and bounded network pump | 42 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-043: Entity snapshots and delta replication | 43 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-044: Input prediction and rollback state | 44 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-045: Transactional save journal and recovery | 45 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-046: Behavior tree execution and blackboards | 46 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-047: Perception, memory and utility decisions | 47 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-048: Road geometry and lane graph routing | 48 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-049: Traffic agents, intersections and signals | 49 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-050: Mission objectives and idempotent rewards | 50 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-051: Inventory stacks, containers and transactions | 51 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-052: Equipment slots, crafting and resource costs | 52 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-053: Damage, hit resolution and status effects | 53 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-054: Dialogue graph execution and conditions | 54 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-055: Quest dependencies, progression and journal | 55 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-056: Image postprocessing and tone mapping | 56 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-057: Scene culling and level of detail | 57 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-058: Draw batching and instance submission | 58 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-059: Decal projection and surface blending | 59 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-060: Scene picking and selection models | 60 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-061: Inverse kinematics and pose constraints | 61 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-062: Skeleton retargeting and root motion | 62 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-063: DSP filters, reverberation and effects | 63 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-064: Bounded WAV decoding and audio conversion | 64 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-065: OBJ and PLY model import | 65 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-066: BMP, TGA and PPM texture import | 66 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-067: Mesh simplification and LOD generation | 67 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-068: Splines, swept meshes and route sampling | 68 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-069: Swept collision and time of impact | 69 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-070: Scene raycasts, overlaps and shape casts | 70 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-071: Crowd avoidance and local steering | 71 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-072: Cover analysis and tactical position scoring | 72 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-073: World clock, weather and sun state | 73 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-074: Environment volumes and spatial blending | 74 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-075: Water surfaces, buoyancy and drag | 75 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-076: Drivetrain, differential and wheel controls | 76 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-077: Procedural district blocks and construction | 77 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-078: Undoable editing transactions | 78 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-079: Scene hierarchy and property inspection | 79 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-080: Transform gizmos and manipulation | 80 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-081: Asset browsing, filtering and import queue | 81 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-082: Prefab instantiation and property overrides | 82 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-083: Cinematic tracks and scene binding | 83 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-084: Debug geometry and scene diagnostics | 84 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-085: Bounded tracing and performance telemetry | 85 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-086: Runtime console command scripts and variables | 86 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-087: Platform events, clocks and application lifecycle | 87 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-088: Retained layout tree and flex/grid sizing | 88 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-089: Widget models and text layout | 89 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-090: UI focus, pointer capture and accessibility | 90 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-091: Vector paths, tessellation and coverage | 91 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-092: Material expression graph and interpreter | 92 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-093: Network sessions, peers and replay streams | 93 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-094: Native asset bundle writer and reader | 94 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-095: Runtime startup profiles and settings application | 95 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-096: Integrated district actors and interaction loop | 96 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-097: Software presentation and frame export | 97 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-098: Scene, physics, animation and rendering bridges | 98 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-099: Scene asset ingestion and resource binding | 99 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| CODE\-100: Integrated runtime editing and authoring commands | 100 | M1 | planned \(ready\) | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
+| M1\-010: Declare the reference platform and playable workload | 100 | M1 | planned \(ready\) | unowned | M0\-FOUNDATION | Read the first\-playable plan and inspect available target evidence; draft the reference\-platform record. |
 | M1\-020: Select one native backend and dependency strategy | 110 | M1 | planned | unowned | M1\-010 | Review ADR0006 and the candidate register; produce an evidence\-backed backend decision and dependency records. |
 | M1\-030: Implement native window and input lifecycle | 120 | M1 | planned | unowned | M1\-020 | Define the minimal platform interface, then wire and test window/input lifecycle on the chosen target. |
 | M1\-040: Cook a small original mesh scene | 130 | M1 | planned | unowned | M1\-020 | Specify the smallest supported mesh\-source subset and compatibility change before editing the cooker. |
@@ -183,16 +183,6 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Preserved work: Planned work; no implementation or passing evidence is inferred.
 - Next action: Inspect the latest macOS job and its logs; identify whether execution is available before changing platform code.
 
-### AUDIT\-20261128
-
-- Status: in\_progress
-- Owner: coordinator
-- Claim revision: 525
-- Write scope: engine/, apps/, tests/, tools/, cmake/, CMakeLists.txt, CMakePresets.json, README.md, docs/architecture/, docs/development/, docs/production/, docs/quality\-gates.md, .github/workflows/ci.yml
-- Blocker: none
-- Preserved work: Resolved final sanitizer preflight test\-hook mismatch with matching scalar nothrow allocation/deallocation; retained failed72/73 run and isolated repaired6/6 evidence. All100 worker reports are complete.
-- Next action: Rebuild the corrected regression, rerun full84\-suite Debug and73\-native ASan/UBSan checks, finish Release compilation, publish exact reviewed source, then record final acceptance gates.
-
 
 ## Evidence observations
 
@@ -214,20 +204,19 @@ These are historical observations. A pass neither completes a task nor remains c
 | RUN-000012 | AUDIT\-20261128 | dev | passed | 6e0f73e381ad4f12 (historical) | 2026\-11\-28T11:29:00.354439Z |
 | RUN-000013 | AUDIT\-20261128 | dev | passed | d1e895369de783f9 (historical) | 2026\-11\-28T11:43:25.665180Z |
 | RUN-000014 | AUDIT\-20261128 | release | passed | b8c4a76abf625f58 (historical) | 2026\-11\-28T11:57:40.914707Z |
+| RUN-000015 | AUDIT\-20261128 | package | passed | 2de1a0370652b05b (recorded snapshot) | 2026\-11\-28T12:31:30.722991Z |
+| RUN-000016 | AUDIT\-20261128 | dev | passed | 2de1a0370652b05b (recorded snapshot) | 2026\-11\-28T12:32:20.883642Z |
+| RUN-000017 | AUDIT\-20261128 | release | passed | 2de1a0370652b05b (recorded snapshot) | 2026\-11\-28T12:32:54.964198Z |
+| RUN-000018 | AUDIT\-20261128 | repository | passed | 2de1a0370652b05b (recorded snapshot) | 2026\-11\-28T12:33:33.263138Z |
 
 ## Completion records
 
 - M0\-FOUNDATION: historical baseline; Imported during workflow bootstrap from the published foundation record; this is not a newly executed workflow check. Reference: https://github.com/baabi\-boo/Game\-Engine/blob/6b20e83363e13ff2ede2406054d367041b40b5eb/docs/production/verification.json. This is not a newly executed check.
 - OPS\-AGENT\-SYSTEM: self review by coordinator; Accepted after coordinator integration review and real delegated implementation, independent regression tests and documentation review. All five task criteria are supported: stale source/views and invalid claims fail; current required checks and explicit review gate completion; mutations retain evidence/history and regenerate views; prompts cover startup, scope, checkpoints, recovery and authorized publication; 33 workflow cases plus all 14 Debug/Release CTest suites and the relocated SDK/package gate passed in RUN\-000001 through RUN\-000004. This is explicitly coordinator self\-review, not authenticated peer approval. Local Linux execution qualifies this source; new hosted platform results remain unobserved. Ready for the already authorized commit and push. Source: 1ade509f95561c6c6d39738ec08f2484aa5f1a82064ba5e836fe6df4b0924a4b.
+- AUDIT\-20261128: self review by coordinator; Accepted the100\-worker stabilization as a Linux GCC14 headless engine development foundation. Final source fingerprint2de1a0370652b05bd43543fcbb541f7706f930a4af54ee85fe1174a67e1e30a8 \(309 inputs\), published source77d504eaec64a4c394a443833a55ed4572d14cf4. Required receipts: RUN\-000018 repository, RUN\-000016 Debug84/84, RUN\-000017 Release84/84, RUN\-000015 package84/84 plus moved Unicode/space\-prefix executables, all7 artifact hashes and a fresh external ge::engine SDK consumer. Supplementary ASan/UBSan73/73 native suites passed on the same frozen source; ASAN\_OPTIONS=halt\_on\_error=1:abort\_on\_error=1:detect\_leaks=0 and UBSAN\_OPTIONS=halt\_on\_error=1:print\_stacktrace=1. Sanitizer log out/stabilization/delivery\-asan\-tests.log SHA256 da5c021fe846b80e1bfece164564ec5a5df181f071e63581cf86e5cb553dfb7d.600\-frame64x48 runtime:61 modules,78 systems,70 services, no system failures, diagnostics, event drops or shutdown failures. All70 public headers and67 engine source units compiled. Independent final production review099, peer regression review098 and evidence review100 are recorded with their snapshot limits; the coordinator also reviewed/integrated repairs. Preserved failed package and sanitizer preflight logs; repaired environment/test instrumentation without weakening gates. Leak detection, Windows/macOS execution, native GPU/window, terrain collision adapter, full typed import adapters, performance and production qualification remain outside this acceptance. Source: 2de1a0370652b05bd43543fcbb541f7706f930a4af54ee85fe1174a67e1e30a8.
 
 ## Recent operations
 
-- Revision 535 — 2026\-11\-28T10:45:21.314208Z — coordinator: checkpoint AUDIT\-20261128. Integrated shared component ownership across animation and particles, navmesh and terrain ownership/sampling, VM fairness and config transactions. Forty\-eight workers launched; 45 completed.
-- Revision 536 — 2026\-11\-28T10:46:27.319437Z — coordinator: run\-check AUDIT\-20261128. dev: passed; receipt RUN\-000008; Process exited successfully.
-- Revision 537 — 2026\-11\-28T10:49:15.777850Z — coordinator: checkpoint AUDIT\-20261128. Published third verified checkpoint a8573fb with56 passing suites. Integrated Unicode offsets, retry ACK histories and raw datagram expiry from workers046\-048.
-- Revision 538 — 2026\-11\-28T10:58:43.058348Z — coordinator: checkpoint AUDIT\-20261128. Intermediate59\-suite Debug and49\-suite ASan/UBSan checks passed. Integrated workers049\-054 replication, prediction, journal, behavior, perception and roads.57 launched,54 complete.
-- Revision 539 — 2026\-11\-28T11:03:51.627387Z — coordinator: run\-check AUDIT\-20261128. release: passed; receipt RUN\-000009; Process exited successfully.
-- Revision 540 — 2026\-11\-28T11:10:21.784614Z — coordinator: checkpoint AUDIT\-20261128. Published checkpoint c9f03a8 with65 passing Debug/Release suites. Integrated traffic, interaction, inventory/equipment, combat, dialogue, quests and editor fixes.66 spawned,63 completed.
 - Revision 541 — 2026\-11\-28T11:11:32.010568Z — coordinator: run\-check AUDIT\-20261128. package: failed; receipt RUN\-000010; Process exited with status 1.
 - Revision 542 — 2026\-11\-28T11:15:31.458829Z — coordinator: checkpoint AUDIT\-20261128. 73 Debug suites passed. Package relocation ran installed binaries successfully but rejected the source\-local Ninja dependency; copied build tools outside the checkout without weakening package checks.
 - Revision 543 — 2026\-11\-28T11:15:56.077982Z — coordinator: run\-check AUDIT\-20261128. package: passed; receipt RUN\-000011; Process exited successfully.
@@ -242,5 +231,11 @@ These are historical observations. A pass neither completes a task nor remains c
 - Revision 552 — 2026\-11\-28T12:02:33.235550Z — coordinator: checkpoint AUDIT\-20261128. Integrated worker096 portable optimized allocation\-failure regression; all released production and test fixes are now present, with final independent reviews continuing.
 - Revision 553 — 2026\-11\-28T12:17:11.181475Z — coordinator: checkpoint AUDIT\-20261128. All 100 distinct delegated reviews and reports completed. Integrated final worker099 animation event\-publication repair, independently reviewed by098, and finalized source/accounting documentation.
 - Revision 554 — 2026\-11\-28T12:27:44.442282Z — coordinator: checkpoint AUDIT\-20261128. Resolved final sanitizer preflight test\-hook mismatch with matching scalar nothrow allocation/deallocation; retained failed72/73 run and isolated repaired6/6 evidence. All100 worker reports are complete.
+- Revision 555 — 2026\-11\-28T12:31:30.755619Z — coordinator: run\-check AUDIT\-20261128. package: passed; receipt RUN\-000015; Process exited successfully.
+- Revision 556 — 2026\-11\-28T12:32:20.915988Z — coordinator: run\-check AUDIT\-20261128. dev: passed; receipt RUN\-000016; Process exited successfully.
+- Revision 557 — 2026\-11\-28T12:32:55.006648Z — coordinator: run\-check AUDIT\-20261128. release: passed; receipt RUN\-000017; Process exited successfully.
+- Revision 558 — 2026\-11\-28T12:33:33.297681Z — coordinator: run\-check AUDIT\-20261128. repository: passed; receipt RUN\-000018; Process exited successfully.
+- Revision 559 — 2026\-11\-28T12:35:33.476025Z — coordinator: submit AUDIT\-20261128. Completed100 distinct worker reviews, integrated all confirmed repairs and peer follow\-ups, and verified final published source77d504e with repository,84\-suite Debug,84\-suite Release and moved\-install SDK/package gates. Supplementary73\-native ASan/UBSan and600\-frame runtime checks also passed on the same source fingerprint.
+- Revision 560 — 2026\-11\-28T12:35:33.737300Z — coordinator: accept AUDIT\-20261128. Accepted the100\-worker stabilization as a Linux GCC14 headless engine development foundation. Final source fingerprint2de1a0370652b05bd43543fcbb541f7706f930a4af54ee85fe1174a67e1e30a8 \(309 inputs\), published source77d504eaec64a4c394a443833a55ed4572d14cf4. Required receipts: RUN\-000018 repository, RUN\-000016 Debug84/84, RUN\-000017 Release84/84, RUN\-000015 package84/84 plus moved Unicode/space\-prefix executables, all7 artifact hashes and a fresh external ge::engine SDK consumer. Supplementary ASan/UBSan73/73 native suites passed on the same frozen source; ASAN\_OPTIONS=halt\_on\_error=1:abort\_on\_error=1:detect\_leaks=0 and UBSAN\_OPTIONS=halt\_on\_error=1:print\_stacktrace=1. Sanitizer log out/stabilization/delivery\-asan\-tests.log SHA256 da5c021fe846b80e1bfece164564ec5a5df181f071e63581cf86e5cb553dfb7d.600\-frame64x48 runtime:61 modules,78 systems,70 services, no system failures, diagnostics, event drops or shutdown failures. All70 public headers and67 engine source units compiled. Independent final production review099, peer regression review098 and evidence review100 are recorded with their snapshot limits; the coordinator also reviewed/integrated repairs. Preserved failed package and sanitizer preflight logs; repaired environment/test instrumentation without weakening gates. Leak detection, Windows/macOS execution, native GPU/window, terrain collision adapter, full typed import adapters, performance and production qualification remain outside this acceptance.
 
 The canonical ledger retains the complete operation history.
