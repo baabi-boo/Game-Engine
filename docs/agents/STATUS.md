@@ -3,11 +3,11 @@
 # Agent project status
 
 - **Project:** Game Engine
-- **Ledger revision:** 530
-- **Recorded update:** 2026\-11\-28T10:09:36.233748Z
+- **Ledger revision:** 533
+- **Recorded update:** 2026\-11\-28T10:30:36.004824Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 56e69ecb94636f2ebd73b97c1e4920e6b8c144a6c760da1a9a7cd2ce2ed3c9ae
-- **Source files:** 261
+- **Source fingerprint:** c79ae93cf1599ccb10289641360729a95b8f2abc97b7a0b1987fb4e23361977a
+- **Source files:** 272
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -41,7 +41,7 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 | CODE\-INTEGRATION: Integrate source\-only 100\-agent engine expansion | 0 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
 | M0\-FOUNDATION: Published headless foundation | 0 | M0 | done | setup\-coordinator | none | Preserve historical evidence and continue through the first playable gates. |
 | OPS\-AGENT\-SYSTEM: Install agent coordination and automatic project\-state updates | 0 | OPS | done | coordinator | none | For the next authorized session, inspect the published branch and hosted CI, follow docs/agents/CONTINUE.md, and select M1\-010 only when first\-playable work is within the current user objective. |
-| AUDIT\-20261128: Compile, connect and review existing engine source with 100 actual workers | 1 | M1 | in\_progress | coordinator | none | Verify this frozen checkpoint through the development gate, publish it, and continue remaining distinct workers using isolated source while checks run. |
+| AUDIT\-20261128: Compile, connect and review existing engine source with 100 actual workers | 1 | M1 | in\_progress | coordinator | none | Run frozen development gate for second checkpoint; continue shared component identity repair and remaining subsystem reviews toward 100. |
 | CODE\-001: Spatial mathematics | 1 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
 | CODE\-DEPENDENCIES: Declare runtime expansion dependency policy | 1 | OPS | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
 | CODE\-002: Bounded allocation and containers | 2 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
@@ -190,8 +190,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 525
 - Write scope: engine/, apps/, tests/, tools/, cmake/, CMakeLists.txt, CMakePresets.json, README.md, docs/architecture/, docs/development/, docs/production/, docs/quality\-gates.md, .github/workflows/ci.yml
 - Blocker: none
-- Preserved work: Completed 22 actual new worker runs and integrated input, serialization, streaming, kernel lifecycle, math, physics, character, vehicle, constraints, geometry and camera/visibility repairs. Preserved prior audit history. Baseline builds and exploratory targeted regressions passed; LSan unavailable under host tracing. Batching cache lifetime defect is queued for next isolated repair.
-- Next action: Verify this frozen checkpoint through the development gate, publish it, and continue remaining distinct workers using isolated source while checks run.
+- Preserved work: Integrated workers 023\-032 and documented 37 actual launches, 34 completed reports; added cache, render ownership and animation regressions.
+- Next action: Run frozen development gate for second checkpoint; continue shared component identity repair and remaining subsystem reviews toward 100.
 
 
 ## Evidence observations
@@ -205,7 +205,8 @@ These are historical observations. A pass neither completes a task nor remains c
 | RUN-000003 | OPS\-AGENT\-SYSTEM | dev | passed | 1ade509f95561c6c (historical) | 2026\-11\-23T13:16:05.911866Z |
 | RUN-000004 | OPS\-AGENT\-SYSTEM | package | passed | 1ade509f95561c6c (historical) | 2026\-11\-23T13:16:34.781251Z |
 | RUN-000005 | AUDIT\-20261128 | dev | passed | eeb75026bf9d5fd5 (historical) | 2026\-11\-28T07:13:06.896504Z |
-| RUN-000006 | AUDIT\-20261128 | dev | passed | 56e69ecb94636f2e (recorded snapshot) | 2026\-11\-28T10:09:36.198255Z |
+| RUN-000006 | AUDIT\-20261128 | dev | passed | 56e69ecb94636f2e (historical) | 2026\-11\-28T10:09:36.198255Z |
+| RUN-000007 | AUDIT\-20261128 | dev | passed | c79ae93cf1599ccb (recorded snapshot) | 2026\-11\-28T10:30:35.974048Z |
 
 ## Completion records
 
@@ -214,9 +215,6 @@ These are historical observations. A pass neither completes a task nor remains c
 
 ## Recent operations
 
-- Revision 511 — 2026\-11\-28T06:42:45.981999Z — coordinator: handoff CODE\-088. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
-- Revision 512 — 2026\-11\-28T06:42:46.290993Z — coordinator: handoff CODE\-089. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
-- Revision 513 — 2026\-11\-28T06:42:46.578898Z — coordinator: handoff CODE\-090. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Revision 514 — 2026\-11\-28T06:42:46.974898Z — coordinator: handoff CODE\-091. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Revision 515 — 2026\-11\-28T06:42:47.260497Z — coordinator: handoff CODE\-092. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Revision 516 — 2026\-11\-28T06:42:47.547372Z — coordinator: handoff CODE\-093. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
@@ -234,5 +232,8 @@ These are historical observations. A pass neither completes a task nor remains c
 - Revision 528 — 2026\-11\-28T09:35:53.799122Z — coordinator: checkpoint AUDIT\-20261128. Resumed the owner\-authorized existing\-code audit from published checkpoint 876ec25 in a clean checkout. Preserved prior 21\-worker register and unresolved input/serialization findings; beginning a separate 100\-worker stabilization pass with actual IDs. Toolchain doctor now passes; baseline strict GCC build is running.
 - Revision 529 — 2026\-11\-28T10:04:48.212380Z — coordinator: checkpoint AUDIT\-20261128. Completed 22 actual new worker runs and integrated input, serialization, streaming, kernel lifecycle, math, physics, character, vehicle, constraints, geometry and camera/visibility repairs. Preserved prior audit history. Baseline builds and exploratory targeted regressions passed; LSan unavailable under host tracing. Batching cache lifetime defect is queued for next isolated repair.
 - Revision 530 — 2026\-11\-28T10:09:36.233748Z — coordinator: run\-check AUDIT\-20261128. dev: passed; receipt RUN\-000006; Process exited successfully.
+- Revision 531 — 2026\-11\-28T10:22:11.119152Z — coordinator: checkpoint AUDIT\-20261128. Published verified checkpoint 96edced; integrated isolated workers 023\-028 for cache lifetimes, depth validation, callback ownership and transactional animation.
+- Revision 532 — 2026\-11\-28T10:29:41.588336Z — coordinator: checkpoint AUDIT\-20261128. Integrated workers 023\-032 and documented 37 actual launches, 34 completed reports; added cache, render ownership and animation regressions.
+- Revision 533 — 2026\-11\-28T10:30:36.004824Z — coordinator: run\-check AUDIT\-20261128. dev: passed; receipt RUN\-000007; Process exited successfully.
 
 The canonical ledger retains the complete operation history.

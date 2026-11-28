@@ -157,6 +157,7 @@ struct BatchingStatistics {
 
 // Synchronous single-writer owner. The shared builder can outlive this facade;
 // it borrows no services between calls. Its destructor touches no external owner.
+// Prepared mesh cache keys retain only the library's standalone lifetime token.
 // Output is replaced transactionally; failure preserves the caller's submission.
 // Original library borrows still require the synchronous visibility lifetime.
 // Cache bytes exclude output-owned resources after eviction and vector slack;

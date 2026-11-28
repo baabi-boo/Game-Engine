@@ -340,6 +340,8 @@ public:
     [[nodiscard]] AnimationResult play(ecs::Registry& registry, ecs::Entity entity,
                                        ClipHandle clip, double fade_seconds = 0.0,
                                        WrapMode wrap = WrapMode::Loop);
+    // A rejected bone binding or scene batch preserves that entity's animator
+    // and emits no events; successful entities publish independently.
     [[nodiscard]] AnimationUpdate update(ecs::Registry& registry, scene::Scene* scene_graph,
                                          double delta_seconds, std::size_t event_limit = 8192);
 };

@@ -277,6 +277,8 @@ struct CurveUpdate {
 // channels preserve the captured baseline. Stop releases ownership and retains
 // the last displayed transform. Seek is applied on the next update, without
 // markers. Coordinate rebasing requires authored curves/baselines to be updated.
+// Marker copies are prepared before each transform write. Rejected writes leave
+// that player's time and applied revision unchanged and emit no markers.
 // One Scene/Registry is borrowed until clear_players(). Borrowed resource and
 // state pointers may be invalidated by creation, replacement or removal; retain
 // generation handles across those operations. Destruction touches no borrowers.

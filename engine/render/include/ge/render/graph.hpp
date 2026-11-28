@@ -80,6 +80,7 @@ struct GraphLimits {
     std::size_t logical_transient_bytes{512U * 1024U * 1024U};
     std::size_t transfer_bytes{256U * 1024U * 1024U};
     std::size_t name_bytes{128};
+    // Extent limits apply to both transient and imported image/depth attachments.
     ImageLimits images{};
 };
 

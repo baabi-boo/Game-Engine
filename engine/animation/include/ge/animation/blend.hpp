@@ -111,8 +111,9 @@ struct WeightedPose {
 [[nodiscard]] BlendResult blend_poses(const Skeleton& skeleton,
                                       std::span<const WeightedPose> sources, Pose& output);
 // Additive translation and scale are differences from reference. Rotation is a
-// local-space reference-relative delta composed after the base rotation. Weight
-// is nonnegative and bounded to 1e6; values above one extrapolate the delta.
+// shortest local-space reference-relative delta composed after the base rotation.
+// Weight is nonnegative and bounded to 1e6; values above one extrapolate the
+// translation/scale difference and rotation angle, including near-identity deltas.
 [[nodiscard]] BlendResult additive_pose(const Skeleton& skeleton, const Pose& base,
                                         const Pose& additive, const Pose& reference,
                                         double weight, std::span<const double> mask, Pose& output);

@@ -165,7 +165,7 @@ bool compatible(const PreparedInstance& first, const PreparedInstance& second) n
 }
 
 struct MeshCacheEntry {
-    const geometry::MeshLibrary* library{};
+    std::shared_ptr<const geometry::MeshLibrary::LifetimeIdentity> library;
     geometry::MeshHandle handle{};
     std::uint64_t revision{};
     std::size_t first{};
@@ -281,8 +281,9 @@ struct BatchingService::Impl final : VisibilitySubmissionBuilder {
     }
 
     void prune(const VisibilityBuildContext& context) noexcept {
+        const auto library = context.meshes.lifetime_identity();
         std::erase_if(mesh_cache, [&](const MeshCacheEntry& entry) {
-            const auto info = entry.library == &context.meshes ? context.meshes.inspect(entry.handle) : std::nullopt;
+            const auto info = entry.library == library ? context.meshes.inspect(entry.handle) : std::nullopt;
             const bool stale = !info || info->revision != entry.revision;
             const bool expired = epoch - entry.used > limits.cache_idle_builds;
             if (!stale && !expired) { return false; }
@@ -437,8 +438,9 @@ struct BatchingService::Impl final : VisibilitySubmissionBuilder {
         if (!settings.prepare_submesh_ranges || count == 0 || (first == 0 && count == source.indices.size())) {
             return BatchError::None;
         }
+        const auto library = context.meshes.lifetime_identity();
         for (auto& cached : mesh_cache) {
-            if (cached.library == &context.meshes && cached.handle == instance.information.mesh &&
+            if (cached.library == library && cached.handle == instance.information.mesh &&
                 cached.revision == instance.information.mesh_revision && cached.first == first && cached.count == count &&
                 cached.material_slot == instance.information.material_slot) {
                 cached.used = epoch;
@@ -498,7 +500,7 @@ struct BatchingService::Impl final : VisibilitySubmissionBuilder {
         instance.information.geometry_prepared = true;
         const auto charge = prepared->allocated_bytes() + sizeof(geometry::MeshData) + sizeof(MeshCacheEntry);
         if (cache_room(charge, true)) {
-            mesh_cache.push_back({&context.meshes, instance.information.mesh,
+            mesh_cache.push_back({library, instance.information.mesh,
                 instance.information.mesh_revision, first, count, instance.information.material_slot,
                 epoch, charge, std::move(prepared)});
             cache_bytes += charge;

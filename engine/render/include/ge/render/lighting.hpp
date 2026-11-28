@@ -147,9 +147,10 @@ struct LightingStatistics {
 // Serial service. update() prepares lighting without drawing the main target.
 // Maps and published metadata are borrowed until update/configure/shutdown.
 // Call after camera.update and spatial.sync, before a raster or render-graph pass.
-// Cache keys include exact transforms, mesh revisions and alpha texture identity;
-// TextureLibrary's immutable-object contract is required. Directional coverage
-// fits the current camera up to directional_distance, with bounded extrusion.
+// Cache keys include exact transforms, mesh library lifetimes, mesh revisions
+// and alpha texture identity. TextureLibrary's immutable-object contract is
+// required. Directional coverage fits the current camera up to
+// directional_distance, with bounded extrusion.
 // Other views and receivers outside a map are unshadowed. Cube PCF border taps
 // are unshadowed; filtering is bounded to 49 comparisons and is not seamless.
 class LightingService final {
@@ -175,8 +176,9 @@ public:
     bool set_shadow(ge::RuntimeHandle entity, const ShadowSettings& settings);
     [[nodiscard]] const LightComponent* component(ge::RuntimeHandle entity) const noexcept;
 
-    // Binding installs this service's callback; shutdown clears it while the
-    // renderer and MaterialService still live. The destructor touches neither.
+    // Binding installs this service's callback; rebinding and shutdown clear it
+    // only while it is still owned by this service. The bound renderer and
+    // MaterialService must live through shutdown. The destructor touches neither.
     void bind_renderer(SoftwareRenderer& renderer) noexcept;
     void shutdown() noexcept;
     void invalidate() noexcept;

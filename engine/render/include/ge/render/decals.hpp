@@ -202,6 +202,8 @@ public:
     // Visibility-owned rasterization requires its current rendered-frame stamp.
     [[nodiscard]] DecalError install_graph(core::Kernel& kernel);
     [[nodiscard]] bool attached(const RenderGraph& graph) const noexcept;
+    // A different graph is rejected without changing the current attachment.
+    // Clearing the owning graph still permits detach and later installation.
     bool detach(RenderGraph& graph);
     void stop() noexcept;
 

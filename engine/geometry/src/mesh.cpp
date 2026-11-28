@@ -820,7 +820,11 @@ struct MeshLibrary::Record {
     std::uint64_t revision{};
 };
 
-MeshLibrary::MeshLibrary(MeshLibraryLimits limits) : limits_(limits), generations_(limits.capacity) {
+struct MeshLibrary::LifetimeIdentity {};
+
+MeshLibrary::MeshLibrary(MeshLibraryLimits limits)
+    : limits_(limits), generations_(limits.capacity),
+      lifetime_identity_(std::make_shared<LifetimeIdentity>()) {
     if (!valid_limits(limits.mesh) || limits.capacity > 65'536 ||
         limits.resident_bytes == 0 || limits.resident_bytes > 1'073'741'824) {
         throw std::invalid_argument("invalid mesh library limits");
@@ -967,6 +971,10 @@ MeshStatistics MeshLibrary::statistics() const noexcept {
 }
 
 const MeshLibraryLimits& MeshLibrary::limits() const noexcept { return limits_; }
+
+std::shared_ptr<const MeshLibrary::LifetimeIdentity> MeshLibrary::lifetime_identity() const noexcept {
+    return lifetime_identity_;
+}
 
 bool MeshLibrary::assign(ecs::Registry& registry, ge::RuntimeHandle entity, MeshHandle mesh,
                          std::uint32_t first_submesh, std::uint32_t submesh_count) const {

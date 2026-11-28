@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 530
-- **Recorded update:** 2026\-11\-28T10:09:36.233748Z
+- **Ledger revision:** 533
+- **Recorded update:** 2026\-11\-28T10:30:36.004824Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 56e69ecb94636f2ebd73b97c1e4920e6b8c144a6c760da1a9a7cd2ce2ed3c9ae
-- **Source files:** 261
+- **Source fingerprint:** c79ae93cf1599ccb10289641360729a95b8f2abc97b7a0b1987fb4e23361977a
+- **Source files:** 272
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -65,9 +65,9 @@ User explicitly authorizes validating and repairing all code delivered at 3dcb0d
 - Write scope: engine/, apps/, tests/, tools/, cmake/, CMakeLists.txt, CMakePresets.json, README.md, docs/architecture/, docs/development/, docs/production/, docs/quality\-gates.md, .github/workflows/ci.yml
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Completed 22 actual new worker runs and integrated input, serialization, streaming, kernel lifecycle, math, physics, character, vehicle, constraints, geometry and camera/visibility repairs. Preserved prior audit history. Baseline builds and exploratory targeted regressions passed; LSan unavailable under host tracing. Batching cache lifetime defect is queued for next isolated repair.
-- Files: docs/production/stabilization\-register\-2026\-11\-28.json, docs/production/stabilization\-2026\-11\-28.md, tests/CMakeLists.txt
-- Next action: Verify this frozen checkpoint through the development gate, publish it, and continue remaining distinct workers using isolated source while checks run.
+- Checkpoint: Integrated workers 023\-032 and documented 37 actual launches, 34 completed reports; added cache, render ownership and animation regressions.
+- Files: none recorded
+- Next action: Run frozen development gate for second checkpoint; continue shared component identity repair and remaining subsystem reviews toward 100.
 - Required checks: repository, dev, release, package
 
 Acceptance:
@@ -78,7 +78,7 @@ Acceptance:
 - Publish passing local development, release and package evidence; document platform and functional limitations without claiming exhaustive correctness.
 
 - repository: no receipt.
-- dev: RUN-000006 / passed / recorded source snapshot.
+- dev: RUN-000007 / passed / recorded source snapshot.
 - release: no receipt.
 - package: no receipt.
 

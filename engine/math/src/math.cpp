@@ -428,14 +428,14 @@ Quat from_to(Vec3 from, Vec3 to) noexcept {
         return {};
     }
     const double cosine = clamp(dot(from,to),-1.0,1.0);
-    if (cosine >= 1.0-epsilon) {
-        return {};
-    }
-    if (cosine <= -1.0+epsilon) {
-        return from_axis_angle(orthonormal_basis(from).first,pi);
-    }
     const Vec3 axis = cross(from,to);
-    return normalized(Quat{axis.x,axis.y,axis.z,1.0+cosine});
+    const double sine = length(axis);
+    if (sine == 0.0) {
+        return cosine < 0.0 ? from_axis_angle(orthonormal_basis(from).first,pi) : Quat{};
+    }
+    // atan2 preserves small corrections and the turning plane near pi, where
+    // cosine thresholds and the quaternion term 1 + cosine lose precision.
+    return from_axis_angle(axis,std::atan2(sine,cosine));
 }
 
 Quat look_rotation(Vec3 forward, Vec3 up) noexcept {

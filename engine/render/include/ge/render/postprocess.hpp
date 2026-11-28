@@ -223,6 +223,8 @@ public:
     // Reattaches after reset; never replaces a same-named pass owned by others.
     [[nodiscard]] PostprocessError attach(RenderGraph& graph);
     [[nodiscard]] bool attached(const RenderGraph& graph) const noexcept;
+    // Rejects a different graph without changing the current attachment. Resetting
+    // the attached graph still permits detach; no stored graph pointer is dereferenced.
     bool detach(RenderGraph& graph);
     // Invalidates weak callback work without touching a possibly dead graph.
     void stop() noexcept;

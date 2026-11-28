@@ -375,6 +375,8 @@ struct DecalService::Impl {
     GraphResource graph_color{};
     GraphResource graph_depth{};
     std::uint64_t graph_revision{};
+    // Identity only; callbacks and destruction never dereference this borrower.
+    const RenderGraph* graph_identity{};
     bool connected{};
     bool busy{};
     bool stopped{};
@@ -784,7 +786,7 @@ bool depth_policy_supported(const RasterizerSettings& settings) noexcept {
 
 bool DecalService::attached(const RenderGraph& graph) const noexcept {
     const auto info = graph.pass_info(impl_->graph_pass);
-    return !impl_->stopped && impl_->connected && info && info->enabled &&
+    return !impl_->stopped && impl_->connected && impl_->graph_identity == &graph && info && info->enabled &&
            info->callback_owner == graph_decals_callback_owner && info->callback_revision == impl_->graph_revision &&
            graph.find_resource(graph_main_color) == impl_->graph_color &&
            graph.find_resource(graph_main_depth) == impl_->graph_depth;
@@ -920,6 +922,7 @@ DecalError DecalService::install_graph(core::Kernel& kernel) {
             impl_->graph_color = *color;
             impl_->graph_depth = *depth;
             impl_->graph_revision = graph->pass_info(inserted)->callback_revision;
+            impl_->graph_identity = graph;
             impl_->connected = true;
         }
         if (const auto postprocess = graph->find_pass(graph_postprocess_pass)) {
@@ -933,7 +936,15 @@ DecalError DecalService::install_graph(core::Kernel& kernel) {
 }
 
 bool DecalService::detach(RenderGraph& graph) {
-    if (!graph.pass_info(impl_->graph_pass)) { impl_->connected = false; return true; }
+    if (impl_->graph_identity && impl_->graph_identity != &graph) {
+        impl_->graph_error = DecalError::GraphConflict;
+        return false;
+    }
+    if (!graph.pass_info(impl_->graph_pass)) {
+        impl_->connected = false;
+        impl_->graph_error = DecalError::None;
+        return true;
+    }
     if (!graph.replace_callback_if(impl_->graph_pass, graph_decals_callback_owner, impl_->graph_revision,
         graph_decals_callback_owner, [](GraphContext&) -> GraphPassResult { return {}; })) {
         impl_->graph_error = DecalError::GraphConflict;
@@ -941,6 +952,7 @@ bool DecalService::detach(RenderGraph& graph) {
     }
     impl_->graph_revision = graph.pass_info(impl_->graph_pass)->callback_revision;
     impl_->connected = false;
+    impl_->graph_error = DecalError::None;
     return true;
 }
 

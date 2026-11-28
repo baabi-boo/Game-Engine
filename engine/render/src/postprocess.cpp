@@ -624,6 +624,8 @@ struct PostprocessService::Impl {
     LuminanceHistogram histogram;
     PostprocessError error{PostprocessError::None};
     PostprocessError graph_error{PostprocessError::None};
+    // Identity only; the graph may be destroyed before this service.
+    const RenderGraph* graph_identity{};
     GraphPass graph_pass{};
     GraphResource graph_color{};
     std::uint64_t callback_revision{};
@@ -816,7 +818,8 @@ PostprocessResult PostprocessService::process(Image& image, double delta_seconds
 bool PostprocessService::attached(const RenderGraph& graph) const noexcept {
     const auto pass = graph.find_pass(graph_postprocess_pass);
     const auto info = graph.pass_info(impl_->graph_pass);
-    return impl_->active && impl_->connected && pass && *pass == impl_->graph_pass &&
+    return impl_->active && impl_->connected && impl_->graph_identity == &graph &&
+           pass && *pass == impl_->graph_pass &&
            info && info->callback_owner == graph_postprocess_callback_owner &&
            info->callback_revision == impl_->callback_revision &&
            graph.resource_info(impl_->graph_color).has_value();
@@ -862,6 +865,7 @@ PostprocessError PostprocessService::attach(RenderGraph& graph) {
                 {{*color, GraphAccess::ReadWrite}}, {*scene}, 0, true, graph_postprocess_callback_owner}, callback);
         }
         if (!inserted) { return impl_->graph_error = PostprocessError::GraphRejected; }
+        impl_->graph_identity = &graph;
         impl_->graph_pass = inserted;
         impl_->graph_color = *color;
         impl_->callback_revision = graph.pass_info(inserted)->callback_revision;
@@ -875,8 +879,13 @@ PostprocessError PostprocessService::attach(RenderGraph& graph) {
 }
 
 bool PostprocessService::detach(RenderGraph& graph) {
+    if (impl_->graph_identity && impl_->graph_identity != &graph) {
+        impl_->graph_error = PostprocessError::GraphConflict;
+        return false;
+    }
     if (!graph.pass_info(impl_->graph_pass)) {
         impl_->connected = false;
+        impl_->graph_error = PostprocessError::None;
         return true;
     }
     if (!graph.replace_callback_if(impl_->graph_pass, graph_postprocess_callback_owner,
@@ -887,6 +896,7 @@ bool PostprocessService::detach(RenderGraph& graph) {
     }
     impl_->callback_revision = graph.pass_info(impl_->graph_pass)->callback_revision;
     impl_->connected = false;
+    impl_->graph_error = PostprocessError::None;
     return true;
 }
 

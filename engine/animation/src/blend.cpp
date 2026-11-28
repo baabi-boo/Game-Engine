@@ -72,6 +72,18 @@ Pose bind_locals(const Skeleton& skeleton) {
     return result;
 }
 
+math::Quat scaled_rotation(math::Quat delta, double weight) noexcept {
+    delta = math::normalized(delta);
+    if (delta.w < 0.0) { delta = -delta; }
+    const double sine = std::hypot(delta.x, delta.y, delta.z);
+    if (sine == 0.0) { return {}; }
+    // Scale the shortest delta's angle directly. A normalized-linear fallback
+    // near identity is only an interpolation approximation and cannot extrapolate.
+    const double half_angle = std::atan2(sine, delta.w) * weight;
+    const double scale = std::sin(half_angle) / sine;
+    return {delta.x * scale, delta.y * scale, delta.z * scale, std::cos(half_angle)};
+}
+
 void hash_word(std::uint64_t& hash, std::uint64_t value) noexcept {
     for (unsigned shift = 0; shift < 64; shift += 8) {
         hash ^= (value >> shift) & 255U;
@@ -145,7 +157,7 @@ BlendResult local_additive(const Skeleton& skeleton, const Pose& base, const Pos
         result.position = first.position + (second.position - origin.position) * strength;
         result.scale = first.scale + (second.scale - origin.scale) * strength;
         const auto delta = math::conjugate(math::normalized(origin.rotation)) * math::normalized(second.rotation);
-        result.rotation = math::normalized(math::normalized(first.rotation) * math::slerp({}, delta, strength));
+        result.rotation = math::normalized(math::normalized(first.rotation) * scaled_rotation(delta, strength));
         if (!valid_transform(result)) { return {BlendError::NonFiniteResult, bone}; }
     }
     output = std::move(candidate);

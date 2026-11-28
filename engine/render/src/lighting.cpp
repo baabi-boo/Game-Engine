@@ -120,19 +120,10 @@ ShadingResult depth_shader(const RasterDraw& draw, SurfaceSample& surface,
 }
 
 bool finish_view(CameraView& view) noexcept {
-    view.view_projection = view.projection * view.view;
     const auto inverse_view = math::inverse(view.view);
-    const auto inverse_projection = math::inverse(view.projection);
-    const auto inverse_combined = math::inverse(view.view_projection);
-    const auto frustum = math::extract_frustum(view.view_projection, view.clip_depth);
-    if (!inverse_view || !inverse_projection || !inverse_combined || !frustum) {
-        return false;
-    }
-    view.inverse_view = *inverse_view;
-    view.inverse_projection = *inverse_projection;
-    view.inverse_view_projection = *inverse_combined;
-    view.frustum = *frustum;
-    return math::finite(view.view_projection);
+    // Use the camera path's separate affine/projective inverses and frustum
+    // transform so large world translations do not reject valid shadow views.
+    return inverse_view && refresh_camera_matrices(view, *inverse_view);
 }
 
 struct Caster {
@@ -383,6 +374,7 @@ struct LightingService::Impl {
     std::vector<std::unique_ptr<Map>> maps;
     std::vector<ShadowMapInfo> map_info;
     std::vector<std::array<std::size_t, 6>> lookup;
+    std::shared_ptr<const geometry::MeshLibrary::LifetimeIdentity> mesh_identity;
     std::uint64_t expected_revision{};
     std::uint64_t invalidation{1};
     std::size_t build_cursor{};
@@ -925,7 +917,7 @@ const LightComponent* LightingService::component(ge::RuntimeHandle entity) const
 
 void LightingService::bind_renderer(SoftwareRenderer& renderer) noexcept {
     if (impl_->renderer && impl_->renderer != &renderer) {
-        impl_->renderer->set_shadow_provider(nullptr);
+        (void)impl_->renderer->clear_shadow_provider(shadow_factor, this);
     }
     impl_->renderer = &renderer;
     renderer.set_shadow_provider(shadow_factor, this);
@@ -933,7 +925,7 @@ void LightingService::bind_renderer(SoftwareRenderer& renderer) noexcept {
 
 void LightingService::shutdown() noexcept {
     if (impl_->renderer) {
-        impl_->renderer->set_shadow_provider(nullptr);
+        (void)impl_->renderer->clear_shadow_provider(shadow_factor, this);
         impl_->renderer = nullptr;
     }
     try {
@@ -989,6 +981,13 @@ bool LightingService::update(const geometry::MeshLibrary& meshes, const CameraSe
         if (!impl_->settings.shadows || impl_->published.empty()) {
             impl_->clear_maps();
             return !impl_->stats.partial;
+        }
+        const auto mesh_identity = meshes.lifetime_identity();
+        if (impl_->mesh_identity != mesh_identity) {
+            // Handles and revisions can match in distinct library lifetimes.
+            // Retaining the token also detects reconstruction at one address.
+            impl_->mesh_identity = mesh_identity;
+            invalidate();
         }
         std::vector<Caster> casters;
         if (!impl_->collect_casters(meshes, textures, casters)) {

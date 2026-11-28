@@ -965,6 +965,15 @@ void SoftwareRenderer::set_shadow_provider(ShadowFactor provider, const void* us
     impl_->shadow_user = provider ? user : nullptr;
 }
 
+bool SoftwareRenderer::clear_shadow_provider(ShadowFactor provider, const void* user) noexcept {
+    if (impl_->shadow_provider != provider || impl_->shadow_user != user) {
+        return false;
+    }
+    impl_->shadow_provider = nullptr;
+    impl_->shadow_user = nullptr;
+    return true;
+}
+
 void SoftwareRenderer::set_fragment_shader(FragmentShader shader, const void* user) noexcept {
     impl_->fragment_shader = shader;
     impl_->fragment_user = shader ? user : nullptr;

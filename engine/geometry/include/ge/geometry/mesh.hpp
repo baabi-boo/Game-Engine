@@ -218,6 +218,8 @@ struct MeshStatistics {
 // borrowed data and name views survive until that handle is replaced/destroyed.
 class MeshLibrary final {
 public:
+    struct LifetimeIdentity;
+
     explicit MeshLibrary(MeshLibraryLimits limits = {});
     ~MeshLibrary();
     MeshLibrary(const MeshLibrary&) = delete;
@@ -235,6 +237,10 @@ public:
     [[nodiscard]] std::vector<MeshHandle> handles() const;
     [[nodiscard]] MeshStatistics statistics() const noexcept;
     [[nodiscard]] const MeshLibraryLimits& limits() const noexcept;
+    // Opaque cache identity for this construction/destruction lifetime. Retaining
+    // the shared token keeps its identity distinct without retaining the library
+    // or its meshes. Mesh mutations do not change this token.
+    [[nodiscard]] std::shared_ptr<const LifetimeIdentity> lifetime_identity() const noexcept;
     bool assign(ecs::Registry& registry, ge::RuntimeHandle entity, MeshHandle mesh,
                 std::uint32_t first_submesh = 0, std::uint32_t submesh_count = 0) const;
 private:
@@ -245,6 +251,7 @@ private:
     std::vector<std::unique_ptr<Record>> records_;
     std::size_t resident_bytes_{};
     std::uint64_t revision_{};
+    const std::shared_ptr<const LifetimeIdentity> lifetime_identity_;
 };
 
 void register_mesh(core::Kernel& kernel);

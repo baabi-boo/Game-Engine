@@ -229,8 +229,9 @@ struct RetargetUpdate {
 // a paused unrefreshed target cannot repeatedly blend against its prior result.
 // Root capture follows all retargets, before IK. A stripped root cannot be a
 // retarget source. Pose producers must refresh raw locals before each capture;
-// unchanged base playback is skipped. Base clip changes/seams reset automatically;
-// composed graphs require reset_root() for every discontinuity.
+// paused or disabled base playback with an unchanged clock is skipped. Active
+// playback is stripped even when speed or delta time is zero. Base clip changes
+// and seams reset automatically; composed graphs require reset_root() for every discontinuity.
 // Kinematic deltas supersede no other controller: caller grants exclusive target
 // control. One pending delta expires unless applied on the immediately next tick,
 // after origin shifts. Dynamic bodies and CharacterComponent owners are rejected.

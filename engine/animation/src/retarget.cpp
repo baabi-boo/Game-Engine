@@ -776,7 +776,10 @@ RetargetUpdate RetargetService::update(ecs::Registry& registry, AnimationService
         auto* component = registry.get<AnimatedComponent>(entity);
         const auto playback = component->animator.state();
         const bool composed = impl_->bindings.contains(entity) || blend_owns_pose(registry, entity);
-        if (!composed && root.clock_valid && playback.clip == root.playback.clip &&
+        // Active playback republishes raw locals even at zero speed or zero
+        // delta time, so those samples still need their root motion stripped.
+        if (!composed && (!component->enabled || !playback.playing) &&
+            root.clock_valid && playback.clip == root.playback.clip &&
             playback.wrap == root.playback.wrap && playback.time == root.playback.time) {
             ++output.skipped; continue;
         }

@@ -321,7 +321,8 @@ struct RenderGraph::Impl {
                 (resource.image && !resource.image->empty() && Image::valid_dimensions(
                     resource.image->width(), resource.image->height(), limits.images));
             const bool valid_depth = resource.kind != GraphResourceKind::Depth ||
-                (resource.framebuffer && resource.framebuffer->valid());
+                (resource.framebuffer && resource.framebuffer->valid() && Image::valid_dimensions(
+                    resource.framebuffer->width(), resource.framebuffer->height(), limits.images));
             if (!valid_image || !valid_depth) {
                 return fail(GraphError::InvalidImport, resource.name, {}, resource_handle(index));
             }

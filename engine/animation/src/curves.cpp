@@ -189,10 +189,16 @@ CurveSample<Value> evaluate_segment(const CurveKey<Value>& first,
 }
 
 math::Vec3 rotation_velocity(math::Quat first, math::Quat second, double duration) noexcept {
+    if (first == second) { return {}; }
     auto delta = math::normalized(second * math::conjugate(first));
     if (delta.w < 0.0) { delta = -delta; }
-    const auto [axis, angle] = math::to_axis_angle(delta);
-    return axis * (angle / duration);
+    const math::Vec3 imaginary{delta.x, delta.y, delta.z};
+    const double sine = math::length(imaginary);
+    if (sine == 0.0) { return {}; }
+    // The general axis-angle helper collapses rotations within its epsilon.
+    // Curves must retain those rotations and their per-second derivatives.
+    const double angle = 2.0 * std::atan2(sine, delta.w);
+    return (imaginary / sine) * (angle / duration);
 }
 
 bool valid_mapping(CurveTimeMapping mapping) noexcept {
@@ -993,24 +999,30 @@ CurveUpdate CurveService::update(scene::Scene& scene_graph, physics::PhysicsWorl
         const auto transform = resource->value.sample(next, entry->baseline, playback.wrap);
         const auto traversal = traverse_curve_markers(resource->value.markers(), resource->value.duration(),
             current, next, playback.wrap, event_budget - report.events.size());
+        const auto previous_events = report.events.size();
         if (!transform || !traversal.result) { error = CurveError::NonFiniteResult; }
-        else if (playback.route == CurveBindingRoute::SceneLocal) {
-            if (!scene_graph.set_local_transform(playback.entity, *transform)) { error = CurveError::SceneRejected; }
-        } else {
-            const auto body = physics_world->find(playback.entity);
-            const bool applied = playback.route == CurveBindingRoute::PhysicsKinematic ?
-                physics_world->set_kinematic_target(body, *transform) : physics_world->set_pose(body, *transform, true);
-            if (!applied) { error = CurveError::PhysicsRejected; }
+        else {
+            // Prepare all allocating marker copies before publishing the transform.
+            // A failed destination write discards this player's staged markers.
+            for (const auto& event : traversal.events) {
+                report.events.push_back({playback.handle, playback.set, playback.entity,
+                    resource->value.markers()[event.event_index], event.cycle, event.reverse});
+            }
+            if (playback.route == CurveBindingRoute::SceneLocal) {
+                if (!scene_graph.set_local_transform(playback.entity, *transform)) { error = CurveError::SceneRejected; }
+            } else {
+                const auto body = physics_world->find(playback.entity);
+                const bool applied = playback.route == CurveBindingRoute::PhysicsKinematic ?
+                    physics_world->set_kinematic_target(body, *transform) : physics_world->set_pose(body, *transform, true);
+                if (!applied) { error = CurveError::PhysicsRejected; }
+            }
         }
         playback.last_error = error;
         if (error != CurveError::None) {
+            report.events.resize(previous_events);
             playback.playing = false;
             ++report.rejected;
             continue;
-        }
-        for (const auto& event : traversal.events) {
-            report.events.push_back({playback.handle, playback.set, playback.entity,
-                resource->value.markers()[event.event_index], event.cycle, event.reverse});
         }
         if (traversal.truncated) { ++report.truncated_players; }
         playback.time = next;

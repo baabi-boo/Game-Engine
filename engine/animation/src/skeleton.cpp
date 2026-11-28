@@ -747,20 +747,17 @@ AnimationUpdate AnimationService::update(ecs::Registry& registry, scene::Scene* 
         }
         const auto* skeleton = skeletons.get(component.skeleton);
         if (!skeleton) { ++output.errors; continue; }
-        const auto update = component.animator.advance(*skeleton, clips, delta_seconds,
+        // A bound scene batch can reject even a valid pose. Keep its playback
+        // cursor, crossfade and events unpublished until that batch succeeds.
+        std::optional<Animator> candidate;
+        if (!component.bone_entities.empty()) { candidate = component.animator; }
+        auto& animator = candidate ? *candidate : component.animator;
+        const auto update = animator.advance(*skeleton, clips, delta_seconds,
             std::min<std::size_t>(256, event_limit - output.events.size()));
         if (!update.result) { ++output.errors; continue; }
-        if (update.events_truncated) { ++output.truncated_entities; }
-        const auto& state = component.animator.state();
-        if (const auto* clip = clips.get(state.clip)) {
-            for (const auto& occurrence : update.events) {
-                const auto& event = clip->events()[occurrence.event_index];
-                output.events.push_back({entity, state.clip, event.name, event.payload, occurrence.clip_time, occurrence.reverse});
-            }
-        }
         if (!component.bone_entities.empty()) {
             bool valid_binding = scene_graph && component.bone_entities.size() == skeleton->size() &&
-                component.animator.pose().compatible(*skeleton);
+                animator.pose().compatible(*skeleton);
             std::vector<scene::LocalTransformEdit> edits;
             if (valid_binding) {
                 auto unique = component.bone_entities;
@@ -774,9 +771,21 @@ AnimationUpdate AnimationService::update(ecs::Registry& registry, scene::Scene* 
                 valid_binding = scene_graph->contains(bone_entity) &&
                     !registry.has<physics::BodyComponent>(bone_entity) && (parent == no_bone ||
                     scene_graph->parent(bone_entity) == component.bone_entities[parent]);
-                if (valid_binding) { edits.push_back({bone_entity, component.animator.pose().local[index]}); }
+                if (valid_binding) { edits.push_back({bone_entity, animator.pose().local[index]}); }
             }
-            if (!valid_binding || !scene_graph->apply_local_transforms(edits)) { ++output.errors; }
+            if (!valid_binding || !scene_graph->apply_local_transforms(edits)) {
+                ++output.errors;
+                continue;
+            }
+        }
+        if (candidate) { component.animator = std::move(*candidate); }
+        if (update.events_truncated) { ++output.truncated_entities; }
+        const auto& state = component.animator.state();
+        if (const auto* clip = clips.get(state.clip)) {
+            for (const auto& occurrence : update.events) {
+                const auto& event = clip->events()[occurrence.event_index];
+                output.events.push_back({entity, state.clip, event.name, event.payload, occurrence.clip_time, occurrence.reverse});
+            }
         }
         (void)registry.mark_changed<AnimatedComponent>(entity);
         ++output.animated;

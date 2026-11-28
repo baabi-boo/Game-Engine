@@ -16,9 +16,9 @@ not create additional agents. Runtime capacity is three simultaneous workers.
 
 ## Status
 
-Work is in progress. The first 22 distinct workers have completed their assigned
-reviews or repairs. Further subsystem review, repairs and independent integration
-reviews remain. The active `AUDIT-20261128` task and its source-matching receipts
+Work is in progress. 37 distinct workers have been launched and
+34 have completed their assigned reviews or repairs. Further subsystem
+review, repairs and independent integration reviews remain. The active `AUDIT-20261128` task and its source-matching receipts
 are the authoritative acceptance record. A published intermediate checkpoint is
 not completion of the 100-worker request or production qualification.
 
@@ -47,7 +47,31 @@ not completion of the 100-worker request or production qualification.
 Read-only review found no definite defect in the assigned partition, spatial
 index, image, material or rasterizer contracts. Those reviews are bounded source
 inspections, not exhaustive correctness proofs. Worker 022 reproduced a batching
-cache lifetime defect; its repair is queued for the next checkpoint.
+cache lifetime defect; worker 023 supplied the integrated repair.
+
+## Second checkpoint changes
+
+- Mesh libraries expose an opaque lifetime token shared by render batching and
+  lighting caches. Reconstructed libraries cannot reuse stale geometry or shadows
+  merely because their address, pool handles and revisions match.
+- Imported render-graph depth surfaces obey dimension and pixel budgets.
+- Lighting uses the shared stable camera matrix path and releases renderer shadow
+  callbacks only when both function and owner still match.
+- Postprocess and decal services reject detach requests for a different graph,
+  preserving the active graph's callback and accurate attachment state.
+- Bound skeleton animation advances only when its scene transform batch succeeds.
+  Curve markers allocate before transform publication, preserving player/scene
+  agreement when payload allocation fails.
+- Additive rotations extrapolate the shortest angular delta accurately. Quaternion
+  curves retain small rotations and their velocity, and the shared direction
+  rotation helper preserves small and nearly opposite IK corrections.
+- Root extraction strips newly refreshed poses at zero playback speed or zero frame
+  delta while retaining the paused playback baseline.
+
+Mixer and spatial-audio source reviews found no definite defect in their assigned
+contracts. A newly identified component-address reuse issue is being repaired with
+one shared ECS instance identity and explicit adoption by animation bindings; this
+remains outstanding at this checkpoint.
 
 ## Verification scope
 

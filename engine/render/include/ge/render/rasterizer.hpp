@@ -164,6 +164,9 @@ public:
     // Scene views use this shadow provider. Immediate draws use their supplied
     // ShadingContext; the fragment shader override applies to both entry points.
     void set_shadow_provider(ShadowFactor provider, const void* user = nullptr) noexcept;
+    // Release a borrowed callback only if both its function and user still match.
+    // A replacement installed by another owner is preserved.
+    bool clear_shadow_provider(ShadowFactor provider, const void* user = nullptr) noexcept;
     void set_fragment_shader(FragmentShader shader, const void* user = nullptr) noexcept;
     bool submit(const RasterDraw& draw);
     void clear_queue() noexcept;
