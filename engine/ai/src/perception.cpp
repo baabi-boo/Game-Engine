@@ -832,6 +832,7 @@ void PerceptionService::update(const core::Frame& frame, spatial::SpatialIndex* 
     const std::size_t slot_count = state.slots.size() - 1;
     const std::size_t first_slot = state.round_robin;
     std::size_t next_slot = first_slot;
+    std::optional<std::size_t> first_deferred_slot;
     for (std::size_t offset = 0; offset < slot_count; ++offset) {
         const std::size_t slot_index = 1 + ((first_slot - 1 + offset) % slot_count);
         auto& slot = state.slots[slot_index];
@@ -842,6 +843,9 @@ void PerceptionService::update(const core::Frame& frame, spatial::SpatialIndex* 
         }
         auto& sensor = *slot;
         ++state.stats.sensors;
+        // Shared work budgets must rotate even when every sensor fits the
+        // sampling budget, or when utility runs between scheduled samples.
+        if (state.stats.sensors == 1) { next_slot = 1 + (slot_index % slot_count); }
         sensor.deferred = false;
         state.decay(sensor);
         const auto* matrix = state.scene_graph.cached_world_matrix(sensor.owner);
@@ -865,13 +869,15 @@ void PerceptionService::update(const core::Frame& frame, spatial::SpatialIndex* 
                 state.see(sensor, index, collision, elapsed);
                 state.hear(sensor);
                 sensor.last_sensed = state.now;
-                next_slot = 1 + (slot_index % slot_count);
-            } else { sensor.deferred = true; }
+            } else {
+                sensor.deferred = true;
+                if (!first_deferred_slot) { first_deferred_slot = slot_index; }
+            }
         } else if (sensor.config.enabled && !sensor.pose_valid) { sensor.deferred = true; }
         state.choose(sensor);
         state.stats.memories += sensor.memories.size();
     }
-    state.round_robin = next_slot;
+    state.round_robin = first_deferred_slot.value_or(next_slot);
 }
 
 void register_perception(core::Kernel& kernel) {

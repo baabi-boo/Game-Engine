@@ -90,8 +90,7 @@ MessageKey message_key(const PacketHeader& header) noexcept {
 struct OutgoingFragment {
     PacketHeader header;
     std::vector<std::byte> payload;
-    std::optional<std::uint32_t> packet_sequence;
-    std::uint32_t transmissions{};
+    std::vector<std::uint32_t> packet_sequences;
     double first_sent{};
     double last_sent{};
     double retry_delay{};
@@ -378,6 +377,7 @@ struct ProtocolPeer::Impl {
     std::optional<MessageKey> assembly_cursor;
     std::uint32_t next_packet{};
     std::size_t send_bytes{};
+    std::size_t inflight_fragments{};
     std::size_t receive_bytes{};
     std::size_t receive_messages{};
     double now{};
@@ -433,8 +433,11 @@ struct ProtocolPeer::Impl {
             limits.minimum_rto_seconds, limits.maximum_rto_seconds);
     }
     void erase_outgoing(std::map<std::uint64_t, OutgoingFragment>::iterator it) noexcept {
-        if (it->second.packet_sequence) {
-            transmissions.erase(*it->second.packet_sequence);
+        for (const auto sequence : it->second.packet_sequences) {
+            transmissions.erase(sequence);
+        }
+        if (!it->second.packet_sequences.empty()) {
+            --inflight_fragments;
         }
         send_bytes -= it->second.payload.size();
         const auto message = send_messages.find(message_key(it->second.header));
@@ -458,7 +461,7 @@ struct ProtocolPeer::Impl {
             }
             const auto fragment = outgoing.find(sent->second);
             if (fragment != outgoing.end()) {
-                if (fragment->second.transmissions == 1) {
+                if (fragment->second.packet_sequences.size() == 1) {
                     update_rtt(now - fragment->second.last_sent);
                 }
                 increment(stats.acknowledged_fragments);
@@ -581,7 +584,7 @@ struct ProtocolPeer::Impl {
         result.pending_send_bytes = send_bytes;
         result.retained_receive_messages = receive_messages;
         result.retained_receive_bytes = receive_bytes;
-        result.inflight_fragments = transmissions.size();
+        result.inflight_fragments = inflight_fragments;
         return result;
     }
 };
@@ -786,7 +789,7 @@ std::vector<WireDatagram> ProtocolPeer::pump(double now_seconds,
         state.send_cursor = it->first;
         auto& fragment = it->second;
         const bool is_reliable = reliable(fragment.header.delivery);
-        const bool retransmission = fragment.transmissions != 0;
+        const bool retransmission = !fragment.packet_sequences.empty();
         if (retransmission && now_seconds - fragment.first_sent >= state.limits.reliable_lifetime_seconds) {
             state.failure = ProtocolError::ReliableExpired;
             break;
@@ -794,7 +797,7 @@ std::vector<WireDatagram> ProtocolPeer::pump(double now_seconds,
         if (retransmission && now_seconds - fragment.last_sent < fragment.retry_delay) {
             continue;
         }
-        if (fragment.transmissions >= state.limits.max_transmissions) {
+        if (fragment.packet_sequences.size() >= state.limits.max_transmissions) {
             state.failure = ProtocolError::RetryExhausted;
             break;
         }
@@ -804,7 +807,7 @@ std::vector<WireDatagram> ProtocolPeer::pump(double now_seconds,
         const auto wire_size = packet_header_bytes + fragment.payload.size();
         if (wire_size > max_wire_bytes - emitted_bytes ||
             (is_reliable && !retransmission &&
-             state.transmissions.size() >= state.limits.max_inflight_fragments)) {
+             state.inflight_fragments >= state.limits.max_inflight_fragments)) {
             continue;
         }
         if (state.transmissions.contains(state.next_packet)) {
@@ -820,19 +823,21 @@ std::vector<WireDatagram> ProtocolPeer::pump(double now_seconds,
             break;
         }
         if (is_reliable) {
-            state.transmissions.emplace(state.next_packet, it->first);
-            if (fragment.packet_sequence) {
-                state.transmissions.erase(*fragment.packet_sequence);
+            // Retain every bounded attempt so a delayed ACK can still retire
+            // the fragment after a retry has acquired a fresh packet sequence.
+            if (!retransmission) {
+                fragment.packet_sequences.reserve(state.limits.max_transmissions);
             }
-            fragment.packet_sequence = state.next_packet;
+            state.transmissions.emplace(state.next_packet, it->first);
+            fragment.packet_sequences.push_back(state.next_packet);
             fragment.retry_delay = retransmission ?
                 std::min(state.limits.maximum_rto_seconds, fragment.retry_delay * 2) :
                 state.stats.retransmission_timeout_seconds;
             if (!retransmission) {
                 fragment.first_sent = now_seconds;
+                ++state.inflight_fragments;
             }
             fragment.last_sent = now_seconds;
-            ++fragment.transmissions;
         }
         result.push_back({std::move(encoded.bytes), state.next_packet, retransmission});
         ++state.next_packet;
@@ -906,6 +911,7 @@ void ProtocolPeer::close() noexcept {
     impl_->assemblies.clear();
     impl_->inbox.clear();
     impl_->send_bytes = 0;
+    impl_->inflight_fragments = 0;
     impl_->receive_bytes = 0;
     impl_->receive_messages = 0;
     impl_->failure = ProtocolError::Failed;

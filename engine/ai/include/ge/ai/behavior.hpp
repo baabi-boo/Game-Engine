@@ -165,6 +165,7 @@ struct BehaviorActionContext {
 // Trusted callbacks are bounded and nonreentrant. exit owns resource cleanup and
 // runs once after entry is attempted, including rejected entry, aborts and faults.
 // Running actions pin callbacks; replacing a registration cannot alter them.
+// Losing the entity or attachment during a callback aborts the current traversal.
 struct BehaviorAction {
     std::function<bool(BehaviorActionContext&)> enter;
     std::function<BehaviorStatus(BehaviorActionContext&)> tick;
@@ -226,8 +227,8 @@ struct BehaviorStatistics {
     std::uint64_t origin_invalidations{};
     bool invalid_frame{};
 };
-// Registry is the only entity owner. A cloned BehaviorComponent never transfers
-// ownership. Boards and node state belong to this service and are not cloned.
+// Registry is the only entity owner. A cloned or replaced BehaviorComponent never
+// transfers ownership. Boards and node state belong to this service and are not cloned.
 // MoveTo requires an existing Manual CharacterSystem character and no follower;
 // it temporarily claims Navigation authority, owns its request/follower, and
 // follows the graph node nearest the target within snap_distance. It never

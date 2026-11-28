@@ -199,7 +199,9 @@ struct ReceivedMessage {
 // Reliable modes admit at most 64 message positions beyond the next contiguous
 // completion; ordered delivery starts at sequence zero. Unreliable and sequenced
 // messages may be dropped. Retransmits use a fresh packet sequence.
-// receive performs at most 65 ACK lookups and 64 ordered publications per call.
+// ACKs for any retained attempt complete a fragment; each inflight fragment
+// retains at most limits.max_transmissions packet identities until acknowledged.
+// receive processes at most 65 ACK entries and 64 ordered publications per call.
 // Allocation failures propagate; all allocations have configured size bounds.
 class ProtocolPeer {
 public:

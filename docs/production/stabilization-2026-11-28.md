@@ -16,8 +16,8 @@ not create additional agents. Runtime capacity is three simultaneous workers.
 
 ## Status
 
-Work is in progress. 48 distinct workers have been launched and
-45 have completed their assigned reviews or repairs. Further subsystem
+Work is in progress. 57 distinct workers have been launched and
+54 have completed their assigned reviews or repairs. Further subsystem
 review, repairs and independent integration reviews remain. The active `AUDIT-20261128` task and its source-matching receipts
 are the authoritative acceptance record. A published intermediate checkpoint is
 not completion of the 100-worker request or production qualification.
@@ -96,6 +96,25 @@ The terrain review covers height queries and render bindings; the current physic
 module has no terrain heightfield collision consumer. That feature is not implied
 by passing terrain tests.
 
+## Fourth checkpoint changes
+
+- UTF-16 conversion errors identify the input code-unit position when UTF-8 output
+  exceeds its budget, including supplementary characters.
+- Reliable networking retains bounded retry identities so delayed ACKs release
+  the correct message and fragment reservations. Raw transport queues age packets
+  from the first valid pump even when send budgets defer their first attempt.
+- Replication distinguishes evicted unread frames from an already-consumed cursor
+  frame, avoiding false history-loss reports and unnecessary prediction resyncs.
+- Server prediction refreshes live collision layers before processing inputs, so
+  simulation and captured authoritative metadata agree.
+- Journal replay rejects transaction IDs that cannot form a valid checkpoint
+  manifest, preserving strict recovery and reopen behavior.
+- Behavior execution aborts and cleans up when a callback invalidates its
+  attachment, and component replacement cannot silently inherit an attachment.
+- Perception rotates priority under shared query budgets. Road edits budget the
+  resources they retain after connector retirement, and partial-lane routing uses
+  a consistent remaining-time bound.
+
 ## Verification scope
 
 The local toolchain is Linux x86-64, GCC 14.2, CMake 4.4.5, Ninja 1.13.2 and
@@ -108,7 +127,9 @@ Focused repair regressions retain before/after evidence where applicable.
 Current frozen-checkpoint development, release and package qualification must be
 read from the task receipts; earlier runs do not qualify later source changes.
 
-An exploratory ASan/UBSan native run passed 21 suites. LeakSanitizer aborts under
+An intermediate ASan/UBSan native run passed 49 suites on the unchanged source
+recorded in the worker register. The associated Debug run passed all 59 suites.
+Later source changes require fresh qualification. LeakSanitizer aborts under
 this execution environment's process tracing. Local instrumented runs therefore
 use `ASAN_OPTIONS=halt_on_error=1:abort_on_error=1:detect_leaks=0` and
 `UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1` with raw CTest. Repository presets

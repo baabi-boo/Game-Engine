@@ -886,6 +886,7 @@ PredictionResult PredictionService::advance(double delta_seconds, std::uint64_t 
             continue;
         }
         if (record.state.role == PredictionRole::Server) {
+            record.state.predicted.layers = impl_->physics->registry().layers(record.state.entity);
             record.state.predicted.enabled = impl_->physics->registry().enabled(record.state.entity);
             record.state.predicted.physics_enabled = impl_->physics->get(record.body)->enabled;
         }

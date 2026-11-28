@@ -438,6 +438,7 @@ struct ReplicationService::Impl {
         ReplicationPeerState state;
         std::deque<SnapshotFrame> sent;
         std::deque<SnapshotFrame> received;
+        std::uint64_t evicted_received{};
         std::uint64_t ack_sequence{};
         std::uint64_t ack_hash{};
         bool ack_pending{};
@@ -483,22 +484,28 @@ struct ReplicationService::Impl {
             [sequence](const SnapshotFrame& frame) { return frame.sequence == sequence; });
         return found == frames.end() ? nullptr : &*found;
     }
-    void drop_front(std::deque<SnapshotFrame>& frames) noexcept {
+    void drop_front(std::deque<SnapshotFrame>& frames, std::uint64_t* evicted = nullptr) noexcept {
+        if (evicted) *evicted = frames.front().sequence;
         history_states -= frames.front().entities.size();
         frames.pop_front();
     }
-    bool admit_history(std::deque<SnapshotFrame>& frames, std::size_t states) {
-        while (frames.size() > 1 && frames.size() >= config.history_frames) drop_front(frames);
+    bool admit_history(std::deque<SnapshotFrame>& frames, std::size_t states,
+        std::uint64_t* evicted = nullptr) {
+        while (frames.size() > 1 && frames.size() >= config.history_frames) drop_front(frames, evicted);
         while (states > config.max_history_states - history_states) {
             std::deque<SnapshotFrame>* oldest{};
+            std::uint64_t* oldest_evicted{};
             for (auto& [handle, peer] : peers) {
                 (void)handle;
                 for (auto* history : {&peer.sent, &peer.received}) {
-                    if (history->size() > 1 && (!oldest || history->size() > oldest->size())) oldest = history;
+                    if (history->size() > 1 && (!oldest || history->size() > oldest->size())) {
+                        oldest = history;
+                        oldest_evicted = history == &peer.received ? &peer.evicted_received : nullptr;
+                    }
                 }
             }
             if (!oldest) break;
-            drop_front(*oldest);
+            drop_front(*oldest, oldest_evicted);
         }
         return states <= config.max_history_states - history_states;
     }
@@ -748,7 +755,8 @@ struct ReplicationService::Impl {
         SnapshotFrame frame;
         const auto reconstructed = reconstruct_snapshot(packet, baseline, frame, config);
         if (!reconstructed) return reconstructed.error;
-        if (!admit_history(peer.received, repeated_full ? 0 : frame.entities.size())) return ReplicationError::Capacity;
+        if (!admit_history(peer.received, repeated_full ? 0 : frame.entities.size(),
+            &peer.evicted_received)) return ReplicationError::Capacity;
         const auto error = apply(peer, frame);
         if (error != ReplicationError::None) return error;
         const auto count = frame.entities.size();
@@ -1144,8 +1152,7 @@ SnapshotHistory ReplicationService::received_since(PeerHandle handle, std::uint6
     if (found == impl_->peers.end()) return result;
     result.latest_sequence = found->second.state.last_received;
     const auto& frames = found->second.received;
-    result.history_lost = sequence != 0 && result.latest_sequence > sequence &&
-        (frames.empty() || frames.front().sequence > sequence);
+    result.history_lost = sequence != 0 && found->second.evicted_received > sequence;
     limit = std::min(limit, impl_->config.history_frames);
     for (const auto& frame : frames) {
         if (result.frames.size() >= limit) break;

@@ -28,8 +28,8 @@ class TextException final : public std::runtime_error {
 public:
     TextException(TextError code, std::size_t offset, std::string message);
     [[nodiscard]] TextError code() const noexcept;
-    // Byte offset for UTF-8/patterns, UTF-16 unit offset for conversion;
-    // catalog line syntax uses a one-based line number. Zero may mean unspecified.
+    // Byte offset for UTF-8 input/patterns; UTF-16 input unit offset for from_utf16.
+    // Catalog line syntax uses a one-based line number. Zero may mean unspecified.
     [[nodiscard]] std::size_t offset() const noexcept;
 private:
     TextError code_;

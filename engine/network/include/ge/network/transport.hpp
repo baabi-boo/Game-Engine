@@ -113,6 +113,7 @@ struct TransportLimits {
     std::size_t max_error_events{128};
     // Each admitted peer reserves its configured send+receive byte ceilings.
     std::size_t max_protocol_reserved_bytes{64U * 1024U * 1024U};
+    // Datagrams queued before the first valid pump begin aging at that pump.
     double queued_lifetime_seconds{2.0};
 };
 [[nodiscard]] TransportError validate_transport_limits(const TransportLimits& limits) noexcept;

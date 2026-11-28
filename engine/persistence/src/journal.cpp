@@ -543,6 +543,7 @@ std::size_t replay_record(State& state, std::span<const std::byte> remaining,
         fail(JournalError::Truncated, "incomplete journal record payload or trailer");
     }
     if (state.sequence == maximum_id || sequence != state.sequence + 1 || transaction == 0 ||
+        transaction > sequence ||
         preceding != state.tail_checksum || state.records >= limits.max_records) {
         fail(JournalError::Corrupt, "record sequence, chain, transaction, or count is invalid");
     }

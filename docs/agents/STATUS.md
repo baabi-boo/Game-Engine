@@ -3,11 +3,11 @@
 # Agent project status
 
 - **Project:** Game Engine
-- **Ledger revision:** 536
-- **Recorded update:** 2026\-11\-28T10:46:27.319437Z
+- **Ledger revision:** 539
+- **Recorded update:** 2026\-11\-28T11:03:51.627387Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 772f59b96579d6a1ca211f08ee3fb1092338260a4e42992dac7122d28b1beb35
-- **Source files:** 281
+- **Source fingerprint:** 55ce24797255ff00d6eff5e5fcb94ee6d8d5426f90d68ee4ec37e32300c6f5aa
+- **Source files:** 290
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -41,7 +41,7 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 | CODE\-INTEGRATION: Integrate source\-only 100\-agent engine expansion | 0 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
 | M0\-FOUNDATION: Published headless foundation | 0 | M0 | done | setup\-coordinator | none | Preserve historical evidence and continue through the first playable gates. |
 | OPS\-AGENT\-SYSTEM: Install agent coordination and automatic project\-state updates | 0 | OPS | done | coordinator | none | For the next authorized session, inspect the published branch and hosted CI, follow docs/agents/CONTINUE.md, and select M1\-010 only when first\-playable work is within the current user objective. |
-| AUDIT\-20261128: Compile, connect and review existing engine source with 100 actual workers | 1 | M1 | in\_progress | coordinator | none | Run frozen third development gate and publish checkpoint; continue localization and network repairs and remaining reviews to100. |
+| AUDIT\-20261128: Compile, connect and review existing engine source with 100 actual workers | 1 | M1 | in\_progress | coordinator | none | Run first optimized Release gate and central Debug regression execution on frozen source; continue remaining isolated reviews toward100. |
 | CODE\-001: Spatial mathematics | 1 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
 | CODE\-DEPENDENCIES: Declare runtime expansion dependency policy | 1 | OPS | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
 | CODE\-002: Bounded allocation and containers | 2 | M1 | planned | unowned | none | Review and repair delivered source under AUDIT\-20261128; original acceptance remains unproven. |
@@ -190,8 +190,8 @@ Milestone focus is planning context. Acceptance of its work remains explicit.
 - Claim revision: 525
 - Write scope: engine/, apps/, tests/, tools/, cmake/, CMakeLists.txt, CMakePresets.json, README.md, docs/architecture/, docs/development/, docs/production/, docs/quality\-gates.md, .github/workflows/ci.yml
 - Blocker: none
-- Preserved work: Integrated shared component ownership across animation and particles, navmesh and terrain ownership/sampling, VM fairness and config transactions. Forty\-eight workers launched; 45 completed.
-- Next action: Run frozen third development gate and publish checkpoint; continue localization and network repairs and remaining reviews to100.
+- Preserved work: Intermediate59\-suite Debug and49\-suite ASan/UBSan checks passed. Integrated workers049\-054 replication, prediction, journal, behavior, perception and roads.57 launched,54 complete.
+- Next action: Run first optimized Release gate and central Debug regression execution on frozen source; continue remaining isolated reviews toward100.
 
 
 ## Evidence observations
@@ -207,7 +207,8 @@ These are historical observations. A pass neither completes a task nor remains c
 | RUN-000005 | AUDIT\-20261128 | dev | passed | eeb75026bf9d5fd5 (historical) | 2026\-11\-28T07:13:06.896504Z |
 | RUN-000006 | AUDIT\-20261128 | dev | passed | 56e69ecb94636f2e (historical) | 2026\-11\-28T10:09:36.198255Z |
 | RUN-000007 | AUDIT\-20261128 | dev | passed | c79ae93cf1599ccb (historical) | 2026\-11\-28T10:30:35.974048Z |
-| RUN-000008 | AUDIT\-20261128 | dev | passed | 772f59b96579d6a1 (recorded snapshot) | 2026\-11\-28T10:46:27.279201Z |
+| RUN-000008 | AUDIT\-20261128 | dev | passed | 772f59b96579d6a1 (historical) | 2026\-11\-28T10:46:27.279201Z |
+| RUN-000009 | AUDIT\-20261128 | release | passed | 55ce24797255ff00 (recorded snapshot) | 2026\-11\-28T11:03:51.593246Z |
 
 ## Completion records
 
@@ -216,9 +217,6 @@ These are historical observations. A pass neither completes a task nor remains c
 
 ## Recent operations
 
-- Revision 517 — 2026\-11\-28T06:42:47.797361Z — coordinator: handoff CODE\-094. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
-- Revision 518 — 2026\-11\-28T06:42:48.067384Z — coordinator: handoff CODE\-095. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
-- Revision 519 — 2026\-11\-28T06:42:48.297229Z — coordinator: handoff CODE\-096. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Revision 520 — 2026\-11\-28T06:42:48.539284Z — coordinator: handoff CODE\-097. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Revision 521 — 2026\-11\-28T06:42:48.782474Z — coordinator: handoff CODE\-098. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
 - Revision 522 — 2026\-11\-28T06:42:49.128592Z — coordinator: handoff CODE\-099. Not started. Recovered at 3dcb0d0 for the newly authorized compile/integration audit; all existing source retained.
@@ -236,5 +234,8 @@ These are historical observations. A pass neither completes a task nor remains c
 - Revision 534 — 2026\-11\-28T10:33:33.217443Z — coordinator: checkpoint AUDIT\-20261128. Published second verified checkpoint 6019b32 with 47 passing suites; integrated skinning mesh lifetime and ECS component identity. Forty distinct workers launched.
 - Revision 535 — 2026\-11\-28T10:45:21.314208Z — coordinator: checkpoint AUDIT\-20261128. Integrated shared component ownership across animation and particles, navmesh and terrain ownership/sampling, VM fairness and config transactions. Forty\-eight workers launched; 45 completed.
 - Revision 536 — 2026\-11\-28T10:46:27.319437Z — coordinator: run\-check AUDIT\-20261128. dev: passed; receipt RUN\-000008; Process exited successfully.
+- Revision 537 — 2026\-11\-28T10:49:15.777850Z — coordinator: checkpoint AUDIT\-20261128. Published third verified checkpoint a8573fb with56 passing suites. Integrated Unicode offsets, retry ACK histories and raw datagram expiry from workers046\-048.
+- Revision 538 — 2026\-11\-28T10:58:43.058348Z — coordinator: checkpoint AUDIT\-20261128. Intermediate59\-suite Debug and49\-suite ASan/UBSan checks passed. Integrated workers049\-054 replication, prediction, journal, behavior, perception and roads.57 launched,54 complete.
+- Revision 539 — 2026\-11\-28T11:03:51.627387Z — coordinator: run\-check AUDIT\-20261128. release: passed; receipt RUN\-000009; Process exited successfully.
 
 The canonical ledger retains the complete operation history.

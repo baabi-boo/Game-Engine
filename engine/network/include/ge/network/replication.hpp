@@ -265,6 +265,8 @@ public:
         double now_seconds, std::size_t message_budget = 32);
     [[nodiscard]] ReplicationResult request_resync(PeerHandle peer);
     [[nodiscard]] const SnapshotFrame* latest_received(PeerHandle peer) const noexcept;
+    // History is lost only when a received frame newer than the nonzero cursor
+    // was evicted. Evicting the cursor itself does not lose unread snapshots.
     [[nodiscard]] SnapshotHistory received_since(PeerHandle peer, std::uint64_t sequence,
         std::size_t limit = 16) const;
     // Samples retain absolute coordinates and never overwrite a physics pose.

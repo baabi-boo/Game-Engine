@@ -83,7 +83,8 @@ void validate_limits(const LocalizationLimits& limits) {
     }
 }
 
-void encode_scalar(std::string& result, char32_t scalar, std::size_t maximum) {
+void encode_scalar(std::string& result, char32_t scalar, std::size_t maximum,
+                   std::size_t source_offset) {
     const auto value = static_cast<std::uint32_t>(scalar);
     std::array<char, 4> bytes{};
     std::size_t count{};
@@ -106,9 +107,12 @@ void encode_scalar(std::string& result, char32_t scalar, std::size_t maximum) {
         bytes[3] = static_cast<char>(0x80U | (value & 0x3fU));
         count = 4;
     } else {
-        fail(TextError::InvalidUnicode, result.size(), "invalid Unicode scalar");
+        fail(TextError::InvalidUnicode, source_offset, "invalid Unicode scalar");
     }
-    append(result, std::string_view(bytes.data(), count), maximum);
+    if (result.size() > maximum || count > maximum - result.size()) {
+        fail(TextError::LimitExceeded, source_offset, "UTF-8 byte limit exceeded");
+    }
+    result.append(bytes.data(), count);
 }
 
 std::string_view language(std::string_view locale) noexcept {
@@ -460,6 +464,7 @@ std::u16string to_utf16(std::string_view text, std::size_t maximum_units) {
 std::string from_utf16(std::u16string_view text, std::size_t maximum_bytes) {
     std::string output;
     for (std::size_t i = 0; i < text.size(); ++i) {
+        const auto source_offset = i;
         auto value = static_cast<std::uint32_t>(text[i]);
         if (value >= 0xd800U && value <= 0xdbffU) {
             const auto next = i + 1 == text.size() ? 0U : static_cast<std::uint32_t>(text[i + 1]);
@@ -471,7 +476,7 @@ std::string from_utf16(std::u16string_view text, std::size_t maximum_bytes) {
         } else if (value >= 0xdc00U && value <= 0xdfffU) {
             fail(TextError::InvalidUnicode, i, "unpaired UTF-16 low surrogate");
         }
-        encode_scalar(output, static_cast<char32_t>(value), maximum_bytes);
+        encode_scalar(output, static_cast<char32_t>(value), maximum_bytes, source_offset);
     }
     return output;
 }

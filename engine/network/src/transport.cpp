@@ -520,6 +520,7 @@ struct NetworkTransport::Impl {
     std::size_t send_cursor{};
     std::size_t peer_cursor{};
     double now{};
+    double first_pump_seconds{};
     bool has_time{};
     bool prioritize_send{};
 #ifdef _WIN32
@@ -823,6 +824,7 @@ PumpResult NetworkTransport::pump(double now_seconds, PumpBudget budget) {
         result.error = TransportError::InvalidTime;
         return result;
     }
+    if (!impl_->has_time) impl_->first_pump_seconds = now_seconds;
     impl_->now = now_seconds;
     impl_->has_time = true;
     if (impl_->stats.open_sockets == 0) return result;
@@ -986,7 +988,7 @@ PumpResult NetworkTransport::pump(double now_seconds, PumpBudget budget) {
         misses = 0;
         ++attempted;
         auto& packet = socket->outgoing.front();
-        if (packet.queued_seconds < 0.0) packet.queued_seconds = now_seconds;
+        if (packet.queued_seconds < 0.0) packet.queued_seconds = impl_->first_pump_seconds;
         const auto* peer = packet.peer ? impl_->get(packet.peer) : nullptr;
         const bool stale = packet.peer && (!peer || peer->protocol->failure() != ProtocolError::None);
         if (stale || now_seconds - packet.queued_seconds > impl_->limits.queued_lifetime_seconds) {

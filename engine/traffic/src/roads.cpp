@@ -555,7 +555,13 @@ RoadResult RoadNetwork::replace(RoadHandle road, RoadDescriptor descriptor) {
     if (!validation) {
         return validation;
     }
-    const std::size_t retained = impl_->sample_count - existing->sample_count;
+    std::size_t retained = impl_->sample_count - existing->sample_count;
+    for (const auto& edge : impl_->connections) {
+        if (impl_->lane(edge.info.from)->info.road == road ||
+            impl_->lane(edge.info.to)->info.road == road) {
+            retained -= edge.points.size();
+        }
+    }
     if (prepared.road->sample_count > impl_->limits.max_total_samples - retained ||
         !impl_->acquire_lanes(prepared)) {
         return {RoadError::Capacity};
@@ -1020,7 +1026,10 @@ RoadRoute RoadNetwork::route(LaneHandle from, double from_distance, LaneHandle t
     search_options.max_output = std::min(options.max_lanes, impl_->limits.max_route_lanes);
     search_options.max_storage_nodes = impl_->limits.max_lanes;
     search_options.max_work = std::min(options.max_work, impl_->limits.max_route_work);
-    search_options.max_cost = options.max_seconds + travel_time(source->points, 0.0, from_distance);
+    // Graph edges charge the complete source lane. Partial-segment trapezoidal
+    // estimates are not additive, so subtract the actual remaining lane time.
+    search_options.max_cost = options.max_seconds + (source->info.travel_seconds -
+        travel_time(source->points, from_distance, source->info.length));
     search_options.expected_revision = result.graph_revision;
     navigation::PathSearch search;
     const auto started = search.begin(*impl_->graph, impl_->lane_nodes[from.index], impl_->lane_nodes[to.index], search_options);

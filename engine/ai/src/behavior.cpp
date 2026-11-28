@@ -246,6 +246,7 @@ struct BehaviorService::Impl {
     struct Record {
         ecs::Entity entity;
         std::uint64_t attachment;
+        std::uint64_t marker_instance{};
         std::string name;
         std::shared_ptr<const BehaviorTree> tree;
         Blackboard board;
@@ -291,7 +292,8 @@ struct BehaviorService::Impl {
     bool owns(const Record& record) const noexcept {
         const auto* owner = registry();
         const auto* marker = owner ? owner->get<BehaviorComponent>(record.entity) : nullptr;
-        return marker && marker->attachment == record.attachment;
+        return marker && marker->attachment == record.attachment &&
+            owner->component_instance<BehaviorComponent>(record.entity) == record.marker_instance;
     }
     Record* find(ecs::Entity entity) const noexcept {
         const auto found = records.find(entity);
@@ -414,12 +416,21 @@ struct BehaviorService::Impl {
     }
     BehaviorStatus finish(Record& record, BehaviorNodeId id, BehaviorStatus outcome,
                           AbortReason reason = AbortReason::Completed) {
+        if (!owns(record)) {
+            outcome = BehaviorStatus::Aborted;
+            reason = AbortReason::EntityLost;
+        }
         for (const auto child : record.tree->data().nodes[id].children) {
             if (record.nodes[child].status == BehaviorStatus::Running) {
                 reset(record, child, reason == AbortReason::Completed ? AbortReason::Preempted : reason);
             }
         }
         release(record, id, outcome, reason);
+        // An exit callback may invalidate the attachment as well as enter/tick.
+        if (!owns(record)) {
+            outcome = BehaviorStatus::Aborted;
+            reason = AbortReason::EntityLost;
+        }
         record.nodes[id].status = outcome;
         if (reason != AbortReason::Completed) { record.reason = reason; }
         return outcome;
@@ -545,6 +556,7 @@ struct BehaviorService::Impl {
         return result && !*result ? BehaviorStatus::Failure : BehaviorStatus::Success;
     }
     BehaviorStatus tick(Record& record, BehaviorNodeId id, std::size_t& budget) {
+        if (!owns(record)) { return finish(record, id, BehaviorStatus::Aborted, AbortReason::EntityLost); }
         if (budget == 0) { return BehaviorStatus::Running; }
         --budget;
         auto& state = record.nodes[id];
@@ -556,7 +568,8 @@ struct BehaviorService::Impl {
         }
         const auto complete = [&](BehaviorStatus outcome) {
             const auto reason = outcome == BehaviorStatus::Success ? AbortReason::Completed : record.reason;
-            return terminal(outcome) ? finish(record, id, outcome, reason) : outcome;
+            return terminal(outcome) || outcome == BehaviorStatus::Aborted ?
+                finish(record, id, outcome, reason) : outcome;
         };
         switch (node.kind) {
         case BehaviorNodeKind::Sequence:
@@ -564,7 +577,7 @@ struct BehaviorService::Impl {
             const bool sequence = node.kind == BehaviorNodeKind::Sequence;
             while (state.cursor < node.children.size()) {
                 const auto result = tick(record, node.children[state.cursor], budget);
-                if (result == BehaviorStatus::Running) { return result; }
+                if (result == BehaviorStatus::Running || result == BehaviorStatus::Aborted) { return complete(result); }
                 if ((result == BehaviorStatus::Failure) == sequence) { return complete(result); }
                 ++state.cursor;
             }
@@ -587,7 +600,7 @@ struct BehaviorService::Impl {
             bool all = true;
             for (const auto child : node.children) {
                 const auto result = tick(record, child, budget);
-                if (result == BehaviorStatus::Failure) { return complete(result); }
+                if (result == BehaviorStatus::Failure || result == BehaviorStatus::Aborted) { return complete(result); }
                 all = all && result == BehaviorStatus::Success;
             }
             return all ? complete(BehaviorStatus::Success) : BehaviorStatus::Running;
@@ -596,7 +609,7 @@ struct BehaviorService::Impl {
         case BehaviorNodeKind::ForceSuccess:
         case BehaviorNodeKind::ForceFailure: {
             const auto result = tick(record, node.children.front(), budget);
-            if (result == BehaviorStatus::Running) { return result; }
+            if (result == BehaviorStatus::Running || result == BehaviorStatus::Aborted) { return complete(result); }
             if (node.kind == BehaviorNodeKind::ForceSuccess) { return complete(BehaviorStatus::Success); }
             if (node.kind == BehaviorNodeKind::ForceFailure) { return complete(BehaviorStatus::Failure); }
             return complete(result == BehaviorStatus::Success ? BehaviorStatus::Failure : BehaviorStatus::Success);
@@ -605,7 +618,7 @@ struct BehaviorService::Impl {
         case BehaviorNodeKind::Retry: {
             const auto child = node.children.front();
             const auto result = tick(record, child, budget);
-            if (result == BehaviorStatus::Running) { return result; }
+            if (result == BehaviorStatus::Running || result == BehaviorStatus::Aborted) { return complete(result); }
             const bool repeat = node.kind == BehaviorNodeKind::Repeat;
             if ((result == BehaviorStatus::Failure) == repeat) { return complete(result); }
             ++state.iterations;
@@ -652,8 +665,10 @@ struct BehaviorService::Impl {
                         return complete(BehaviorStatus::Failure);
                     }
                 }
+                if (!owns(record)) { return complete(BehaviorStatus::Aborted); }
                 auto action_context = context(record, id);
                 const auto result = state.action->tick(action_context);
+                if (!owns(record)) { return complete(BehaviorStatus::Aborted); }
                 if (result != BehaviorStatus::Running && !terminal(result)) {
                     increment(statistics.callback_faults);
                     record.reason = AbortReason::CallbackFault;
@@ -721,7 +736,10 @@ bool BehaviorService::attach(ecs::Entity entity, std::string_view name, bool rep
     auto record = std::make_unique<Impl::Record>(entity, self.next_attachment, std::string(name), definition, self.limits.blackboard);
     record->repeat = repeat;
     const auto inserted = self.records.emplace(entity, std::move(record));
-    try { registry->emplace<BehaviorComponent>(entity, BehaviorComponent{self.next_attachment, BehaviorStatus::Idle, true}); }
+    try {
+        registry->emplace<BehaviorComponent>(entity, BehaviorComponent{self.next_attachment, BehaviorStatus::Idle, true});
+        inserted.first->second->marker_instance = registry->component_instance<BehaviorComponent>(entity);
+    }
     catch (...) { self.records.erase(inserted.first); throw; }
     ++self.next_attachment;
     self.statistics.attachments = self.records.size();
@@ -895,6 +913,12 @@ void BehaviorService::advance(const core::Frame& frame) {
         self.statistics.node_steps += initial - budget;
         ++self.statistics.evaluated;
         if (budget == 0 && record.status == BehaviorStatus::Running) { ++self.statistics.budget_deferred; }
+        if (!self.owns(record)) {
+            self.stop(record, AbortReason::EntityLost);
+            self.records.erase(current_entity);
+            ++self.statistics.removed_stale;
+            continue;
+        }
         self.publish(record);
         if (record.status != previous || terminal(record.status)) { self.emit(record); }
     }
