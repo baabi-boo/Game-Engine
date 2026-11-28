@@ -112,6 +112,7 @@ set(GE_ENGINE_SOURCES
     "${PROJECT_SOURCE_DIR}/engine/editor/src/selection.cpp"
     "${PROJECT_SOURCE_DIR}/engine/animation/src/ik.cpp"
     "${PROJECT_SOURCE_DIR}/engine/animation/src/retarget.cpp"
+    "${PROJECT_SOURCE_DIR}/engine/audio/src/dsp.cpp"
 )
 set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/math/include/ge/math/math.hpp"
@@ -173,4 +174,5 @@ set(GE_ENGINE_HEADERS
     "${PROJECT_SOURCE_DIR}/engine/editor/include/ge/editor/selection.hpp"
     "${PROJECT_SOURCE_DIR}/engine/animation/include/ge/animation/ik.hpp"
     "${PROJECT_SOURCE_DIR}/engine/animation/include/ge/animation/retarget.hpp"
+    "${PROJECT_SOURCE_DIR}/engine/audio/include/ge/audio/dsp.hpp"
 )

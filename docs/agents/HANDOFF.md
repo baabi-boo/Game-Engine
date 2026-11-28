@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 418
-- **Recorded update:** 2026\-11\-27T23:59:26.398647Z
+- **Ledger revision:** 420
+- **Recorded update:** 2026\-11\-28T00:02:12.404746Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 9254e8c2e025e57d464fcadd26ec17cbd76e90f778eb2236d46c3be7b0981e33
-- **Source files:** 230
+- **Source fingerprint:** 0b1a037d9b367245c5e326bcf12b0509e5fe4aed4596bcb37ae2aa4764d4d815
+- **Source files:** 232
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -1346,9 +1346,9 @@ Implement DSP filters, reverberation and effects. User\-authorized source\-only 
 - Write scope: engine/audio/include/ge/audio/dsp.hpp, engine/audio/src/dsp.cpp
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Not started.
-- Files: none recorded
-- Next action: Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.
+- Checkpoint: Actual /root/worker063 delivered DSP filters, reverberation and effects; 1167 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.
+- Files: engine/audio/include/ge/audio/dsp.hpp, engine/audio/src/dsp.cpp
+- Next action: Source integrated for publication; dev acceptance is unrun by explicit user request.
 - Required checks: dev
 
 Acceptance:

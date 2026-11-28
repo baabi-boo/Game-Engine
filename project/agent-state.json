@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 418,
-  "updated_at": "2026-11-27T23:59:26.398647Z",
+  "revision": 420,
+  "updated_at": "2026-11-28T00:02:12.404746Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "9254e8c2e025e57d464fcadd26ec17cbd76e90f778eb2236d46c3be7b0981e33",
-    "file_count": 230
+    "sha256": "0b1a037d9b367245c5e326bcf12b0509e5fe4aed4596bcb37ae2aa4764d4d815",
+    "file_count": 232
   },
   "milestones": [
     {
@@ -3320,9 +3320,12 @@
       "claim_revision": 271,
       "blocker": null,
       "checkpoint": {
-        "summary": "Not started.",
-        "next_action": "Implement source and report exact APIs; coordinator integrates and publishes an untested checkpoint.",
-        "files": []
+        "summary": "Actual /root/worker063 delivered DSP filters, reverberation and effects; 1167 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification.",
+        "next_action": "Source integrated for publication; dev acceptance is unrun by explicit user request.",
+        "files": [
+          "engine/audio/include/ge/audio/dsp.hpp",
+          "engine/audio/src/dsp.cpp"
+        ]
       },
       "evidence": [],
       "completion": null
@@ -7926,6 +7929,22 @@
     {
       "revision": 418,
       "at": "2026-11-27T23:59:26.398647Z",
+      "actor": "coordinator",
+      "action": "reconcile",
+      "task": null,
+      "summary": "Record the exact staged publication source snapshot. This is untested source-only development at user request; no builds, tests, runtime validation or CI observations occurred."
+    },
+    {
+      "revision": 419,
+      "at": "2026-11-28T00:01:59.660181Z",
+      "actor": "worker063",
+      "action": "checkpoint",
+      "task": "CODE-063",
+      "summary": "Actual /root/worker063 delivered DSP filters, reverberation and effects; 1167 nonblank noncomment source lines. Source reviewed by author; no compilation/tests or runtime qualification."
+    },
+    {
+      "revision": 420,
+      "at": "2026-11-28T00:02:12.404746Z",
       "actor": "coordinator",
       "action": "reconcile",
       "task": null,
