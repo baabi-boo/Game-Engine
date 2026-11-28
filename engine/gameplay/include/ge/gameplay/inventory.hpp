@@ -251,6 +251,7 @@ public:
     [[nodiscard]] core::Signal<InventoryChange> change_signal() const noexcept;
     [[nodiscard]] InventoryHistory changes_since(std::uint64_t cursor,
                                                 std::size_t limit = 4096) const;
+    // Retire containers whose owner handle or persistent identity no longer matches.
     void update(const core::Frame& frame);
     // Snapshots include definitions, contents, reservations, locks and receipts.
     // Restore requires no live containers/receipts and resolves persistent owners

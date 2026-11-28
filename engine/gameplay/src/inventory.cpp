@@ -937,7 +937,7 @@ void InventoryService::update(const core::Frame& frame) {
     auto& self = *impl_;
     self.tick = frame.tick;
     for (auto& container : self.containers) {
-        if (!container || !container->specification.owner || self.registry.alive(container->specification.owner)) {
+        if (!container || self.owner_valid(*container)) {
             continue;
         }
         if (!self.room_for_events(1)) {

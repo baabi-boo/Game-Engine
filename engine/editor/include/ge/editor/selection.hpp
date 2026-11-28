@@ -262,8 +262,9 @@ public:
                                           spatial::SpatialIndex* spatial = nullptr,
                                           const SelectionFilter& filter = {},
                                           SelectionContainment containment = SelectionContainment::IntersectBounds);
-    // Choose promptly before Scene or MeshLibrary edits. Query geometry is not
-    // pinned; generation and Scene revision checks cannot pin a mesh revision.
+    // Synchronizes pending Registry edits before validating the Scene revision.
+    // Choose promptly before MeshLibrary edits: query geometry is not pinned,
+    // and generation and Scene revision checks cannot pin a mesh revision.
     // Cycling retains identity among the same sorted target set. Incomplete
     // query results are rejected, so an unknown nearest hit is never committed.
     SelectionResult choose(const SelectionPick& pick, int cycle_steps = 0,

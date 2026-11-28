@@ -523,6 +523,7 @@ struct DialogueService::Impl {
     }
     void abandon(Receipt& receipt) noexcept {
         if (receipt.view.state == DialogueReceiptState::Completed) { return; }
+        bool provider_pending = receipt.provider && (receipt.admitted || receipt.uncertain);
         try {
             if (receipt.script) {
                 if (auto* scripts = kernel.services().find<script::ScriptService>()) {
@@ -531,12 +532,12 @@ struct DialogueService::Impl {
                 }
                 receipt.view.cancellation_pending = static_cast<bool>(receipt.script);
             }
-            if (receipt.provider && (receipt.admitted || receipt.uncertain)) {
+            if (provider_pending) {
                 receipt.view.request.phase = DialogueEffectPhase::Cancel;
-                static_cast<void>(receipt.provider(receipt.view.request));
+                provider_pending = receipt.provider(receipt.view.request).outcome != DialogueEffectOutcome::Completed;
             }
         } catch (...) { receipt.uncertain = true; }
-        receipt.view.cancellation_pending = static_cast<bool>(receipt.script);
+        receipt.view.cancellation_pending = static_cast<bool>(receipt.script) || provider_pending;
         receipt.view.state = receipt.admitted || receipt.uncertain ? DialogueReceiptState::Abandoned : DialogueReceiptState::Rejected;
     }
     void finish(Active& session, DialogueState state, DialogueError error, std::string_view message) noexcept {

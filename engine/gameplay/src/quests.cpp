@@ -312,7 +312,12 @@ struct QuestService::Impl {
                 stage.status = QuestStageStatus::MissingRun; set_reason("retained mission binding unavailable");
             } else {
                 if (terminal(record.status) && record.stop_owned && stage.ownership == QuestMissionOwnership::Owned && run->status == MissionStatus::Active) {
-                    const auto result = record.status == QuestStatus::Failed ? missions.fail(run->id, record.reason) : missions.cancel(run->id, record.reason);
+                    // Quest and mission diagnostics have independent byte bounds.
+                    auto reason = text::truncate_utf8(record.reason, missions.limits().text_bytes);
+                    if (reason.empty()) {
+                        reason = std::string_view("quest terminated").substr(0, missions.limits().text_bytes);
+                    }
+                    const auto result = record.status == QuestStatus::Failed ? missions.fail(run->id, reason) : missions.cancel(run->id, reason);
                     if (result) { run = missions.inspect(stage.mission_run); }
                 }
                 if (run) {

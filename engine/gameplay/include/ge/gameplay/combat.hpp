@@ -89,6 +89,7 @@ struct CombatResult {
 };
 
 struct DamageResult {
+    // Rejected resolutions carry only error/target; no outcome was committed.
     CombatError error{CombatError::None};
     ecs::Entity target{};
     std::uint64_t sequence{};

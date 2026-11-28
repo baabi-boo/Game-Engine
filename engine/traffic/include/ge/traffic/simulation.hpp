@@ -122,6 +122,7 @@ struct TrafficAgentState {
     std::uint64_t tick{};
     double route_distance{};
     double remaining_distance{};
+    // Chassis speed magnitude; reverse and lateral motion are not stopped.
     double speed{};
     double target_speed{};
     double lateral_error{};
@@ -139,6 +140,7 @@ struct LaneOccupancy {
     LaneHandle connector_to{};
     math::Vec3 absolute_position{};
     double distance{};
+    // Nonnegative forward speed used for following; reverse motion is zero.
     double speed{};
     double length{};
     double width{};
@@ -214,6 +216,8 @@ struct TrafficStatistics {
 // Entered reservations remain quarantined until their vehicle is observed clear;
 // lease expiry alone never releases a possibly occupied intersection.
 // Destruction never touches borrowed services. Call shutdown while they live.
+// update and shutdown do nothing while the registry is iterating or physics is
+// stepping; retry when both are idle. A skipped update does not consume its tick.
 class TrafficSimulation final {
 public:
     TrafficSimulation(RoadNetwork& roads, physics::VehicleSystem& vehicles,

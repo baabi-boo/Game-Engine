@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 539,
-  "updated_at": "2026-11-28T11:03:51.627387Z",
+  "revision": 543,
+  "updated_at": "2026-11-28T11:15:56.077982Z",
   "project": {
     "name": "Game Engine",
     "objective": "Develop an independent open-world engine through evidence-backed, bounded native milestones using public knowledge and original content.",
@@ -27,8 +27,8 @@
     ]
   },
   "source_snapshot": {
-    "sha256": "55ce24797255ff00d6eff5e5fcb94ee6d8d5426f90d68ee4ec37e32300c6f5aa",
-    "file_count": 290
+    "sha256": "d61185706ba89a8cc776e18e021dd9edfedad4cd4d38702c9b417b26434f941d",
+    "file_count": 298
   },
   "milestones": [
     {
@@ -4479,8 +4479,8 @@
       "claim_revision": 525,
       "blocker": null,
       "checkpoint": {
-        "summary": "Intermediate59-suite Debug and49-suite ASan/UBSan checks passed. Integrated workers049-054 replication, prediction, journal, behavior, perception and roads.57 launched,54 complete.",
-        "next_action": "Run first optimized Release gate and central Debug regression execution on frozen source; continue remaining isolated reviews toward100.",
+        "summary": "73 Debug suites passed. Package relocation ran installed binaries successfully but rejected the source-local Ninja dependency; copied build tools outside the checkout without weakening package checks.",
+        "next_action": "Reconfigure cached tool paths and rerun package gate on unchanged source, then integrate low-level repairs and complete remaining reviews.",
         "files": []
       },
       "evidence": [
@@ -4488,7 +4488,9 @@
         "RUN-000006",
         "RUN-000007",
         "RUN-000008",
-        "RUN-000009"
+        "RUN-000009",
+        "RUN-000010",
+        "RUN-000011"
       ],
       "completion": null
     }
@@ -4832,6 +4834,84 @@
         "path": "out/agent-runs/RUN-000009-56b98d68081f47c68b460f73bcdc02f9.log",
         "sha256": "8fd335ce1cd9b2921292a9f246bba647c4a2f96fccec4b2e168b89f083108ebf",
         "bytes": 31326
+      },
+      "note": "Process exited successfully."
+    },
+    {
+      "id": "RUN-000010",
+      "task": "AUDIT-20261128",
+      "check": "package",
+      "actor": "coordinator",
+      "argv": [
+        "python",
+        "tools/ge.py",
+        "package",
+        "--preset",
+        "release",
+        "--jobs",
+        "2"
+      ],
+      "started_at": "2026-11-28T11:10:22.361627Z",
+      "finished_at": "2026-11-28T11:11:31.978787Z",
+      "result": "failed",
+      "exit_code": 1,
+      "source_before": {
+        "sha256": "d61185706ba89a8cc776e18e021dd9edfedad4cd4d38702c9b417b26434f941d",
+        "file_count": 298
+      },
+      "source_after": {
+        "sha256": "d61185706ba89a8cc776e18e021dd9edfedad4cd4d38702c9b417b26434f941d",
+        "file_count": 298
+      },
+      "git": {
+        "status": "git",
+        "commit": "c3fa155f413d0b60bae1634b566be7d077df5a5a",
+        "dirty": false
+      },
+      "platform": "Linux x86_64 / Python 3.12.14",
+      "log": {
+        "path": "out/agent-runs/RUN-000010-1663505472654c2fbd346a730d8496fd.log",
+        "sha256": "87a1b2b159d7425b056ac34d6578cb74c209702d4378604fd5be9be8836e6644",
+        "bytes": 27547
+      },
+      "note": "Process exited with status 1."
+    },
+    {
+      "id": "RUN-000011",
+      "task": "AUDIT-20261128",
+      "check": "package",
+      "actor": "coordinator",
+      "argv": [
+        "python",
+        "tools/ge.py",
+        "package",
+        "--preset",
+        "release",
+        "--jobs",
+        "2"
+      ],
+      "started_at": "2026-11-28T11:15:32.506053Z",
+      "finished_at": "2026-11-28T11:15:56.048018Z",
+      "result": "passed",
+      "exit_code": 0,
+      "source_before": {
+        "sha256": "d61185706ba89a8cc776e18e021dd9edfedad4cd4d38702c9b417b26434f941d",
+        "file_count": 298
+      },
+      "source_after": {
+        "sha256": "d61185706ba89a8cc776e18e021dd9edfedad4cd4d38702c9b417b26434f941d",
+        "file_count": 298
+      },
+      "git": {
+        "status": "git",
+        "commit": "0055ac3dcc9176f5c18ce9154d4a32cdbe33358c",
+        "dirty": false
+      },
+      "platform": "Linux x86_64 / Python 3.12.14",
+      "log": {
+        "path": "out/agent-runs/RUN-000011-3d279e44095a4a3da987e17596b2d3b2.log",
+        "sha256": "de61861f7c376f44b810e7b69a197424e51ed57def1b9cc894f52c5a2eb23d70",
+        "bytes": 28417
       },
       "note": "Process exited successfully."
     }
@@ -9148,6 +9228,38 @@
       "action": "run-check",
       "task": "AUDIT-20261128",
       "summary": "release: passed; receipt RUN-000009; Process exited successfully."
+    },
+    {
+      "revision": 540,
+      "at": "2026-11-28T11:10:21.784614Z",
+      "actor": "coordinator",
+      "action": "checkpoint",
+      "task": "AUDIT-20261128",
+      "summary": "Published checkpoint c9f03a8 with65 passing Debug/Release suites. Integrated traffic, interaction, inventory/equipment, combat, dialogue, quests and editor fixes.66 spawned,63 completed."
+    },
+    {
+      "revision": 541,
+      "at": "2026-11-28T11:11:32.010568Z",
+      "actor": "coordinator",
+      "action": "run-check",
+      "task": "AUDIT-20261128",
+      "summary": "package: failed; receipt RUN-000010; Process exited with status 1."
+    },
+    {
+      "revision": 542,
+      "at": "2026-11-28T11:15:31.458829Z",
+      "actor": "coordinator",
+      "action": "checkpoint",
+      "task": "AUDIT-20261128",
+      "summary": "73 Debug suites passed. Package relocation ran installed binaries successfully but rejected the source-local Ninja dependency; copied build tools outside the checkout without weakening package checks."
+    },
+    {
+      "revision": 543,
+      "at": "2026-11-28T11:15:56.077982Z",
+      "actor": "coordinator",
+      "action": "run-check",
+      "task": "AUDIT-20261128",
+      "summary": "package: passed; receipt RUN-000011; Process exited successfully."
     }
   ]
 }

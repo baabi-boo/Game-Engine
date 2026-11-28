@@ -16,8 +16,8 @@ not create additional agents. Runtime capacity is three simultaneous workers.
 
 ## Status
 
-Work is in progress. 57 distinct workers have been launched and
-54 have completed their assigned reviews or repairs. Further subsystem
+Work is in progress. 66 distinct workers have been launched and
+63 have completed their assigned reviews or repairs. Further subsystem
 review, repairs and independent integration reviews remain. The active `AUDIT-20261128` task and its source-matching receipts
 are the authoritative acceptance record. A published intermediate checkpoint is
 not completion of the 100-worker request or production qualification.
@@ -114,6 +114,23 @@ by passing terrain tests.
 - Perception rotates priority under shared query budgets. Road edits budget the
   resources they retain after connector retirement, and partial-lane routing uses
   a consistent remaining-time bound.
+
+## Fifth checkpoint changes
+
+- Traffic treats busy updates/shutdown as retryable without losing AI ownership or
+  leaving orphan components. Arrival checks use chassis speed magnitude.
+- Interaction enrollment follows component instance identity through queues,
+  callbacks and cleanup, preserving replacement components and allowing reattach.
+- Inventory retires containers after persistent actor identity changes. Equipment
+  integration tests verify reservation, modifier and restore cleanup in the
+  existing inventory-before-equipment update order.
+- Rejected combat transactions report no applied damage or defeat and preserve
+  ammunition, cooldowns, target state and history.
+- Dialogue retains pending provider cancellation and retries it after session
+  release until completion. Quest-owned mission cancellation uses UTF-8-safe
+  diagnostics bounded by the receiving mission service's limit.
+- Editor pick acceptance synchronizes permitted Registry edits before validating
+  its cached Scene revision, preserving selection/history when results are stale.
 
 ## Verification scope
 

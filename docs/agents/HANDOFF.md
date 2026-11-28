@@ -3,11 +3,11 @@
 # Agent continuation and handoff
 
 - **Project:** Game Engine
-- **Ledger revision:** 539
-- **Recorded update:** 2026\-11\-28T11:03:51.627387Z
+- **Ledger revision:** 543
+- **Recorded update:** 2026\-11\-28T11:15:56.077982Z
 - **Coordinator:** coordinator
-- **Source fingerprint:** 55ce24797255ff00d6eff5e5fcb94ee6d8d5426f90d68ee4ec37e32300c6f5aa
-- **Source files:** 290
+- **Source fingerprint:** d61185706ba89a8cc776e18e021dd9edfedad4cd4d38702c9b417b26434f941d
+- **Source files:** 298
 
 This view records explicit operations. Source freshness is checked by the CLI; a generated view alone is not proof that the current checkout is unchanged.
 
@@ -65,9 +65,9 @@ User explicitly authorizes validating and repairing all code delivered at 3dcb0d
 - Write scope: engine/, apps/, tests/, tools/, cmake/, CMakeLists.txt, CMakePresets.json, README.md, docs/architecture/, docs/development/, docs/production/, docs/quality\-gates.md, .github/workflows/ci.yml
 - Dependencies: none
 - Blocker: none
-- Checkpoint: Intermediate59\-suite Debug and49\-suite ASan/UBSan checks passed. Integrated workers049\-054 replication, prediction, journal, behavior, perception and roads.57 launched,54 complete.
+- Checkpoint: 73 Debug suites passed. Package relocation ran installed binaries successfully but rejected the source\-local Ninja dependency; copied build tools outside the checkout without weakening package checks.
 - Files: none recorded
-- Next action: Run first optimized Release gate and central Debug regression execution on frozen source; continue remaining isolated reviews toward100.
+- Next action: Reconfigure cached tool paths and rerun package gate on unchanged source, then integrate low\-level repairs and complete remaining reviews.
 - Required checks: repository, dev, release, package
 
 Acceptance:
@@ -79,8 +79,8 @@ Acceptance:
 
 - repository: no receipt.
 - dev: RUN-000008 / passed / historical source snapshot.
-- release: RUN-000009 / passed / recorded source snapshot.
-- package: no receipt.
+- release: RUN-000009 / passed / historical source snapshot.
+- package: RUN-000011 / passed / recorded source snapshot.
 
 ### CODE\-001: Spatial mathematics
 

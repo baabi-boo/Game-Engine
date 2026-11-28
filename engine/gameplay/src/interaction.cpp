@@ -173,6 +173,7 @@ std::string_view describe(InteractionActionKind value) noexcept {
 struct InteractionService::Impl {
     struct Actor {
         InteractionActorState state;
+        std::uint64_t instance{};
         std::set<ecs::Entity> inside;
         bool desired_down{};
         bool manual{};
@@ -180,6 +181,8 @@ struct InteractionService::Impl {
     };
     struct Target {
         InteractionTargetState state;
+        std::uint64_t instance{};
+        std::uint64_t actions_instance{};
         bool inflight{};
     };
     struct Batch {
@@ -235,6 +238,30 @@ struct InteractionService::Impl {
     }
     bool enrolled(ecs::Entity entity) const {
         return registry.alive(entity) && scene.contains(entity);
+    }
+    bool owns_actor(ecs::Entity entity) const {
+        const auto found = actors.find(entity);
+        return found != actors.end() && enrolled(entity) && found->second.instance != 0 &&
+            registry.component_instance<InteractionActorComponent>(entity) == found->second.instance;
+    }
+    bool owns_target(ecs::Entity entity) const {
+        const auto found = targets.find(entity);
+        return found != targets.end() && enrolled(entity) && found->second.instance != 0 &&
+            registry.component_instance<InteractableComponent>(entity) == found->second.instance &&
+            registry.component_instance<InteractionActionsComponent>(entity) == found->second.actions_instance;
+    }
+    void remove_components(ecs::Entity entity, const Actor& actor) {
+        if (registry.component_instance<InteractionActorComponent>(entity) == actor.instance) {
+            (void)registry.remove<InteractionActorComponent>(entity);
+        }
+    }
+    void remove_components(ecs::Entity entity, const Target& target) {
+        if (registry.component_instance<InteractableComponent>(entity) == target.instance) {
+            (void)registry.remove<InteractableComponent>(entity);
+        }
+        if (registry.component_instance<InteractionActionsComponent>(entity) == target.actions_instance) {
+            (void)registry.remove<InteractionActionsComponent>(entity);
+        }
     }
     math::Vec3 point(ecs::Entity entity) {
         const auto* settings = registry.get<InteractableComponent>(entity);
@@ -321,7 +348,7 @@ struct InteractionService::Impl {
         ++stats.evaluations;
         const auto* a = registry.get<InteractionActorComponent>(actor);
         const auto* t = registry.get<InteractableComponent>(target);
-        if (!a || !t || !actors.contains(actor) || !targets.contains(target)) {
+        if (!a || !t || !owns_actor(actor) || !owns_target(target)) {
             result.error = InteractionError::Stale;
             return result;
         }
@@ -359,7 +386,7 @@ struct InteractionService::Impl {
     InteractionError ready(ecs::Entity actor, ecs::Entity target) const {
         const auto found = targets.find(target);
         const auto* config = registry.get<InteractableComponent>(target);
-        if (found == targets.end() || !config) { return InteractionError::MissingTarget; }
+        if (!owns_actor(actor) || !owns_target(target) || !config) { return InteractionError::Stale; }
         const auto& value = found->second;
         if (value.inflight || (config->exclusive && value.state.reserved_by.valid() &&
             value.state.reserved_by != actor)) { return InteractionError::Locked; }
@@ -369,6 +396,9 @@ struct InteractionService::Impl {
     }
     bool enqueue(ecs::Entity actor, ecs::Entity target, InteractionEventKind event,
                  std::uint64_t serial = 0) {
+        if (!owns_actor(actor) || !owns_target(target)) {
+            return event != InteractionEventKind::Activated || fail(InteractionError::Stale);
+        }
         const auto* component = registry.get<InteractionActionsComponent>(target);
         if (!component || component->actions.size() > limits.actions_per_target) {
             return event != InteractionEventKind::Activated || fail(InteractionError::NoActions);
@@ -646,8 +676,7 @@ void InteractionService::Impl::dispatch() {
         }
         auto batch = std::move(pending.front());
         pending.pop_front();
-        bool success = enrolled(batch.actor) && enrolled(batch.target) &&
-            actors.contains(batch.actor) && targets.contains(batch.target);
+        bool success = owns_actor(batch.actor) && owns_target(batch.target);
         auto failure = success ? InteractionError::None : InteractionError::Stale;
         if (success && batch.event == InteractionEventKind::Activated) {
             if (auto* collision = kernel.services().find<physics::CollisionWorld>()) { (void)collision->sync(scene); }
@@ -659,20 +688,23 @@ void InteractionService::Impl::dispatch() {
             const auto& action = batch.actions[index];
             InteractionActionResult result;
             try {
-                result = enrolled(batch.actor) && enrolled(batch.target)
-                    ? execute(batch, action) : InteractionActionResult{false, "activation entity was removed"};
+                result = owns_actor(batch.actor) && owns_target(batch.target)
+                    ? execute(batch, action) : InteractionActionResult{false, "interaction ownership is stale"};
             } catch (const std::exception& exception) {
                 result = {false, exception.what()};
             } catch (...) {
                 result = {false, "native action threw an unknown exception"};
             }
+            const bool current = owns_actor(batch.actor) && owns_target(batch.target);
+            if (!current) { result = {false, "interaction ownership was removed or replaced"}; }
             ++stats.actions;
             emit(result.success ? InteractionEventKind::ActionSucceeded : InteractionEventKind::ActionFailed,
-                 batch.actor, batch.target, result.success ? InteractionError::None : InteractionError::ActionFailed,
+                 batch.actor, batch.target, result.success ? InteractionError::None :
+                    current ? InteractionError::ActionFailed : InteractionError::Stale,
                  batch.activation, index, action.name, std::move(result.message));
             if (!result.success) {
                 success = false;
-                failure = InteractionError::ActionFailed;
+                failure = current ? InteractionError::ActionFailed : InteractionError::Stale;
                 if (action.stop_on_failure) { break; }
             }
         }
@@ -716,18 +748,18 @@ void InteractionService::Impl::abandon(ecs::Entity actor, ecs::Entity target, In
 
 void InteractionService::Impl::prune() {
     for (auto current = actors.begin(); current != actors.end();) {
-        if (enrolled(current->first) && registry.has<InteractionActorComponent>(current->first)) { ++current; continue; }
+        if (owns_actor(current->first)) { ++current; continue; }
         change_focus(current->second, {});
         for (const auto entity : current->second.inside) {
             transition(InteractionEventKind::TriggerLeave, current->first, entity, InteractionError::Stale);
             --stats.trigger_pairs;
         }
         abandon(current->first, {}, InteractionError::Stale);
+        remove_components(current->first, current->second);
         current = actors.erase(current);
     }
     for (auto current = targets.begin(); current != targets.end();) {
-        if (enrolled(current->first) && registry.has<InteractableComponent>(current->first) &&
-            registry.has<InteractionActionsComponent>(current->first)) { ++current; continue; }
+        if (owns_target(current->first)) { ++current; continue; }
         for (auto& [entity, actor] : actors) {
             if (actor.state.focus == current->first) { change_focus(actor, {}); }
             if (actor.inside.erase(current->first) != 0) {
@@ -736,9 +768,11 @@ void InteractionService::Impl::prune() {
             }
         }
         abandon({}, current->first, InteractionError::Stale);
+        remove_components(current->first, current->second);
         current = targets.erase(current);
     }
     if (!actors.contains(selected)) { selected = {}; }
+    if (!actors.contains(input_actor)) { input_actor = {}; }
 }
 
 InteractionService::InteractionService(core::Kernel& kernel, scene::Scene& scene, InteractionLimits limits)
@@ -759,6 +793,7 @@ bool InteractionService::attach_actor(ecs::Entity entity, InteractionActorCompon
     entry->second.state.entity = entity;
     try { state.registry.emplace<InteractionActorComponent>(entity, std::move(settings)); }
     catch (...) { state.actors.erase(entry); return state.fail(InteractionError::Capacity); }
+    entry->second.instance = state.registry.component_instance<InteractionActorComponent>(entity);
     return true;
 }
 
@@ -781,6 +816,8 @@ bool InteractionService::attach_target(ecs::Entity entity, InteractableComponent
         state.targets.erase(entry);
         return state.fail(InteractionError::Capacity);
     }
+    entry->second.instance = state.registry.component_instance<InteractableComponent>(entity);
+    entry->second.actions_instance = state.registry.component_instance<InteractionActionsComponent>(entity);
     return true;
 }
 
@@ -799,16 +836,18 @@ bool InteractionService::detach_actor(ecs::Entity entity) {
         if (runtime.state.reserved_by == entity) { runtime.state.reserved_by = {}; }
     }
     state.abandon(entity, {}, InteractionError::Stale);
+    state.remove_components(entity, found->second);
     state.actors.erase(found);
-    (void)state.registry.remove<InteractionActorComponent>(entity);
     if (state.selected == entity) { state.selected = {}; }
+    if (state.input_actor == entity) { state.input_actor = {}; }
     return true;
 }
 
 bool InteractionService::detach_target(ecs::Entity entity) {
     auto& state = *impl_;
     if (!state.editable()) { return false; }
-    if (!state.targets.contains(entity)) { return state.fail(InteractionError::MissingTarget); }
+    const auto found = state.targets.find(entity);
+    if (found == state.targets.end()) { return state.fail(InteractionError::MissingTarget); }
     for (auto& [actor, runtime] : state.actors) {
         if (runtime.state.focus == entity) { state.change_focus(runtime, {}); }
         if (runtime.inside.erase(entity) != 0) {
@@ -817,9 +856,8 @@ bool InteractionService::detach_target(ecs::Entity entity) {
         }
     }
     state.abandon({}, entity, InteractionError::Stale);
-    state.targets.erase(entity);
-    (void)state.registry.remove<InteractableComponent>(entity);
-    (void)state.registry.remove<InteractionActionsComponent>(entity);
+    state.remove_components(entity, found->second);
+    state.targets.erase(found);
     return true;
 }
 
@@ -827,7 +865,7 @@ bool InteractionService::set_actions(ecs::Entity entity, std::span<const Interac
     auto& state = *impl_;
     if (!state.editable()) { return false; }
     const auto found = state.targets.find(entity);
-    if (found == state.targets.end() || !state.enrolled(entity)) { return state.fail(InteractionError::MissingTarget); }
+    if (!state.owns_target(entity)) { return state.fail(InteractionError::MissingTarget); }
     if (found->second.inflight) { return state.fail(InteractionError::Locked); }
     if (actions.size() > state.limits.actions_per_target) { return state.fail(InteractionError::Capacity); }
     for (const auto& action : actions) {
@@ -836,6 +874,7 @@ bool InteractionService::set_actions(ecs::Entity entity, std::span<const Interac
     InteractionActionsComponent replacement;
     replacement.actions.assign(actions.begin(), actions.end());
     state.registry.emplace_or_replace<InteractionActionsComponent>(entity, std::move(replacement));
+    found->second.actions_instance = state.registry.component_instance<InteractionActionsComponent>(entity);
     return true;
 }
 
@@ -869,7 +908,7 @@ bool InteractionService::unregister_native(std::string_view name) {
 
 bool InteractionService::select_player(ecs::Entity actor) {
     if (!impl_->editable()) { return false; }
-    if (actor.valid() && !impl_->actors.contains(actor)) { return impl_->fail(InteractionError::MissingActor); }
+    if (actor.valid() && !impl_->owns_actor(actor)) { return impl_->fail(InteractionError::MissingActor); }
     if (impl_->input_actor != actor) {
         const auto previous = impl_->actors.find(impl_->input_actor);
         if (previous != impl_->actors.end() && !previous->second.manual) { previous->second.desired_down = false; }
@@ -879,13 +918,15 @@ bool InteractionService::select_player(ecs::Entity actor) {
     return true;
 }
 
-ecs::Entity InteractionService::player() const noexcept { return impl_->input_actor; }
+ecs::Entity InteractionService::player() const noexcept {
+    return impl_->owns_actor(impl_->input_actor) ? impl_->input_actor : ecs::Entity{};
+}
 
 bool InteractionService::focus(ecs::Entity actor, ecs::Entity target) {
     auto& state = *impl_;
     if (!state.editable()) { return false; }
     const auto found = state.actors.find(actor);
-    if (found == state.actors.end()) { return state.fail(InteractionError::MissingActor); }
+    if (!state.owns_actor(actor)) { return state.fail(InteractionError::MissingActor); }
     if (target.valid()) {
         if (auto* collision = state.kernel.services().find<physics::CollisionWorld>()) { (void)collision->sync(state.scene); }
         state.stats.evaluations = 0;
@@ -899,7 +940,7 @@ bool InteractionService::focus(ecs::Entity actor, ecs::Entity target) {
 bool InteractionService::refresh(ecs::Entity actor) {
     if (!impl_->editable()) { return false; }
     const auto found = impl_->actors.find(actor);
-    if (found == impl_->actors.end()) { return impl_->fail(InteractionError::MissingActor); }
+    if (!impl_->owns_actor(actor)) { return impl_->fail(InteractionError::MissingActor); }
     if (auto* collision = impl_->kernel.services().find<physics::CollisionWorld>()) { (void)collision->sync(impl_->scene); }
     impl_->stats.evaluations = 0;
     impl_->choose(found->second);
@@ -909,7 +950,7 @@ bool InteractionService::refresh(ecs::Entity actor) {
 bool InteractionService::use(ecs::Entity actor, bool down) {
     if (!impl_->editable()) { return false; }
     const auto found = impl_->actors.find(actor);
-    if (found == impl_->actors.end()) { return impl_->fail(InteractionError::MissingActor); }
+    if (!impl_->owns_actor(actor)) { return impl_->fail(InteractionError::MissingActor); }
     found->second.desired_down = down;
     found->second.manual = true;
     return true;
@@ -918,7 +959,7 @@ bool InteractionService::use(ecs::Entity actor, bool down) {
 bool InteractionService::cancel(ecs::Entity actor) {
     if (!impl_->editable()) { return false; }
     const auto found = impl_->actors.find(actor);
-    if (found == impl_->actors.end()) { return impl_->fail(InteractionError::MissingActor); }
+    if (!impl_->owns_actor(actor)) { return impl_->fail(InteractionError::MissingActor); }
     impl_->release(found->second, InteractionError::Released);
     impl_->abandon(actor, {}, InteractionError::Released);
     found->second.state.activated_this_press = true;
@@ -963,6 +1004,7 @@ void InteractionService::update(const core::Frame& frame) {
         target.state.cooldown_remaining = std::max(0.0, target.state.cooldown_remaining - delta);
     }
     state.dispatch();
+    state.prune();
     if (auto* collision = state.kernel.services().find<physics::CollisionWorld>()) { (void)collision->sync(state.scene); }
     auto* input_system = state.kernel.services().find<input::InputSystem>();
     for (unsigned pass = 0; pass < 2; ++pass) {
@@ -986,6 +1028,7 @@ void InteractionService::update(const core::Frame& frame) {
         }
     }
     state.dispatch();
+    state.prune();
 }
 
 bool InteractionService::clear() {
@@ -999,17 +1042,17 @@ bool InteractionService::clear() {
 
 std::optional<InteractionActorState> InteractionService::actor(ecs::Entity entity) const {
     const auto found = impl_->actors.find(entity);
-    return found == impl_->actors.end() ? std::nullopt : std::optional{found->second.state};
+    return !impl_->owns_actor(entity) ? std::nullopt : std::optional{found->second.state};
 }
 
 std::optional<InteractionTargetState> InteractionService::target(ecs::Entity entity) const {
     const auto found = impl_->targets.find(entity);
-    return found == impl_->targets.end() ? std::nullopt : std::optional{found->second.state};
+    return !impl_->owns_target(entity) ? std::nullopt : std::optional{found->second.state};
 }
 
 std::vector<InteractionCandidate> InteractionService::candidates(ecs::Entity actor, std::size_t limit) {
     std::vector<InteractionCandidate> result;
-    if (!impl_->editable() || !impl_->actors.contains(actor)) { return result; }
+    if (!impl_->editable() || !impl_->owns_actor(actor)) { return result; }
     if (auto* collision = impl_->kernel.services().find<physics::CollisionWorld>()) { (void)collision->sync(impl_->scene); }
     impl_->stats.evaluations = 0;
     limit = std::min(limit, impl_->limits.targets);

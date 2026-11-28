@@ -275,7 +275,7 @@ struct CombatService::Impl {
         prepared.request = request;
         prepared.result.target = request.target;
         auto reject = [&](CombatError error) {
-            prepared.result.error = error;
+            prepared.result = {error, request.target};
             return prepared;
         };
         if (!damage_valid(request.damage) || !point_valid(request.point) ||

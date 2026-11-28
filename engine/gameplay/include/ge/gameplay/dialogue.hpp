@@ -184,6 +184,8 @@ struct DialogueEffectResult {
 
 // Providers retain deduplication by the full immutable request ID. Pending means
 // admitted, never completed: subsequent calls use Poll, then Cancel on retirement.
+// Cancel must be idempotent and report Completed to acknowledge retirement. Other
+// outcomes or exceptions retain cancellation_pending for retry on later updates.
 // Retry means no admission occurred. Throwing Apply calls are terminal failures;
 // their external outcome is unknown and is never blindly reapplied. Callbacks
 // must be bounded, synchronous and must not mutate this DialogueService.

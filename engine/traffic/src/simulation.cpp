@@ -391,7 +391,8 @@ struct TrafficSimulation::Impl {
             return false;
         }
         occupancy.push_back({agent.state.vehicle, agent.state.entity, point->lane, point->connector_to,
-            agent.state.absolute_position, point->geometry.distance, agent.state.speed, description.length, description.width});
+            agent.state.absolute_position, point->geometry.distance, std::max(0.0, agent.signed_speed),
+            description.length, description.width});
         return true;
     }
 
@@ -442,7 +443,7 @@ struct TrafficSimulation::Impl {
         agent.forward = math::rotate(body->pose.rotation, {0.0, 0.0, -1.0});
         agent.right = math::rotate(body->pose.rotation, {1.0, 0.0, 0.0});
         agent.signed_speed = math::dot(body->linear_velocity, agent.forward);
-        agent.state.speed = std::max(0.0, agent.signed_speed);
+        agent.state.speed = math::length(body->linear_velocity);
         const bool owned = still_owned(agent);
         const bool current = roads.route_current(agent.route);
         agent.recovery_elapsed = std::min(1.0e6, agent.recovery_elapsed + delta);
@@ -891,7 +892,7 @@ const TrafficLimits& TrafficSimulation::limits() const noexcept { return impl_->
 const TrafficStatistics& TrafficSimulation::statistics() const noexcept { return impl_->statistics; }
 
 void TrafficSimulation::update(double delta, std::uint64_t tick, const scene::WorldPartition* partition) {
-    if (impl_->closed || impl_->busy) { return; }
+    if (impl_->editable() != TrafficError::None) { return; }
     impl_->statistics = {};
     impl_->statistics.tick = tick;
     if (impl_->has_tick && tick <= impl_->last_tick) {
@@ -947,12 +948,12 @@ void TrafficSimulation::update(double delta, std::uint64_t tick, const scene::Wo
 }
 
 void TrafficSimulation::shutdown() {
-    if (impl_->closed || impl_->busy) { return; }
+    if (impl_->editable() != TrafficError::None) { return; }
     for (auto& entry : impl_->agents) {
         impl_->submit(entry.second, {0.0, 0.0, 1.0, 0.0});
         const auto entity = entry.second.state.entity;
         const auto* component = impl_->physics.registry().get<TrafficAgentComponent>(entity);
-        if (component && component->vehicle == entry.first && !impl_->physics.registry().iterating()) {
+        if (component && component->vehicle == entry.first) {
             (void)impl_->physics.registry().remove<TrafficAgentComponent>(entity);
         }
     }

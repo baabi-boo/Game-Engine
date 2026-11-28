@@ -206,7 +206,9 @@ struct InteractionStatistics {
 
 // Single kernel-thread writer. Registry owns every entity and component; only
 // explicitly attached entities participate. Cloning components does not enroll
-// a new actor or target. Destruction never accesses borrowed services.
+// a new actor or target. Removing or replacing an enrolled component outside this
+// service revokes its ownership; cleanup removes only components it installed.
+// Destruction never accesses borrowed services.
 // Native callbacks receive copied action data. Reentrant service mutations are
 // rejected; use Registry::defer or the Command action for structural changes.
 // Activated means all actions succeeded. Script/Command success means admitted;

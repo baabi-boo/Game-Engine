@@ -806,8 +806,11 @@ SelectionVolume SelectionService::marquee(const render::CameraView& camera, math
 SelectionResult SelectionService::choose(const SelectionPick& picked, int cycle_steps, SelectionMode mode) {
     if (impl_->notifying) { return {SelectionError::Busy}; }
     if (mode > SelectionMode::Subtract || !valid_filter(picked.filter)) { return {SelectionError::InvalidArgument}; }
-    if (!picked.report.complete || picked.report.error != SelectionError::None ||
-        picked.report.scene_revision != impl_->scene.revision()) { return {SelectionError::Incomplete}; }
+    if (!picked.report.complete || picked.report.error != SelectionError::None) { return {SelectionError::Incomplete}; }
+    // Registry local transforms and bounds are authoritative Scene inputs. Flush
+    // pending edits before comparing revisions, including for an empty pick.
+    if (impl_->scene.update().error != scene::SceneError::None) { return {SelectionError::Busy}; }
+    if (picked.report.scene_revision != impl_->scene.revision()) { return {SelectionError::Incomplete}; }
     if (picked.hits.size() > impl_->limits.hits) { return {SelectionError::Capacity}; }
     if (picked.hits.empty()) {
         reset_cycle();
